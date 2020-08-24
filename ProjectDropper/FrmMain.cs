@@ -1,6 +1,5 @@
 ﻿using ComClassLib;
 using DevComponents.DotNetBar;
-using DevComponents.DotNetBar.Controls;
 using ProjectDropper.core;
 using ProjectDropper.Properties;
 using System;
@@ -39,64 +38,79 @@ namespace ProjectDropper {
         private CtrlView[] _imageViews;//图像控件
         private Panel[] _imgPanels;
         private string[] _ipAddress;
-        protected Label[] lblTips;
-        private CheckBoxX[] _ckBoxs;
+        protected Label[] _lblTips;
+        private Label[] _lblCameraStates;
         private int _iPort;//端口统一
         private System.Windows.Forms.Timer[] _videoDisplays;
         private CancellationTokenSource[] _tokenSource;
         //private CancellationToken[] _token;
         private ManualResetEvent _resetEvent;
         private Task[] _tasks;
-        bool _isRunVideoServ = false;
+        bool _isRunVideoServ;
         public FrmMain() {
             InitializeComponent();
             IniCtrl();
         }
         private void IniCtrl() {
             _tasks = new Task[4];
+             
             _hDevs = new IntPtr[4] { IntPtr.Zero, IntPtr.Zero, IntPtr.Zero, IntPtr.Zero };
-            _imageViews = new CtrlView[] { new CtrlView(), new CtrlView(), new CtrlView(), new CtrlView() };
+            _imageViews = new CtrlView[] { new CtrlView("cView1"), new CtrlView("cView2"), new CtrlView("cView3"), new CtrlView("cView4") };
             _ipAddress = new string[] { Settings.Default.cameraIPA, Settings.Default.cameraIPB, Settings.Default.cameraIPC, Settings.Default.cameraIPD };
             _iPort = Settings.Default.cameraPort;
             _imgPanels = new Panel[] { panelImgA, panelImgB, panelImgC, panelImgD };
-            lblTips = new Label[] { lblTipA, lblTipB, lblTipC, lblTipD };
-            lblTipA.ForeColor = lblTipB.ForeColor = lblTipC.ForeColor = lblTipD.ForeColor = Color.White;
-            _ckBoxs = new CheckBoxX[] { cboxA, cboxB, cboxC, cboxD };
-            cboxA.ForeColor = cboxB.ForeColor = cboxC.ForeColor = cboxD.ForeColor = Color.Red;
+            _lblTips = new Label[] { lblTipA, lblTipB, lblTipC, lblTipD };
+            // lblTipA.ForeColor = lblTipB.ForeColor = lblTipC.ForeColor = lblTipD.ForeColor = Color.White;
+            _lblCameraStates = new Label[] { lblCameraStateA, lblCameraStateB, lblCameraStateC, lblCameraStateD };
+
+
             /// 任务初始化
             _tokenSource = new CancellationTokenSource[] { new CancellationTokenSource(), new CancellationTokenSource(), new CancellationTokenSource(), new CancellationTokenSource() };
 
             _resetEvent = new ManualResetEvent(true);
             //
+            comBoxCameraSel.Items.Clear();
             for (int i = 0; i < _imgPanels.Length; i++) {
                 //_token[i] = _tokenSource[i].Token;
                 _imgPanels[i].Controls.Add(_imageViews[i]);
                 _imageViews[i].Dock = DockStyle.Fill;
-                lblTips[i].Text = _ipAddress[i];
+                
+                _imageViews[i].MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(ImgView_MouseDoubleClick);
+                _lblCameraStates[i].ImageIndex = 1;
+                _lblTips[i].Text = _ipAddress[i];
+                _lblTips[i].ForeColor = Color.Red;
+                comBoxCameraSel.Items.Add($"吊弦相机_{_ipAddress[i]}");
+
                 //ConnectCamera(i);//链接相机
+            }
+            if (comBoxCameraSel.Items.Count > 0) {
+                comBoxCameraSel.SelectedIndex = 0;
             }
             //开启相机
             OpenCamera();
+            timerConnState.Start();
         }
 
-
+        private object obj = new object();
         private bool ConnectCamera(int i) {
             bool isConn = false;
             try {
-                if (_hDevs[i] == IntPtr.Zero) {
-                    string ipAddr = _ipAddress[i];
-                    IntPtr hDec = VideoM.Connection(ipAddr, _iPort);
-                    if (hDec != IntPtr.Zero) {
-                        isConn = !string.IsNullOrEmpty(VideoM.GetCameraParam(hDec));
-                        _hDevs[i] = hDec;
+                lock (obj) {
+                    if (_hDevs[i] == IntPtr.Zero) {
 
+                        IntPtr hDec = VideoM.Connection(_ipAddress[i], _iPort);
+                        if (hDec != IntPtr.Zero) {
+                            isConn = !string.IsNullOrEmpty(VideoM.GetCameraParam(hDec));
+                            _hDevs[i] = hDec;
+                        }
+
+                    } else {
+                        string sInfo = VideoM.GetCameraParam(_hDevs[i]);
+                        isConn = !string.IsNullOrEmpty(sInfo);
                     }
-                } else {
-                    string sInfo = VideoM.GetCameraParam(_hDevs[i]);
-                    isConn = !string.IsNullOrEmpty(sInfo);
-                }
-                _ckBoxs[i].ForeColor = isConn ? Color.Green : Color.Red;
 
+                }
+                // MessageBox.Show($"{i} 连通{isConn}");
                 //VideoM.CloseRPC(hDec);
                 //hDec = IntPtr.Zero;
                 //GC.Collect();
@@ -106,7 +120,9 @@ namespace ProjectDropper {
                     VideoM.CloseRPC(_hDevs[i]);
                 }
                 _hDevs[i] = IntPtr.Zero;
+
             } finally {
+                CameraConnState(i, isConn);
                 // if (!isConn && _hDevs[i] != IntPtr.Zero) {
                 //VideoM.CloseRPC(_hDevs[i]);
                 //     _hDevs[i] = IntPtr.Zero;
@@ -114,10 +130,33 @@ namespace ProjectDropper {
             }
             return isConn;
         }
-
-
+        //异步刷新
+        private void CameraConnState(int i, bool isConn) {
+            if (_lblTips[i].InvokeRequired) {
+                Action<int, bool> a = CameraConnState;
+                _lblTips[i].Invoke(a, i, isConn);
+            } else {
+                if (isConn) {
+                    // _lblTips[i].ForeColor =  Color.gr ;
+                    _lblCameraStates[i].ImageIndex = 0;
+                    _lblTips[i].ForeColor = Color.Lime;
+                } else {
+                    _lblCameraStates[i].ImageIndex = 1;
+                    _lblTips[i].ForeColor = Color.Red;
+                }
+            }
+        }
+        private void imgViewRefresh(int i) {
+            if (_imageViews[i].InvokeRequired) {
+                Action<int> a = imgViewRefresh;
+                _imageViews[i].Invoke(a, i);
+            } else {
+                _imageViews[i].Refresh();
+            }
+        }
         private void OpenCamera() {
-            Thread.Sleep(5000);
+            _isRunVideoServ = true;
+            Thread.Sleep(1000);
             CameraTask(0);
             CameraTask(1);
             CameraTask(2);
@@ -137,15 +176,19 @@ namespace ProjectDropper {
 
                     if (!ConnectCamera(i)) {
                         //若没有连通 休息10秒重试
-                        await Task.Delay(10000);
+                        Console.WriteLine($"{i}号相机，没有连通！");
+                        _imageViews[i].LoadImg("ico/VideoNoFound.png");
+                        imgViewRefresh(i);
+                        await Task.Delay(5000);
                         continue;
                     }
                     long lTime = 0; int ih = 0, iw = 0;
 
                     VideoM.LoadImg(_imageViews[i], _hDevs[i], ref iw, ref ih, ref lTime);
+                    imgViewRefresh(i);
                     // picVideo.Image = VideoM.GetImg(_hDec, ref iw, ref ih, ref lTime);
                     //lblCameraInfo.Text = VideoM.GetCameraParam(_hDevs[i]);                    
-                    await Task.Delay(5000);
+                    await Task.Delay(100);
                 }
             }, token);
             _tasks[i].Start();
@@ -192,7 +235,7 @@ namespace ProjectDropper {
             Point p = new Point(panelPos.Location.X + iInputCameraPos.Location.X, panelPos.Top + iInputCameraPos.Top + iInputCameraPos.Height);
             dgvCameraPos.Location = p;
             dgvCameraPos.Visible = !dgvCameraPos.Visible;
-           // btnCameraPosView.Image = dgvCameraPos.Visible ? Image.FromFile("img\\hideTB.png") : Image.FromFile("img\\showTB.png");
+            // btnCameraPosView.Image = dgvCameraPos.Visible ? Image.FromFile("img\\hideTB.png") : Image.FromFile("img\\showTB.png");
         }
         /// <summary>
         /// 设置是否触发-使能
@@ -294,7 +337,7 @@ namespace ProjectDropper {
         /// </summary>
         private void btnUP_Click(object sender, EventArgs e) {
             param = CameraParam.MoveUp;
-            sParamValue = "5";
+            sParamValue = "1";
             SetCameraParam();
         }
 
@@ -307,7 +350,7 @@ namespace ProjectDropper {
 
         private void btnLeft_Click(object sender, EventArgs e) {
             param = CameraParam.MoveLeft;
-            sParamValue = "5";
+            sParamValue = "1";
             SetCameraParam();
         }
         /// <summary>
@@ -315,7 +358,7 @@ namespace ProjectDropper {
         /// </summary>
         private void btnRight_Click(object sender, EventArgs e) {
             param = CameraParam.MoveRight;
-            sParamValue = "5";
+            sParamValue = "1";
             SetCameraParam();
         }
         /// <summary>
@@ -323,7 +366,7 @@ namespace ProjectDropper {
         /// </summary>
         private void btnDown_Click(object sender, EventArgs e) {
             param = CameraParam.MoveDown;
-            sParamValue = "5";
+            sParamValue = "1";
             SetCameraParam();
         }
         private void btnStop_Click(object sender, EventArgs e) {
@@ -331,7 +374,7 @@ namespace ProjectDropper {
             sParamValue = "";
             SetCameraParam();
         }
-
+        
         #endregion
 
         #region 确定相机参数
@@ -361,16 +404,17 @@ namespace ProjectDropper {
         private void SetCameraParam() {
             string str = "{\"" + param.ToString() + "\":" + sParamValue + "}";
             Boolean isSet = false;
+
             //设置被选中的相机
-            for (int i = 0; i < _ckBoxs.Length; i++) {
-                if (_ckBoxs[i].Checked && _hDevs[i] != null) {
-                    bool re = VideoM.SetRPCParam(_hDevs[i], 0, str);
-                    isSet = true;
-                }
+            if (comBoxCameraSel.SelectedIndex > -1) {
+                int selInd = comBoxCameraSel.SelectedIndex;
+                bool re = VideoM.SetRPCParam(_hDevs[selInd], 0, str);
+                isSet = true;
             }
+
             //bool re = VideoM.SetRPCParam(_hDec, 0, str);
             if (!isSet) {
-                ToastNotification.Show(this, "没有相机被选中，请确认！");
+                ToastNotification.Show(this, "请选择相机！");
             } else {
                 ToastNotification.Show(this, param.ToString() + "参数设置成功！");
             }
@@ -405,19 +449,100 @@ namespace ProjectDropper {
 
         #endregion
 
+        /// <summary>
+        /// 双击放大
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ImgView_MouseDoubleClick(object sender, System.Windows.Forms.MouseEventArgs e) {
+
+            if (e.Button == MouseButtons.Left) {
+                ShowOneImg((CtrlView)sender);
+            }
+
+        }
+        bool isShowOne = false;//是否只显示一张图片
+        private void ShowOneImg(CtrlView imgV) {
+            int iRowId = 0, iColId = 0;
+            if (imgV.Name == "cView1") {
+                iRowId = 0; iColId = 0;
+            } else if (imgV.Name == "cView2") {
+                iRowId = 0; iColId = 1;
+            } else if (imgV.Name == "cView3") {
+                iRowId = 1; iColId = 0;
+            } else if (imgV.Name == "cView4") {
+                iRowId = 1; iColId = 1;
+            }
+            try {
+                if (isShowOne) {
+                    tbLayoutPanelRight.ColumnStyles[iColId].Width = 0.5f * tbLayoutPanelRight.Width;
+                    tbLayoutPanelRight.ColumnStyles[1 - iColId].Width = 0.5f * tbLayoutPanelRight.Width;
+                    tbLayoutPanelRight.RowStyles[iRowId].Height = 0.5f * tbLayoutPanelRight.Height;
+                    tbLayoutPanelRight.RowStyles[1 - iRowId].Height = 0.5f * tbLayoutPanelRight.Height;
+                    isShowOne = !isShowOne;
+                } else {
+                    //tbLayoutPanelRight.ColumnStyles[iColId].Width = 0.98f*tbLayoutPanelRight.Width;
+                    //tbLayoutPanelRight.ColumnStyles[1 - iColId].Width = 0.02f * tbLayoutPanelRight.Width;
+                    //tbLayoutPanelRight.RowStyles[iRowId].Height = 0.98f*tbLayoutPanelRight.Height;
+                    //tbLayoutPanelRight.RowStyles[1 - iRowId].Height = 0.02f * tbLayoutPanelRight.Height; ;
+                    tbLayoutPanelRight.ColumnStyles[iColId].Width = tbLayoutPanelRight.Width;
+                    tbLayoutPanelRight.ColumnStyles[1 - iColId].Width = 0;
+                    tbLayoutPanelRight.RowStyles[iRowId].Height = tbLayoutPanelRight.Height;
+                    tbLayoutPanelRight.RowStyles[1 - iRowId].Height = 0;
+                    isShowOne = !isShowOne;
+                }
+                imgV.Fit();
+                //double mag = imgV.Width * 1.0 / imgV.Display.ImageSize.Width;
+                //if (mag < 0.001) {
+                //    return;
+                //}
+                //imgV.Display.Magnification = mag;
+            } catch (Exception) {
+
+            }
+        }
+
+
         private void sBtnDisplay_ValueChanged(object sender, EventArgs e) {
-            
-            for (int i = 0; i < _ckBoxs.Length; i++) {
-                if (_ckBoxs[i].Checked) {
-                    if (sBtnDisplay.Value) {
-                        CameraTask(i);
-                    } else {
-                        if (_tasks[i].Status == TaskStatus.Running) {
-                            _tokenSource[i].Cancel();
-                        }
+
+            if (comBoxCameraSel.SelectedIndex > -1) {
+                int selInd = comBoxCameraSel.SelectedIndex;
+                if (sBtnDisplay.Value) {
+                    CameraTask(selInd);
+                } else {
+                    if (_tasks[selInd].Status == TaskStatus.Running) {
+                        _tokenSource[selInd].Cancel();
                     }
                 }
             }
+
+        }
+
+        private void expandablePanel1_Click(object sender, EventArgs e) {
+
+        }
+
+        private void timer2_Tick_1(object sender, EventArgs e) {
+            for (int i = 0; i < 4; i++) {
+                _lblCameraStates[i].Visible = !_lblCameraStates[i].Visible;
+            }
+         }
+
+        private void BtnState_MouseHover(object sender, EventArgs e) {
+            ((Button)sender).BackgroundImage = Image.FromFile("ico/bgBtn.png");
+        }
+
+        private void BtnState_MouseLeave(object sender, EventArgs e) {
+            ((Button)sender).BackgroundImage = null;
+        }
+
+        private void panel4_Paint(object sender, PaintEventArgs e) {
+
+        }
+
+        private void panelImgA_MouseDoubleClick(object sender, MouseEventArgs e) {
+            int x = 12;
+            Console.WriteLine(x);
         }
     }
 }

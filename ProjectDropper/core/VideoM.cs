@@ -1,12 +1,8 @@
 ﻿using ComClassLib;
 using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
-using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ProjectDropper.core {
     public class VideoM {
@@ -51,15 +47,21 @@ namespace ProjectDropper.core {
 
 
         public static IntPtr Connection(string _ipAddress, int iPort = 12345) {
+
             IntPtr hDec = IntPtr.Zero;
+
             try {
                 hDec = OpenRPC(_ipAddress, iPort);
+               // System.Windows.Forms.MessageBox.Show($"{_ipAddress.Trim()}：{hDec}");
             } catch (Exception ex) {
                 hDec = IntPtr.Zero;
+               // System.Windows.Forms.MessageBox.Show($"{_ipAddress}：连接失败{ ex.ToString()}");
                 Console.WriteLine("设备连接失败！" + ex.ToString());
             }
+
             return hDec;
         }
+
         /// <summary>
         /// 获取相机参数
         /// </summary>
@@ -90,7 +92,6 @@ namespace ProjectDropper.core {
             if (hDec == IntPtr.Zero) {
                 return;
             }
-            Image img = null;
             try {
                 byte[] jpg_buffer = new byte[100000000];
                 IntPtr pImageData = IntPtr.Zero;

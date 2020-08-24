@@ -6,13 +6,13 @@
       <Value Profile="(Default)">192.168.100.51</Value>
     </Setting>
     <Setting Name="cameraIPB" Type="System.String" Scope="User">
-      <Value Profile="(Default)"> 192.168.100.52</Value>
+      <Value Profile="(Default)">192.168.100.52</Value>
     </Setting>
     <Setting Name="cameraIPC" Type="System.String" Scope="User">
-      <Value Profile="(Default)"> 192.168.100.53</Value>
+      <Value Profile="(Default)">192.168.100.53</Value>
     </Setting>
     <Setting Name="cameraIPD" Type="System.String" Scope="User">
-      <Value Profile="(Default)"> 192.168.100.54</Value>
+      <Value Profile="(Default)">192.168.100.55</Value>
     </Setting>
     <Setting Name="cameraPort" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">12345</Value>

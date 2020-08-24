@@ -53,6 +53,7 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DevComponents.DotNetBar.Charts, Version=12.7.0.10, Culture=neutral, PublicKeyToken=c39c3242a43eee2b, processorArchitecture=MSIL" />
     <Reference Include="DevComponents.DotNetBar2, Version=12.7.0.10, Culture=neutral, PublicKeyToken=c39c3242a43eee2b, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -108,6 +109,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ico\bgBtn.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="ico\camera.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -137,6 +141,9 @@
     </Content>
     <Content Include="ico\移动.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libzmq.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="RPCDll.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
