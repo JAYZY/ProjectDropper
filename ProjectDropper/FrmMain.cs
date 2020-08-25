@@ -3,6 +3,7 @@ using DevComponents.DotNetBar;
 using ProjectDropper.core;
 using ProjectDropper.Properties;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Threading;
 using System.Threading.Tasks;
@@ -48,9 +49,10 @@ namespace ProjectDropper {
         private Task[] _tasks;
         bool _isRunVideoServ;
         public FrmMain() {
-            GetTimeStamp(DateTime.Now); //时间戳
+           // GetTimeStamp(DateTime.Now); //时间戳
             InitializeComponent();
             IniCtrl();
+            ConnJH();
         }
         private void IniCtrl() {
             _tasks = new Task[4];
@@ -244,7 +246,7 @@ namespace ProjectDropper {
         private void sBtnTriggerMode_ValueChanged(object sender, EventArgs e) {
             //SetBtnPos(iInputGain.Location, iInputGain.Width);
             param = CameraParam.TriggerMode;
-            sParamValue = sBtnTriggerMode.Value ? "true" : "false";
+            sParamValue = sBtnTriggerMode.Value ? "1" : "0";
             SetCameraParam();
         }
 
@@ -313,7 +315,7 @@ namespace ProjectDropper {
         private void btn_MouseUp(object sender, MouseEventArgs e) {
             if (isfinish) {
                 param = CameraParam.MoveStop;
-                sParamValue = "";
+                sParamValue = "0";
                 SetCameraParam();
                 isLongAction = false;
             }
@@ -321,7 +323,7 @@ namespace ProjectDropper {
         private void timer1_Tick(object sender, EventArgs e) {
             if (!isLongAction) {
                 param = CameraParam.MoveStop;
-                sParamValue = "";
+                sParamValue = "0";
                 SetCameraParam();
             }
             isfinish = true;
@@ -338,7 +340,7 @@ namespace ProjectDropper {
         /// </summary>
         private void btnUP_Click(object sender, EventArgs e) {
             param = CameraParam.MoveUp;
-            sParamValue = "1";
+            sParamValue = "16";
             SetCameraParam();
         }
 
@@ -351,7 +353,7 @@ namespace ProjectDropper {
 
         private void btnLeft_Click(object sender, EventArgs e) {
             param = CameraParam.MoveLeft;
-            sParamValue = "1";
+            sParamValue = "16";
             SetCameraParam();
         }
         /// <summary>
@@ -359,7 +361,7 @@ namespace ProjectDropper {
         /// </summary>
         private void btnRight_Click(object sender, EventArgs e) {
             param = CameraParam.MoveRight;
-            sParamValue = "1";
+            sParamValue = "16";
             SetCameraParam();
         }
         /// <summary>
@@ -367,12 +369,12 @@ namespace ProjectDropper {
         /// </summary>
         private void btnDown_Click(object sender, EventArgs e) {
             param = CameraParam.MoveDown;
-            sParamValue = "1";
+            sParamValue = "16";
             SetCameraParam();
         }
         private void btnStop_Click(object sender, EventArgs e) {
             param = CameraParam.MoveStop;
-            sParamValue = "";
+            sParamValue = "0";
             SetCameraParam();
         }
         
@@ -409,8 +411,10 @@ namespace ProjectDropper {
             //设置被选中的相机
             if (comBoxCameraSel.SelectedIndex > -1) {
                 int selInd = comBoxCameraSel.SelectedIndex;
-                bool re = VideoM.SetRPCParam(_hDevs[selInd], 0, str);
-                isSet = true;
+                lock (obj1) {
+                    bool re = VideoM.SetRPCParam(_hDevs[selInd], 0, str);
+                    isSet = true;
+                }
             }
 
             //bool re = VideoM.SetRPCParam(_hDec, 0, str);
@@ -537,13 +541,91 @@ namespace ProjectDropper {
             ((Button)sender).BackgroundImage = null;
         }
 
-        private void panel4_Paint(object sender, PaintEventArgs e) {
+                
 
-        }
+        #region 接触网几何参数绘制
 
-        private void panelImgA_MouseDoubleClick(object sender, MouseEventArgs e) {
-            int x = 12;
-            Console.WriteLine(x);
+        IntPtr m_hjcw = IntPtr.Zero;
+        public void ConnJH() {
+
+            m_hjcw = jcwlib.Jcw_InitInstance();
+            if (m_hjcw == IntPtr.Zero) {
+                MessageBox.Show("err");
+            }
+            //加载配置文件
+            string iniPath = $"{System.Environment.CurrentDirectory}\\JCWLibConf.ini";
+
+            int iErrcode = (int)jcwlib.Jcw_LoadConfig(m_hjcw, iniPath);
+            if (m_hjcw != IntPtr.Zero) {
+                JcwReturn jcr = jcwlib.Jcw_Start(m_hjcw);
+                if (jcr != JcwReturn.JCW_OK) {
+                    MessageBox.Show(((int)jcr).ToString());
+                } else {
+                    timeJH.Start();
+                }
+            }
         }
+      
+        Queue<JCWJH> lstJCWJH = new Queue<JCWJH>();
+        private object obj1=new object();
+
+        private void timeJH_Tick(object sender, EventArgs e) {
+           
+            
+                int iCount = 0;
+                JCWJH jh = new JCWJH();
+
+                while (JcwReturn.JCW_OK == jcwlib.Jcw_PopResult(m_hjcw, ref jh)) {
+                    lstJCWJH.Enqueue(jh);
+                    //绘制图像   jh
+                    if (jh.uiLineNum > 0) { //判断数量
+                        line1.Add(jh.dTimestamp, jh.jcx[0].pntLinePos.y);
+
+                        if (jh.uiLineNum > 1) {
+                            line2.Add(jh.dTimestamp, jh.jcx[0].pntLinePos.y);
+                        }
+                        if (jh.uiLineNum > 2) {
+                            line3.Add(jh.dTimestamp, jh.jcx[0].pntLinePos.y);
+                        }
+                        if (jh.uiLineNum > 3) {
+                            line4.Add(jh.dTimestamp, jh.jcx[0].pntLinePos.y);
+                        }
+                        //绘制point
+                        if (jh.jcx[0].posi == JCWPosi.JCXP_DROPPER) {
+                            points1.Add(jh.dTimestamp, jh.jcx[0].pntLinePos.y, Color.Black);
+
+                        } else if (jh.jcx[0].posi == JCWPosi.JCXP_POLE) {
+                            points1.Add(jh.dTimestamp, jh.jcx[0].pntLinePos.y, Color.Red);
+                        }
+                    }
+                    iCount++;
+                    if (lstJCWJH.Count > 1000) {
+                        JCWJH jhGet = lstJCWJH.Dequeue();
+                        if (jhGet.uiLineNum > 0) {
+                            line1.Delete(0);
+                            if (jhGet.uiLineNum > 1) {
+                                line2.Delete(0);
+                            }
+                            if (jhGet.uiLineNum > 2) {
+                                line3.Delete(0);
+                            }
+                            if (jhGet.uiLineNum > 3) {
+                                line4.Delete(0);
+                            }
+                        }
+
+                        if (jhGet.jcx[0].posi == JCWPosi.JCXP_DROPPER) {
+                            points1.Delete(0);
+
+                        } else if (jhGet.jcx[0].posi == JCWPosi.JCXP_POLE) {
+                            points1.Delete(0);
+                        }
+                    }
+
+                }
+
+            }
+        #endregion
+
     }
 }
