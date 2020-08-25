@@ -48,6 +48,7 @@ namespace ProjectDropper {
         private Task[] _tasks;
         bool _isRunVideoServ;
         public FrmMain() {
+            GetTimeStamp(DateTime.Now); //时间戳
             InitializeComponent();
             IniCtrl();
         }

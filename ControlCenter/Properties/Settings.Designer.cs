@@ -154,5 +154,41 @@ namespace ControlCenter.Properties {
                 this["SubDbSize"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("127.0.0.1")]
+        public string MongoDbIP {
+            get {
+                return ((string)(this["MongoDbIP"]));
+            }
+            set {
+                this["MongoDbIP"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("27017")]
+        public string MongoDBPort {
+            get {
+                return ((string)(this["MongoDBPort"]));
+            }
+            set {
+                this["MongoDBPort"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("test")]
+        public string MongoDBName {
+            get {
+                return ((string)(this["MongoDBName"]));
+            }
+            set {
+                this["MongoDBName"] = value;
+            }
+        }
     }
 }

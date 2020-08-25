@@ -34,6 +34,21 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DevComponents.DotNetBar2, Version=12.7.0.10, Culture=neutral, PublicKeyToken=c39c3242a43eee2b, processorArchitecture=MSIL" />
+    <Reference Include="MongoDB.Bson">
+      <HintPath>..\dll\MongoDB.Bson.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Driver">
+      <HintPath>..\dll\MongoDB.Driver.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Driver.Core">
+      <HintPath>..\dll\MongoDB.Driver.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Driver.Legacy">
+      <HintPath>..\dll\MongoDB.Driver.Legacy.dll</HintPath>
+    </Reference>
+    <Reference Include="MongodbAccess">
+      <HintPath>..\dll\MongodbAccess.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\dll\Newtonsoft.Json.dll</HintPath>
@@ -45,7 +60,9 @@
     </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.CSharp">
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
@@ -60,6 +77,7 @@
     <Compile Include="core\Redis2Sqlite.cs" />
     <Compile Include="core\StationInfo.cs" />
     <Compile Include="core\TaskM.cs" />
+    <Compile Include="DB\MongoDbHelper.cs" />
     <Compile Include="DB\CsvHelper.cs" />
     <Compile Include="DB\DllLib.cs" />
     <Compile Include="FrmMain.cs">
