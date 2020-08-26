@@ -191,7 +191,7 @@ namespace ProjectDropper {
                     imgViewRefresh(i);
                     // picVideo.Image = VideoM.GetImg(_hDec, ref iw, ref ih, ref lTime);
                     //lblCameraInfo.Text = VideoM.GetCameraParam(_hDevs[i]);                    
-                    await Task.Delay(100);
+                    await Task.Delay(500);
                 }
             }, token);
             _tasks[i].Start();

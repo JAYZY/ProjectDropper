@@ -32,7 +32,7 @@ namespace ControlCenter.DB {
                     Console.WriteLine(resu[i].ToString());
             }
             Console.WriteLine("*************** 接口 按时间> 某个值查询**************");
-            var resu = mongodbAccess.FindInTime(132382610645320301, -1);
+            resu = mongodbAccess.FindInTime(132382610645320301, -1);
             Console.WriteLine("查询到数据条数为: " + resu.Count, " 条");
             Console.WriteLine("输出大于一个时间撮数据示例");
             for (int i = 0; i < resu.Count; i++) {
