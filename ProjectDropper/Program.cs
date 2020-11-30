@@ -13,7 +13,11 @@ namespace ProjectDropper {
         static void Main() {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FrmMain());
+            try {
+                Application.Run(new FrmMain());
+            } catch (Exception e) {
+                MessageBox.Show(@"系统缺少运行环境：" + e.ToString());
+            }
         }
     }
 }

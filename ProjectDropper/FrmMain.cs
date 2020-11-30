@@ -182,7 +182,7 @@ namespace ProjectDropper {
                         Console.WriteLine($"{i}号相机，没有连通！");
                         _imageViews[i].LoadImg("ico/VideoNoFound.png");
                         imgViewRefresh(i);
-                        await Task.Delay(5000);
+                        await Task.Delay(Settings.Default.ReconnectTime);
                         continue;
                     }
                     long lTime = 0; int ih = 0, iw = 0;
@@ -191,7 +191,7 @@ namespace ProjectDropper {
                     imgViewRefresh(i);
                     // picVideo.Image = VideoM.GetImg(_hDec, ref iw, ref ih, ref lTime);
                     //lblCameraInfo.Text = VideoM.GetCameraParam(_hDevs[i]);                    
-                    await Task.Delay(500);
+                    await Task.Delay(Settings.Default.RateViewTime);
                 }
             }, token);
             _tasks[i].Start();
@@ -199,6 +199,7 @@ namespace ProjectDropper {
 
 
         #endregion
+
         #region 参数设置
         /// <summary>
         /// FPS值(帧率)参数设置

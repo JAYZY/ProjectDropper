@@ -17,5 +17,11 @@
     <Setting Name="cameraPort" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">12345</Value>
     </Setting>
+    <Setting Name="RateViewTime" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">800</Value>
+    </Setting>
+    <Setting Name="ReconnectTime" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">1000</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

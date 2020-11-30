@@ -82,5 +82,29 @@ namespace ProjectDropper.Properties {
                 this["cameraPort"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("800")]
+        public int RateViewTime {
+            get {
+                return ((int)(this["RateViewTime"]));
+            }
+            set {
+                this["RateViewTime"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1000")]
+        public int ReconnectTime {
+            get {
+                return ((int)(this["ReconnectTime"]));
+            }
+            set {
+                this["ReconnectTime"] = value;
+            }
+        }
     }
 }

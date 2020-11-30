@@ -52,19 +52,19 @@
   <ItemGroup>
     <Reference Include="fvalgcli, Version=3.0.0.0, Culture=neutral, PublicKeyToken=20bef69103785603, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\FAST\WIL\3.0.0\dll\x64\fvalgcli.dll</HintPath>
+      <HintPath>..\dll\fvalgcli.dll</HintPath>
     </Reference>
     <Reference Include="FVILbasic, Version=3.0.0.0, Culture=neutral, PublicKeyToken=6b92ad76edadb73c, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\FAST\WIL\3.0.0\dll\x64\FVILbasic.dll</HintPath>
+      <HintPath>..\dll\FVILbasic.dll</HintPath>
     </Reference>
     <Reference Include="FVILdevice, Version=3.0.0.0, Culture=neutral, PublicKeyToken=46550952301e8a49, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\FAST\WIL\3.0.0\dll\x64\FVILdevice.dll</HintPath>
+      <HintPath>..\dll\FVILdevice.dll</HintPath>
     </Reference>
     <Reference Include="FVILforms, Version=3.0.0.0, Culture=neutral, PublicKeyToken=2b3e48e63fd7f1a8, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\FAST\WIL\3.0.0\dll\x64\FVILforms.dll</HintPath>
+      <HintPath>..\dll\FVILforms.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
