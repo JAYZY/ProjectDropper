@@ -49,22 +49,22 @@ namespace ProjectDropper {
         private Task[] _tasks;
         bool _isRunVideoServ;
         public FrmMain() {
-           // GetTimeStamp(DateTime.Now); //时间戳
+            // GetTimeStamp(DateTime.Now); //时间戳
             InitializeComponent();
             IniCtrl();
             ConnJH();
         }
         private void IniCtrl() {
             _tasks = new Task[4];
-             
+
             _hDevs = new IntPtr[4] { IntPtr.Zero, IntPtr.Zero, IntPtr.Zero, IntPtr.Zero };
             _imageViews = new CtrlView[] { new CtrlView("cView1"), new CtrlView("cView2"), new CtrlView("cView3"), new CtrlView("cView4") };
             _ipAddress = new string[] { Settings.Default.cameraIPA, Settings.Default.cameraIPB, Settings.Default.cameraIPC, Settings.Default.cameraIPD };
             _iPort = Settings.Default.cameraPort;
-            _imgPanels = new Panel[] { panelImgA, panelImgB, panelImgC, panelImgD };
-            _lblTips = new Label[] { lblTipA, lblTipB, lblTipC, lblTipD };
+            _imgPanels = new Panel[] { panelImgA, panelImgB };
+            _lblTips = new Label[] { lblTipA, lblTipB };
             // lblTipA.ForeColor = lblTipB.ForeColor = lblTipC.ForeColor = lblTipD.ForeColor = Color.White;
-            _lblCameraStates = new Label[] { lblCameraStateA, lblCameraStateB, lblCameraStateC, lblCameraStateD };
+            _lblCameraStates = new Label[] { lblCameraStateA, lblCameraStateB };
 
 
             /// 任务初始化
@@ -77,7 +77,7 @@ namespace ProjectDropper {
                 //_token[i] = _tokenSource[i].Token;
                 _imgPanels[i].Controls.Add(_imageViews[i]);
                 _imageViews[i].Dock = DockStyle.Fill;
-                
+
                 _imageViews[i].MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(ImgView_MouseDoubleClick);
                 _lblCameraStates[i].ImageIndex = 1;
                 _lblTips[i].Text = _ipAddress[i];
@@ -162,8 +162,7 @@ namespace ProjectDropper {
             Thread.Sleep(1000);
             CameraTask(0);
             CameraTask(1);
-            CameraTask(2);
-            CameraTask(3);
+
         }
         #region 显示控制
 
@@ -378,7 +377,7 @@ namespace ProjectDropper {
             sParamValue = "0";
             SetCameraParam();
         }
-        
+
         #endregion
 
         #region 确定相机参数
@@ -529,10 +528,10 @@ namespace ProjectDropper {
         }
 
         private void timer2_Tick_1(object sender, EventArgs e) {
-            for (int i = 0; i < 4; i++) {
+            for (int i = 0; i < _lblCameraStates.Length; i++) {
                 _lblCameraStates[i].Visible = !_lblCameraStates[i].Visible;
             }
-         }
+        }
 
         private void BtnState_MouseHover(object sender, EventArgs e) {
             ((Button)sender).BackgroundImage = Image.FromFile("ico/bgBtn.png");
@@ -542,7 +541,7 @@ namespace ProjectDropper {
             ((Button)sender).BackgroundImage = null;
         }
 
-                
+
 
         #region 接触网几何参数绘制
 
@@ -566,66 +565,77 @@ namespace ProjectDropper {
                 }
             }
         }
-      
+
         Queue<JCWJH> lstJCWJH = new Queue<JCWJH>();
-        private object obj1=new object();
+        private object obj1 = new object();
 
         private void timeJH_Tick(object sender, EventArgs e) {
-           
-            
-                int iCount = 0;
-                JCWJH jh = new JCWJH();
 
-                while (JcwReturn.JCW_OK == jcwlib.Jcw_PopResult(m_hjcw, ref jh)) {
-                    lstJCWJH.Enqueue(jh);
-                    //绘制图像   jh
-                    if (jh.uiLineNum > 0) { //判断数量
-                        line1.Add(jh.dTimestamp, jh.jcx[0].pntLinePos.y);
 
-                        if (jh.uiLineNum > 1) {
-                            line2.Add(jh.dTimestamp, jh.jcx[0].pntLinePos.y);
-                        }
-                        if (jh.uiLineNum > 2) {
-                            line3.Add(jh.dTimestamp, jh.jcx[0].pntLinePos.y);
-                        }
-                        if (jh.uiLineNum > 3) {
-                            line4.Add(jh.dTimestamp, jh.jcx[0].pntLinePos.y);
-                        }
-                        //绘制point
-                        if (jh.jcx[0].posi == JCWPosi.JCXP_DROPPER) {
-                            points1.Add(jh.dTimestamp, jh.jcx[0].pntLinePos.y, Color.Black);
+            int iCount = 0;
+            JCWJH jh = new JCWJH();
 
-                        } else if (jh.jcx[0].posi == JCWPosi.JCXP_POLE) {
-                            points1.Add(jh.dTimestamp, jh.jcx[0].pntLinePos.y, Color.Red);
+            while (JcwReturn.JCW_OK == jcwlib.Jcw_PopResult(m_hjcw, ref jh)) {
+                lstJCWJH.Enqueue(jh);
+                //绘制图像   jh
+                if (jh.uiLineNum > 0) { //判断数量
+                    line1.Add(jh.dTimestamp, jh.jcx[0].pntLinePos.y);
+                    lczLine1.Add(jh.dTimestamp, jh.jcx[0].pntLinePos.x);
+                    if (jh.uiLineNum > 1) {
+                        line2.Add(jh.dTimestamp, jh.jcx[1].pntLinePos.y);
+                        lczLine2.Add(jh.dTimestamp, jh.jcx[1].pntLinePos.x);
+                    }
+                    if (jh.uiLineNum > 2) {
+                        line3.Add(jh.dTimestamp, jh.jcx[2].pntLinePos.y);
+                        lczLine3.Add(jh.dTimestamp, jh.jcx[2].pntLinePos.x);
+                    }
+                    if (jh.uiLineNum > 3) {
+                        line4.Add(jh.dTimestamp, jh.jcx[3].pntLinePos.y);
+                        lczLine4.Add(jh.dTimestamp, jh.jcx[3].pntLinePos.x);
+                    }
+                    //绘制point
+                    if (jh.jcx[0].posi == JCWPosi.JCXP_DROPPER) {
+                        points1.Add(jh.dTimestamp, jh.jcx[0].pntLinePos.y, Color.Black);
+                        lczPoint.Add(jh.dTimestamp, jh.jcx[0].pntLinePos.x, Color.Black);
+
+                    } else if (jh.jcx[0].posi == JCWPosi.JCXP_POLE) {
+                        points1.Add(jh.dTimestamp, jh.jcx[0].pntLinePos.y, Color.Red);
+                        lczPoint.Add(jh.dTimestamp, jh.jcx[0].pntLinePos.x, Color.Red);
+                    }
+                }
+                iCount++;
+                if (lstJCWJH.Count > 1000) {
+                    JCWJH jhGet = lstJCWJH.Dequeue();
+                    if (jhGet.uiLineNum > 0) {
+                        line1.Delete(0);
+                        lczLine1.Delete(0);
+                        if (jhGet.uiLineNum > 1) {
+                            line2.Delete(0);
+                            lczLine2.Delete(0);
+                        }
+                        if (jhGet.uiLineNum > 2) {
+                            line3.Delete(0);
+                            lczLine3.Delete(0);
+                        }
+                        if (jhGet.uiLineNum > 3) {
+                            line4.Delete(0);
+                            lczLine4.Delete(0);
                         }
                     }
-                    iCount++;
-                    if (lstJCWJH.Count > 1000) {
-                        JCWJH jhGet = lstJCWJH.Dequeue();
-                        if (jhGet.uiLineNum > 0) {
-                            line1.Delete(0);
-                            if (jhGet.uiLineNum > 1) {
-                                line2.Delete(0);
-                            }
-                            if (jhGet.uiLineNum > 2) {
-                                line3.Delete(0);
-                            }
-                            if (jhGet.uiLineNum > 3) {
-                                line4.Delete(0);
-                            }
-                        }
 
-                        if (jhGet.jcx[0].posi == JCWPosi.JCXP_DROPPER) {
-                            points1.Delete(0);
+                    if (jhGet.jcx[0].posi == JCWPosi.JCXP_DROPPER) {
+                        points1.Delete(0);
+                        lczPoint.Delete(0);
 
-                        } else if (jhGet.jcx[0].posi == JCWPosi.JCXP_POLE) {
-                            points1.Delete(0);
-                        }
+                    } else if (jhGet.jcx[0].posi == JCWPosi.JCXP_POLE) {
+                        points1.Delete(0);
+                        lczPoint.Delete(0);
                     }
-
                 }
 
             }
+
+        }
         #endregion
 
     }

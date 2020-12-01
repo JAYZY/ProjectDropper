@@ -25,7 +25,7 @@ namespace ProjectDropper.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("192.168.100.51")]
+        [global::System.Configuration.DefaultSettingValueAttribute("192.168.100.101")]
         public string cameraIPA {
             get {
                 return ((string)(this["cameraIPA"]));
@@ -37,7 +37,7 @@ namespace ProjectDropper.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("192.168.100.52")]
+        [global::System.Configuration.DefaultSettingValueAttribute("192.168.100.102")]
         public string cameraIPB {
             get {
                 return ((string)(this["cameraIPB"]));
