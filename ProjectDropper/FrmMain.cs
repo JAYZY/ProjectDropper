@@ -231,15 +231,7 @@ namespace ProjectDropper {
             sParamValue = iInputGain.Value.ToString();
         }
 
-        /// <summary>
-        /// 查找预置位
-        /// </summary>
-        private void btnCameraPosView_Click(object sender, EventArgs e) {
-            Point p = new Point(panelPos.Location.X + iInputCameraPos.Location.X, panelPos.Top + iInputCameraPos.Top + iInputCameraPos.Height);
-            dgvCameraPos.Location = p;
-            dgvCameraPos.Visible = !dgvCameraPos.Visible;
-            // btnCameraPosView.Image = dgvCameraPos.Visible ? Image.FromFile("img\\hideTB.png") : Image.FromFile("img\\showTB.png");
-        }
+        
         /// <summary>
         /// 设置是否触发-使能
         /// </summary>
@@ -285,100 +277,7 @@ namespace ProjectDropper {
         }
         #endregion
 
-        #region 云台控制 
-
-        bool isLongAction = false; bool isfinish = false;
-        private void btn_MouseDown(object sender, MouseEventArgs e) {
-            ButtonX btn = (ButtonX)sender;
-            switch (btn.Name) {
-                case "btnUP":
-                    param = CameraParam.MoveUp;
-                    break;
-                case "btnDown":
-                    param = CameraParam.MoveDown;
-                    break;
-                case "btnLeft":
-                    param = CameraParam.MoveLeft;
-                    break;
-                case "btnRight":
-                    param = CameraParam.MoveRight;
-                    break;
-            }
-
-            sParamValue = iInputMoveValue.Value.ToString();
-            SetCameraParam();
-            isfinish = false;
-            isLongAction = true;
-            timer1.Interval = 100;  //按下鼠标 发送动的指令。 100毫秒后如果鼠标放开 则 发送停止，否则
-            timer1.Start();
-        }
-        private void btn_MouseUp(object sender, MouseEventArgs e) {
-            if (isfinish) {
-                param = CameraParam.MoveStop;
-                sParamValue = "0";
-                SetCameraParam();
-                isLongAction = false;
-            }
-        }
-        private void timer1_Tick(object sender, EventArgs e) {
-            if (!isLongAction) {
-                param = CameraParam.MoveStop;
-                sParamValue = "0";
-                SetCameraParam();
-            }
-            isfinish = true;
-            timer1.Stop();
-
-        }
-        private void timer2_Tick(object sender, EventArgs e) {
-
-        }
-
-
-        /// <summary>
-        /// 云台向上移动--- 一直动直到stop
-        /// </summary>
-        private void btnUP_Click(object sender, EventArgs e) {
-            param = CameraParam.MoveUp;
-            sParamValue = "16";
-            SetCameraParam();
-        }
-
-
-
-
-        /// <summary>
-        /// 云台向左移动--- 一直动直到stop
-        /// </summary>
-
-        private void btnLeft_Click(object sender, EventArgs e) {
-            param = CameraParam.MoveLeft;
-            sParamValue = "16";
-            SetCameraParam();
-        }
-        /// <summary>
-        /// 云台向右移动--- 一直动直到stop
-        /// </summary>
-        private void btnRight_Click(object sender, EventArgs e) {
-            param = CameraParam.MoveRight;
-            sParamValue = "16";
-            SetCameraParam();
-        }
-        /// <summary>
-        /// 云台向左移动--- 一直动直到stop
-        /// </summary>
-        private void btnDown_Click(object sender, EventArgs e) {
-            param = CameraParam.MoveDown;
-            sParamValue = "16";
-            SetCameraParam();
-        }
-        private void btnStop_Click(object sender, EventArgs e) {
-            param = CameraParam.MoveStop;
-            sParamValue = "0";
-            SetCameraParam();
-        }
-
-        #endregion
+     
 
         #region 确定相机参数
         /// <summary>
@@ -429,30 +328,7 @@ namespace ProjectDropper {
 
         #endregion
 
-        #region 预置位设置
-        /// <summary>
-        /// 移动到预置位
-        /// </summary>
-        private void btnMoveTo_Click(object sender, EventArgs e) {
-            param = CameraParam.MoveTo;
-            sParamValue = iInputCameraPos.Value.ToString();
-            SetCameraParam();
-        }
-        /// <summary>
-        /// 设置预置位
-        /// </summary>
-
-        private void btnSetPos_Click(object sender, EventArgs e) {
-            param = CameraParam.SetPos;
-            sParamValue = iInputCameraPos.Value.ToString();
-            SetCameraParam();
-        }
-
-
-
-
-
-        #endregion
+         
 
         /// <summary>
         /// 双击放大

@@ -25,10 +25,6 @@
         private void InitializeComponent() {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMain));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tbLayoutPanelRight = new System.Windows.Forms.TableLayoutPanel();
             this.panelImgA = new System.Windows.Forms.Panel();
             this.lblCameraStateA = new System.Windows.Forms.Label();
@@ -38,7 +34,10 @@
             this.lblCameraStateB = new System.Windows.Forms.Label();
             this.lblTipB = new System.Windows.Forms.Label();
             this.panelRight = new DevComponents.DotNetBar.PanelEx();
-            this.buttonX1 = new DevComponents.DotNetBar.ButtonX();
+            this.panelPos = new System.Windows.Forms.Panel();
+            this.label16 = new System.Windows.Forms.Label();
+            this.btnClossAllSystem = new DevComponents.DotNetBar.ButtonX();
+            this.lblSp3 = new System.Windows.Forms.Label();
             this.panel7 = new System.Windows.Forms.Panel();
             this.label15 = new System.Windows.Forms.Label();
             this.integerInput5 = new DevComponents.Editors.IntegerInput();
@@ -67,24 +66,6 @@
             this.iInputCurrValue = new DevComponents.Editors.IntegerInput();
             this.iInputChgValue = new DevComponents.Editors.IntegerInput();
             this.lblSp4 = new System.Windows.Forms.Label();
-            this.dgvCameraPos = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.线路名称 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.预置位 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.panelPos = new System.Windows.Forms.Panel();
-            this.label16 = new System.Windows.Forms.Label();
-            this.btnCameraPosView = new DevComponents.DotNetBar.ButtonX();
-            this.btnMoveTo = new DevComponents.DotNetBar.ButtonX();
-            this.iInputCameraPos = new DevComponents.Editors.IntegerInput();
-            this.btnSetPos = new DevComponents.DotNetBar.ButtonX();
-            this.lblSp3 = new System.Windows.Forms.Label();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.btnStop = new System.Windows.Forms.Button();
-            this.iInputMoveValue = new DevComponents.Editors.IntegerInput();
-            this.btnRight = new System.Windows.Forms.Button();
-            this.btnLeft = new System.Windows.Forms.Button();
-            this.btnUP = new System.Windows.Forms.Button();
-            this.btnDown = new System.Windows.Forms.Button();
-            this.label14 = new System.Windows.Forms.Label();
             this.lblSp2 = new System.Windows.Forms.Label();
             this.panelCameraCtrl = new System.Windows.Forms.Panel();
             this.sBtnTriggerMode = new DevComponents.DotNetBar.Controls.SwitchButton();
@@ -124,17 +105,24 @@
             this.explorerBarLeft = new DevComponents.DotNetBar.ExplorerBar();
             this.explorerBarGroupItem1 = new DevComponents.DotNetBar.ExplorerBarGroupItem();
             this.buttonItem1 = new DevComponents.DotNetBar.ButtonItem();
-            this.explorerBarGroupItem2 = new DevComponents.DotNetBar.ExplorerBarGroupItem();
             this.buttonItem3 = new DevComponents.DotNetBar.ButtonItem();
+            this.explorerBarGroupItem2 = new DevComponents.DotNetBar.ExplorerBarGroupItem();
             this.switchButtonItem1 = new DevComponents.DotNetBar.SwitchButtonItem();
-            this.switchButtonItem2 = new DevComponents.DotNetBar.SwitchButtonItem();
-            this.switchButtonItem3 = new DevComponents.DotNetBar.SwitchButtonItem();
             this.labelItem1 = new DevComponents.DotNetBar.LabelItem();
+            this.switchButtonItem2 = new DevComponents.DotNetBar.SwitchButtonItem();
             this.labelItem2 = new DevComponents.DotNetBar.LabelItem();
+            this.switchButtonItem3 = new DevComponents.DotNetBar.SwitchButtonItem();
+            this.labelItem3 = new DevComponents.DotNetBar.LabelItem();
+            this.labelItem4 = new DevComponents.DotNetBar.LabelItem();
+            this.labelItem6 = new DevComponents.DotNetBar.LabelItem();
+            this.explorerBarGroupItem3 = new DevComponents.DotNetBar.ExplorerBarGroupItem();
+            this.labelItem5 = new DevComponents.DotNetBar.LabelItem();
+            this.labelItem7 = new DevComponents.DotNetBar.LabelItem();
             this.tbLayoutPanelRight.SuspendLayout();
             this.panelImgA.SuspendLayout();
             this.panelImgB.SuspendLayout();
             this.panelRight.SuspendLayout();
+            this.panelPos.SuspendLayout();
             this.panel7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.integerInput5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dInputExposure)).BeginInit();
@@ -146,11 +134,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.integerInput2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iInputCurrValue)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iInputChgValue)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvCameraPos)).BeginInit();
-            this.panelPos.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.iInputCameraPos)).BeginInit();
-            this.panel4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.iInputMoveValue)).BeginInit();
             this.panelCameraCtrl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dInputFPS)).BeginInit();
             this.panel3.SuspendLayout();
@@ -168,13 +151,13 @@
             this.tbLayoutPanelRight.Controls.Add(this.panelImgB, 1, 0);
             this.tbLayoutPanelRight.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tbLayoutPanelRight.Font = new System.Drawing.Font("等线", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tbLayoutPanelRight.Location = new System.Drawing.Point(169, 62);
+            this.tbLayoutPanelRight.Location = new System.Drawing.Point(177, 62);
             this.tbLayoutPanelRight.Margin = new System.Windows.Forms.Padding(0);
             this.tbLayoutPanelRight.Name = "tbLayoutPanelRight";
             this.tbLayoutPanelRight.RowCount = 1;
             this.tbLayoutPanelRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tbLayoutPanelRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tbLayoutPanelRight.Size = new System.Drawing.Size(1011, 973);
+            this.tbLayoutPanelRight.Size = new System.Drawing.Size(1003, 670);
             this.tbLayoutPanelRight.TabIndex = 71;
             // 
             // panelImgA
@@ -185,7 +168,7 @@
             this.panelImgA.Location = new System.Drawing.Point(1, 1);
             this.panelImgA.Margin = new System.Windows.Forms.Padding(1);
             this.panelImgA.Name = "panelImgA";
-            this.panelImgA.Size = new System.Drawing.Size(503, 971);
+            this.panelImgA.Size = new System.Drawing.Size(499, 668);
             this.panelImgA.TabIndex = 20;
             // 
             // lblCameraStateA
@@ -228,10 +211,10 @@
             this.panelImgB.Controls.Add(this.lblCameraStateB);
             this.panelImgB.Controls.Add(this.lblTipB);
             this.panelImgB.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelImgB.Location = new System.Drawing.Point(506, 1);
+            this.panelImgB.Location = new System.Drawing.Point(502, 1);
             this.panelImgB.Margin = new System.Windows.Forms.Padding(1);
             this.panelImgB.Name = "panelImgB";
-            this.panelImgB.Size = new System.Drawing.Size(504, 971);
+            this.panelImgB.Size = new System.Drawing.Size(500, 668);
             this.panelImgB.TabIndex = 20;
             // 
             // lblCameraStateB
@@ -265,15 +248,12 @@
             // 
             this.panelRight.CanvasColor = System.Drawing.SystemColors.Control;
             this.panelRight.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2000;
-            this.panelRight.Controls.Add(this.buttonX1);
+            this.panelRight.Controls.Add(this.panelPos);
+            this.panelRight.Controls.Add(this.lblSp3);
             this.panelRight.Controls.Add(this.panel7);
             this.panelRight.Controls.Add(this.label13);
             this.panelRight.Controls.Add(this.panel6);
             this.panelRight.Controls.Add(this.lblSp4);
-            this.panelRight.Controls.Add(this.dgvCameraPos);
-            this.panelRight.Controls.Add(this.panelPos);
-            this.panelRight.Controls.Add(this.lblSp3);
-            this.panelRight.Controls.Add(this.panel4);
             this.panelRight.Controls.Add(this.lblSp2);
             this.panelRight.Controls.Add(this.panelCameraCtrl);
             this.panelRight.Controls.Add(this.lblSp1);
@@ -293,19 +273,54 @@
             this.panelRight.Style.GradientAngle = 90;
             this.panelRight.TabIndex = 75;
             // 
-            // buttonX1
+            // panelPos
             // 
-            this.buttonX1.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.buttonX1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(162)))), ((int)(((byte)(71)))));
-            this.buttonX1.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.buttonX1.Font = new System.Drawing.Font("微软雅黑", 15F, System.Drawing.FontStyle.Bold);
-            this.buttonX1.Location = new System.Drawing.Point(27, 1002);
-            this.buttonX1.Name = "buttonX1";
-            this.buttonX1.Size = new System.Drawing.Size(168, 33);
-            this.buttonX1.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.buttonX1.TabIndex = 38;
-            this.buttonX1.Text = "一键关闭系统";
-            this.buttonX1.TextColor = System.Drawing.Color.White;
+            this.panelPos.BackColor = System.Drawing.Color.Transparent;
+            this.panelPos.Controls.Add(this.label16);
+            this.panelPos.Controls.Add(this.btnClossAllSystem);
+            this.panelPos.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelPos.Location = new System.Drawing.Point(6, 714);
+            this.panelPos.Name = "panelPos";
+            this.panelPos.Size = new System.Drawing.Size(286, 114);
+            this.panelPos.TabIndex = 20;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.BackColor = System.Drawing.Color.Transparent;
+            this.label16.Font = new System.Drawing.Font("微软雅黑", 23F);
+            this.label16.ForeColor = System.Drawing.Color.DimGray;
+            this.label16.Location = new System.Drawing.Point(66, 13);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(141, 40);
+            this.label16.TabIndex = 10;
+            this.label16.Text = "系统管理";
+            this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // btnClossAllSystem
+            // 
+            this.btnClossAllSystem.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnClossAllSystem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(162)))), ((int)(((byte)(71)))));
+            this.btnClossAllSystem.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
+            this.btnClossAllSystem.Font = new System.Drawing.Font("微软雅黑", 15F, System.Drawing.FontStyle.Bold);
+            this.btnClossAllSystem.Location = new System.Drawing.Point(54, 66);
+            this.btnClossAllSystem.Name = "btnClossAllSystem";
+            this.btnClossAllSystem.Size = new System.Drawing.Size(168, 33);
+            this.btnClossAllSystem.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.btnClossAllSystem.TabIndex = 38;
+            this.btnClossAllSystem.Text = "一键关闭系统";
+            this.btnClossAllSystem.TextColor = System.Drawing.Color.White;
+            // 
+            // lblSp3
+            // 
+            this.lblSp3.BackColor = System.Drawing.Color.Transparent;
+            this.lblSp3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.lblSp3.Image = ((System.Drawing.Image)(resources.GetObject("lblSp3.Image")));
+            this.lblSp3.Location = new System.Drawing.Point(6, 708);
+            this.lblSp3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblSp3.Name = "lblSp3";
+            this.lblSp3.Size = new System.Drawing.Size(286, 6);
+            this.lblSp3.TabIndex = 29;
             // 
             // panel7
             // 
@@ -319,7 +334,7 @@
             this.panel7.Controls.Add(this.label8);
             this.panel7.Controls.Add(this.iInputGain);
             this.panel7.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel7.Location = new System.Drawing.Point(6, 708);
+            this.panel7.Location = new System.Drawing.Point(6, 526);
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(286, 182);
             this.panel7.TabIndex = 24;
@@ -454,7 +469,7 @@
             this.label13.BackColor = System.Drawing.Color.Transparent;
             this.label13.Dock = System.Windows.Forms.DockStyle.Top;
             this.label13.Image = ((System.Drawing.Image)(resources.GetObject("label13.Image")));
-            this.label13.Location = new System.Drawing.Point(6, 703);
+            this.label13.Location = new System.Drawing.Point(6, 521);
             this.label13.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(286, 5);
@@ -480,7 +495,7 @@
             this.panel6.Controls.Add(this.iInputCurrValue);
             this.panel6.Controls.Add(this.iInputChgValue);
             this.panel6.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel6.Location = new System.Drawing.Point(6, 505);
+            this.panel6.Location = new System.Drawing.Point(6, 323);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(286, 198);
             this.panel6.TabIndex = 22;
@@ -745,296 +760,12 @@
             this.lblSp4.BackColor = System.Drawing.Color.Transparent;
             this.lblSp4.Dock = System.Windows.Forms.DockStyle.Top;
             this.lblSp4.Image = ((System.Drawing.Image)(resources.GetObject("lblSp4.Image")));
-            this.lblSp4.Location = new System.Drawing.Point(6, 500);
+            this.lblSp4.Location = new System.Drawing.Point(6, 318);
             this.lblSp4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblSp4.Name = "lblSp4";
             this.lblSp4.Size = new System.Drawing.Size(286, 5);
             this.lblSp4.TabIndex = 30;
             this.lblSp4.Visible = false;
-            // 
-            // dgvCameraPos
-            // 
-            this.dgvCameraPos.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("微软雅黑", 12F);
-            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvCameraPos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
-            this.dgvCameraPos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvCameraPos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.线路名称,
-            this.预置位});
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvCameraPos.DefaultCellStyle = dataGridViewCellStyle11;
-            this.dgvCameraPos.EnableHeadersVisualStyles = false;
-            this.dgvCameraPos.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
-            this.dgvCameraPos.Location = new System.Drawing.Point(19, 721);
-            this.dgvCameraPos.Name = "dgvCameraPos";
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvCameraPos.RowHeadersDefaultCellStyle = dataGridViewCellStyle12;
-            this.dgvCameraPos.RowHeadersVisible = false;
-            this.dgvCameraPos.RowTemplate.Height = 23;
-            this.dgvCameraPos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvCameraPos.Size = new System.Drawing.Size(258, 150);
-            this.dgvCameraPos.TabIndex = 26;
-            this.dgvCameraPos.Visible = false;
-            // 
-            // 线路名称
-            // 
-            dataGridViewCellStyle10.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.Gray;
-            this.线路名称.DefaultCellStyle = dataGridViewCellStyle10;
-            this.线路名称.HeaderText = "线路名称";
-            this.线路名称.Name = "线路名称";
-            // 
-            // 预置位
-            // 
-            this.预置位.HeaderText = "预置位";
-            this.预置位.Name = "预置位";
-            // 
-            // panelPos
-            // 
-            this.panelPos.BackColor = System.Drawing.Color.Transparent;
-            this.panelPos.Controls.Add(this.label16);
-            this.panelPos.Controls.Add(this.btnCameraPosView);
-            this.panelPos.Controls.Add(this.btnMoveTo);
-            this.panelPos.Controls.Add(this.iInputCameraPos);
-            this.panelPos.Controls.Add(this.btnSetPos);
-            this.panelPos.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelPos.Location = new System.Drawing.Point(6, 386);
-            this.panelPos.Name = "panelPos";
-            this.panelPos.Size = new System.Drawing.Size(286, 114);
-            this.panelPos.TabIndex = 20;
-            this.panelPos.Visible = false;
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.BackColor = System.Drawing.Color.Transparent;
-            this.label16.Font = new System.Drawing.Font("微软雅黑", 23F);
-            this.label16.ForeColor = System.Drawing.Color.DimGray;
-            this.label16.Location = new System.Drawing.Point(52, 6);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(172, 40);
-            this.label16.TabIndex = 10;
-            this.label16.Text = "云台预置位";
-            this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // btnCameraPosView
-            // 
-            this.btnCameraPosView.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnCameraPosView.BackColor = System.Drawing.Color.DeepSkyBlue;
-            this.btnCameraPosView.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.btnCameraPosView.Font = new System.Drawing.Font("微软雅黑", 15F, System.Drawing.FontStyle.Bold);
-            this.btnCameraPosView.Image = ((System.Drawing.Image)(resources.GetObject("btnCameraPosView.Image")));
-            this.btnCameraPosView.ImageFixedSize = new System.Drawing.Size(32, 32);
-            this.btnCameraPosView.Location = new System.Drawing.Point(102, 69);
-            this.btnCameraPosView.Name = "btnCameraPosView";
-            this.btnCameraPosView.Size = new System.Drawing.Size(34, 33);
-            this.btnCameraPosView.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.btnCameraPosView.TabIndex = 9;
-            this.btnCameraPosView.TextColor = System.Drawing.Color.White;
-            this.btnCameraPosView.Tooltip = "预置位查找";
-            this.btnCameraPosView.Click += new System.EventHandler(this.btnCameraPosView_Click);
-            // 
-            // btnMoveTo
-            // 
-            this.btnMoveTo.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnMoveTo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(162)))), ((int)(((byte)(71)))));
-            this.btnMoveTo.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.btnMoveTo.Font = new System.Drawing.Font("微软雅黑", 15F, System.Drawing.FontStyle.Bold);
-            this.btnMoveTo.Location = new System.Drawing.Point(142, 69);
-            this.btnMoveTo.Name = "btnMoveTo";
-            this.btnMoveTo.Size = new System.Drawing.Size(57, 33);
-            this.btnMoveTo.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.btnMoveTo.TabIndex = 8;
-            this.btnMoveTo.Text = "移动";
-            this.btnMoveTo.TextColor = System.Drawing.Color.White;
-            this.btnMoveTo.Click += new System.EventHandler(this.btnMoveTo_Click);
-            // 
-            // iInputCameraPos
-            // 
-            // 
-            // 
-            // 
-            this.iInputCameraPos.BackgroundStyle.BackColor = System.Drawing.Color.White;
-            this.iInputCameraPos.BackgroundStyle.Class = "DateTimeInputBackground";
-            this.iInputCameraPos.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.iInputCameraPos.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2;
-            this.iInputCameraPos.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.iInputCameraPos.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.iInputCameraPos.ForeColor = System.Drawing.Color.Black;
-            this.iInputCameraPos.Location = new System.Drawing.Point(18, 71);
-            this.iInputCameraPos.MaxValue = 16;
-            this.iInputCameraPos.MinValue = 1;
-            this.iInputCameraPos.Name = "iInputCameraPos";
-            this.iInputCameraPos.ShowUpDown = true;
-            this.iInputCameraPos.Size = new System.Drawing.Size(79, 29);
-            this.iInputCameraPos.TabIndex = 6;
-            this.iInputCameraPos.Value = 1;
-            // 
-            // btnSetPos
-            // 
-            this.btnSetPos.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnSetPos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(162)))), ((int)(((byte)(71)))));
-            this.btnSetPos.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
-            this.btnSetPos.Font = new System.Drawing.Font("微软雅黑", 15F, System.Drawing.FontStyle.Bold);
-            this.btnSetPos.Location = new System.Drawing.Point(206, 69);
-            this.btnSetPos.Name = "btnSetPos";
-            this.btnSetPos.Size = new System.Drawing.Size(57, 33);
-            this.btnSetPos.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.btnSetPos.TabIndex = 8;
-            this.btnSetPos.Text = "设置";
-            this.btnSetPos.TextColor = System.Drawing.Color.White;
-            this.btnSetPos.Click += new System.EventHandler(this.btnSetPos_Click);
-            // 
-            // lblSp3
-            // 
-            this.lblSp3.BackColor = System.Drawing.Color.Transparent;
-            this.lblSp3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblSp3.Image = ((System.Drawing.Image)(resources.GetObject("lblSp3.Image")));
-            this.lblSp3.Location = new System.Drawing.Point(6, 380);
-            this.lblSp3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblSp3.Name = "lblSp3";
-            this.lblSp3.Size = new System.Drawing.Size(286, 6);
-            this.lblSp3.TabIndex = 29;
-            // 
-            // panel4
-            // 
-            this.panel4.BackColor = System.Drawing.Color.Transparent;
-            this.panel4.Controls.Add(this.btnStop);
-            this.panel4.Controls.Add(this.iInputMoveValue);
-            this.panel4.Controls.Add(this.btnRight);
-            this.panel4.Controls.Add(this.btnLeft);
-            this.panel4.Controls.Add(this.btnUP);
-            this.panel4.Controls.Add(this.btnDown);
-            this.panel4.Controls.Add(this.label14);
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel4.Location = new System.Drawing.Point(6, 318);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(286, 62);
-            this.panel4.TabIndex = 18;
-            this.panel4.Visible = false;
-            // 
-            // btnStop
-            // 
-            this.btnStop.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnStop.FlatAppearance.BorderSize = 0;
-            this.btnStop.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnStop.Image = ((System.Drawing.Image)(resources.GetObject("btnStop.Image")));
-            this.btnStop.Location = new System.Drawing.Point(113, 107);
-            this.btnStop.Margin = new System.Windows.Forms.Padding(2);
-            this.btnStop.Name = "btnStop";
-            this.btnStop.Size = new System.Drawing.Size(40, 35);
-            this.btnStop.TabIndex = 87;
-            this.btnStop.UseVisualStyleBackColor = true;
-            this.btnStop.Click += new System.EventHandler(this.btnStop_Click);
-            // 
-            // iInputMoveValue
-            // 
-            // 
-            // 
-            // 
-            this.iInputMoveValue.BackgroundStyle.BackColor = System.Drawing.Color.White;
-            this.iInputMoveValue.BackgroundStyle.Class = "DateTimeInputBackground";
-            this.iInputMoveValue.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.iInputMoveValue.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2;
-            this.iInputMoveValue.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.iInputMoveValue.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.iInputMoveValue.InputHorizontalAlignment = DevComponents.Editors.eHorizontalAlignment.Center;
-            this.iInputMoveValue.Location = new System.Drawing.Point(174, 59);
-            this.iInputMoveValue.MaxValue = 64;
-            this.iInputMoveValue.MinValue = 5;
-            this.iInputMoveValue.Name = "iInputMoveValue";
-            this.iInputMoveValue.Size = new System.Drawing.Size(42, 29);
-            this.iInputMoveValue.TabIndex = 10;
-            this.iInputMoveValue.Value = 32;
-            this.iInputMoveValue.Visible = false;
-            this.iInputMoveValue.WatermarkText = "移动值";
-            // 
-            // btnRight
-            // 
-            this.btnRight.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnRight.FlatAppearance.BorderSize = 0;
-            this.btnRight.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRight.Image = ((System.Drawing.Image)(resources.GetObject("btnRight.Image")));
-            this.btnRight.Location = new System.Drawing.Point(162, 107);
-            this.btnRight.Margin = new System.Windows.Forms.Padding(2);
-            this.btnRight.Name = "btnRight";
-            this.btnRight.Size = new System.Drawing.Size(40, 35);
-            this.btnRight.TabIndex = 12;
-            this.btnRight.UseVisualStyleBackColor = true;
-            this.btnRight.Click += new System.EventHandler(this.btnRight_Click);
-            // 
-            // btnLeft
-            // 
-            this.btnLeft.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnLeft.FlatAppearance.BorderSize = 0;
-            this.btnLeft.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnLeft.Image = ((System.Drawing.Image)(resources.GetObject("btnLeft.Image")));
-            this.btnLeft.Location = new System.Drawing.Point(64, 107);
-            this.btnLeft.Margin = new System.Windows.Forms.Padding(2);
-            this.btnLeft.Name = "btnLeft";
-            this.btnLeft.Size = new System.Drawing.Size(40, 35);
-            this.btnLeft.TabIndex = 12;
-            this.btnLeft.UseVisualStyleBackColor = true;
-            this.btnLeft.Click += new System.EventHandler(this.btnLeft_Click);
-            // 
-            // btnUP
-            // 
-            this.btnUP.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnUP.FlatAppearance.BorderSize = 0;
-            this.btnUP.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnUP.Image = ((System.Drawing.Image)(resources.GetObject("btnUP.Image")));
-            this.btnUP.Location = new System.Drawing.Point(113, 59);
-            this.btnUP.Margin = new System.Windows.Forms.Padding(2);
-            this.btnUP.Name = "btnUP";
-            this.btnUP.Size = new System.Drawing.Size(40, 35);
-            this.btnUP.TabIndex = 12;
-            this.btnUP.UseVisualStyleBackColor = true;
-            this.btnUP.Click += new System.EventHandler(this.btnUP_Click);
-            // 
-            // btnDown
-            // 
-            this.btnDown.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnDown.FlatAppearance.BorderSize = 0;
-            this.btnDown.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDown.Image = ((System.Drawing.Image)(resources.GetObject("btnDown.Image")));
-            this.btnDown.Location = new System.Drawing.Point(113, 154);
-            this.btnDown.Margin = new System.Windows.Forms.Padding(2);
-            this.btnDown.Name = "btnDown";
-            this.btnDown.Size = new System.Drawing.Size(40, 35);
-            this.btnDown.TabIndex = 12;
-            this.btnDown.UseVisualStyleBackColor = true;
-            this.btnDown.Click += new System.EventHandler(this.btnDown_Click);
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.BackColor = System.Drawing.Color.Transparent;
-            this.label14.Font = new System.Drawing.Font("微软雅黑", 23F);
-            this.label14.ForeColor = System.Drawing.Color.DimGray;
-            this.label14.Location = new System.Drawing.Point(66, 5);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(141, 40);
-            this.label14.TabIndex = 3;
-            this.label14.Text = "云台控制";
-            this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblSp2
             // 
@@ -1309,15 +1040,13 @@
             this.expandablePanel1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.expandablePanel1.DisabledBackColor = System.Drawing.Color.Empty;
             this.expandablePanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.expandablePanel1.Expanded = false;
-            this.expandablePanel1.ExpandedBounds = new System.Drawing.Rectangle(169, 723, 1309, 338);
             this.expandablePanel1.ExpandOnTitleClick = true;
             this.expandablePanel1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.expandablePanel1.HideControlsWhenCollapsed = true;
-            this.expandablePanel1.Location = new System.Drawing.Point(169, 1040);
+            this.expandablePanel1.Location = new System.Drawing.Point(177, 737);
             this.expandablePanel1.Margin = new System.Windows.Forms.Padding(2);
             this.expandablePanel1.Name = "expandablePanel1";
-            this.expandablePanel1.Size = new System.Drawing.Size(1011, 21);
+            this.expandablePanel1.Size = new System.Drawing.Size(1003, 324);
             this.expandablePanel1.Style.Alignment = System.Drawing.StringAlignment.Center;
             this.expandablePanel1.Style.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
             this.expandablePanel1.Style.BackColor2.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
@@ -1377,7 +1106,7 @@
             this.tChart2.Series.Add(this.lczLine3);
             this.tChart2.Series.Add(this.lczLine4);
             this.tChart2.Series.Add(this.lczPoint);
-            this.tChart2.Size = new System.Drawing.Size(1309, 0);
+            this.tChart2.Size = new System.Drawing.Size(1003, 160);
             this.tChart2.TabIndex = 4;
             // 
             // lczLine1
@@ -1674,14 +1403,14 @@
             // 
             this.tChart1.Legend.Title.Pen.Visible = false;
             this.tChart1.Legend.Visible = false;
-            this.tChart1.Location = new System.Drawing.Point(0, -122);
+            this.tChart1.Location = new System.Drawing.Point(0, 181);
             this.tChart1.Name = "tChart1";
             this.tChart1.Series.Add(this.line1);
             this.tChart1.Series.Add(this.line2);
             this.tChart1.Series.Add(this.line3);
             this.tChart1.Series.Add(this.line4);
             this.tChart1.Series.Add(this.points1);
-            this.tChart1.Size = new System.Drawing.Size(1309, 143);
+            this.tChart1.Size = new System.Drawing.Size(1003, 143);
             this.tChart1.TabIndex = 15;
             // 
             // line1
@@ -1908,10 +1637,10 @@
             // splitter1
             // 
             this.splitter1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.splitter1.Location = new System.Drawing.Point(169, 1035);
+            this.splitter1.Location = new System.Drawing.Point(177, 732);
             this.splitter1.Margin = new System.Windows.Forms.Padding(2);
             this.splitter1.Name = "splitter1";
-            this.splitter1.Size = new System.Drawing.Size(1011, 5);
+            this.splitter1.Size = new System.Drawing.Size(1003, 5);
             this.splitter1.TabIndex = 83;
             this.splitter1.TabStop = false;
             // 
@@ -1929,9 +1658,9 @@
             this.panel5.Controls.Add(this.lblTaskInfo);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel5.Font = new System.Drawing.Font("等线", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.panel5.Location = new System.Drawing.Point(169, 0);
+            this.panel5.Location = new System.Drawing.Point(177, 0);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(1011, 62);
+            this.panel5.Size = new System.Drawing.Size(1003, 62);
             this.panel5.TabIndex = 94;
             // 
             // lblTaskInfo
@@ -1962,15 +1691,16 @@
             this.explorerBarLeft.BackStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.explorerBarLeft.Cursor = System.Windows.Forms.Cursors.Default;
             this.explorerBarLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.explorerBarLeft.Font = new System.Drawing.Font("等线", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.explorerBarLeft.Font = new System.Drawing.Font("微软雅黑", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.explorerBarLeft.GroupImages = null;
             this.explorerBarLeft.Groups.AddRange(new DevComponents.DotNetBar.BaseItem[] {
+            this.explorerBarGroupItem3,
             this.explorerBarGroupItem1,
             this.explorerBarGroupItem2});
             this.explorerBarLeft.Images = null;
             this.explorerBarLeft.Location = new System.Drawing.Point(0, 0);
             this.explorerBarLeft.Name = "explorerBarLeft";
-            this.explorerBarLeft.Size = new System.Drawing.Size(169, 1061);
+            this.explorerBarLeft.Size = new System.Drawing.Size(177, 1061);
             this.explorerBarLeft.StockStyle = DevComponents.DotNetBar.eExplorerBarStockStyle.SystemColors;
             this.explorerBarLeft.TabIndex = 8;
             this.explorerBarLeft.Text = "explorerBar1";
@@ -1990,12 +1720,20 @@
             this.explorerBarGroupItem1.BackStyle.BorderRightWidth = 1;
             this.explorerBarGroupItem1.BackStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.explorerBarGroupItem1.Cursor = System.Windows.Forms.Cursors.Default;
+            this.explorerBarGroupItem1.ExpandBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(182)))), ((int)(((byte)(216)))));
+            this.explorerBarGroupItem1.ExpandButtonVisible = false;
             this.explorerBarGroupItem1.Expanded = true;
+            this.explorerBarGroupItem1.ExpandForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(60)))), ((int)(((byte)(165)))));
+            this.explorerBarGroupItem1.ExpandHotBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(182)))), ((int)(((byte)(216)))));
+            this.explorerBarGroupItem1.ExpandHotForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(142)))), ((int)(((byte)(255)))));
+            this.explorerBarGroupItem1.Image = ((System.Drawing.Image)(resources.GetObject("explorerBarGroupItem1.Image")));
             this.explorerBarGroupItem1.Name = "explorerBarGroupItem1";
-            this.explorerBarGroupItem1.StockStyle = DevComponents.DotNetBar.eExplorerBarStockStyle.SystemColors;
             this.explorerBarGroupItem1.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.buttonItem1,
-            this.buttonItem3});
+            this.labelItem4,
+            this.buttonItem3,
+            this.labelItem6});
+            this.explorerBarGroupItem1.SubItemsMargin = 2;
             this.explorerBarGroupItem1.Text = "任务管理";
             // 
             // 
@@ -2010,13 +1748,14 @@
             // 
             // 
             // 
-            this.explorerBarGroupItem1.TitleStyle.BackColor = System.Drawing.Color.White;
+            this.explorerBarGroupItem1.TitleStyle.BackColor = System.Drawing.Color.DeepSkyBlue;
             this.explorerBarGroupItem1.TitleStyle.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(199)))), ((int)(((byte)(211)))), ((int)(((byte)(247)))));
             this.explorerBarGroupItem1.TitleStyle.CornerDiameter = 3;
             this.explorerBarGroupItem1.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.explorerBarGroupItem1.TitleStyle.CornerTypeTopLeft = DevComponents.DotNetBar.eCornerType.Rounded;
             this.explorerBarGroupItem1.TitleStyle.CornerTypeTopRight = DevComponents.DotNetBar.eCornerType.Rounded;
-            this.explorerBarGroupItem1.TitleStyle.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(93)))), ((int)(((byte)(198)))));
+            this.explorerBarGroupItem1.TitleStyle.Font = new System.Drawing.Font("微软雅黑", 15F);
+            this.explorerBarGroupItem1.TitleStyle.TextColor = System.Drawing.Color.White;
             // 
             // buttonItem1
             // 
@@ -2029,6 +1768,18 @@
             this.buttonItem1.Name = "buttonItem1";
             this.buttonItem1.Symbol = "";
             this.buttonItem1.Text = "新建任务";
+            // 
+            // buttonItem3
+            // 
+            this.buttonItem3.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText;
+            this.buttonItem3.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonItem3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(93)))), ((int)(((byte)(198)))));
+            this.buttonItem3.HotFontUnderline = true;
+            this.buttonItem3.HotForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(142)))), ((int)(((byte)(255)))));
+            this.buttonItem3.HotTrackingStyle = DevComponents.DotNetBar.eHotTrackingStyle.None;
+            this.buttonItem3.Name = "buttonItem3";
+            this.buttonItem3.Symbol = "";
+            this.buttonItem3.Text = "设置";
             // 
             // explorerBarGroupItem2
             // 
@@ -2045,15 +1796,20 @@
             this.explorerBarGroupItem2.BackStyle.BorderRightWidth = 1;
             this.explorerBarGroupItem2.BackStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.explorerBarGroupItem2.Cursor = System.Windows.Forms.Cursors.Default;
+            this.explorerBarGroupItem2.ExpandBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(182)))), ((int)(((byte)(216)))));
             this.explorerBarGroupItem2.Expanded = true;
+            this.explorerBarGroupItem2.ExpandForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(60)))), ((int)(((byte)(165)))));
+            this.explorerBarGroupItem2.ExpandHotBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(182)))), ((int)(((byte)(216)))));
+            this.explorerBarGroupItem2.ExpandHotForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(142)))), ((int)(((byte)(255)))));
+            this.explorerBarGroupItem2.Image = ((System.Drawing.Image)(resources.GetObject("explorerBarGroupItem2.Image")));
             this.explorerBarGroupItem2.Name = "explorerBarGroupItem2";
-            this.explorerBarGroupItem2.StockStyle = DevComponents.DotNetBar.eExplorerBarStockStyle.SystemColors;
             this.explorerBarGroupItem2.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.switchButtonItem1,
             this.labelItem1,
             this.switchButtonItem2,
             this.labelItem2,
-            this.switchButtonItem3});
+            this.switchButtonItem3,
+            this.labelItem3});
             this.explorerBarGroupItem2.Text = "设备管理";
             // 
             // 
@@ -2068,60 +1824,133 @@
             // 
             // 
             // 
-            this.explorerBarGroupItem2.TitleStyle.BackColor = System.Drawing.Color.White;
+            this.explorerBarGroupItem2.TitleStyle.BackColor = System.Drawing.Color.DeepSkyBlue;
             this.explorerBarGroupItem2.TitleStyle.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(199)))), ((int)(((byte)(211)))), ((int)(((byte)(247)))));
             this.explorerBarGroupItem2.TitleStyle.CornerDiameter = 3;
             this.explorerBarGroupItem2.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.explorerBarGroupItem2.TitleStyle.CornerTypeTopLeft = DevComponents.DotNetBar.eCornerType.Rounded;
             this.explorerBarGroupItem2.TitleStyle.CornerTypeTopRight = DevComponents.DotNetBar.eCornerType.Rounded;
-            this.explorerBarGroupItem2.TitleStyle.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(93)))), ((int)(((byte)(198)))));
-            // 
-            // buttonItem3
-            // 
-            this.buttonItem3.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText;
-            this.buttonItem3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonItem3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(93)))), ((int)(((byte)(198)))));
-            this.buttonItem3.HotFontUnderline = true;
-            this.buttonItem3.HotForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(142)))), ((int)(((byte)(255)))));
-            this.buttonItem3.HotTrackingStyle = DevComponents.DotNetBar.eHotTrackingStyle.None;
-            this.buttonItem3.Name = "buttonItem3";
-            this.buttonItem3.Symbol = "";
-            this.buttonItem3.Text = "设置";
+            this.explorerBarGroupItem2.TitleStyle.Font = new System.Drawing.Font("微软雅黑", 15F);
+            this.explorerBarGroupItem2.TitleStyle.TextColor = System.Drawing.Color.White;
             // 
             // switchButtonItem1
             // 
             this.switchButtonItem1.ButtonHeight = 30;
-            this.switchButtonItem1.ButtonWidth = 80;
+            this.switchButtonItem1.ButtonWidth = 90;
+            this.switchButtonItem1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.switchButtonItem1.Name = "switchButtonItem1";
             this.switchButtonItem1.OffText = "关机";
+            this.switchButtonItem1.OffTextColor = System.Drawing.Color.DimGray;
             this.switchButtonItem1.OnText = "上电";
-            this.switchButtonItem1.Text = "相机1";
-            // 
-            // switchButtonItem2
-            // 
-            this.switchButtonItem2.ButtonHeight = 30;
-            this.switchButtonItem2.ButtonWidth = 80;
-            this.switchButtonItem2.Name = "switchButtonItem2";
-            this.switchButtonItem2.OffText = "关机";
-            this.switchButtonItem2.OnText = "上电";
-            this.switchButtonItem2.Text = "相机2";
-            // 
-            // switchButtonItem3
-            // 
-            this.switchButtonItem3.ButtonHeight = 30;
-            this.switchButtonItem3.ButtonWidth = 80;
-            this.switchButtonItem3.Name = "switchButtonItem3";
-            this.switchButtonItem3.OffText = "关机";
-            this.switchButtonItem3.OnText = "上电";
-            this.switchButtonItem3.Text = "几何相机";
+            this.switchButtonItem1.OnTextColor = System.Drawing.Color.Yellow;
+            this.switchButtonItem1.SwitchWidth = 16;
+            this.switchButtonItem1.Text = "相机一";
             // 
             // labelItem1
             // 
             this.labelItem1.Name = "labelItem1";
             // 
+            // switchButtonItem2
+            // 
+            this.switchButtonItem2.ButtonHeight = 30;
+            this.switchButtonItem2.ButtonWidth = 90;
+            this.switchButtonItem2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.switchButtonItem2.Name = "switchButtonItem2";
+            this.switchButtonItem2.OffText = "关机";
+            this.switchButtonItem2.OffTextColor = System.Drawing.Color.DimGray;
+            this.switchButtonItem2.OnText = "上电";
+            this.switchButtonItem2.OnTextColor = System.Drawing.Color.Yellow;
+            this.switchButtonItem2.SwitchWidth = 16;
+            this.switchButtonItem2.Text = "相机二";
+            // 
             // labelItem2
             // 
             this.labelItem2.Name = "labelItem2";
+            // 
+            // switchButtonItem3
+            // 
+            this.switchButtonItem3.ButtonHeight = 30;
+            this.switchButtonItem3.ButtonWidth = 90;
+            this.switchButtonItem3.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.switchButtonItem3.Name = "switchButtonItem3";
+            this.switchButtonItem3.OffText = "关机";
+            this.switchButtonItem3.OffTextColor = System.Drawing.Color.DimGray;
+            this.switchButtonItem3.OnText = "上电";
+            this.switchButtonItem3.OnTextColor = System.Drawing.Color.Yellow;
+            this.switchButtonItem3.SwitchWidth = 16;
+            this.switchButtonItem3.Text = "几何\r\n相机";
+            // 
+            // labelItem3
+            // 
+            this.labelItem3.Name = "labelItem3";
+            // 
+            // labelItem4
+            // 
+            this.labelItem4.Name = "labelItem4";
+            // 
+            // labelItem6
+            // 
+            this.labelItem6.Name = "labelItem6";
+            // 
+            // explorerBarGroupItem3
+            // 
+            // 
+            // 
+            // 
+            this.explorerBarGroupItem3.BackStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(241)))), ((int)(((byte)(245)))));
+            this.explorerBarGroupItem3.BackStyle.BorderBottom = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.explorerBarGroupItem3.BackStyle.BorderBottomWidth = 1;
+            this.explorerBarGroupItem3.BackStyle.BorderColor = System.Drawing.Color.White;
+            this.explorerBarGroupItem3.BackStyle.BorderLeft = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.explorerBarGroupItem3.BackStyle.BorderLeftWidth = 1;
+            this.explorerBarGroupItem3.BackStyle.BorderRight = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.explorerBarGroupItem3.BackStyle.BorderRightWidth = 1;
+            this.explorerBarGroupItem3.BackStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.explorerBarGroupItem3.Cursor = System.Windows.Forms.Cursors.Default;
+            this.explorerBarGroupItem3.ExpandBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(189)))), ((int)(((byte)(203)))));
+            this.explorerBarGroupItem3.ExpandButtonVisible = false;
+            this.explorerBarGroupItem3.Expanded = true;
+            this.explorerBarGroupItem3.ExpandForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(68)))), ((int)(((byte)(115)))));
+            this.explorerBarGroupItem3.ExpandHotBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(194)))), ((int)(((byte)(195)))), ((int)(((byte)(208)))));
+            this.explorerBarGroupItem3.ExpandHotForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(126)))), ((int)(((byte)(124)))), ((int)(((byte)(124)))));
+            this.explorerBarGroupItem3.Name = "explorerBarGroupItem3";
+            this.explorerBarGroupItem3.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
+            this.labelItem7,
+            this.labelItem5});
+            // 
+            // 
+            // 
+            this.explorerBarGroupItem3.TitleHotStyle.BackColor = System.Drawing.Color.White;
+            this.explorerBarGroupItem3.TitleHotStyle.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(215)))), ((int)(((byte)(224)))));
+            this.explorerBarGroupItem3.TitleHotStyle.CornerDiameter = 3;
+            this.explorerBarGroupItem3.TitleHotStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.explorerBarGroupItem3.TitleHotStyle.CornerTypeTopLeft = DevComponents.DotNetBar.eCornerType.Rounded;
+            this.explorerBarGroupItem3.TitleHotStyle.CornerTypeTopRight = DevComponents.DotNetBar.eCornerType.Rounded;
+            this.explorerBarGroupItem3.TitleHotStyle.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(126)))), ((int)(((byte)(124)))), ((int)(((byte)(124)))));
+            // 
+            // 
+            // 
+            this.explorerBarGroupItem3.TitleStyle.BackColor = System.Drawing.Color.White;
+            this.explorerBarGroupItem3.TitleStyle.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(215)))), ((int)(((byte)(224)))));
+            this.explorerBarGroupItem3.TitleStyle.CornerDiameter = 3;
+            this.explorerBarGroupItem3.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.explorerBarGroupItem3.TitleStyle.CornerTypeTopLeft = DevComponents.DotNetBar.eCornerType.Rounded;
+            this.explorerBarGroupItem3.TitleStyle.CornerTypeTopRight = DevComponents.DotNetBar.eCornerType.Rounded;
+            this.explorerBarGroupItem3.TitleStyle.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(61)))), ((int)(((byte)(61)))));
+            // 
+            // labelItem5
+            // 
+            this.labelItem5.Font = new System.Drawing.Font("Times New Roman", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelItem5.Name = "labelItem5";
+            this.labelItem5.Text = "16:28";
+            this.labelItem5.TextAlignment = System.Drawing.StringAlignment.Center;
+            // 
+            // labelItem7
+            // 
+            this.labelItem7.Font = new System.Drawing.Font("Times New Roman", 24F, System.Drawing.FontStyle.Bold);
+            this.labelItem7.Name = "labelItem7";
+            this.labelItem7.Text = "2020-12-2";
+            this.labelItem7.TextAlignment = System.Drawing.StringAlignment.Center;
             // 
             // FrmMain
             // 
@@ -2133,8 +1962,8 @@
             this.Controls.Add(this.panel5);
             this.Controls.Add(this.splitter1);
             this.Controls.Add(this.expandablePanel1);
-            this.Controls.Add(this.explorerBarLeft);
             this.Controls.Add(this.panelRight);
+            this.Controls.Add(this.explorerBarLeft);
             this.Name = "FrmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "# 接触悬挂单元软件系统";
@@ -2145,6 +1974,8 @@
             this.panelImgB.ResumeLayout(false);
             this.panelImgB.PerformLayout();
             this.panelRight.ResumeLayout(false);
+            this.panelPos.ResumeLayout(false);
+            this.panelPos.PerformLayout();
             this.panel7.ResumeLayout(false);
             this.panel7.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.integerInput5)).EndInit();
@@ -2158,13 +1989,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.integerInput2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iInputCurrValue)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iInputChgValue)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvCameraPos)).EndInit();
-            this.panelPos.ResumeLayout(false);
-            this.panelPos.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.iInputCameraPos)).EndInit();
-            this.panel4.ResumeLayout(false);
-            this.panel4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.iInputMoveValue)).EndInit();
             this.panelCameraCtrl.ResumeLayout(false);
             this.panelCameraCtrl.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dInputFPS)).EndInit();
@@ -2196,12 +2020,6 @@
         private DevComponents.Editors.IntegerInput iInputCurrValue;
         private DevComponents.Editors.IntegerInput iInputChgValue;
         private System.Windows.Forms.Panel panelPos;
-        private DevComponents.DotNetBar.ButtonX btnCameraPosView;
-        private DevComponents.DotNetBar.ButtonX btnMoveTo;
-        private DevComponents.Editors.IntegerInput iInputCameraPos;
-        private DevComponents.DotNetBar.ButtonX btnSetPos;
-        private System.Windows.Forms.Panel panel4;
-        private DevComponents.Editors.IntegerInput iInputMoveValue;
         private System.Windows.Forms.Panel panel3;
         private DevComponents.DotNetBar.ButtonX btnSetFPSOk;
         private DevComponents.Editors.DoubleInput dInputFPS;
@@ -2213,9 +2031,6 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.Panel panel1;
-        private DevComponents.DotNetBar.Controls.DataGridViewX dgvCameraPos;
-        private System.Windows.Forms.DataGridViewTextBoxColumn 线路名称;
-        private System.Windows.Forms.DataGridViewTextBoxColumn 预置位;
         private System.Windows.Forms.Timer timer1;
         private DevComponents.DotNetBar.ExpandablePanel expandablePanel1;
         private System.Windows.Forms.Splitter splitter1;
@@ -2229,11 +2044,6 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label lblSp1;
         private System.Windows.Forms.Label lblSp3;
-        private System.Windows.Forms.Button btnRight;
-        private System.Windows.Forms.Button btnLeft;
-        private System.Windows.Forms.Button btnUP;
-        private System.Windows.Forms.Button btnDown;
-        private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label lblSp2;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label7;
@@ -2242,7 +2052,6 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label lblCameraStateB;
         private System.Windows.Forms.ImageList imgLstCameraState;
-        private System.Windows.Forms.Button btnStop;
         private Steema.TeeChart.TChart tChart1;
         private Steema.TeeChart.Styles.Line line1;
         private Steema.TeeChart.Styles.Line line2;
@@ -2266,7 +2075,7 @@
         private System.Windows.Forms.Label label5;
         private DevComponents.Editors.IntegerInput integerInput1;
         private DevComponents.Editors.IntegerInput integerInput2;
-        private DevComponents.DotNetBar.ButtonX buttonX1;
+        private DevComponents.DotNetBar.ButtonX btnClossAllSystem;
         private System.Windows.Forms.Label label15;
         private DevComponents.Editors.IntegerInput integerInput5;
         private System.Windows.Forms.Panel panel5;
@@ -2281,6 +2090,12 @@
         private DevComponents.DotNetBar.SwitchButtonItem switchButtonItem2;
         private DevComponents.DotNetBar.LabelItem labelItem2;
         private DevComponents.DotNetBar.SwitchButtonItem switchButtonItem3;
+        private DevComponents.DotNetBar.LabelItem labelItem4;
+        private DevComponents.DotNetBar.LabelItem labelItem6;
+        private DevComponents.DotNetBar.LabelItem labelItem3;
+        private DevComponents.DotNetBar.ExplorerBarGroupItem explorerBarGroupItem3;
+        private DevComponents.DotNetBar.LabelItem labelItem7;
+        private DevComponents.DotNetBar.LabelItem labelItem5;
     }
 }
 
