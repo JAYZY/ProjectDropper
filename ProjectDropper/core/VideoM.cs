@@ -71,6 +71,10 @@ namespace ProjectDropper.core {
                 try {
                     IntPtr ipStr = GetRpcInfo(hDec, 0);
                     sRtn = Marshal.PtrToStringAnsi(ipStr);
+                    if (sRtn.Length < 20) {
+                        sRtn = string.Empty;
+                    }
+
                 } catch (Exception) {
                     sRtn = string.Empty;
                     Console.WriteLine("设备打开失败！");
@@ -117,7 +121,7 @@ namespace ProjectDropper.core {
                     //    ms.Write(jpg_buffer, 16, iImgLen);
                     //    img = Image.FromStream(ms);
                     //}
-                    viewImage.Refresh();
+                   // viewImage.Refresh();
                 }
             } catch (Exception ex) {
                 Console.WriteLine("图像读取错误" + ex.ToString());

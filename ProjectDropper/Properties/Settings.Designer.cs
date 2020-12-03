@@ -106,5 +106,65 @@ namespace ProjectDropper.Properties {
                 this["ReconnectTime"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string DBBackPath {
+            get {
+                return ((string)(this["DBBackPath"]));
+            }
+            set {
+                this["DBBackPath"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("E:\\")]
+        public string DBPath {
+            get {
+                return ((string)(this["DBPath"]));
+            }
+            set {
+                this["DBPath"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int currDBIndex {
+            get {
+                return ((int)(this["currDBIndex"]));
+            }
+            set {
+                this["currDBIndex"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool isDelAllDB {
+            get {
+                return ((bool)(this["isDelAllDB"]));
+            }
+            set {
+                this["isDelAllDB"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string currTask {
+            get {
+                return ((string)(this["currTask"]));
+            }
+            set {
+                this["currTask"] = value;
+            }
+        }
     }
 }

@@ -90,6 +90,9 @@ namespace ComClassLib.core {
         public string GetDateStr() {
             return taskDate.ToString("yyyy年MM月dd日");
         }
+        public string GetDateTimeStr() {
+            return DateTime.Now.ToString("yyyy_MM_dd_HH_mm_ss");  
+        }
         //输出 线路12.5
         public string GetShortInfo() {
             return LineName + taskDate.ToString("MM.dd");

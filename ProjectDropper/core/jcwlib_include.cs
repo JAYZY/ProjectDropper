@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace ProjectDropper.core {
+namespace ProjectDropper
+{
 
     /// <summary>
     /// 常量定义
@@ -36,7 +33,7 @@ namespace ProjectDropper.core {
     public enum JcwReturn
     {
         JCW_OK = 0,                 //执行正确完成
-        JCW_ERROR_UNKNOW = -1,//发生未知错误
+        JCW_ERROR_UNKNOW = -1,      //发生未知错误
         JCW_INVALID_HANDLE = -2,        //无效的实例句柄
         JCW_ERR_INVALID_DEVID = -3, //无效设备ID
         JCW_ERR_ALREADY_START = -4, //已启动，不能更改设置
@@ -56,7 +53,7 @@ namespace ProjectDropper.core {
     /// </summary>
     public enum JMID
     {
-        JMID_GLOBAL = 0,        //全局对象，比如调整整体的导高、拉出值
+        JMID_GLOBAL = 0,        //全局对象，不能用来创建设备
 
         JMID_COMP_LEFT = 1,     //左补偿
         JMID_COMP_RIGHT = 2,    //右补偿
@@ -73,10 +70,6 @@ namespace ProjectDropper.core {
 
         JMID_TRACK3_LEFT = 21,  //第三轨左轨
         JMID_TRACK3_RIGHT = 22, //第三轨右轨
-
-
-        JMID_COMP_LEFT_RF = 101,    //特殊左补偿
-        JMID_COMP_RIGHT_RF = 102,   //特殊右补偿
     };
 
 
@@ -92,7 +85,7 @@ namespace ProjectDropper.core {
         JCXP_POLE = 3,      //支柱位置
         JCXP_ELECCONN = 4,  //电连接
         JCXP_MAO = 5,       //锚段关节位置
-    };              //导线定位点类
+    };          
 
 
     /// <summary>
@@ -195,7 +188,7 @@ namespace ProjectDropper.core {
         /// 数据来源于哪个设备的索引
         /// </summary>
         [MarshalAs(UnmanagedType.ByValArray, SizeConst = JcwDefine.JCWJH_MAX_LINE_NUM)] 
-        public char[] ucDataDevSrc;
+        public char[] ucDataDevSrcIndex;
         /// <summary>
         /// 同步的ID
         /// </summary>
@@ -213,13 +206,13 @@ namespace ProjectDropper.core {
         /// <summary>
         /// 测量到的导线数量，对应 数组：jcx
         /// </summary>
-        public Int32 uiLineNum;  //line1-zj
+        public UInt32 uiLineNum;
 
         /// <summary>
         /// 未补偿的几何参数，通过 uiLineNum 表示有效内容数量
         /// </summary>
         [MarshalAs(UnmanagedType.ByValArray, SizeConst = JcwDefine.JCWJH_MAX_LINE_NUM)] 
-        public JCXData[] jcx;  //line1 JCXData[uiLineNum] zj
+        public JCXData[] jcx;
 
         /// <summary>
         /// 补偿后的几何参数;通过 uiLineCompsateNum 表示有效内容数量
@@ -239,7 +232,7 @@ namespace ProjectDropper.core {
         /// <summary>
         /// 是否定位点
         /// </summary>
-        public JCWPosi posi;    //枚举值 - zj       2 黑色颜色 3--红色颜色     
+        public JCWPosi posi;              
         /// <summary>
         /// 导线的类型
         /// </summary>
@@ -247,7 +240,7 @@ namespace ProjectDropper.core {
         /// <summary>
         /// 补偿后有效的导线数量，对应数组:jcxComp
         /// </summary>
-        public Int32 uiLineCompsateNum; 
+        public UInt32 uiLineCompsateNum; 
     };
 
 
@@ -272,13 +265,6 @@ namespace ProjectDropper.core {
 	//获取指定功能数据的传输频率
 	JCW_RET Jcw_GetFuncFPS(JCWHANDLE h, JMDEVID jid, int imid, OUT float& fFPS);
 
-        
-	//功能：创建一个保存调试包的文件，并且开始保存
-	//strFilePath 保存的文件名
-	JCW_RET Jcw_CreateDebugDataFile(JCWHANDLE h, const char* strFilePath);
-
-	//功能：停止保存调试数据，并且关闭结调试包的文件
-	JCW_RET Jcw_CloseDebugDataFile(JCWHANDLE h);
 
 	//功能：采集检测目标的轮廓点
 	//iGrabState 是否采集
@@ -296,27 +282,31 @@ namespace ProjectDropper.core {
      * 
      * 
      */
+
+
+    /// <summary>
+    /// 衍衍科技提供的检测网几何参数检测通信库
+    /// </summary>
     public class jcwlib
     {
+
+        [DllImport(JcwDefine.JcwDllName, EntryPoint = "Jcw_GetLibVersionStr", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
+        private static extern IntPtr _Jcw_GetLibVersionStr();
+
         /// <summary>
         /// 获取开发库版本号
         /// const char* Jcw_GetLibVersionStr();
         /// </summary>
         /// <returns></returns>
-        [DllImport(JcwDefine.JcwDllName, EntryPoint = "Jcw_GetLibVersionStr", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
-        static extern IntPtr _Jcw_GetLibVersionStr();
-
         public static string Jcw_GetLibVersionStr()
         {
             IntPtr ipName = _Jcw_GetLibVersionStr();
             return Marshal.PtrToStringAnsi(ipName);
         }
 
-
-        //功能：构造一个实例
-        //JCWHANDLE Jcw_InitInstance();
         /// <summary>
-        /// 
+        /// 功能：构造一个实例
+        /// JCWHANDLE Jcw_InitInstance();
         /// </summary>
         /// <returns></returns>
         [DllImport(JcwDefine.JcwDllName, EntryPoint = "Jcw_InitInstance", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
@@ -387,7 +377,7 @@ namespace ProjectDropper.core {
         [DllImport(JcwDefine.JcwDllName, EntryPoint = "Jcw_IsStart", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
         public static extern JcwReturn Jcw_IsStart(IntPtr hjcw, ref int iState);
 
-        
+
 
         /// <summary>
         /// 功能：返回设备的连接状态，状态值参数以上枚举变量值
@@ -395,12 +385,12 @@ namespace ProjectDropper.core {
         /// </summary>
         /// <param name="hjcw"></param>
         /// <param name="id"></param>
-        /// <param name="iState"></param>
-        /// <returns>
-        /// JCW_DEVSTATE_NOWORK = -1,           //未工作
+        /// <param name="iState">
+        /// JCW_DEVSTATE_NOWORK = -1,           //未工作 
         /// JCW_DEVSTATE_DISCONNECT = 0,        //未连接
         /// JCW_DEVSTATE_WORKING = 1,           //正常工作状态
-        /// </returns>
+        /// </param>
+        /// <returns> </returns>
         [DllImport(JcwDefine.JcwDllName, EntryPoint = "Jcw_GetDevState", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
         public static extern JcwReturn Jcw_GetDevState(IntPtr hjcw, JMID id, ref int iState);
 
@@ -469,7 +459,11 @@ namespace ProjectDropper.core {
         public static extern JcwReturn Jcw_GetDevAddress(IntPtr hjcw, JMID id, ref string strDevIPBuff, ref uint uiDevPort);
         
 
-
+        /// <summary>
+        /// 回调函数的托管，用于回调获取数据
+        /// </summary>
+        /// <param name="iTag"></param>
+        /// <param name="jh"></param>
         public delegate void Jcw_fnJCWResultCallBack(IntPtr iTag, ref JCWJH jh);
 
 
@@ -487,7 +481,67 @@ namespace ProjectDropper.core {
         public static extern JcwReturn Jcw_SetResultCallBack(IntPtr hjcw, IntPtr pTag, Jcw_fnJCWResultCallBack fnptr);
 
 
+        /// <summary>
+        /// 查询是否有检测数据并且获取队列中的第一个。
+        /// </summary>
+        /// <param name="hjcw"></param>
+        /// <param name="jh"></param>
+        /// <returns>如果队列中有数据，则返回JcwReturn.JCW_OK</returns>
         [DllImport(JcwDefine.JcwDllName, EntryPoint = "Jcw_PopResult", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
         public static extern JcwReturn Jcw_PopResult(IntPtr hjcw, ref JCWJH jh);
+
+
+
+        /// <summary>
+        /// 转换一份调试数据到jcwd
+        /// </summary>
+        /// <param name="strJdbg"></param>
+        /// <param name="strJcwd"></param>
+        /// <returns></returns>
+        [DllImport(JcwDefine.JcwDllName, EntryPoint = "Jcw_JdbgToJCWD", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
+        public static extern JcwReturn Jcw_JdbgToJCWD(string strJdbg, string strJcwd);
+
+        /// <summary>
+        /// 转换一份调试数据到csv格式
+        /// </summary>
+        /// <param name="strJdbg"></param>
+        /// <param name="strCsv"></param>
+        /// <returns></returns>
+        [DllImport(JcwDefine.JcwDllName, EntryPoint = "Jcw_JdbgToCsv", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
+        public static extern JcwReturn Jcw_JdbgToCsv(string strJdbg, string strCsv);
+
+
+
+        //功能：创建一个保存调试包的文件，并且开始保存
+        //strFilePath 保存的文件名
+        [DllImport(JcwDefine.JcwDllName, EntryPoint = "Jcw_CreateDebugDataFile", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
+        public static extern JcwReturn Jcw_CreateDebugDataFile(IntPtr hjcw, string strFilePath);
+
+        //功能：停止保存调试数据，并且关闭结调试包的文件
+        [DllImport(JcwDefine.JcwDllName, EntryPoint = "Jcw_CloseDebugDataFile", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
+        public static extern JcwReturn Jcw_CloseDebugDataFile(IntPtr hjcw);
+
+
+        /// <summary>
+        /// 创建任务，在指定的路径保存数据
+        /// </summary>
+        /// <param name="hjcw"></param>
+        /// <param name="strfile"></param>
+        /// <returns></returns>
+        public static JcwReturn Jcw_CreateTask(IntPtr hjcw, string strfile)
+        {
+            return Jcw_CreateDebugDataFile(hjcw, strfile);
+        }
+
+
+        /// <summary>
+        /// 停止任务
+        /// </summary>
+        /// <param name="hjcw"></param>
+        /// <returns></returns>
+        public static JcwReturn Jcw_StopTask(IntPtr hjcw)
+        {
+            return Jcw_CloseDebugDataFile(hjcw);
+        }
     }
 }

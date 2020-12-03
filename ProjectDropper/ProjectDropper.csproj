@@ -95,8 +95,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="core\CameraInfo.cs" />
     <Compile Include="core\jcwlib_include.cs" />
+    <Compile Include="core\PicInfo.cs" />
+    <Compile Include="core\TaskM.cs" />
     <Compile Include="core\VideoM.cs" />
+    <Compile Include="DB\CsvHelper.cs" />
     <Compile Include="FrmMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -105,6 +109,18 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UI\ExitWarning.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\ExitWarning.Designer.cs">
+      <DependentUpon>ExitWarning.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\TaskConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\TaskConfig.Designer.cs">
+      <DependentUpon>TaskConfig.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="FrmMain.resx">
       <DependentUpon>FrmMain.cs</DependentUpon>
     </EmbeddedResource>
@@ -117,7 +133,18 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Fakes Include="Fakes\teechart.fakes" />
+    <EmbeddedResource Include="UI\ExitWarning.resx">
+      <DependentUpon>ExitWarning.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\TaskConfig.resx">
+      <DependentUpon>TaskConfig.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="DB\BaseData\西环线-上行.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="DB\BaseData\西环线-下行.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="JCWLibConf.ini">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -182,7 +209,7 @@
     </Content>
     <Content Include="monitor_screen_128px_11469_easyicon.net.ico" />
     <Content Include="RPCDll.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="zmqDLL.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -195,5 +222,6 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

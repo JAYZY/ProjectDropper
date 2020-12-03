@@ -37,11 +37,17 @@ namespace ComClassLib.FileOp {
         /// <param name="json">json字符串</param>
         /// <returns></returns>
         public static T GetModel<T>(string json) {
-            
-           
+
+
             //var tt = JsonConvert.DeserializeObject(json);
             //Console.WriteLine(tt.ToString());
+            //try {
+            //    return JsonConvert.DeserializeObject<T>(json);
+            //} catch (Exception) {
+                
+            //}
             return JsonConvert.DeserializeObject<T>(json);
+
         }
         public static List<T> GetListModel<T>(string json) {
 
