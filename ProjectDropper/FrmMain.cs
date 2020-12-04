@@ -78,7 +78,7 @@ namespace ProjectDropper {
             _ipAddress = new string[] { Settings.Default.cameraIPA, Settings.Default.cameraIPB };
 
             _iPort = Settings.Default.cameraPort;
-            _cameraNW = new NetworkHelper[] { new NetworkHelper(_ipAddress[0], _iPort), new NetworkHelper(_ipAddress[1], _iPort) };
+            _cameraNW = new NetworkHelper[] { new NetworkHelper(_ipAddress[0], _iPort), new NetworkHelper(_ipAddress[1], 502) };
             _imgPanels = new Panel[] { panelImgA, panelImgB };
             _lblTips = new Label[] { lblTipA, lblTipB };
             // lblTipA.ForeColor = lblTipB.ForeColor = lblTipC.ForeColor = lblTipD.ForeColor = Color.White;
@@ -990,6 +990,23 @@ namespace ProjectDropper {
             sParamValue = dateTimeTaskStr;
             SetTaskState();
         }
+        #region 关闭/上电
 
+          byte[] cmdClose = Encoding.ASCII.GetBytes("00 00 00 00 00 06 01 05 00 04 00 00");
+        byte[] cmdOpen = Encoding.ASCII.GetBytes("00 00 00 00 00 06 01 05 00 04 FF 00");
+
+        private void sBtnItemONOFF_ValueChanged(object sender, EventArgs e) {
+            SwitchButtonItem sBtnItem = (SwitchButtonItem)sender;
+            int ind = sBtnItem.Name.Equals("sBtnItemONOFFA") ? 0 : 1;
+            
+            if (sBtnItem.Value) {
+                _cameraNW[ind].Send(cmdOpen);
+                ToastNotification.Show(this, _ipAddress[ind] + ":相机上电！");
+            } else {
+                _cameraNW[ind].Send(cmdClose);
+                ToastNotification.Show(this, _ipAddress[ind] + ":相机关闭！");
+            }
+        }
+        #endregion 
     }
 }
