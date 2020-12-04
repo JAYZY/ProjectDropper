@@ -79,7 +79,8 @@ namespace ProjectDropper {
 
             _iPort = Settings.Default.cameraPort;
             _cameraNW = new NetworkHelper[] { new NetworkHelper(_ipAddress[0], _iPort), new NetworkHelper(_ipAddress[1], 502) };
-            _cameraNW[0].Receive(); _cameraNW[1].Receive();
+            (new Thread(_cameraNW[0].Receive)).Start();
+            (new Thread(_cameraNW[1].Receive)).Start();
             _imgPanels = new Panel[] { panelImgA, panelImgB };
             _lblTips = new Label[] { lblTipA, lblTipB };
             // lblTipA.ForeColor = lblTipB.ForeColor = lblTipC.ForeColor = lblTipD.ForeColor = Color.White;
