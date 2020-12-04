@@ -76,6 +76,7 @@ namespace ComClassLib.core
                     else
                     {
                         int cmdState = BitConverter.ToInt32(data, 6);
+
                         if (1 == cmdState)
                         {
                             CallFunc?.Invoke(DataType.NetTaskCmd.TaskStart);

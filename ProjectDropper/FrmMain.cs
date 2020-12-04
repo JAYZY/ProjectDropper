@@ -79,6 +79,7 @@ namespace ProjectDropper {
 
             _iPort = Settings.Default.cameraPort;
             _cameraNW = new NetworkHelper[] { new NetworkHelper(_ipAddress[0], _iPort), new NetworkHelper(_ipAddress[1], 502) };
+            _cameraNW[0].Receive(); _cameraNW[1].Receive();
             _imgPanels = new Panel[] { panelImgA, panelImgB };
             _lblTips = new Label[] { lblTipA, lblTipB };
             // lblTipA.ForeColor = lblTipB.ForeColor = lblTipC.ForeColor = lblTipD.ForeColor = Color.White;
@@ -1007,6 +1008,7 @@ namespace ProjectDropper {
                 ToastNotification.Show(this, _ipAddress[ind] + ":相机关闭！");
             }
         }
-        #endregion 
+        
+        #endregion
     }
 }
