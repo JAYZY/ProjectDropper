@@ -89,10 +89,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="core\DataType.cs" />
     <Compile Include="core\Crypto.cs" />
     <Compile Include="core\FigHandlingOverlay.cs" />
     <Compile Include="core\JpegCompress.cs" />
     <Compile Include="core\Math.cs" />
+    <Compile Include="core\NetworkHelper.cs" />
     <Compile Include="core\StationInfo.cs" />
     <Compile Include="CtrlView.cs">
       <SubType>UserControl</SubType>

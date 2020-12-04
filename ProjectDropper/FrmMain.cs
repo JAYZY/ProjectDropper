@@ -1,4 +1,5 @@
 ﻿using ComClassLib;
+using ComClassLib.core;
 using ComClassLib.FileOp;
 using DevComponents.DotNetBar;
 using ProjectDropper.core;
@@ -8,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -57,6 +59,7 @@ namespace ProjectDropper {
         private int _iPort;//端口统一
         private System.Windows.Forms.Timer[] _videoDisplays;
         private CancellationTokenSource[] _tokenSource;
+        private NetworkHelper[] _cameraNW;
         //private CancellationToken[] _token;
         private ManualResetEvent _resetEvent;
         private Task[] _tasks;
@@ -73,7 +76,9 @@ namespace ProjectDropper {
             _hDevs = new IntPtr[2] { IntPtr.Zero, IntPtr.Zero };
             _imageViews = new CtrlView[] { new CtrlView("cView1"), new CtrlView("cView2") };
             _ipAddress = new string[] { Settings.Default.cameraIPA, Settings.Default.cameraIPB };
+
             _iPort = Settings.Default.cameraPort;
+            _cameraNW = new NetworkHelper[] { new NetworkHelper(_ipAddress[0], _iPort), new NetworkHelper(_ipAddress[1], _iPort) };
             _imgPanels = new Panel[] { panelImgA, panelImgB };
             _lblTips = new Label[] { lblTipA, lblTipB };
             // lblTipA.ForeColor = lblTipB.ForeColor = lblTipC.ForeColor = lblTipD.ForeColor = Color.White;
@@ -121,7 +126,33 @@ namespace ProjectDropper {
         }
 
 
+        /// <summary>
+        /// 获取相机参数
+        /// </summary>
+        private   string GetCameraParam(IntPtr hDec)
+        {
+            string sRtn = string.Empty;
+            if (hDec != IntPtr.Zero)
+            {
+                try
+                {
+                    byte[] info = new byte[1024];
+                    int len =VideoM.GetRpcInfo(hDec, 0, ref info[0], info.Length);
+                    sRtn = Encoding.ASCII.GetString(info);//Marshal.PtrToStringAnsi(ipStr);
+                    if (sRtn.Length < 20)
+                    {
+                        sRtn = string.Empty;
+                    }
 
+                }
+                catch (Exception)
+                {
+                    sRtn = string.Empty;
+                    Console.WriteLine("设备打开失败！");
+                }
+            }
+            return sRtn;
+        }
 
         private object obj = new object();
         private bool ConnectCamera(int i) {
@@ -133,11 +164,11 @@ namespace ProjectDropper {
 
                         IntPtr hDec = VideoM.Connection(_ipAddress[i], _iPort);
                         if (hDec != IntPtr.Zero) {
-                            isConn = !string.IsNullOrEmpty(VideoM.GetCameraParam(hDec));
+                            isConn = !string.IsNullOrEmpty(GetCameraParam(hDec));
                             _hDevs[i] = hDec;
                         }
                     } else {
-                        sInfo = VideoM.GetCameraParam(_hDevs[i]);
+                        sInfo = GetCameraParam(_hDevs[i]);
                         isConn = !string.IsNullOrEmpty(sInfo);
                     }
 
@@ -708,7 +739,8 @@ namespace ProjectDropper {
 
                 try {
                     CameraInfo cameraInfo = JsonHelper.GetModel<CameraInfo>(strJson);
-
+                    if (cameraInfo == null)
+                        return;
                     if (!dInputFPS.Focused && (int)dInputFPS.Tag == 0) {
                         dInputFPS.Value = cameraInfo.Fps;
                         currFPS = cameraInfo.Fps;
@@ -808,7 +840,7 @@ namespace ProjectDropper {
                 string dateStr = dt.ToString("yyyy_MM_dd");
                 dateTimeTaskStr = dt.ToString("yyyy_MM_dd_HH_mm_ss") + "_[" + _currTask.LineName + "-" + _currTask.TaskName + "]";
                 string rootPath = Path.Combine(Settings.Default.DBPath, dateStr, dateTimeTaskStr);
-                MsgBox.Show(rootPath);
+                MessageBox.Show(rootPath);
                 if (false == FileHelper.CreateDir(rootPath)) {
                     MsgBox.Error("路径创建错误，不能开始任务，请检查磁盘!\n " + rootPath);
                     return;

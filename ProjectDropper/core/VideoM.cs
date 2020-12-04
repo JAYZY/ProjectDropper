@@ -3,9 +3,13 @@ using System;
 using System.Drawing;
 using System.IO;
 using System.Runtime.InteropServices;
+using System.Text;
 
-namespace ProjectDropper.core {
-    public class VideoM {
+namespace ProjectDropper.core
+{
+    public class VideoM
+    {
+        public static object _obj { get; private set; }
 
         #region CallDLL
         [DllImport("RPCDll.dll", EntryPoint = "?OpenRPC@@YAPEAXPEBDH@Z", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.StdCall)]
@@ -33,8 +37,11 @@ namespace ProjectDropper.core {
         ** pRPC:		RPC对象
         ** iCameraID:	RPC对象绑定的相机，默认是0
         */
-        [DllImport("RPCDll.dll", EntryPoint = "?GetRpcInfo@@YAPEBDPEAXH@Z", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
-        public static extern IntPtr GetRpcInfo(IntPtr pRPC, int iCameraID);
+        //[DllImport("RPCDll.dll", EntryPoint = "?GetRpcInfo@@YAPEBDPEAXH@Z", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+        //public static extern IntPtr GetRpcInfo(IntPtr pRPC, int iCameraID);
+        [DllImport("RPCDll.dll", EntryPoint = "?GetRpcInfo@@YAHPEAXHPEADH@Z", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int GetRpcInfo(IntPtr pRPC, int iCameraID, ref byte pRPCBuffer, int iBufferLength);
+
 
         [DllImport("RPCDll.dll", EntryPoint = "?GetRpcImage@@YAHPEAXH0@Z", CallingConvention = CallingConvention.Cdecl)]
         public static extern int GetRpcImage(IntPtr pRPC, int iCameraID, IntPtr pImageData);
@@ -46,42 +53,54 @@ namespace ProjectDropper.core {
 
 
 
-        public static IntPtr Connection(string _ipAddress, int iPort = 12345) {
+        public static IntPtr Connection(string _ipAddress, int iPort = 12345)
+        {
 
             IntPtr hDec = IntPtr.Zero;
 
-            try {
+            try
+            {
                 hDec = OpenRPC(_ipAddress, iPort);
-               // System.Windows.Forms.MessageBox.Show($"{_ipAddress.Trim()}：{hDec}");
-            } catch (Exception ex) {
+                // System.Windows.Forms.MessageBox.Show($"{_ipAddress.Trim()}：{hDec}");
+            }
+            catch (Exception ex)
+            {
                 hDec = IntPtr.Zero;
-               // System.Windows.Forms.MessageBox.Show($"{_ipAddress}：连接失败{ ex.ToString()}");
+                // System.Windows.Forms.MessageBox.Show($"{_ipAddress}：连接失败{ ex.ToString()}");
                 Console.WriteLine("设备连接失败！" + ex.ToString());
             }
 
             return hDec;
         }
 
-        /// <summary>
-        /// 获取相机参数
-        /// </summary>
-        public static string GetCameraParam(IntPtr hDec) {
-            string sRtn = string.Empty;
-            if (hDec != IntPtr.Zero) {
-                try {
-                    IntPtr ipStr = GetRpcInfo(hDec, 0);
-                    sRtn = Marshal.PtrToStringAnsi(ipStr);
-                    if (sRtn.Length < 20) {
-                        sRtn = string.Empty;
-                    }
+        ///// <summary>
+        ///// 获取相机参数
+        ///// </summary>
+        //public static string GetCameraParam(IntPtr hDec)
+        //{
+        //    string sRtn = string.Empty;
+        //    if (hDec != IntPtr.Zero)
+        //    {
+        //        try
+        //        {
 
-                } catch (Exception) {
-                    sRtn = string.Empty;
-                    Console.WriteLine("设备打开失败！");
-                }
-            }
-            return sRtn;
-        }
+        //            byte[] info = new byte[1024];
+        //            int len = GetRpcInfo(hDec, 0, ref info[0], info.Length);
+        //            sRtn = Encoding.ASCII.GetString(info);//Marshal.PtrToStringAnsi(ipStr);
+        //            if (sRtn.Length < 20)
+        //            {
+        //                sRtn = string.Empty;
+        //            }
+
+        //        }
+        //        catch (Exception)
+        //        {
+        //            sRtn = string.Empty;
+        //            Console.WriteLine("设备打开失败！");
+        //        }
+        //    }
+        //    return sRtn;
+        //}
         /// <summary>
         /// 获取相机图像
         /// </summary>
@@ -91,21 +110,27 @@ namespace ProjectDropper.core {
         /// <param name="imgH"></param>
         /// <param name="time"></param>
 
-        public static void LoadImg(CtrlView viewImage, IntPtr hDec, ref int imgW, ref int imgH, ref long time) {
+        public static void LoadImg(CtrlView viewImage, IntPtr hDec, ref int imgW, ref int imgH, ref long time)
+        {
 
-            if (hDec == IntPtr.Zero) {
+            if (hDec == IntPtr.Zero)
+            {
                 return;
             }
-            try {
+            try
+            {
                 byte[] jpg_buffer = new byte[100000000];
                 IntPtr pImageData = IntPtr.Zero;
-                unsafe {
-                    fixed (void* p = &jpg_buffer[0]) {
+                unsafe
+                {
+                    fixed (void* p = &jpg_buffer[0])
+                    {
                         pImageData = (IntPtr)p;
                     }
                 }
                 int iImgLen = GetRpcImage(hDec, 0, pImageData);
-                if (iImgLen > 16) {
+                if (iImgLen > 16)
+                {
 
                     byte[] bWith = new byte[4];
                     byte[] bHeight = new byte[4];
@@ -121,9 +146,11 @@ namespace ProjectDropper.core {
                     //    ms.Write(jpg_buffer, 16, iImgLen);
                     //    img = Image.FromStream(ms);
                     //}
-                   // viewImage.Refresh();
+                    // viewImage.Refresh();
                 }
-            } catch (Exception ex) {
+            }
+            catch (Exception ex)
+            {
                 Console.WriteLine("图像读取错误" + ex.ToString());
             }
         }
@@ -135,22 +162,28 @@ namespace ProjectDropper.core {
         /// <param name="imgH"></param>
         /// <param name="time"></param>
         /// <returns></returns>
-        public static Image GetImg(IntPtr hDec, ref int imgW, ref int imgH, ref long time) {
+        public static Image GetImg(IntPtr hDec, ref int imgW, ref int imgH, ref long time)
+        {
 
-            if (hDec == IntPtr.Zero) {
+            if (hDec == IntPtr.Zero)
+            {
                 return null;
             }
             Image img = null;
-            try {
+            try
+            {
                 byte[] jpg_buffer = new byte[100000000];
                 IntPtr pImageData = IntPtr.Zero;
-                unsafe {
-                    fixed (void* p = &jpg_buffer[0]) {
+                unsafe
+                {
+                    fixed (void* p = &jpg_buffer[0])
+                    {
                         pImageData = (IntPtr)p;
                     }
                 }
                 int iImgLen = GetRpcImage(hDec, 0, pImageData);
-                if (iImgLen > 16) {
+                if (iImgLen > 16)
+                {
 
                     byte[] bWith = new byte[4];
                     byte[] bHeight = new byte[4];
@@ -165,7 +198,9 @@ namespace ProjectDropper.core {
                     ms.Write(jpg_buffer, 16, iImgLen);
                     img = Image.FromStream(ms);
                 }
-            } catch (Exception ex) {
+            }
+            catch (Exception ex)
+            {
                 Console.WriteLine("图像读取错误" + ex.ToString());
             }
             return img;
