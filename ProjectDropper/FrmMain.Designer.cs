@@ -124,6 +124,9 @@
             this.labelItem3 = new DevComponents.DotNetBar.LabelItem();
             this.timerSendTaskName = new System.Windows.Forms.Timer(this.components);
             this.ShowTime = new System.Windows.Forms.Timer(this.components);
+            this.label14 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
             this.tbLayoutPanelRight.SuspendLayout();
             this.panelImgA.SuspendLayout();
             this.panelImgB.SuspendLayout();
@@ -287,7 +290,7 @@
             this.panelPos.Controls.Add(this.label16);
             this.panelPos.Controls.Add(this.btnClossAllSystem);
             this.panelPos.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelPos.Location = new System.Drawing.Point(6, 719);
+            this.panelPos.Location = new System.Drawing.Point(6, 738);
             this.panelPos.Name = "panelPos";
             this.panelPos.Size = new System.Drawing.Size(286, 151);
             this.panelPos.TabIndex = 20;
@@ -340,7 +343,7 @@
             this.lblSp3.BackColor = System.Drawing.Color.Transparent;
             this.lblSp3.Dock = System.Windows.Forms.DockStyle.Top;
             this.lblSp3.Image = ((System.Drawing.Image)(resources.GetObject("lblSp3.Image")));
-            this.lblSp3.Location = new System.Drawing.Point(6, 713);
+            this.lblSp3.Location = new System.Drawing.Point(6, 732);
             this.lblSp3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblSp3.Name = "lblSp3";
             this.lblSp3.Size = new System.Drawing.Size(286, 6);
@@ -349,18 +352,21 @@
             // panel7
             // 
             this.panel7.BackColor = System.Drawing.Color.Transparent;
+            this.panel7.Controls.Add(this.label17);
+            this.panel7.Controls.Add(this.label18);
+            this.panel7.Controls.Add(this.label14);
             this.panel7.Controls.Add(this.label15);
+            this.panel7.Controls.Add(this.label8);
             this.panel7.Controls.Add(this.dInputLEDWidth);
+            this.panel7.Controls.Add(this.dInputExposure);
             this.panel7.Controls.Add(this.label7);
             this.panel7.Controls.Add(this.btnSetParamOk);
-            this.panel7.Controls.Add(this.dInputExposure);
             this.panel7.Controls.Add(this.label10);
-            this.panel7.Controls.Add(this.label8);
             this.panel7.Controls.Add(this.iInputGain);
             this.panel7.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel7.Location = new System.Drawing.Point(6, 531);
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(286, 182);
+            this.panel7.Size = new System.Drawing.Size(286, 201);
             this.panel7.TabIndex = 24;
             // 
             // label15
@@ -368,7 +374,7 @@
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("微软雅黑", 16F);
             this.label15.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.label15.Location = new System.Drawing.Point(29, 132);
+            this.label15.Location = new System.Drawing.Point(36, 98);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(79, 30);
             this.label15.TabIndex = 14;
@@ -386,15 +392,17 @@
             this.dInputLEDWidth.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2;
             this.dInputLEDWidth.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.dInputLEDWidth.ForeColor = System.Drawing.Color.Black;
-            this.dInputLEDWidth.Location = new System.Drawing.Point(132, 136);
+            this.dInputLEDWidth.Location = new System.Drawing.Point(122, 99);
             this.dInputLEDWidth.MaxValue = 500;
             this.dInputLEDWidth.MinValue = 50;
             this.dInputLEDWidth.Name = "dInputLEDWidth";
             this.dInputLEDWidth.ShowUpDown = true;
-            this.dInputLEDWidth.Size = new System.Drawing.Size(102, 29);
+            this.dInputLEDWidth.Size = new System.Drawing.Size(109, 29);
             this.dInputLEDWidth.TabIndex = 13;
+            this.dInputLEDWidth.Tag = "0";
             this.dInputLEDWidth.Value = 50;
             this.dInputLEDWidth.ValueChanged += new System.EventHandler(this.dInputLEDWidth_ValueChanged);
+            this.dInputLEDWidth.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.InputCtrl_KeyPress);
             // 
             // label7
             // 
@@ -417,7 +425,7 @@
             this.btnSetParamOk.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnSetParamOk.Location = new System.Drawing.Point(239, 98);
             this.btnSetParamOk.Name = "btnSetParamOk";
-            this.btnSetParamOk.Size = new System.Drawing.Size(23, 29);
+            this.btnSetParamOk.Size = new System.Drawing.Size(30, 30);
             this.btnSetParamOk.Style = DevComponents.DotNetBar.eDotNetBarStyle.VS2005;
             this.btnSetParamOk.Symbol = "";
             this.btnSetParamOk.SymbolColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
@@ -436,24 +444,26 @@
             this.dInputExposure.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2;
             this.dInputExposure.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.dInputExposure.Increment = 1D;
-            this.dInputExposure.Location = new System.Drawing.Point(131, 62);
+            this.dInputExposure.Location = new System.Drawing.Point(122, 144);
             this.dInputExposure.Name = "dInputExposure";
             this.dInputExposure.ShowUpDown = true;
-            this.dInputExposure.Size = new System.Drawing.Size(102, 29);
+            this.dInputExposure.Size = new System.Drawing.Size(109, 29);
             this.dInputExposure.TabIndex = 11;
+            this.dInputExposure.Tag = "0";
             this.dInputExposure.Value = 60D;
             this.dInputExposure.ValueChanged += new System.EventHandler(this.dInputExposure_ValueChanged);
+            this.dInputExposure.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.InputCtrl_KeyPress);
             // 
             // label10
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("微软雅黑", 16F);
             this.label10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.label10.Location = new System.Drawing.Point(26, 97);
+            this.label10.Location = new System.Drawing.Point(40, 50);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(57, 30);
+            this.label10.Size = new System.Drawing.Size(71, 30);
             this.label10.TabIndex = 9;
-            this.label10.Text = "增益";
+            this.label10.Text = "增  益";
             this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label8
@@ -461,7 +471,7 @@
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("微软雅黑", 16F);
             this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.label8.Location = new System.Drawing.Point(26, 62);
+            this.label8.Location = new System.Drawing.Point(25, 143);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(101, 30);
             this.label8.TabIndex = 9;
@@ -479,15 +489,17 @@
             this.iInputGain.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2;
             this.iInputGain.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.iInputGain.ForeColor = System.Drawing.Color.Black;
-            this.iInputGain.Location = new System.Drawing.Point(131, 100);
+            this.iInputGain.Location = new System.Drawing.Point(122, 51);
             this.iInputGain.MaxValue = 50;
             this.iInputGain.MinValue = 1;
             this.iInputGain.Name = "iInputGain";
             this.iInputGain.ShowUpDown = true;
-            this.iInputGain.Size = new System.Drawing.Size(102, 29);
+            this.iInputGain.Size = new System.Drawing.Size(109, 29);
             this.iInputGain.TabIndex = 6;
+            this.iInputGain.Tag = "0";
             this.iInputGain.Value = 15;
             this.iInputGain.ValueChanged += new System.EventHandler(this.iInputGain_ValueChanged);
+            this.iInputGain.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.InputCtrl_KeyPress);
             // 
             // label13
             // 
@@ -907,8 +919,10 @@
             this.dInputFPS.ShowUpDown = true;
             this.dInputFPS.Size = new System.Drawing.Size(76, 29);
             this.dInputFPS.TabIndex = 12;
+            this.dInputFPS.Tag = "0";
             this.dInputFPS.Value = 0.5D;
             this.dInputFPS.ValueChanged += new System.EventHandler(this.dInputFPS_ValueChanged);
+            this.dInputFPS.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.InputCtrl_KeyPress);
             // 
             // label2
             // 
@@ -1928,6 +1942,7 @@
             // 
             // labelItem6
             // 
+            this.labelItem6.Cursor = System.Windows.Forms.Cursors.Hand;
             this.labelItem6.Font = new System.Drawing.Font("宋体", 5.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.labelItem6.Image = ((System.Drawing.Image)(resources.GetObject("labelItem6.Image")));
             this.labelItem6.Name = "labelItem6";
@@ -2048,6 +2063,42 @@
             // ShowTime
             // 
             this.ShowTime.Interval = 1000;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.label14.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.label14.Location = new System.Drawing.Point(52, 80);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(46, 17);
+            this.label14.TabIndex = 14;
+            this.label14.Text = "(1~50)";
+            this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.label17.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.label17.Location = new System.Drawing.Point(45, 128);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(60, 17);
+            this.label17.TabIndex = 14;
+            this.label17.Text = "(50~500)";
+            this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.label18.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.label18.Location = new System.Drawing.Point(57, 173);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(37, 17);
+            this.label18.TabIndex = 14;
+            this.label18.Text = "(60u)";
+            this.label18.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // FrmMain
             // 
@@ -2200,6 +2251,9 @@
         private System.Windows.Forms.Timer ShowTime;
         private DevComponents.DotNetBar.LabelItem labelItem5;
         private System.Windows.Forms.Label lblCameraState;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label18;
     }
 }
 

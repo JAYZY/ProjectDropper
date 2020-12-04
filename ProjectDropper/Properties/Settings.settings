@@ -27,7 +27,7 @@
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="DBPath" Type="System.String" Scope="User">
-      <Value Profile="(Default)">E:\</Value>
+      <Value Profile="(Default)">E:\data</Value>
     </Setting>
     <Setting Name="currDBIndex" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">0</Value>

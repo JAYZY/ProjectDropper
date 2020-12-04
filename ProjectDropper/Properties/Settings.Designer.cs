@@ -121,7 +121,7 @@ namespace ProjectDropper.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("E:\\")]
+        [global::System.Configuration.DefaultSettingValueAttribute("E:\\data")]
         public string DBPath {
             get {
                 return ((string)(this["DBPath"]));

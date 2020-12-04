@@ -20,7 +20,7 @@ namespace ProjectDropper.UI {
 
 
         private void btnExit_Click(object sender, EventArgs e) {
-            if (tbPwd.Text.Equals("OK")) {
+            if (tbPwd.Text.Equals("008")) {
                 this.DialogResult = DialogResult.OK;
                 this.Close();
             } else {

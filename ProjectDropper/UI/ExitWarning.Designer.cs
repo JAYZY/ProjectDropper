@@ -78,7 +78,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(107, 12);
             this.label1.TabIndex = 6;
-            this.label1.Text = "请输入指令(OK）：";
+            this.label1.Text = "请输入指令(008)：";
             // 
             // ExitWarning
             // 

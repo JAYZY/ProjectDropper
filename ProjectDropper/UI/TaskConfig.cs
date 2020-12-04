@@ -84,8 +84,8 @@ namespace ProjectDropper.UI {
         /// </summary>
         private void SetMainDbPath() {
              
-            string sDriveName = string.IsNullOrEmpty(DBPath) ?  "C:\\":DBPath.Substring(0, 3) ;
-            string sPath = Path.Combine(sDriveName + sDBDir, lblTaskDate.Text);
+            string sDriveName = string.IsNullOrEmpty(DBPath) ?  "C:\\data":DBPath  ;
+            string sPath = Path.Combine(sDriveName , lblTaskDate.Text);
             //判断磁盘空间是否充足
             _isSpaceError = lblMainDBTip.Visible = !CheckDiskSpace(sDriveName);
             linkLblDbPath.Text = DBSavePath = sPath;

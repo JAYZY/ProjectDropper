@@ -101,12 +101,17 @@ namespace ProjectDropper {
             if (comBoxCameraSel.Items.Count > 0) {
                 comBoxCameraSel.SelectedIndex = 0;
             }
-
+            dInputFPS.Tag = 0; dInputExposure.Tag = 0; iInputGain.Tag = 0; dInputLEDWidth.Tag = 0;
             dInputFPS.LostFocus += new EventHandler(InputCtlParam_LostFocus); //添加失去焦点事件
             dInputExposure.LostFocus += new EventHandler(InputCtlParam_LostFocus); //添加失去焦点事件
             iInputGain.LostFocus += new EventHandler(InputCtlParam_LostFocus); //添加失去焦点事件
             dInputLEDWidth.LostFocus += new EventHandler(InputCtlParam_LostFocus); //添加失去焦点事件
 
+
+            dInputFPS.GotFocus += new EventHandler(InputCtlParam_GotFocus); //添加失去焦点事件
+            dInputExposure.GotFocus += new EventHandler(InputCtlParam_GotFocus); //添加失去焦点事件
+            iInputGain.GotFocus += new EventHandler(InputCtlParam_GotFocus); //添加失去焦点事件
+            dInputLEDWidth.GotFocus += new EventHandler(InputCtlParam_GotFocus); //添加失去焦点事件
 
             //开启相机
             OpenCamera();
@@ -142,11 +147,13 @@ namespace ProjectDropper {
                 //hDec = IntPtr.Zero;
                 //GC.Collect();
                 //GC.WaitForPendingFinalizers();
-            } catch {
+            } catch(Exception ex){
+                MessageBox.Show(ex.ToString());
                 if (_hDevs[i] != IntPtr.Zero) {
                     VideoM.CloseRPC(_hDevs[i]);
                 }
                 _hDevs[i] = IntPtr.Zero;
+                
 
             } finally {
                 CameraConnState(i, sInfo, isConn);
@@ -159,6 +166,9 @@ namespace ProjectDropper {
         }
         //异步刷新
         private void CameraConnState(int i, string sjson, bool isConn) {
+            try {
+
+           
             if (_lblTips[i].InvokeRequired) {
                 Action<int, string, bool> a = CameraConnState;
                 _lblTips[i].Invoke(a, i, sjson, isConn);
@@ -174,6 +184,10 @@ namespace ProjectDropper {
                     _lblCameraStates[i].ImageIndex = 1;
                     _lblTips[i].ForeColor = Color.Red;
                 }
+            }
+            } catch (Exception ex) {
+
+                MsgBox.Show(ex.ToString());
             }
         }
 
@@ -196,38 +210,42 @@ namespace ProjectDropper {
 
         //开启四个线程 链接相机
         private void CameraTask(int i) {
-            CancellationToken token = _tokenSource[i].Token;
-            _tasks[i] = new Task(async () =>
-            {
-                while (_isRunVideoServ) {
-                    if (_tokenSource[i].IsCancellationRequested) {
-                        return;
-                    }
+            try {
+                CancellationToken token = _tokenSource[i].Token;
+                _tasks[i] = new Task(async () =>
+                {
+                    while (_isRunVideoServ) {
+                        if (_tokenSource[i].IsCancellationRequested) {
+                            return;
+                        }
 
-                    if (!ConnectCamera(i)) {
-                        //若没有连通 休息10秒重试
-                        Console.WriteLine($"{i}号相机，没有连通！");
-                        _imageViews[i].LoadImg("ico/VideoNoFound.png");
+                        if (!ConnectCamera(i)) {
+                            //若没有连通 休息10秒重试
+                            Console.WriteLine($"{i}号相机，没有连通！");
+                            _imageViews[i].LoadImg("ico/VideoNoFound.png");
+                            imgViewRefresh(i);
+                            await Task.Delay(Settings.Default.ReconnectTime);
+                            continue;
+                        }
+                        long lTime = 0; int ih = 0, iw = 0;
+
+                        VideoM.LoadImg(_imageViews[i], _hDevs[i], ref iw, ref ih, ref lTime);
                         imgViewRefresh(i);
-                        await Task.Delay(Settings.Default.ReconnectTime);
-                        continue;
+                        // picVideo.Image = VideoM.GetImg(_hDec, ref iw, ref ih, ref lTime);
+                        //lblCameraInfo.Text = VideoM.GetCameraParam(_hDevs[i]);                    
+                        await Task.Delay(Settings.Default.RateViewTime);
                     }
-                    long lTime = 0; int ih = 0, iw = 0;
-
-                    VideoM.LoadImg(_imageViews[i], _hDevs[i], ref iw, ref ih, ref lTime);
-                    imgViewRefresh(i);
-                    // picVideo.Image = VideoM.GetImg(_hDec, ref iw, ref ih, ref lTime);
-                    //lblCameraInfo.Text = VideoM.GetCameraParam(_hDevs[i]);                    
-                    await Task.Delay(Settings.Default.RateViewTime);
-                }
-            }, token);
-            _tasks[i].Start();
+                }, token);
+                _tasks[i].Start();
+            } catch (Exception ex) {
+                MsgBox.Show(ex.ToString());
+            }
         }
 
 
         #endregion
 
-        
+
 
         /// <summary>
         /// 双击放大
@@ -424,26 +442,52 @@ namespace ProjectDropper {
         private double currExposure;
         private int currGain;
         private int currLEDW;
-        private void iniParam() {
-            dInputFPS.Value = currFPS = dInputFPS.MinValue;
-            dInputExposure.Value = currExposure = dInputExposure.MinValue;
-            iInputGain.Value = currGain = iInputGain.MinValue;
-            dInputLEDWidth.Value = currLEDW = dInputLEDWidth.MinValue;
-        }
 
 
+
+
+
+        //当控件失去焦点，1.启动计时器（2秒后）隐藏按钮
         private void InputCtlParam_LostFocus(object sender, EventArgs e) {
-            //当控件失去焦点，1.启动计时器（2秒后）隐藏按钮
-           // Thread.Sleep(2000);
-            btnSetParamOk.Visible = false;
+            // Thread.Sleep(2000);
+            //btnSetParamOk.Visible = false;
+            Thread th = new Thread(new ParameterizedThreadStart(HideCtrl));
+            th.Start(sender);
 
         }
+        //控件获取焦点--表明准备修改值
+        private void InputCtlParam_GotFocus(object sender, EventArgs e) {
+            ((Control)sender).Tag = 1;
+        }
+
+        private void InputCtrl_KeyPress(object sender, KeyPressEventArgs e) {
+            if (e.KeyChar == (char)13) {
+                btnSetFPSOk.Visible = false;
+                btnSetParamOk.Visible = false;
+                SetCameraParam();
+                ((Control)sender).Tag = 0;
+            }
+        }
+
+
+        private void HideCtrl(Object ctl) {
+            try {
+                Thread.Sleep(1000);
+                ((Control)ctl).Tag = 0;
+            } catch (Exception e) {
+
+                MsgBox.Show(e.ToString());
+            }
+        }
+
 
         /// <summary>
         /// FPS值(帧率)参数设置
         /// </summary>
         private void dInputFPS_ValueChanged(object sender, EventArgs e) {
-            // SetBtnPos(dInputFPS.Location, dInputFPS.Width);
+            if (!dInputFPS.Focused) {
+                return;
+            }
             btnSetFPSOk.Location = new Point(dInputFPS.Location.X + dInputFPS.Width + 3, dInputFPS.Location.Y);
             btnSetFPSOk.Visible = true;
             param = CameraParam.FrameRate;
@@ -472,7 +516,6 @@ namespace ProjectDropper {
             if (!iInputGain.Focused) {
                 return;
             }
-
             SetBtnPos(iInputGain.Location, iInputGain.Width);
             param = CameraParam.Gain;
             sParamValue = iInputGain.Value.ToString();
@@ -487,7 +530,6 @@ namespace ProjectDropper {
             if (!dInputLEDWidth.Focused) {
                 return;
             }
-
             SetBtnPos(dInputLEDWidth.Location, dInputLEDWidth.Width);
             param = CameraParam.LEDWidth;
             sParamValue = dInputLEDWidth.Value.ToString();
@@ -651,7 +693,7 @@ namespace ProjectDropper {
 
         #endregion
 
-       
+
 
         /// <summary>
         /// 相机状态更新
@@ -663,28 +705,35 @@ namespace ProjectDropper {
             }
 
             lock (obj1) {
-                CameraInfo cameraInfo = JsonHelper.GetModel<CameraInfo>(strJson);
-                if (!dInputFPS.Focused ) {//&& dInputFPS.Value == currFPS
-                    dInputFPS.Value = cameraInfo.Fps;
-                    currFPS = cameraInfo.Fps;
-                }
-                if (!dInputExposure.Focused ) {//&& dInputExposure.Value == currExposure
-                    dInputExposure.Value = cameraInfo.Exposure;
-                    currExposure = cameraInfo.Exposure;
-                }
-                if (!dInputLEDWidth.Focused ) {//&& dInputLEDWidth.Value == currLEDW
-                    dInputLEDWidth.Value = cameraInfo.LEDWidth;
-                    currLEDW = cameraInfo.LEDWidth;
-                }
-                if (!iInputGain.Focused ) {//&& iInputGain.Value == currGain
-                    iInputGain.Value = (int)cameraInfo.Gain;
-                    currGain = iInputGain.Value;
-                }
-                iInputCurrFocusValue.Value = cameraInfo.FocusPos;
-                iInputCurrZoomValue.Value = cameraInfo.ZoomPos;
-                iInputCurrIrisValue.Value = cameraInfo.IrisPos;
 
-                lblCameraState.Text = cameraInfo.Status == 0 ? "停 止" : "工作中";
+                try {
+                    CameraInfo cameraInfo = JsonHelper.GetModel<CameraInfo>(strJson);
+
+                    if (!dInputFPS.Focused && (int)dInputFPS.Tag == 0) {
+                        dInputFPS.Value = cameraInfo.Fps;
+                        currFPS = cameraInfo.Fps;
+                    }
+                    if (!dInputExposure.Focused && (int)dInputExposure.Tag == 0) {
+                        dInputExposure.Value = cameraInfo.Exposure;
+                        currExposure = cameraInfo.Exposure;
+                    }
+                    if (!dInputLEDWidth.Focused && (int)dInputLEDWidth.Tag == 0) {
+                        dInputLEDWidth.Value = cameraInfo.LEDWidth;
+                        currLEDW = cameraInfo.LEDWidth;
+                    }
+                    if (!iInputGain.Focused && (int)iInputGain.Tag == 0) {
+                        iInputGain.Value = (int)cameraInfo.Gain;
+                        currGain = iInputGain.Value;
+                    }
+                    iInputCurrFocusValue.Value = cameraInfo.FocusPos;
+                    iInputCurrZoomValue.Value = cameraInfo.ZoomPos;
+                    iInputCurrIrisValue.Value = cameraInfo.IrisPos;
+
+                    lblCameraState.Text = cameraInfo.Status == 0 ? "停 止" : "工作中";
+                } catch (Exception e) {
+
+                    MsgBox.Show(e.ToString());
+                }
             }
         }
 
@@ -748,29 +797,39 @@ namespace ProjectDropper {
 
         private string dateTimeTaskStr = "";
         private void btnItemBeginTask_Click(object sender, EventArgs e) {
-            if (_currTask == null) {
-                MsgBox.Warning("当没有任务计划，请先配置任务!", "开启任务失败");
-                return;
+            try {
+                ExitWarning exitW = new ExitWarning($"确认结束当前任务{_currTask.TaskName}？");
+                DialogResult dr = exitW.ShowDialog();
+                if (_currTask == null) {
+                    MsgBox.Warning("当没有任务计划，请先配置任务!", "开启任务失败");
+                    return;
+                }
+                DateTime dt = DateTime.Now;
+                string dateStr = dt.ToString("yyyy_MM_dd");
+                dateTimeTaskStr = dt.ToString("yyyy_MM_dd_HH_mm_ss") + "_[" + _currTask.LineName + "-" + _currTask.TaskName + "]";
+                string rootPath = Path.Combine(Settings.Default.DBPath, dateStr, dateTimeTaskStr);
+                MsgBox.Show(rootPath);
+                if (false == FileHelper.CreateDir(rootPath)) {
+                    MsgBox.Error("路径创建错误，不能开始任务，请检查磁盘!\n " + rootPath);
+                    return;
+                }
+                MsgBox.Show("send xc");
+                //发送接触网存储指令
+                jcwlib.Jcw_CloseDebugDataFile(m_hjcw);
+                jcwlib.Jcw_CreateDebugDataFile(m_hjcw, Path.Combine(rootPath, dateTimeTaskStr + "_几何.db"));
+                //发送相机指令
+                MsgBox.Show("xjk");
+                param = CameraParam.StartInspect;
+                sParamValue = dateTimeTaskStr;
+                SetTaskState();
+                tState = taskState.running;
+                timerSendTaskName.Start();
+                //发送开始命令
+                ChBtnState(tState);
+                MsgBox.Show("xjk2");
+            } catch (Exception ex) {
+                MsgBox.Show(ex.ToString());
             }
-            DateTime dt = DateTime.Now;
-            string dateStr = dt.ToString("yyyy_MM_dd");
-            dateTimeTaskStr = dt.ToString("yyyy_MM_dd_HH_mm_ss") + "_[" + _currTask.LineName + "-" + _currTask.TaskName + "]";
-            string rootPath = Path.Combine(Settings.Default.DBPath, dateStr, dateTimeTaskStr);
-            if (false == FileHelper.CreateDir(rootPath)) {
-                MsgBox.Error("路径创建错误，不能开始任务，请检查磁盘!\n " + rootPath);
-                return;
-            }
-            //发送接触网存储指令
-            jcwlib.Jcw_CloseDebugDataFile(m_hjcw);
-            jcwlib.Jcw_CreateDebugDataFile(m_hjcw, Path.Combine(rootPath, dateTimeTaskStr + "_几何.db"));
-            //发送相机指令
-            param = CameraParam.StartInspect;
-            sParamValue = dateTimeTaskStr;
-            SetTaskState();
-            tState = taskState.running;
-            timerSendTaskName.Start();
-            //发送开始命令
-            ChBtnState(tState);
         }
 
 
@@ -778,30 +837,42 @@ namespace ProjectDropper {
             ExitWarning exitW = new ExitWarning($"确认结束当前任务{_currTask.TaskName}？");
             DialogResult dr = exitW.ShowDialog();   //if (DialogResult.Yes == ComClassLib.MsgBox.YesNo($"结束当前任务-{_currTask.TaskName}-！\n请确认！"))
             if (dr == DialogResult.OK) {
-                _currTask.TaskEnd();
-                jcwlib.Jcw_CloseDebugDataFile(m_hjcw);
-                timerSendTaskName.Stop();
-                param = CameraParam.StopInspect;
-                sParamValue = "";
-                dateTimeTaskStr = "";
+                try {
+                    _currTask.TaskEnd();
+                    MsgBox.Show("ok1");
+                    jcwlib.Jcw_CloseDebugDataFile(m_hjcw);
+                    MsgBox.Show("ok2");
+                    timerSendTaskName.Stop();
+                    param = CameraParam.StopInspect;
+                    sParamValue = "";
+                    SetTaskState();
+                    MsgBox.Show("ok3");
+                    dateTimeTaskStr = "";
+                    tState = taskState.finish;
+                    ChBtnState(tState);
 
-                SetTaskState();
-                tState = taskState.finish;
-                ChBtnState(tState);
-            }
-            Thread.Sleep(2000);
-            MonitorTask nextTask = MonitorTask.GetNextPlanTask(_currTask);
-            if (nextTask != null && DialogResult.Yes == ComClassLib.MsgBox.YesNo($"存在计划任务-{nextTask.TaskName}！\n是否自动开启？")) {
-                _currTask = nextTask;
-                lblTaskInfo.Text = $"{_currTask.LineName} {_currTask.SType} " +
-                    $"{_currTask.StartStation}-{_currTask.EndStation}";
-                //新建任务修改按钮状态Task
-                tState = taskState.running;
-                ChBtnState(tState);
-                param = CameraParam.StartInspect;
-                sParamValue = $"{_currTask.LineName}-{_currTask.TaskName}";
-                SetTaskState();
-                timerSendTaskName.Start();
+                    MsgBox.Show("ok4");
+                    Thread.Sleep(1000);
+                    MsgBox.Show("ok5");
+                    MonitorTask nextTask = MonitorTask.GetNextPlanTask(_currTask);
+                    MsgBox.Show("ok6");
+                    if (nextTask != null && DialogResult.Yes == ComClassLib.MsgBox.YesNo($"存在计划任务-{nextTask.TaskName}！\n是否自动开启？")) {
+                        _currTask = nextTask;
+                        lblTaskInfo.Text = $"{_currTask.LineName} {_currTask.SType} " +
+                            $"{_currTask.StartStation}-{_currTask.EndStation}";
+                        //新建任务修改按钮状态Task
+                        tState = taskState.running;
+                        ChBtnState(tState);
+                        param = CameraParam.StartInspect;
+                        sParamValue = $"{_currTask.LineName}-{_currTask.TaskName}";
+                        SetTaskState();
+                        timerSendTaskName.Start();
+                    }
+                } catch (Exception ex) {
+
+                    MsgBox.Show(ex.ToString());
+
+                }
             }
         }
         /// <summary>
@@ -887,5 +958,6 @@ namespace ProjectDropper {
             sParamValue = dateTimeTaskStr;
             SetTaskState();
         }
+
     }
 }
