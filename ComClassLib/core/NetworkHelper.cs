@@ -109,9 +109,13 @@ namespace ComClassLib.core {
         }
         public static void StopReceive() {
             if (IsUdpcRecvStart) {
-                thrRecv.Abort();
-                udpcRecv.Close();
-                IsUdpcRecvStart = false;
+                try {
+                    if (thrRecv.IsAlive) {
+                        thrRecv.Abort();
+                    }
+                    udpcRecv.Close();
+                    IsUdpcRecvStart = false;
+                } catch { }
             }
         }
         public static void ReceivMsg() {
@@ -180,6 +184,10 @@ namespace ComClassLib.core {
                     IsConnected = false;
                 }
             }
+        }
+        public static void Close() {
+            IsConnected = false;
+            tcpClient.Close();
         }
     }
 

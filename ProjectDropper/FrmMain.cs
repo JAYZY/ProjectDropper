@@ -894,6 +894,7 @@ namespace ProjectDropper {
         }
 
         private string dateTimeTaskStr = "";
+        DBFileOp dbOp = null;
         /// <summary>
         /// 开始任务
         /// </summary>
@@ -928,7 +929,7 @@ namespace ProjectDropper {
                 //启动数据文件
                 string vPathA = Path.Combine(Settings.Default.cVideoPathA, dateStr, dateTimeTaskStr);
                 string vPathB = Path.Combine(Settings.Default.cVideoPathB, dateStr, dateTimeTaskStr);
-                DBFileOp dbOp = new DBFileOp(vPathA, vPathB, rootPath);
+                  dbOp = new DBFileOp(vPathA, vPathB, rootPath);
                 dbOp.StartProcessDB();
 
             } catch (Exception ex) {
@@ -951,7 +952,7 @@ namespace ProjectDropper {
                     dateTimeTaskStr = "";
                     tState = taskState.finish;
                     ChBtnState(tState);
-
+                    dbOp.StopProcessDB();
                     MonitorTask nextTask = MonitorTask.GetNextPlanTask(_currTask);
                     if (nextTask != null && DialogResult.Yes == ComClassLib.MsgBox.YesNo($"存在计划任务-{nextTask.TaskName}！\n是否自动开启？")) {
                         Thread.Sleep(1000);
@@ -965,6 +966,7 @@ namespace ProjectDropper {
                         sParamValue = $"{_currTask.LineName}-{_currTask.TaskName}";
                         SetTaskState();
                         timerSendTaskName.Start();
+
                     }
                 } catch (Exception ex) {
 
@@ -1015,8 +1017,10 @@ namespace ProjectDropper {
                 DialogResult dr = exitW.ShowDialog();
                 if (dr == DialogResult.OK) {
                     UDPHelper.StopReceive(); //停止UDP
-
+                    TCPHelper.Close();
                     isClose = true;
+                   
+                    Thread.Sleep(100);
                     Application.Exit();
                 } else {
                     isClose = false;
@@ -1075,6 +1079,7 @@ namespace ProjectDropper {
         #region UDP监听
         private void StartUDPListener() {
             UDPHelper.CallFunc = UdpMsgCall;
+            UDPHelper.StopReceive();
             UDPHelper.StartReceive(Settings.Default.LocalIP, Settings.Default.UDPPort);
         }
 
@@ -1097,8 +1102,7 @@ namespace ProjectDropper {
                     lblItemBatV.Text = $"电压(V)：{udpInfo.GetCBat().ToString("0.0")} V";
                     sBtnCamA.Value = (udpInfo.cam0 == 1);
                     sBtnCamB.Value = (udpInfo.cam1 == 1);
-                    sBtnCamC.Value = (udpInfo.cam2 == 1);
-                    sBtnCamD.Value = (udpInfo.cam3 == 1);
+                    sBtnCamE.Value = (udpInfo.cam2 == 1);
                 } catch (Exception) {
 
 
@@ -1117,28 +1121,36 @@ namespace ProjectDropper {
 
         private void sBtnCam_Click(object sender, EventArgs e) {
             byte[] closeCode = new byte[] { 00, 00, 00, 00, 00, 06, 01, 05, 00, 00, 00, 00 };
-            byte[] openCode = new byte[] { 00, 00, 00, 00, 00, 06, 01, 05, 00, 04, 0xFF, 00 };
+            byte[] openCode = new byte[] { 00, 00, 00, 00, 00, 06, 01, 05, 00, 00, 0xFF, 00 };
 
             SwitchButtonItem sbtnItem = (SwitchButtonItem)sender;
 
             switch (sbtnItem.Name) {
                 case "sBtnCamA":
                     if (sbtnItem.Value) {
-                        closeCode[9] = 0x01;
+                        closeCode[9] = 0x00;
                     } else {//开机
-                        openCode[9] = 0x01;
+                        openCode[9] = 0x00;
 
                     }
                     break;
                 case "sBtnCamB":
                     if (sbtnItem.Value) {
                         //开机
-                        closeCode[9] = 0x02;
+                        closeCode[9] = 0x01;
                     } else {
-                        openCode[9] = 0x02;
+                        openCode[9] = 0x01;
                     }
                     break;
                 case "sBtnCamC":
+                    if (sbtnItem.Value) {
+                        closeCode[9] = 0x02;
+                    } else {
+                        //开机
+                        openCode[9] = 0x02;
+                    }
+                    break;
+                case "sBtnCamD":
                     if (sbtnItem.Value) {
                         closeCode[9] = 0x03;
                     } else {
@@ -1146,7 +1158,7 @@ namespace ProjectDropper {
                         openCode[9] = 0x03;
                     }
                     break;
-                case "sBtnCamD":
+                case "sBtnCamE":
                     if (sbtnItem.Value) {
                         closeCode[9] = 0x04;
                     } else {
@@ -1154,22 +1166,31 @@ namespace ProjectDropper {
                         openCode[9] = 0x04;
                     }
                     break;
-                case "sBtnCamE":
-                    if (sbtnItem.Value) {
-                        closeCode[9] = 0x00;
-                    } else {
-                        //开机
-                        openCode[9] = 0x00;
-                    }
-                    break;
 
             }
-            if (sbtnItem.Value && closeCode[9] != 0x0) {
+           
+        
+            if (sbtnItem.Value  ) {
                 TCPHelper.SendData(closeCode);
-            } else if (openCode[9] != 0x0) {
+                Console.WriteLine(closeCode.ToString());
+                sbtnItem.Tooltip = "当前为关机状态";
+            } else    {
                 TCPHelper.SendData(openCode);
+                Console.WriteLine(openCode.ToString());
+                sbtnItem.Tooltip = "当前为开机状态";
+
 
             }
+        }
+        /// <summary>
+        /// 显示时间日期
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ShowTime_Tick(object sender, EventArgs e) {
+            DateTime dt = DateTime.Now;
+            lblDate.Text = dt.ToString("YYYY-MM-dd");
+            lblTime.Text = dt.ToString("HH:mm:ss");
         }
     }
 }

@@ -48,7 +48,7 @@
       <Value Profile="(Default)">18887</Value>
     </Setting>
     <Setting Name="LocalIP" Type="System.String" Scope="User">
-      <Value Profile="(Default)">192.168.100.82</Value>
+      <Value Profile="(Default)">192.168.100.78</Value>
     </Setting>
     <Setting Name="TCPSevIP" Type="System.String" Scope="User">
       <Value Profile="(Default)">192.168.100.105</Value>

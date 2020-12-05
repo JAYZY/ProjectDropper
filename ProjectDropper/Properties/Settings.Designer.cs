@@ -205,7 +205,7 @@ namespace ProjectDropper.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("192.168.100.82")]
+        [global::System.Configuration.DefaultSettingValueAttribute("192.168.100.78")]
         public string LocalIP {
             get {
                 return ((string)(this["LocalIP"]));

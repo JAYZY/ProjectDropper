@@ -26,7 +26,7 @@ namespace ProjectDropper {
             try {
                 Application.Run(new FrmMain());
             } catch (Exception e) {
-                MessageBox.Show(@"系统缺少运行环境：" + e.ToString());
+                //MessageBox.Show(@"系统缺少运行环境：" + e.ToString());
             }
         }
 

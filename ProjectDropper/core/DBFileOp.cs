@@ -12,7 +12,7 @@ namespace ProjectDropper.core {
     /// </summary>
     public class DBFileOp {
 
-        const int offsetDB = 1000;
+        const int offsetDB = 1;
         public enum DbName {
             LoginDb,    //登录数据库
             IndexDb,    //索引数据库
@@ -161,6 +161,10 @@ namespace ProjectDropper.core {
             }
         }
         public void StopProcessDB() {
+            currTh.Abort();
+            CurrSecondDB.CloseDb();
+            CurrMainDB.CloseDb();
+            IndexDB.CloseDb();
             IsStop = true;
         }
         public void MonitorDir() {
