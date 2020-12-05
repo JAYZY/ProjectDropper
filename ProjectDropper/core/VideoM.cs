@@ -3,12 +3,9 @@ using System;
 using System.Drawing;
 using System.IO;
 using System.Runtime.InteropServices;
-using System.Text;
 
-namespace ProjectDropper.core
-{
-    public class VideoM
-    {
+namespace ProjectDropper.core {
+    public class VideoM {
         public static object _obj { get; private set; }
 
         #region CallDLL
@@ -52,24 +49,22 @@ namespace ProjectDropper.core
         #endregion
 
 
-
-        public static IntPtr Connection(string _ipAddress, int iPort = 12345)
-        {
+        /// <summary>
+        /// 调用地址链接
+        /// </summary>
+        /// <param name="_ipAddress"></param>
+        /// <param name="iPort"></param>
+        /// <returns></returns>
+        public static IntPtr Connection(string _ipAddress, int iPort = 12345) {
 
             IntPtr hDec = IntPtr.Zero;
-
-            try
-            {
+            try {
                 hDec = OpenRPC(_ipAddress, iPort);
                 // System.Windows.Forms.MessageBox.Show($"{_ipAddress.Trim()}：{hDec}");
-            }
-            catch (Exception ex)
-            {
+            } catch (Exception ex) {
                 hDec = IntPtr.Zero;
-                // System.Windows.Forms.MessageBox.Show($"{_ipAddress}：连接失败{ ex.ToString()}");
                 Console.WriteLine("设备连接失败！" + ex.ToString());
             }
-
             return hDec;
         }
 
@@ -109,51 +104,43 @@ namespace ProjectDropper.core
         /// <param name="imgW"></param>
         /// <param name="imgH"></param>
         /// <param name="time"></param>
+        //[System.Runtime.ExceptionServices.HandleProcessCorruptedStateExceptions]
+        //public static void LoadImg(CtrlView viewImage, IntPtr hDec, ref int imgW, ref int imgH, ref long time) {
 
-        public static void LoadImg(CtrlView viewImage, IntPtr hDec, ref int imgW, ref int imgH, ref long time)
-        {
+        //    if (hDec == IntPtr.Zero) {
+        //        return;
+        //    }
+        //    try {
+        //        byte[] jpg_buffer = new byte[100000000];
+        //        IntPtr pImageData = IntPtr.Zero;
+        //        unsafe {
+        //            fixed (void* p = &jpg_buffer[0]) {
+        //                pImageData = (IntPtr)p;
+        //            }
+        //        }
+        //        int iImgLen = GetRpcImage(hDec, 0, pImageData);
+        //        if (iImgLen > 16) {
 
-            if (hDec == IntPtr.Zero)
-            {
-                return;
-            }
-            try
-            {
-                byte[] jpg_buffer = new byte[100000000];
-                IntPtr pImageData = IntPtr.Zero;
-                unsafe
-                {
-                    fixed (void* p = &jpg_buffer[0])
-                    {
-                        pImageData = (IntPtr)p;
-                    }
-                }
-                int iImgLen = GetRpcImage(hDec, 0, pImageData);
-                if (iImgLen > 16)
-                {
-
-                    byte[] bWith = new byte[4];
-                    byte[] bHeight = new byte[4];
-                    byte[] bTime = new byte[8];
-                    Array.Copy(jpg_buffer, 0, bWith, 0, 4);
-                    imgW = System.BitConverter.ToInt32(bWith, 0);
-                    Array.Copy(jpg_buffer, 4, bHeight, 0, 4);
-                    imgH = System.BitConverter.ToInt32(bHeight, 0);
-                    Array.Copy(jpg_buffer, 8, bTime, 0, 8);
-                    time = System.BitConverter.ToInt64(bTime, 0);
-                    viewImage.LoadImg(jpg_buffer, (uint)iImgLen, 16);
-                    //    MemoryStream ms = new MemoryStream();
-                    //    ms.Write(jpg_buffer, 16, iImgLen);
-                    //    img = Image.FromStream(ms);
-                    //}
-                    // viewImage.Refresh();
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("图像读取错误" + ex.ToString());
-            }
-        }
+        //            byte[] bWith = new byte[4];
+        //            byte[] bHeight = new byte[4];
+        //            byte[] bTime = new byte[8];
+        //            Array.Copy(jpg_buffer, 0, bWith, 0, 4);
+        //            imgW = System.BitConverter.ToInt32(bWith, 0);
+        //            Array.Copy(jpg_buffer, 4, bHeight, 0, 4);
+        //            imgH = System.BitConverter.ToInt32(bHeight, 0);
+        //            Array.Copy(jpg_buffer, 8, bTime, 0, 8);
+        //            time = System.BitConverter.ToInt64(bTime, 0);
+        //            viewImage.LoadImg(jpg_buffer, (uint)iImgLen, 16);
+        //            //    MemoryStream ms = new MemoryStream();
+        //            //    ms.Write(jpg_buffer, 16, iImgLen);
+        //            //    img = Image.FromStream(ms);
+        //            //}
+        //            // viewImage.Refresh();
+        //        }
+        //    } catch (Exception ex) {
+        //        Console.WriteLine("图像读取错误" + ex.ToString());
+        //    }
+        //}
         /// <summary>
         /// 获取相机图像
         /// </summary>
@@ -162,28 +149,22 @@ namespace ProjectDropper.core
         /// <param name="imgH"></param>
         /// <param name="time"></param>
         /// <returns></returns>
-        public static Image GetImg(IntPtr hDec, ref int imgW, ref int imgH, ref long time)
-        {
+        public static Image GetImg(IntPtr hDec, ref int imgW, ref int imgH, ref long time) {
 
-            if (hDec == IntPtr.Zero)
-            {
+            if (hDec == IntPtr.Zero) {
                 return null;
             }
             Image img = null;
-            try
-            {
+            try {
                 byte[] jpg_buffer = new byte[100000000];
                 IntPtr pImageData = IntPtr.Zero;
-                unsafe
-                {
-                    fixed (void* p = &jpg_buffer[0])
-                    {
+                unsafe {
+                    fixed (void* p = &jpg_buffer[0]) {
                         pImageData = (IntPtr)p;
                     }
                 }
                 int iImgLen = GetRpcImage(hDec, 0, pImageData);
-                if (iImgLen > 16)
-                {
+                if (iImgLen > 16) {
 
                     byte[] bWith = new byte[4];
                     byte[] bHeight = new byte[4];
@@ -198,9 +179,7 @@ namespace ProjectDropper.core
                     ms.Write(jpg_buffer, 16, iImgLen);
                     img = Image.FromStream(ms);
                 }
-            }
-            catch (Exception ex)
-            {
+            } catch (Exception ex) {
                 Console.WriteLine("图像读取错误" + ex.ToString());
             }
             return img;

@@ -404,18 +404,10 @@ namespace ProjectDropper.UI {
         /// 超链接打开 目录
         /// </summary>
         private void linkLblDbPath_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) {
-            OpenLocalDir(((LinkLabel)sender).Text);
+            FileHelper.OpenLocalDir(((LinkLabel)sender).Text);
         }
 
-        private void OpenLocalDir(string sDir) {
-            try {
-                System.Diagnostics.Process.Start(sDir);
-            }
-            catch (Exception) {
 
-            }
-
-        }
         /// <summary>
         /// 删除数据
         /// </summary>

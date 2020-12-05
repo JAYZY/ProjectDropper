@@ -21,7 +21,7 @@
       <Value Profile="(Default)">800</Value>
     </Setting>
     <Setting Name="ReconnectTime" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">1000</Value>
+      <Value Profile="(Default)">300</Value>
     </Setting>
     <Setting Name="DBBackPath" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
@@ -37,6 +37,24 @@
     </Setting>
     <Setting Name="currTask" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="cVideoPathA" Type="System.String" Scope="User">
+      <Value Profile="(Default)">z:\</Value>
+    </Setting>
+    <Setting Name="cVideoPathB" Type="System.String" Scope="User">
+      <Value Profile="(Default)">y:\</Value>
+    </Setting>
+    <Setting Name="UDPPort" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">18887</Value>
+    </Setting>
+    <Setting Name="LocalIP" Type="System.String" Scope="User">
+      <Value Profile="(Default)">192.168.100.82</Value>
+    </Setting>
+    <Setting Name="TCPSevIP" Type="System.String" Scope="User">
+      <Value Profile="(Default)">192.168.100.105</Value>
+    </Setting>
+    <Setting Name="TCPSevPort" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">502</Value>
     </Setting>
   </Settings>
 </SettingsFile>

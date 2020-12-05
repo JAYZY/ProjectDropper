@@ -23,6 +23,7 @@ namespace ComClassLib.DB {
                 mapSqlite[strName].CloseDb();
             }
             mapSqlite[strName] = new SqliteHelper(dbPath);
+            
             if (!string.IsNullOrEmpty(sPwd)) {
                 mapSqlite[strName].setPwd(sPwd);
             }

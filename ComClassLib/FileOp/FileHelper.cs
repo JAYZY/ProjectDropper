@@ -1,6 +1,4 @@
-﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
@@ -15,10 +13,9 @@ namespace ComClassLib.FileOp {
             try {
                 if (false == System.IO.Directory.Exists(sDirPath)) {
                     //创建文件夹
-                    Directory.CreateDirectory(sDirPath);
+                    DirectoryInfo dinfo= Directory.CreateDirectory(sDirPath);
                 }
-            }
-            catch (Exception) {
+            } catch (Exception) {
 
                 return false;
             }
@@ -37,10 +34,9 @@ namespace ComClassLib.FileOp {
             FileInfo newFile = null;
             try {
                 newFile = file.CopyTo(destFile, isOverwrite);
-            }
-            catch (IOException ex) {
+            } catch (IOException ex) {
                 newFile = null;
-                MsgBox.Error("文件备份失败，检查目标文件是否已存在！\n详情：" + ex.ToString());
+                //MsgBox.Error("文件备份失败，检查目标文件是否已存在！\n详情：" + ex.ToString());
             }
             return newFile;
         }
@@ -51,8 +47,7 @@ namespace ComClassLib.FileOp {
                 byte[] img = new byte[iNewImgLen];
                 Buffer.BlockCopy(imgBytes, 8, img, 0, iNewImgLen);
                 System.IO.File.WriteAllBytes(sFileFullPath, img);
-            }
-            catch (Exception) {
+            } catch (Exception) {
                 return false;
             }
             return true;
@@ -89,7 +84,7 @@ namespace ComClassLib.FileOp {
         /// <param name="extName">扩展名-文件类型</param>
         /// <param name="lst"></param>
         /// <returns></returns>
-        public static void getFiles(string path, string extName, ref List<FileInfo> lst, bool isChildDir = false) {
+        public static void GetFiles(string path, string extName, ref List<FileInfo> lst, bool isChildDir = false) {
             try {
 
                 string[] dir = Directory.GetDirectories(path); //文件夹列表   
@@ -104,12 +99,11 @@ namespace ComClassLib.FileOp {
                         }
                     }
                     foreach (string d in dir) {
-                        getFiles(d, extName, ref lst, isChildDir);//递归   
+                        GetFiles(d, extName, ref lst, isChildDir);//递归   
                     }
                 }
-            }
-            catch (Exception ex) {
-                MsgBox.Show("获取文件出错！\n详细信息\n" + ex.ToString());
+            } catch (Exception ex) {
+               // MsgBox.Show("获取文件出错！\n详细信息\n" + ex.ToString());
             }
         }
         #endregion
@@ -121,8 +115,7 @@ namespace ComClassLib.FileOp {
                 imageBytes = new byte[fs.Length];
                 BinaryReader br = new BinaryReader(fs);
                 imageBytes = br.ReadBytes(Convert.ToInt32(fs.Length));//图片转换成二进制流
-            }
-            catch (Exception ex) {
+            } catch (Exception ex) {
                 Console.WriteLine("Insert {0} is error;\n{1}", imgName, ex.Message);//显示异常信息
             }
             return imageBytes;
@@ -143,6 +136,31 @@ namespace ComClassLib.FileOp {
             }
 
         }
+        /// <summary>
+        /// 文件是否被占用
+        /// </summary>
+        /// <param name="fileName"></param>
+        /// <returns></returns>
+        public static bool IsFileInUse(string fileName) {
+            bool inUse = true;
+
+            //using (FileStream fs = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.None)) {
+            //    inUse = false;
+            //}
+
+            FileStream fs = null;
+            try {
+                fs = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.None);
+                inUse = false;
+            } catch {
+            } finally {
+                if (fs != null) {
+                    fs.Close();
+                }
+            }
+            return inUse;//true表示正在使用,false没有使用
+        }
+
         public static string _InitialDirectory = "C:\\";
         public static string OpenFile(string title, string sFilter = "(*.*)|*.*") {
             string sFileName = "";
@@ -157,6 +175,16 @@ namespace ComClassLib.FileOp {
             return sFileName;
 
         }
+
+        public static void OpenLocalDir(string sDir) {
+            try {
+                System.Diagnostics.Process.Start(sDir);
+            } catch (Exception) {
+
+            }
+
+        }
+
         /// <summary>
         /// 将xml转为Datable
         /// </summary>
@@ -173,11 +201,9 @@ namespace ComClassLib.FileOp {
                     //ds获取Xmlrdr中的数据                 
                     ds.ReadXml(Xmlrdr);
                     return ds.Tables[0];
-                }
-                catch (Exception) {
+                } catch (Exception) {
                     return null;
-                }
-                finally {
+                } finally {
                     //释放资源  
                     if (Xmlrdr != null) {
                         Xmlrdr.Close();
@@ -195,11 +221,9 @@ namespace ComClassLib.FileOp {
             try {
                 sr = new StreamReader(xmlFilePath, System.Text.Encoding.Default);
                 ds.ReadXml(sr);
-            }
-            catch (Exception) {
+            } catch (Exception) {
                 return null;
-            }
-            finally {
+            } finally {
                 sr.Close();
                 //释放资源  
 
@@ -247,8 +271,7 @@ namespace ComClassLib.FileOp {
                     sw.Close();
                 }
                 return true;
-            }
-            catch (Exception) {
+            } catch (Exception) {
                 // Debug.WriteLine(string.Format("写入文件出错：消息={0},堆栈={1}", ex.Message, ex.StackTrace));
                 return false;
             }
@@ -265,8 +288,10 @@ namespace ComClassLib.FileOp {
             if (String.IsNullOrEmpty(str)) {
                 return null;
             }
-            if (str.Length == 0)
+            if (str.Length == 0) {
                 return null;
+            }
+
             byte[] gb = new byte[str.Length];
             for (int i = 0; i < str.Length; i++) {
                 gb[i] = Convert.ToByte(str[i]);

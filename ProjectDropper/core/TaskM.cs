@@ -58,12 +58,6 @@ namespace ProjectDropper.core {
             m_sImgDbId = 10;                                                //图像二进制存储数据库Id
             m_sInfoDbIdx = 11;                                              //图像信息数据库Id
             m_sAIFaultDbId = 12;                                            //智能识别缺陷数据库Id.
-           // m_iMemLimit = Settings.Default.DBMemLimit;                      //MemLimit:内存限制 （单位M)
-         //   m_iSaveImgNumByOnce = Settings.Default.ISaveImgNumByOnce;       //一次事务处理的的图像数量 默认99张-实际为100张
-          //  m_iDelDataByOnce = Settings.Default.IDelDataByOnce;             //一次删除的图像数据 默认200条记录
-         //   m_iSaveGeoDataNumByOnce = Settings.Default.ISaveImgNumByOnce;   //一次事务处理的几何参数数据大小
-                                                                            // m_iImgNumTwoPole = Settings.Default.IImgNumTwoPole;
-         //   m_iSubDbSize = Settings.Default.SubDbSize;                      //分库存储的最大数据量 默认3000
         }
         /// <summary>
         /// 得到下一个任务
@@ -182,9 +176,13 @@ namespace ProjectDropper.core {
            
             _taskDir = Path.Combine(taskDir, TaskName);
             //创建目录
-            ComClassLib.FileOp.FileHelper.CreateDir(_taskDir);
+
+           // ComClassLib.FileOp.FileHelper.CreateDir(_taskDir);
             if (!string.IsNullOrEmpty(taskBackDir)) {
                 _taskBackDir = Path.Combine(taskBackDir, TaskName);
+               
+
+
                 //创建目录
                 ComClassLib.FileOp.FileHelper.CreateDir(_taskBackDir);
             }
@@ -244,23 +242,14 @@ namespace ProjectDropper.core {
         public void TaskStart() {
             //创建索引库
             IndexDb = DBM.CreateIndDB(TaskIndFileFullName);
-
             //写入站点信息
             DBM.WriteStationInfo(this);
+
             //创建图像分库
             CreateSubDB();
 
-            //设置任务状态
-            State = taskState.running;
-            _ExecToSqlite = true;
-            imgDB = new RedisHelper(m_sImgDbId);                     //图像数据库ID
-            imgInfoDB = new RedisHelper(m_sInfoDbIdx);               //图像信息数据库ID
-            locDB = new RedisHelper(m_sAIFaultDbId);                 //定位数据库ID  
-            if (Settings.Default.isDelAllDB) {
-                RedisHelper.ClearAllDB();//清除所有数据
-            }
-            Task toSqlite = new Task(ToSqliteAsync, _token);
-            toSqlite.Start();
+            //1.发送指令
+            //2.
         }
 
         //任务结束

@@ -97,7 +97,7 @@ namespace ProjectDropper.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("1000")]
+        [global::System.Configuration.DefaultSettingValueAttribute("300")]
         public int ReconnectTime {
             get {
                 return ((int)(this["ReconnectTime"]));
@@ -164,6 +164,78 @@ namespace ProjectDropper.Properties {
             }
             set {
                 this["currTask"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("z:\\")]
+        public string cVideoPathA {
+            get {
+                return ((string)(this["cVideoPathA"]));
+            }
+            set {
+                this["cVideoPathA"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("y:\\")]
+        public string cVideoPathB {
+            get {
+                return ((string)(this["cVideoPathB"]));
+            }
+            set {
+                this["cVideoPathB"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("18887")]
+        public int UDPPort {
+            get {
+                return ((int)(this["UDPPort"]));
+            }
+            set {
+                this["UDPPort"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("192.168.100.82")]
+        public string LocalIP {
+            get {
+                return ((string)(this["LocalIP"]));
+            }
+            set {
+                this["LocalIP"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("192.168.100.105")]
+        public string TCPSevIP {
+            get {
+                return ((string)(this["TCPSevIP"]));
+            }
+            set {
+                this["TCPSevIP"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("502")]
+        public int TCPSevPort {
+            get {
+                return ((int)(this["TCPSevPort"]));
+            }
+            set {
+                this["TCPSevPort"] = value;
             }
         }
     }

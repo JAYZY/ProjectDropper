@@ -417,7 +417,7 @@
             this.dgvTask.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvTask.RowTemplate.Height = 23;
             this.dgvTask.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvTask.Size = new System.Drawing.Size(328, 297);
+            this.dgvTask.Size = new System.Drawing.Size(328, 299);
             this.dgvTask.TabIndex = 48;
             // 
             // colTaskName
@@ -448,12 +448,12 @@
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.TMItemDel});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 48);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(128, 26);
             // 
             // TMItemDel
             // 
             this.TMItemDel.Name = "TMItemDel";
-            this.TMItemDel.Size = new System.Drawing.Size(180, 22);
+            this.TMItemDel.Size = new System.Drawing.Size(127, 22);
             this.TMItemDel.Text = "删除(&Del)";
             this.TMItemDel.Click += new System.EventHandler(this.TMItemDel_Click);
             // 
@@ -464,7 +464,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DimGray;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(904, 297);
+            this.ClientSize = new System.Drawing.Size(904, 299);
             this.ControlBox = false;
             this.Controls.Add(this.dgvTask);
             this.Controls.Add(this.ckIsBack);

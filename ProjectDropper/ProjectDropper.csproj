@@ -79,6 +79,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.SQLite, Version=1.0.112.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139" />
     <Reference Include="System.Design" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
@@ -96,6 +97,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="core\CameraInfo.cs" />
+    <Compile Include="core\DBFileOp.cs" />
     <Compile Include="core\jcwlib_include.cs" />
     <Compile Include="core\PicInfo.cs" />
     <Compile Include="core\TaskM.cs" />
@@ -168,6 +170,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="DB\DbTB.sql" />
     <Content Include="ico\bgBtn.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
