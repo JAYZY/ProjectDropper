@@ -13,7 +13,7 @@ namespace ComClassLib.FileOp {
             try {
                 if (false == System.IO.Directory.Exists(sDirPath)) {
                     //创建文件夹
-                    DirectoryInfo dinfo= Directory.CreateDirectory(sDirPath);
+                    DirectoryInfo dinfo = Directory.CreateDirectory(sDirPath);
                 }
             } catch (Exception) {
 
@@ -34,12 +34,32 @@ namespace ComClassLib.FileOp {
             FileInfo newFile = null;
             try {
                 newFile = file.CopyTo(destFile, isOverwrite);
-            } catch (IOException ex) {
+            } catch (IOException) {
                 newFile = null;
                 //MsgBox.Error("文件备份失败，检查目标文件是否已存在！\n详情：" + ex.ToString());
             }
             return newFile;
         }
+
+
+
+
+        public static string OpenDir(string selTip, string defaultDir = "") {
+            string sRtn = string.Empty;
+            System.Windows.Forms.FolderBrowserDialog dialog = new System.Windows.Forms.FolderBrowserDialog();
+            dialog.SelectedPath = defaultDir;
+            dialog.Description = selTip ?? "请选择文件夹";
+            if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK) {
+                if (string.IsNullOrEmpty(dialog.SelectedPath)) {
+                    MsgBox.Warning(@"文件夹路径不能为空", @"提示");
+                    sRtn = string.Empty;
+                } else {
+                    sRtn = dialog.SelectedPath;
+                }
+            }
+            return sRtn;
+        }
+
         //写入图像
         public static bool ImgToFile(string sFileFullPath, byte[] imgBytes) {
             try {
@@ -86,7 +106,7 @@ namespace ComClassLib.FileOp {
         /// <returns></returns>
         public static void GetFiles(string path, string extName, ref List<FileInfo> lst, bool isChildDir = false) {
             try {
-
+                if (lst == null) lst = new List<FileInfo>();
                 string[] dir = Directory.GetDirectories(path); //文件夹列表   
                 DirectoryInfo fdir = new DirectoryInfo(path);
                 FileInfo[] file = fdir.GetFiles();
@@ -102,8 +122,8 @@ namespace ComClassLib.FileOp {
                         GetFiles(d, extName, ref lst, isChildDir);//递归   
                     }
                 }
-            } catch (Exception ex) {
-               // MsgBox.Show("获取文件出错！\n详细信息\n" + ex.ToString());
+            } catch (Exception) {
+                // MsgBox.Show("获取文件出错！\n详细信息\n" + ex.ToString());
             }
         }
         #endregion
@@ -175,7 +195,10 @@ namespace ComClassLib.FileOp {
             return sFileName;
 
         }
-
+        /// <summary>
+        /// 从系统资源管理器中打开指定文件目录
+        /// </summary>
+        /// <param name="sDir"></param>
         public static void OpenLocalDir(string sDir) {
             try {
                 System.Diagnostics.Process.Start(sDir);
@@ -230,6 +253,33 @@ namespace ComClassLib.FileOp {
             }
             DataSetToXml(ds);
             return ds;
+        }
+        public static string GetWeekName() {
+            string weekName = "";
+            switch (DateTime.Now.DayOfWeek) {
+                case DayOfWeek.Monday:
+                    weekName = "周一";
+                    break;
+                case DayOfWeek.Tuesday:
+                    weekName = "周二";
+                    break;
+                case DayOfWeek.Wednesday:
+                    weekName = "周三";
+                    break;
+                case DayOfWeek.Thursday:
+                    weekName = "周四";
+                    break;
+                case DayOfWeek.Friday:
+                    weekName = "周五";
+                    break;
+                case DayOfWeek.Saturday:
+                    weekName = "周六";
+                    break;
+                case DayOfWeek.Sunday:
+                    weekName = "周日";
+                    break;
+            }
+            return weekName;
         }
         /// <summary>
         /// 将datatable转为xml 
@@ -297,6 +347,25 @@ namespace ComClassLib.FileOp {
                 gb[i] = Convert.ToByte(str[i]);
             }
             return System.Text.Encoding.Default.GetString(gb);
+        }
+        /// <summary>
+        /// 转换时间戳为C#时间
+        /// </summary>
+        /// <param name="timeStamp">时间戳 单位：毫秒</param>
+        /// <returns>C#时间</returns>
+        public static DateTime ConvertTimeStampToDateTime(long timeStamp) {
+            DateTime startTime = TimeZone.CurrentTimeZone.ToLocalTime(new System.DateTime(1970, 1, 1)); // 当地时区
+            DateTime dt = startTime.AddSeconds(timeStamp);
+            return dt;
+        }
+
+        /// <summary> 
+        /// 获取时间戳 
+        /// </summary> 
+        /// <returns>UTC</returns> 
+        public static string GetTimeStamp() {
+            TimeSpan ts = DateTime.UtcNow - new DateTime(1970, 1, 1, 0, 0, 0, 0);
+            return Convert.ToInt64(ts.TotalSeconds).ToString();
         }
         #endregion
 

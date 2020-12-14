@@ -25,7 +25,7 @@
         private void InitializeComponent() {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMain));
-            this.tbLayoutPanelRight = new System.Windows.Forms.TableLayoutPanel();
+            this.tbLayoutPanelMiddle = new System.Windows.Forms.TableLayoutPanel();
             this.panelImgA = new System.Windows.Forms.Panel();
             this.lblCameraStateA = new System.Windows.Forms.Label();
             this.imgLstCameraState = new System.Windows.Forms.ImageList(this.components);
@@ -104,76 +104,55 @@
             this.splitter1 = new System.Windows.Forms.Splitter();
             this.timerConnState = new System.Windows.Forms.Timer(this.components);
             this.timeJH = new System.Windows.Forms.Timer(this.components);
-            this.panel5 = new System.Windows.Forms.Panel();
+            this.panelTitle = new System.Windows.Forms.Panel();
             this.lblTaskInfo = new DevComponents.DotNetBar.LabelX();
-            this.explorerBarLeft = new DevComponents.DotNetBar.ExplorerBar();
-            this.explorerBarGroupItem3 = new DevComponents.DotNetBar.ExplorerBarGroupItem();
-            this.lblDate = new DevComponents.DotNetBar.LabelItem();
-            this.labelItem5 = new DevComponents.DotNetBar.LabelItem();
-            this.lblTime = new DevComponents.DotNetBar.LabelItem();
-            this.explorerBarGroupItem1 = new DevComponents.DotNetBar.ExplorerBarGroupItem();
-            this.btnItemNewTask = new DevComponents.DotNetBar.ButtonItem();
-            this.btnItemBeginTask = new DevComponents.DotNetBar.ButtonItem();
-            this.btnItemStopTask = new DevComponents.DotNetBar.ButtonItem();
-            this.labelItem4 = new DevComponents.DotNetBar.LabelItem();
-            this.buttonItem3 = new DevComponents.DotNetBar.ButtonItem();
-            this.labelItem6 = new DevComponents.DotNetBar.LabelItem();
-            this.lblItemDBPath = new DevComponents.DotNetBar.LabelItem();
-            this.explorerBarGroupItem2 = new DevComponents.DotNetBar.ExplorerBarGroupItem();
-            this.sBtnCamA = new DevComponents.DotNetBar.SwitchButtonItem();
-            this.labelItem1 = new DevComponents.DotNetBar.LabelItem();
-            this.sBtnCamB = new DevComponents.DotNetBar.SwitchButtonItem();
-            this.labelItem2 = new DevComponents.DotNetBar.LabelItem();
-            this.sBtnCamC = new DevComponents.DotNetBar.SwitchButtonItem();
-            this.labelItem3 = new DevComponents.DotNetBar.LabelItem();
-            this.sBtnCamD = new DevComponents.DotNetBar.SwitchButtonItem();
-            this.labelItem7 = new DevComponents.DotNetBar.LabelItem();
-            this.sBtnCamE = new DevComponents.DotNetBar.SwitchButtonItem();
-            this.exBarGroupItemInfo = new DevComponents.DotNetBar.ExplorerBarGroupItem();
-            this.lblItemC1 = new DevComponents.DotNetBar.LabelItem();
-            this.lblItemC2 = new DevComponents.DotNetBar.LabelItem();
-            this.lblItemC3 = new DevComponents.DotNetBar.LabelItem();
-            this.lblItemBatV = new DevComponents.DotNetBar.LabelItem();
             this.timerSendTaskName = new System.Windows.Forms.Timer(this.components);
             this.ShowTime = new System.Windows.Forms.Timer(this.components);
             this.exPanelLeft = new DevComponents.DotNetBar.PanelEx();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.label19 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label20 = new System.Windows.Forms.Label();
             this.panel8 = new System.Windows.Forms.Panel();
-            this.label25 = new System.Windows.Forms.Label();
+            this.groupBoxDataInfo = new System.Windows.Forms.GroupBox();
+            this.progressBarX2 = new DevComponents.DotNetBar.Controls.ProgressBarX();
+            this.progressBarX1 = new DevComponents.DotNetBar.Controls.ProgressBarX();
+            this.label23 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
+            this.lblCpA = new System.Windows.Forms.Label();
+            this.lblCpB = new System.Windows.Forms.Label();
+            this.lblItemDBPath = new System.Windows.Forms.LinkLabel();
+            this.label21 = new System.Windows.Forms.Label();
             this.label26 = new System.Windows.Forms.Label();
             this.label28 = new System.Windows.Forms.Label();
             this.panel9 = new System.Windows.Forms.Panel();
-            this.label29 = new System.Windows.Forms.Label();
+            this.lblBatTip = new System.Windows.Forms.Label();
+            this.sBtnCamC = new DevComponents.DotNetBar.Controls.SwitchButton();
+            this.sBtnCamE = new DevComponents.DotNetBar.Controls.SwitchButton();
+            this.sBtnCamD = new DevComponents.DotNetBar.Controls.SwitchButton();
+            this.sBtnCamB = new DevComponents.DotNetBar.Controls.SwitchButton();
+            this.sBtnCamA = new DevComponents.DotNetBar.Controls.SwitchButton();
+            this.label37 = new System.Windows.Forms.Label();
+            this.lblBatV = new System.Windows.Forms.Label();
+            this.lblJH = new System.Windows.Forms.Label();
+            this.label36 = new System.Windows.Forms.Label();
+            this.label35 = new System.Windows.Forms.Label();
             this.label30 = new System.Windows.Forms.Label();
             this.label31 = new System.Windows.Forms.Label();
             this.label33 = new System.Windows.Forms.Label();
-            this.panel10 = new System.Windows.Forms.Panel();
+            this.panelTask = new System.Windows.Forms.Panel();
+            this.btnStopTask = new System.Windows.Forms.Button();
+            this.btnBeginTask = new System.Windows.Forms.Button();
+            this.btnNewTask = new System.Windows.Forms.Button();
             this.label34 = new System.Windows.Forms.Label();
             this.label38 = new System.Windows.Forms.Label();
             this.panel11 = new System.Windows.Forms.Panel();
-            this.label39 = new System.Windows.Forms.Label();
+            this.lblTime = new System.Windows.Forms.Label();
+            this.lblWeek = new System.Windows.Forms.Label();
+            this.lblDate = new System.Windows.Forms.Label();
             this.panel12 = new System.Windows.Forms.Panel();
             this.panel13 = new System.Windows.Forms.Panel();
-            this.label40 = new System.Windows.Forms.Label();
-            this.label41 = new System.Windows.Forms.Label();
-            this.button7 = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
-            this.button9 = new System.Windows.Forms.Button();
             this.imgLst64 = new System.Windows.Forms.ImageList(this.components);
-            this.switchButton1 = new DevComponents.DotNetBar.Controls.SwitchButton();
-            this.label35 = new System.Windows.Forms.Label();
-            this.switchButton2 = new DevComponents.DotNetBar.Controls.SwitchButton();
-            this.switchButton3 = new DevComponents.DotNetBar.Controls.SwitchButton();
-            this.label36 = new System.Windows.Forms.Label();
-            this.switchButton4 = new DevComponents.DotNetBar.Controls.SwitchButton();
-            this.label37 = new System.Windows.Forms.Label();
-            this.switchButton5 = new DevComponents.DotNetBar.Controls.SwitchButton();
-            this.label21 = new System.Windows.Forms.Label();
-            this.label22 = new System.Windows.Forms.Label();
-            this.label23 = new System.Windows.Forms.Label();
-            this.tbLayoutPanelRight.SuspendLayout();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.tbLayoutPanelMiddle.SuspendLayout();
             this.panelImgA.SuspendLayout();
             this.panelImgB.SuspendLayout();
             this.panelRight.SuspendLayout();
@@ -193,41 +172,43 @@
             ((System.ComponentModel.ISupportInitialize)(this.dInputFPS)).BeginInit();
             this.panel3.SuspendLayout();
             this.exPanelJHCS.SuspendLayout();
-            this.panel5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.explorerBarLeft)).BeginInit();
+            this.panelTitle.SuspendLayout();
             this.exPanelLeft.SuspendLayout();
-            this.panel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel8.SuspendLayout();
+            this.groupBoxDataInfo.SuspendLayout();
             this.panel9.SuspendLayout();
-            this.panel10.SuspendLayout();
+            this.panelTask.SuspendLayout();
             this.panel11.SuspendLayout();
             this.SuspendLayout();
             // 
-            // tbLayoutPanelRight
+            // tbLayoutPanelMiddle
             // 
-            this.tbLayoutPanelRight.ColumnCount = 2;
-            this.tbLayoutPanelRight.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tbLayoutPanelRight.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tbLayoutPanelRight.Controls.Add(this.panelImgA, 0, 0);
-            this.tbLayoutPanelRight.Controls.Add(this.panelImgB, 1, 0);
-            this.tbLayoutPanelRight.Font = new System.Drawing.Font("等线", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tbLayoutPanelRight.Location = new System.Drawing.Point(607, 138);
-            this.tbLayoutPanelRight.Margin = new System.Windows.Forms.Padding(0);
-            this.tbLayoutPanelRight.Name = "tbLayoutPanelRight";
-            this.tbLayoutPanelRight.RowCount = 1;
-            this.tbLayoutPanelRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tbLayoutPanelRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tbLayoutPanelRight.Size = new System.Drawing.Size(573, 594);
-            this.tbLayoutPanelRight.TabIndex = 71;
+            this.tbLayoutPanelMiddle.ColumnCount = 2;
+            this.tbLayoutPanelMiddle.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tbLayoutPanelMiddle.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tbLayoutPanelMiddle.Controls.Add(this.panelImgA, 0, 0);
+            this.tbLayoutPanelMiddle.Controls.Add(this.panelImgB, 1, 0);
+            this.tbLayoutPanelMiddle.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tbLayoutPanelMiddle.Font = new System.Drawing.Font("等线", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.tbLayoutPanelMiddle.Location = new System.Drawing.Point(273, 61);
+            this.tbLayoutPanelMiddle.Margin = new System.Windows.Forms.Padding(0);
+            this.tbLayoutPanelMiddle.Name = "tbLayoutPanelMiddle";
+            this.tbLayoutPanelMiddle.RowCount = 1;
+            this.tbLayoutPanelMiddle.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tbLayoutPanelMiddle.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tbLayoutPanelMiddle.Size = new System.Drawing.Size(907, 669);
+            this.tbLayoutPanelMiddle.TabIndex = 71;
             // 
             // panelImgA
             // 
             this.panelImgA.Controls.Add(this.lblCameraStateA);
             this.panelImgA.Controls.Add(this.lblTipA);
+            this.panelImgA.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelImgA.Location = new System.Drawing.Point(1, 1);
             this.panelImgA.Margin = new System.Windows.Forms.Padding(1);
             this.panelImgA.Name = "panelImgA";
-            this.panelImgA.Size = new System.Drawing.Size(284, 586);
+            this.panelImgA.Size = new System.Drawing.Size(451, 667);
             this.panelImgA.TabIndex = 20;
             // 
             // lblCameraStateA
@@ -238,7 +219,7 @@
             this.lblCameraStateA.ImageIndex = 1;
             this.lblCameraStateA.ImageList = this.imgLstCameraState;
             this.lblCameraStateA.Location = new System.Drawing.Point(2, 1);
-            this.lblCameraStateA.Margin = new System.Windows.Forms.Padding(0);
+            this.lblCameraStateA.Margin = new System.Windows.Forms.Padding(5);
             this.lblCameraStateA.Name = "lblCameraStateA";
             this.lblCameraStateA.Size = new System.Drawing.Size(34, 24);
             this.lblCameraStateA.TabIndex = 62;
@@ -274,10 +255,10 @@
             this.panelImgB.Controls.Add(this.lblCameraStateB);
             this.panelImgB.Controls.Add(this.lblTipB);
             this.panelImgB.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelImgB.Location = new System.Drawing.Point(287, 1);
+            this.panelImgB.Location = new System.Drawing.Point(454, 1);
             this.panelImgB.Margin = new System.Windows.Forms.Padding(1);
             this.panelImgB.Name = "panelImgB";
-            this.panelImgB.Size = new System.Drawing.Size(285, 592);
+            this.panelImgB.Size = new System.Drawing.Size(452, 667);
             this.panelImgB.TabIndex = 20;
             // 
             // lblCameraStateB
@@ -342,9 +323,9 @@
             this.panelPos.Controls.Add(this.label16);
             this.panelPos.Controls.Add(this.btnClossAllSystem);
             this.panelPos.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelPos.Location = new System.Drawing.Point(6, 738);
+            this.panelPos.Location = new System.Drawing.Point(6, 841);
             this.panelPos.Name = "panelPos";
-            this.panelPos.Size = new System.Drawing.Size(286, 151);
+            this.panelPos.Size = new System.Drawing.Size(286, 200);
             this.panelPos.TabIndex = 20;
             // 
             // btnExit
@@ -353,7 +334,7 @@
             this.btnExit.BackColor = System.Drawing.Color.DarkRed;
             this.btnExit.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnExit.Font = new System.Drawing.Font("微软雅黑", 15F, System.Drawing.FontStyle.Bold);
-            this.btnExit.Location = new System.Drawing.Point(54, 115);
+            this.btnExit.Location = new System.Drawing.Point(65, 113);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(168, 33);
             this.btnExit.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -364,16 +345,16 @@
             // 
             // label16
             // 
-            this.label16.AutoSize = true;
             this.label16.BackColor = System.Drawing.Color.Transparent;
+            this.label16.Dock = System.Windows.Forms.DockStyle.Top;
             this.label16.Font = new System.Drawing.Font("微软雅黑", 23F);
             this.label16.ForeColor = System.Drawing.Color.DimGray;
-            this.label16.Location = new System.Drawing.Point(66, 13);
+            this.label16.Location = new System.Drawing.Point(0, 0);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(141, 40);
+            this.label16.Size = new System.Drawing.Size(286, 60);
             this.label16.TabIndex = 10;
             this.label16.Text = "系统管理";
-            this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // btnClossAllSystem
             // 
@@ -381,7 +362,7 @@
             this.btnClossAllSystem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(162)))), ((int)(((byte)(71)))));
             this.btnClossAllSystem.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat;
             this.btnClossAllSystem.Font = new System.Drawing.Font("微软雅黑", 15F, System.Drawing.FontStyle.Bold);
-            this.btnClossAllSystem.Location = new System.Drawing.Point(54, 66);
+            this.btnClossAllSystem.Location = new System.Drawing.Point(65, 70);
             this.btnClossAllSystem.Name = "btnClossAllSystem";
             this.btnClossAllSystem.Size = new System.Drawing.Size(168, 33);
             this.btnClossAllSystem.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -395,7 +376,7 @@
             this.lblSp3.BackColor = System.Drawing.Color.Transparent;
             this.lblSp3.Dock = System.Windows.Forms.DockStyle.Top;
             this.lblSp3.Image = ((System.Drawing.Image)(resources.GetObject("lblSp3.Image")));
-            this.lblSp3.Location = new System.Drawing.Point(6, 732);
+            this.lblSp3.Location = new System.Drawing.Point(6, 835);
             this.lblSp3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblSp3.Name = "lblSp3";
             this.lblSp3.Size = new System.Drawing.Size(286, 6);
@@ -416,9 +397,9 @@
             this.panel7.Controls.Add(this.label10);
             this.panel7.Controls.Add(this.iInputGain);
             this.panel7.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel7.Location = new System.Drawing.Point(6, 531);
+            this.panel7.Location = new System.Drawing.Point(6, 620);
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(286, 201);
+            this.panel7.Size = new System.Drawing.Size(286, 215);
             this.panel7.TabIndex = 24;
             // 
             // label17
@@ -426,7 +407,7 @@
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("微软雅黑", 9F);
             this.label17.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.label17.Location = new System.Drawing.Point(45, 128);
+            this.label17.Location = new System.Drawing.Point(39, 144);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(60, 17);
             this.label17.TabIndex = 14;
@@ -438,7 +419,7 @@
             this.label18.AutoSize = true;
             this.label18.Font = new System.Drawing.Font("微软雅黑", 9F);
             this.label18.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.label18.Location = new System.Drawing.Point(57, 173);
+            this.label18.Location = new System.Drawing.Point(62, 189);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(37, 17);
             this.label18.TabIndex = 14;
@@ -450,7 +431,7 @@
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("微软雅黑", 9F);
             this.label14.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.label14.Location = new System.Drawing.Point(52, 80);
+            this.label14.Location = new System.Drawing.Point(46, 96);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(46, 17);
             this.label14.TabIndex = 14;
@@ -462,7 +443,7 @@
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("微软雅黑", 16F);
             this.label15.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.label15.Location = new System.Drawing.Point(36, 98);
+            this.label15.Location = new System.Drawing.Point(30, 114);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(79, 30);
             this.label15.TabIndex = 14;
@@ -474,7 +455,7 @@
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("微软雅黑", 16F);
             this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.label8.Location = new System.Drawing.Point(25, 143);
+            this.label8.Location = new System.Drawing.Point(30, 159);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(101, 30);
             this.label8.TabIndex = 9;
@@ -492,12 +473,12 @@
             this.dInputLEDWidth.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2;
             this.dInputLEDWidth.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.dInputLEDWidth.ForeColor = System.Drawing.Color.Black;
-            this.dInputLEDWidth.Location = new System.Drawing.Point(122, 99);
+            this.dInputLEDWidth.Location = new System.Drawing.Point(135, 115);
             this.dInputLEDWidth.MaxValue = 500;
             this.dInputLEDWidth.MinValue = 50;
             this.dInputLEDWidth.Name = "dInputLEDWidth";
             this.dInputLEDWidth.ShowUpDown = true;
-            this.dInputLEDWidth.Size = new System.Drawing.Size(109, 29);
+            this.dInputLEDWidth.Size = new System.Drawing.Size(104, 29);
             this.dInputLEDWidth.TabIndex = 13;
             this.dInputLEDWidth.Tag = "0";
             this.dInputLEDWidth.Value = 50;
@@ -515,10 +496,10 @@
             this.dInputExposure.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2;
             this.dInputExposure.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.dInputExposure.Increment = 1D;
-            this.dInputExposure.Location = new System.Drawing.Point(122, 144);
+            this.dInputExposure.Location = new System.Drawing.Point(135, 160);
             this.dInputExposure.Name = "dInputExposure";
             this.dInputExposure.ShowUpDown = true;
-            this.dInputExposure.Size = new System.Drawing.Size(109, 29);
+            this.dInputExposure.Size = new System.Drawing.Size(104, 29);
             this.dInputExposure.TabIndex = 11;
             this.dInputExposure.Tag = "0";
             this.dInputExposure.Value = 60D;
@@ -527,16 +508,16 @@
             // 
             // label7
             // 
-            this.label7.AutoSize = true;
             this.label7.BackColor = System.Drawing.Color.Transparent;
+            this.label7.Dock = System.Windows.Forms.DockStyle.Top;
             this.label7.Font = new System.Drawing.Font("微软雅黑", 23F);
             this.label7.ForeColor = System.Drawing.Color.DimGray;
-            this.label7.Location = new System.Drawing.Point(66, 10);
+            this.label7.Location = new System.Drawing.Point(0, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(141, 40);
+            this.label7.Size = new System.Drawing.Size(286, 60);
             this.label7.TabIndex = 10;
             this.label7.Text = "图像调节";
-            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // btnSetParamOk
             // 
@@ -544,7 +525,7 @@
             this.btnSetParamOk.BackColor = System.Drawing.SystemColors.Control;
             this.btnSetParamOk.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.btnSetParamOk.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnSetParamOk.Location = new System.Drawing.Point(239, 98);
+            this.btnSetParamOk.Location = new System.Drawing.Point(245, 116);
             this.btnSetParamOk.Name = "btnSetParamOk";
             this.btnSetParamOk.Size = new System.Drawing.Size(30, 30);
             this.btnSetParamOk.Style = DevComponents.DotNetBar.eDotNetBarStyle.VS2005;
@@ -559,11 +540,11 @@
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("微软雅黑", 16F);
             this.label10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.label10.Location = new System.Drawing.Point(40, 50);
+            this.label10.Location = new System.Drawing.Point(30, 66);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(71, 30);
+            this.label10.Size = new System.Drawing.Size(78, 30);
             this.label10.TabIndex = 9;
-            this.label10.Text = "增  益";
+            this.label10.Text = "增   益";
             this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // iInputGain
@@ -577,12 +558,12 @@
             this.iInputGain.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2;
             this.iInputGain.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.iInputGain.ForeColor = System.Drawing.Color.Black;
-            this.iInputGain.Location = new System.Drawing.Point(122, 51);
+            this.iInputGain.Location = new System.Drawing.Point(135, 67);
             this.iInputGain.MaxValue = 50;
             this.iInputGain.MinValue = 1;
             this.iInputGain.Name = "iInputGain";
             this.iInputGain.ShowUpDown = true;
-            this.iInputGain.Size = new System.Drawing.Size(109, 29);
+            this.iInputGain.Size = new System.Drawing.Size(104, 29);
             this.iInputGain.TabIndex = 6;
             this.iInputGain.Tag = "0";
             this.iInputGain.Value = 15;
@@ -594,7 +575,7 @@
             this.label13.BackColor = System.Drawing.Color.Transparent;
             this.label13.Dock = System.Windows.Forms.DockStyle.Top;
             this.label13.Image = ((System.Drawing.Image)(resources.GetObject("label13.Image")));
-            this.label13.Location = new System.Drawing.Point(6, 526);
+            this.label13.Location = new System.Drawing.Point(6, 615);
             this.label13.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(286, 5);
@@ -620,9 +601,9 @@
             this.panel6.Controls.Add(this.iInputCurrFocusValue);
             this.panel6.Controls.Add(this.iInputChgFocusValue);
             this.panel6.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel6.Location = new System.Drawing.Point(6, 328);
+            this.panel6.Location = new System.Drawing.Point(6, 360);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(286, 198);
+            this.panel6.Size = new System.Drawing.Size(286, 255);
             this.panel6.TabIndex = 22;
             // 
             // btnIrisPlus
@@ -631,7 +612,7 @@
             this.btnIrisPlus.FlatAppearance.BorderSize = 0;
             this.btnIrisPlus.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnIrisPlus.Image = ((System.Drawing.Image)(resources.GetObject("btnIrisPlus.Image")));
-            this.btnIrisPlus.Location = new System.Drawing.Point(240, 147);
+            this.btnIrisPlus.Location = new System.Drawing.Point(240, 175);
             this.btnIrisPlus.Margin = new System.Windows.Forms.Padding(2);
             this.btnIrisPlus.Name = "btnIrisPlus";
             this.btnIrisPlus.Size = new System.Drawing.Size(32, 32);
@@ -645,7 +626,7 @@
             this.btnIrisMinus.FlatAppearance.BorderSize = 0;
             this.btnIrisMinus.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnIrisMinus.Image = ((System.Drawing.Image)(resources.GetObject("btnIrisMinus.Image")));
-            this.btnIrisMinus.Location = new System.Drawing.Point(68, 147);
+            this.btnIrisMinus.Location = new System.Drawing.Point(72, 175);
             this.btnIrisMinus.Margin = new System.Windows.Forms.Padding(2);
             this.btnIrisMinus.Name = "btnIrisMinus";
             this.btnIrisMinus.Size = new System.Drawing.Size(32, 32);
@@ -658,7 +639,7 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("微软雅黑", 16F);
             this.label6.ForeColor = System.Drawing.Color.DimGray;
-            this.label6.Location = new System.Drawing.Point(14, 149);
+            this.label6.Location = new System.Drawing.Point(18, 176);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(57, 30);
             this.label6.TabIndex = 20;
@@ -678,11 +659,11 @@
             this.iInputCurrIrisValue.Enabled = false;
             this.iInputCurrIrisValue.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.iInputCurrIrisValue.ForeColor = System.Drawing.Color.Black;
-            this.iInputCurrIrisValue.Location = new System.Drawing.Point(102, 149);
+            this.iInputCurrIrisValue.Location = new System.Drawing.Point(109, 177);
             this.iInputCurrIrisValue.MaxValue = 70;
             this.iInputCurrIrisValue.MinValue = 10;
             this.iInputCurrIrisValue.Name = "iInputCurrIrisValue";
-            this.iInputCurrIrisValue.Size = new System.Drawing.Size(66, 29);
+            this.iInputCurrIrisValue.Size = new System.Drawing.Size(58, 29);
             this.iInputCurrIrisValue.TabIndex = 18;
             this.iInputCurrIrisValue.Value = 70;
             this.iInputCurrIrisValue.WatermarkText = "当前对焦环数值";
@@ -699,7 +680,7 @@
             this.iInputIrisChgValue.Cursor = System.Windows.Forms.Cursors.Hand;
             this.iInputIrisChgValue.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.iInputIrisChgValue.ForeColor = System.Drawing.Color.Black;
-            this.iInputIrisChgValue.Location = new System.Drawing.Point(171, 149);
+            this.iInputIrisChgValue.Location = new System.Drawing.Point(171, 177);
             this.iInputIrisChgValue.MaxValue = 1000;
             this.iInputIrisChgValue.MinValue = 10;
             this.iInputIrisChgValue.Name = "iInputIrisChgValue";
@@ -715,7 +696,7 @@
             this.btnZoomPlus.FlatAppearance.BorderSize = 0;
             this.btnZoomPlus.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnZoomPlus.Image = ((System.Drawing.Image)(resources.GetObject("btnZoomPlus.Image")));
-            this.btnZoomPlus.Location = new System.Drawing.Point(238, 101);
+            this.btnZoomPlus.Location = new System.Drawing.Point(238, 130);
             this.btnZoomPlus.Margin = new System.Windows.Forms.Padding(2);
             this.btnZoomPlus.Name = "btnZoomPlus";
             this.btnZoomPlus.Size = new System.Drawing.Size(32, 32);
@@ -729,7 +710,7 @@
             this.btnZoomMinus.FlatAppearance.BorderSize = 0;
             this.btnZoomMinus.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnZoomMinus.Image = ((System.Drawing.Image)(resources.GetObject("btnZoomMinus.Image")));
-            this.btnZoomMinus.Location = new System.Drawing.Point(66, 101);
+            this.btnZoomMinus.Location = new System.Drawing.Point(72, 130);
             this.btnZoomMinus.Margin = new System.Windows.Forms.Padding(2);
             this.btnZoomMinus.Name = "btnZoomMinus";
             this.btnZoomMinus.Size = new System.Drawing.Size(32, 32);
@@ -742,7 +723,7 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("微软雅黑", 16F);
             this.label5.ForeColor = System.Drawing.Color.DimGray;
-            this.label5.Location = new System.Drawing.Point(12, 103);
+            this.label5.Location = new System.Drawing.Point(18, 131);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(57, 30);
             this.label5.TabIndex = 15;
@@ -762,11 +743,11 @@
             this.iInputCurrZoomValue.Enabled = false;
             this.iInputCurrZoomValue.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.iInputCurrZoomValue.ForeColor = System.Drawing.Color.Black;
-            this.iInputCurrZoomValue.Location = new System.Drawing.Point(100, 103);
+            this.iInputCurrZoomValue.Location = new System.Drawing.Point(107, 132);
             this.iInputCurrZoomValue.MaxValue = 10000;
             this.iInputCurrZoomValue.MinValue = 10;
             this.iInputCurrZoomValue.Name = "iInputCurrZoomValue";
-            this.iInputCurrZoomValue.Size = new System.Drawing.Size(66, 29);
+            this.iInputCurrZoomValue.Size = new System.Drawing.Size(58, 29);
             this.iInputCurrZoomValue.TabIndex = 13;
             this.iInputCurrZoomValue.Value = 1000;
             this.iInputCurrZoomValue.WatermarkText = "当前对焦环数值";
@@ -783,7 +764,7 @@
             this.iInputZoomChgValue.Cursor = System.Windows.Forms.Cursors.Hand;
             this.iInputZoomChgValue.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.iInputZoomChgValue.ForeColor = System.Drawing.Color.Black;
-            this.iInputZoomChgValue.Location = new System.Drawing.Point(169, 103);
+            this.iInputZoomChgValue.Location = new System.Drawing.Point(169, 132);
             this.iInputZoomChgValue.MaxValue = 1000;
             this.iInputZoomChgValue.MinValue = 10;
             this.iInputZoomChgValue.Name = "iInputZoomChgValue";
@@ -795,16 +776,16 @@
             // 
             // label12
             // 
-            this.label12.AutoSize = true;
             this.label12.BackColor = System.Drawing.Color.Transparent;
+            this.label12.Dock = System.Windows.Forms.DockStyle.Top;
             this.label12.Font = new System.Drawing.Font("微软雅黑", 23F);
             this.label12.ForeColor = System.Drawing.Color.DimGray;
-            this.label12.Location = new System.Drawing.Point(66, 6);
+            this.label12.Location = new System.Drawing.Point(0, 0);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(141, 40);
+            this.label12.Size = new System.Drawing.Size(286, 60);
             this.label12.TabIndex = 10;
             this.label12.Text = "镜头调节";
-            this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // btnFocusPlus
             // 
@@ -812,7 +793,7 @@
             this.btnFocusPlus.FlatAppearance.BorderSize = 0;
             this.btnFocusPlus.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnFocusPlus.Image = ((System.Drawing.Image)(resources.GetObject("btnFocusPlus.Image")));
-            this.btnFocusPlus.Location = new System.Drawing.Point(238, 53);
+            this.btnFocusPlus.Location = new System.Drawing.Point(238, 87);
             this.btnFocusPlus.Margin = new System.Windows.Forms.Padding(2);
             this.btnFocusPlus.Name = "btnFocusPlus";
             this.btnFocusPlus.Size = new System.Drawing.Size(32, 32);
@@ -826,7 +807,7 @@
             this.btnFocusMinus.FlatAppearance.BorderSize = 0;
             this.btnFocusMinus.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnFocusMinus.Image = ((System.Drawing.Image)(resources.GetObject("btnFocusMinus.Image")));
-            this.btnFocusMinus.Location = new System.Drawing.Point(66, 53);
+            this.btnFocusMinus.Location = new System.Drawing.Point(72, 87);
             this.btnFocusMinus.Margin = new System.Windows.Forms.Padding(2);
             this.btnFocusMinus.Name = "btnFocusMinus";
             this.btnFocusMinus.Size = new System.Drawing.Size(32, 32);
@@ -839,7 +820,7 @@
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("微软雅黑", 16F);
             this.label11.ForeColor = System.Drawing.Color.DimGray;
-            this.label11.Location = new System.Drawing.Point(12, 55);
+            this.label11.Location = new System.Drawing.Point(18, 88);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(57, 30);
             this.label11.TabIndex = 10;
@@ -859,11 +840,11 @@
             this.iInputCurrFocusValue.Enabled = false;
             this.iInputCurrFocusValue.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.iInputCurrFocusValue.ForeColor = System.Drawing.Color.Black;
-            this.iInputCurrFocusValue.Location = new System.Drawing.Point(100, 55);
+            this.iInputCurrFocusValue.Location = new System.Drawing.Point(107, 89);
             this.iInputCurrFocusValue.MaxValue = 79000;
             this.iInputCurrFocusValue.MinValue = 1000;
             this.iInputCurrFocusValue.Name = "iInputCurrFocusValue";
-            this.iInputCurrFocusValue.Size = new System.Drawing.Size(66, 29);
+            this.iInputCurrFocusValue.Size = new System.Drawing.Size(58, 29);
             this.iInputCurrFocusValue.TabIndex = 6;
             this.iInputCurrFocusValue.Value = 1000;
             this.iInputCurrFocusValue.WatermarkText = "当前对焦环数值";
@@ -880,7 +861,7 @@
             this.iInputChgFocusValue.Cursor = System.Windows.Forms.Cursors.Hand;
             this.iInputChgFocusValue.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.iInputChgFocusValue.ForeColor = System.Drawing.Color.Black;
-            this.iInputChgFocusValue.Location = new System.Drawing.Point(169, 55);
+            this.iInputChgFocusValue.Location = new System.Drawing.Point(169, 89);
             this.iInputChgFocusValue.MaxValue = 1000;
             this.iInputChgFocusValue.MinValue = 10;
             this.iInputChgFocusValue.Name = "iInputChgFocusValue";
@@ -895,7 +876,7 @@
             this.lblSp2.BackColor = System.Drawing.Color.Transparent;
             this.lblSp2.Dock = System.Windows.Forms.DockStyle.Top;
             this.lblSp2.Image = ((System.Drawing.Image)(resources.GetObject("lblSp2.Image")));
-            this.lblSp2.Location = new System.Drawing.Point(6, 322);
+            this.lblSp2.Location = new System.Drawing.Point(6, 354);
             this.lblSp2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblSp2.Name = "lblSp2";
             this.lblSp2.Size = new System.Drawing.Size(286, 6);
@@ -916,7 +897,7 @@
             this.panelCameraCtrl.Location = new System.Drawing.Point(6, 138);
             this.panelCameraCtrl.Margin = new System.Windows.Forms.Padding(2);
             this.panelCameraCtrl.Name = "panelCameraCtrl";
-            this.panelCameraCtrl.Size = new System.Drawing.Size(286, 184);
+            this.panelCameraCtrl.Size = new System.Drawing.Size(286, 216);
             this.panelCameraCtrl.TabIndex = 27;
             // 
             // sBtnTriggerMode
@@ -932,11 +913,12 @@
             this.sBtnTriggerMode.BackgroundStyle.CornerTypeTopLeft = DevComponents.DotNetBar.eCornerType.Rounded;
             this.sBtnTriggerMode.BackgroundStyle.CornerTypeTopRight = DevComponents.DotNetBar.eCornerType.Rounded;
             this.sBtnTriggerMode.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.sBtnTriggerMode.Location = new System.Drawing.Point(168, 107);
+            this.sBtnTriggerMode.Location = new System.Drawing.Point(171, 107);
             this.sBtnTriggerMode.Name = "sBtnTriggerMode";
             this.sBtnTriggerMode.OffBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(118)))), ((int)(((byte)(135)))));
             this.sBtnTriggerMode.OffTextColor = System.Drawing.Color.White;
-            this.sBtnTriggerMode.OnBackColor = System.Drawing.Color.Lime;
+            this.sBtnTriggerMode.OnBackColor = System.Drawing.Color.ForestGreen;
+            this.sBtnTriggerMode.OnTextColor = System.Drawing.Color.WhiteSmoke;
             this.sBtnTriggerMode.ReadOnlyMarkerColor = System.Drawing.Color.Red;
             this.sBtnTriggerMode.Size = new System.Drawing.Size(77, 30);
             this.sBtnTriggerMode.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -949,16 +931,16 @@
             // 
             // label9
             // 
-            this.label9.AutoSize = true;
             this.label9.BackColor = System.Drawing.Color.Transparent;
+            this.label9.Dock = System.Windows.Forms.DockStyle.Top;
             this.label9.Font = new System.Drawing.Font("微软雅黑", 23F);
             this.label9.ForeColor = System.Drawing.Color.DimGray;
-            this.label9.Location = new System.Drawing.Point(66, 7);
+            this.label9.Location = new System.Drawing.Point(0, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(141, 40);
+            this.label9.Size = new System.Drawing.Size(286, 60);
             this.label9.TabIndex = 3;
             this.label9.Text = "相机控制";
-            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // btnSetFPSOk
             // 
@@ -966,9 +948,9 @@
             this.btnSetFPSOk.BackColor = System.Drawing.SystemColors.Control;
             this.btnSetFPSOk.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.btnSetFPSOk.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnSetFPSOk.Location = new System.Drawing.Point(244, 142);
+            this.btnSetFPSOk.Location = new System.Drawing.Point(247, 159);
             this.btnSetFPSOk.Name = "btnSetFPSOk";
-            this.btnSetFPSOk.Size = new System.Drawing.Size(23, 29);
+            this.btnSetFPSOk.Size = new System.Drawing.Size(30, 30);
             this.btnSetFPSOk.Style = DevComponents.DotNetBar.eDotNetBarStyle.VS2005;
             this.btnSetFPSOk.Symbol = "";
             this.btnSetFPSOk.SymbolColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
@@ -981,7 +963,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("微软雅黑", 16F);
             this.label3.ForeColor = System.Drawing.Color.DimGray;
-            this.label3.Location = new System.Drawing.Point(35, 64);
+            this.label3.Location = new System.Drawing.Point(20, 64);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(145, 30);
             this.label3.TabIndex = 3;
@@ -1000,7 +982,7 @@
             this.dInputFPS.DisplayFormat = "0.0";
             this.dInputFPS.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.dInputFPS.Increment = 1D;
-            this.dInputFPS.Location = new System.Drawing.Point(168, 142);
+            this.dInputFPS.Location = new System.Drawing.Point(171, 159);
             this.dInputFPS.MaxValue = 50D;
             this.dInputFPS.MinValue = 0.5D;
             this.dInputFPS.Name = "dInputFPS";
@@ -1017,7 +999,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("微软雅黑", 16F);
             this.label2.ForeColor = System.Drawing.Color.DimGray;
-            this.label2.Location = new System.Drawing.Point(35, 102);
+            this.label2.Location = new System.Drawing.Point(20, 111);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(101, 30);
             this.label2.TabIndex = 3;
@@ -1038,11 +1020,12 @@
             this.sBtnDisplay.BackgroundStyle.CornerTypeTopRight = DevComponents.DotNetBar.eCornerType.Rounded;
             this.sBtnDisplay.Cursor = System.Windows.Forms.Cursors.Hand;
             this.sBtnDisplay.Enabled = false;
-            this.sBtnDisplay.Location = new System.Drawing.Point(168, 64);
+            this.sBtnDisplay.Location = new System.Drawing.Point(171, 64);
             this.sBtnDisplay.Name = "sBtnDisplay";
             this.sBtnDisplay.OffBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(118)))), ((int)(((byte)(135)))));
             this.sBtnDisplay.OffTextColor = System.Drawing.Color.White;
-            this.sBtnDisplay.OnBackColor = System.Drawing.Color.Lime;
+            this.sBtnDisplay.OnBackColor = System.Drawing.Color.ForestGreen;
+            this.sBtnDisplay.OnTextColor = System.Drawing.Color.WhiteSmoke;
             this.sBtnDisplay.ReadOnlyMarkerColor = System.Drawing.Color.Red;
             this.sBtnDisplay.Size = new System.Drawing.Size(77, 30);
             this.sBtnDisplay.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -1060,7 +1043,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("微软雅黑", 16F);
             this.label4.ForeColor = System.Drawing.Color.DimGray;
-            this.label4.Location = new System.Drawing.Point(35, 142);
+            this.label4.Location = new System.Drawing.Point(20, 158);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(51, 30);
             this.label4.TabIndex = 5;
@@ -1184,10 +1167,10 @@
             this.exPanelJHCS.ExpandOnTitleClick = true;
             this.exPanelJHCS.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.exPanelJHCS.HideControlsWhenCollapsed = true;
-            this.exPanelJHCS.Location = new System.Drawing.Point(466, 972);
+            this.exPanelJHCS.Location = new System.Drawing.Point(273, 736);
             this.exPanelJHCS.Margin = new System.Windows.Forms.Padding(2);
             this.exPanelJHCS.Name = "exPanelJHCS";
-            this.exPanelJHCS.Size = new System.Drawing.Size(714, 89);
+            this.exPanelJHCS.Size = new System.Drawing.Size(907, 325);
             this.exPanelJHCS.Style.Alignment = System.Drawing.StringAlignment.Center;
             this.exPanelJHCS.Style.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
             this.exPanelJHCS.Style.BackColor2.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
@@ -1247,7 +1230,7 @@
             this.tChart2.Series.Add(this.lczLine3);
             this.tChart2.Series.Add(this.lczLine4);
             this.tChart2.Series.Add(this.lczPoint);
-            this.tChart2.Size = new System.Drawing.Size(714, 0);
+            this.tChart2.Size = new System.Drawing.Size(907, 161);
             this.tChart2.TabIndex = 4;
             // 
             // lczLine1
@@ -1280,6 +1263,13 @@
             // 
             // 
             // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            this.lczLine1.Pointer.Brush.Gradient.Transparency = 100;
             this.lczLine1.Pointer.Style = Steema.TeeChart.Styles.PointerStyles.Rectangle;
             this.lczLine1.Title = "78566";
             // 
@@ -1544,14 +1534,14 @@
             // 
             this.tChart1.Legend.Title.Pen.Visible = false;
             this.tChart1.Legend.Visible = false;
-            this.tChart1.Location = new System.Drawing.Point(0, -54);
+            this.tChart1.Location = new System.Drawing.Point(0, 182);
             this.tChart1.Name = "tChart1";
             this.tChart1.Series.Add(this.line1);
             this.tChart1.Series.Add(this.line2);
             this.tChart1.Series.Add(this.line3);
             this.tChart1.Series.Add(this.line4);
             this.tChart1.Series.Add(this.points1);
-            this.tChart1.Size = new System.Drawing.Size(714, 143);
+            this.tChart1.Size = new System.Drawing.Size(907, 143);
             this.tChart1.TabIndex = 15;
             // 
             // line1
@@ -1778,10 +1768,10 @@
             // splitter1
             // 
             this.splitter1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.splitter1.Location = new System.Drawing.Point(466, 962);
+            this.splitter1.Location = new System.Drawing.Point(273, 730);
             this.splitter1.Margin = new System.Windows.Forms.Padding(2);
             this.splitter1.Name = "splitter1";
-            this.splitter1.Size = new System.Drawing.Size(714, 10);
+            this.splitter1.Size = new System.Drawing.Size(907, 6);
             this.splitter1.TabIndex = 83;
             this.splitter1.TabStop = false;
             // 
@@ -1794,491 +1784,31 @@
             // 
             this.timeJH.Tick += new System.EventHandler(this.timeJH_Tick);
             // 
-            // panel5
+            // panelTitle
             // 
-            this.panel5.Controls.Add(this.lblTaskInfo);
-            this.panel5.Font = new System.Drawing.Font("等线", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.panel5.Location = new System.Drawing.Point(533, 0);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(647, 62);
-            this.panel5.TabIndex = 94;
+            this.panelTitle.Controls.Add(this.lblTaskInfo);
+            this.panelTitle.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelTitle.Font = new System.Drawing.Font("等线", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.panelTitle.Location = new System.Drawing.Point(273, 0);
+            this.panelTitle.Name = "panelTitle";
+            this.panelTitle.Size = new System.Drawing.Size(907, 61);
+            this.panelTitle.TabIndex = 94;
             // 
             // lblTaskInfo
             // 
-            this.lblTaskInfo.AutoSize = true;
             // 
             // 
             // 
             this.lblTaskInfo.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.lblTaskInfo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblTaskInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 37.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTaskInfo.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.lblTaskInfo.Location = new System.Drawing.Point(251, -3);
+            this.lblTaskInfo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(102)))), ((int)(((byte)(163)))));
+            this.lblTaskInfo.Location = new System.Drawing.Point(0, 0);
             this.lblTaskInfo.Name = "lblTaskInfo";
-            this.lblTaskInfo.Size = new System.Drawing.Size(516, 68);
+            this.lblTaskInfo.Size = new System.Drawing.Size(907, 61);
             this.lblTaskInfo.TabIndex = 50;
-            this.lblTaskInfo.Text = "_ _ _  _ _  _ _ _-_ _ _";
+            this.lblTaskInfo.Text = "———— ——  ———— _ ——";
             this.lblTaskInfo.TextAlignment = System.Drawing.StringAlignment.Center;
-            // 
-            // explorerBarLeft
-            // 
-            this.explorerBarLeft.AccessibleRole = System.Windows.Forms.AccessibleRole.ToolBar;
-            this.explorerBarLeft.BackColor = System.Drawing.SystemColors.Control;
-            // 
-            // 
-            // 
-            this.explorerBarLeft.BackStyle.BackColor = System.Drawing.SystemColors.Control;
-            this.explorerBarLeft.BackStyle.BackColor2 = System.Drawing.SystemColors.Control;
-            this.explorerBarLeft.BackStyle.BackColorGradientAngle = 90;
-            this.explorerBarLeft.BackStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.explorerBarLeft.Cursor = System.Windows.Forms.Cursors.Default;
-            this.explorerBarLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.explorerBarLeft.Font = new System.Drawing.Font("微软雅黑", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.explorerBarLeft.GroupImages = null;
-            this.explorerBarLeft.Groups.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.explorerBarGroupItem3,
-            this.explorerBarGroupItem1,
-            this.explorerBarGroupItem2,
-            this.exBarGroupItemInfo});
-            this.explorerBarLeft.Images = this.imageList1;
-            this.explorerBarLeft.Location = new System.Drawing.Point(273, 0);
-            this.explorerBarLeft.Name = "explorerBarLeft";
-            this.explorerBarLeft.Size = new System.Drawing.Size(193, 1061);
-            this.explorerBarLeft.StockStyle = DevComponents.DotNetBar.eExplorerBarStockStyle.SystemColors;
-            this.explorerBarLeft.TabIndex = 8;
-            this.explorerBarLeft.Text = "explorerBar1";
-            this.explorerBarLeft.Visible = false;
-            // 
-            // explorerBarGroupItem3
-            // 
-            // 
-            // 
-            // 
-            this.explorerBarGroupItem3.BackStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(241)))), ((int)(((byte)(245)))));
-            this.explorerBarGroupItem3.BackStyle.BorderBottom = DevComponents.DotNetBar.eStyleBorderType.Solid;
-            this.explorerBarGroupItem3.BackStyle.BorderBottomWidth = 1;
-            this.explorerBarGroupItem3.BackStyle.BorderColor = System.Drawing.Color.White;
-            this.explorerBarGroupItem3.BackStyle.BorderLeft = DevComponents.DotNetBar.eStyleBorderType.Solid;
-            this.explorerBarGroupItem3.BackStyle.BorderLeftWidth = 1;
-            this.explorerBarGroupItem3.BackStyle.BorderRight = DevComponents.DotNetBar.eStyleBorderType.Solid;
-            this.explorerBarGroupItem3.BackStyle.BorderRightWidth = 1;
-            this.explorerBarGroupItem3.BackStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.explorerBarGroupItem3.Cursor = System.Windows.Forms.Cursors.Default;
-            this.explorerBarGroupItem3.ExpandBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(189)))), ((int)(((byte)(203)))));
-            this.explorerBarGroupItem3.ExpandButtonVisible = false;
-            this.explorerBarGroupItem3.Expanded = true;
-            this.explorerBarGroupItem3.ExpandForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(68)))), ((int)(((byte)(115)))));
-            this.explorerBarGroupItem3.ExpandHotBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(194)))), ((int)(((byte)(195)))), ((int)(((byte)(208)))));
-            this.explorerBarGroupItem3.ExpandHotForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(126)))), ((int)(((byte)(124)))), ((int)(((byte)(124)))));
-            this.explorerBarGroupItem3.HeaderExpands = false;
-            this.explorerBarGroupItem3.Image = ((System.Drawing.Image)(resources.GetObject("explorerBarGroupItem3.Image")));
-            this.explorerBarGroupItem3.Name = "explorerBarGroupItem3";
-            this.explorerBarGroupItem3.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.lblDate,
-            this.labelItem5,
-            this.lblTime});
-            // 
-            // 
-            // 
-            this.explorerBarGroupItem3.TitleHotStyle.BackColor = System.Drawing.Color.White;
-            this.explorerBarGroupItem3.TitleHotStyle.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(215)))), ((int)(((byte)(224)))));
-            this.explorerBarGroupItem3.TitleHotStyle.CornerDiameter = 3;
-            this.explorerBarGroupItem3.TitleHotStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.explorerBarGroupItem3.TitleHotStyle.CornerTypeTopLeft = DevComponents.DotNetBar.eCornerType.Rounded;
-            this.explorerBarGroupItem3.TitleHotStyle.CornerTypeTopRight = DevComponents.DotNetBar.eCornerType.Rounded;
-            this.explorerBarGroupItem3.TitleHotStyle.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(126)))), ((int)(((byte)(124)))), ((int)(((byte)(124)))));
-            // 
-            // 
-            // 
-            this.explorerBarGroupItem3.TitleStyle.BackColor = System.Drawing.Color.White;
-            this.explorerBarGroupItem3.TitleStyle.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(215)))), ((int)(((byte)(224)))));
-            this.explorerBarGroupItem3.TitleStyle.CornerDiameter = 3;
-            this.explorerBarGroupItem3.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.explorerBarGroupItem3.TitleStyle.CornerTypeTopLeft = DevComponents.DotNetBar.eCornerType.Rounded;
-            this.explorerBarGroupItem3.TitleStyle.CornerTypeTopRight = DevComponents.DotNetBar.eCornerType.Rounded;
-            this.explorerBarGroupItem3.TitleStyle.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(61)))), ((int)(((byte)(61)))));
-            // 
-            // lblDate
-            // 
-            this.lblDate.Font = new System.Drawing.Font("Times New Roman", 24F, System.Drawing.FontStyle.Bold);
-            this.lblDate.Name = "lblDate";
-            this.lblDate.Text = "2020-12-2";
-            this.lblDate.TextAlignment = System.Drawing.StringAlignment.Center;
-            // 
-            // labelItem5
-            // 
-            this.labelItem5.Font = new System.Drawing.Font("微软雅黑", 20F);
-            this.labelItem5.Name = "labelItem5";
-            this.labelItem5.Text = "星期三";
-            this.labelItem5.TextAlignment = System.Drawing.StringAlignment.Center;
-            // 
-            // lblTime
-            // 
-            this.lblTime.Font = new System.Drawing.Font("Times New Roman", 23F, System.Drawing.FontStyle.Bold);
-            this.lblTime.Name = "lblTime";
-            this.lblTime.Text = "16:28";
-            this.lblTime.TextAlignment = System.Drawing.StringAlignment.Center;
-            // 
-            // explorerBarGroupItem1
-            // 
-            // 
-            // 
-            // 
-            this.explorerBarGroupItem1.BackStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(223)))), ((int)(((byte)(247)))));
-            this.explorerBarGroupItem1.BackStyle.BorderBottom = DevComponents.DotNetBar.eStyleBorderType.Solid;
-            this.explorerBarGroupItem1.BackStyle.BorderBottomWidth = 1;
-            this.explorerBarGroupItem1.BackStyle.BorderColor = System.Drawing.Color.White;
-            this.explorerBarGroupItem1.BackStyle.BorderLeft = DevComponents.DotNetBar.eStyleBorderType.Solid;
-            this.explorerBarGroupItem1.BackStyle.BorderLeftWidth = 1;
-            this.explorerBarGroupItem1.BackStyle.BorderRight = DevComponents.DotNetBar.eStyleBorderType.Solid;
-            this.explorerBarGroupItem1.BackStyle.BorderRightWidth = 1;
-            this.explorerBarGroupItem1.BackStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.explorerBarGroupItem1.Cursor = System.Windows.Forms.Cursors.Default;
-            this.explorerBarGroupItem1.ExpandBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(182)))), ((int)(((byte)(216)))));
-            this.explorerBarGroupItem1.ExpandButtonVisible = false;
-            this.explorerBarGroupItem1.Expanded = true;
-            this.explorerBarGroupItem1.ExpandForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(60)))), ((int)(((byte)(165)))));
-            this.explorerBarGroupItem1.ExpandHotBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(182)))), ((int)(((byte)(216)))));
-            this.explorerBarGroupItem1.ExpandHotForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(142)))), ((int)(((byte)(255)))));
-            this.explorerBarGroupItem1.HeaderExpands = false;
-            this.explorerBarGroupItem1.Image = ((System.Drawing.Image)(resources.GetObject("explorerBarGroupItem1.Image")));
-            this.explorerBarGroupItem1.Name = "explorerBarGroupItem1";
-            this.explorerBarGroupItem1.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.btnItemNewTask,
-            this.btnItemBeginTask,
-            this.btnItemStopTask,
-            this.labelItem4,
-            this.buttonItem3,
-            this.labelItem6,
-            this.lblItemDBPath});
-            this.explorerBarGroupItem1.SubItemsMargin = 2;
-            this.explorerBarGroupItem1.Text = "任务管理";
-            // 
-            // 
-            // 
-            this.explorerBarGroupItem1.TitleHotStyle.BackColor = System.Drawing.Color.White;
-            this.explorerBarGroupItem1.TitleHotStyle.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(199)))), ((int)(((byte)(211)))), ((int)(((byte)(247)))));
-            this.explorerBarGroupItem1.TitleHotStyle.CornerDiameter = 3;
-            this.explorerBarGroupItem1.TitleHotStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.explorerBarGroupItem1.TitleHotStyle.CornerTypeTopLeft = DevComponents.DotNetBar.eCornerType.Rounded;
-            this.explorerBarGroupItem1.TitleHotStyle.CornerTypeTopRight = DevComponents.DotNetBar.eCornerType.Rounded;
-            this.explorerBarGroupItem1.TitleHotStyle.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(142)))), ((int)(((byte)(255)))));
-            // 
-            // 
-            // 
-            this.explorerBarGroupItem1.TitleStyle.BackColor = System.Drawing.SystemColors.Control;
-            this.explorerBarGroupItem1.TitleStyle.BackColor2 = System.Drawing.SystemColors.Control;
-            this.explorerBarGroupItem1.TitleStyle.CornerDiameter = 3;
-            this.explorerBarGroupItem1.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.explorerBarGroupItem1.TitleStyle.CornerTypeTopLeft = DevComponents.DotNetBar.eCornerType.Rounded;
-            this.explorerBarGroupItem1.TitleStyle.CornerTypeTopRight = DevComponents.DotNetBar.eCornerType.Rounded;
-            this.explorerBarGroupItem1.TitleStyle.Font = new System.Drawing.Font("微软雅黑", 23F);
-            this.explorerBarGroupItem1.TitleStyle.TextColor = System.Drawing.Color.DimGray;
-            // 
-            // btnItemNewTask
-            // 
-            this.btnItemNewTask.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText;
-            this.btnItemNewTask.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnItemNewTask.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(93)))), ((int)(((byte)(198)))));
-            this.btnItemNewTask.HotFontUnderline = true;
-            this.btnItemNewTask.HotForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(142)))), ((int)(((byte)(255)))));
-            this.btnItemNewTask.HotTrackingStyle = DevComponents.DotNetBar.eHotTrackingStyle.None;
-            this.btnItemNewTask.Name = "btnItemNewTask";
-            this.btnItemNewTask.Symbol = "";
-            this.btnItemNewTask.Text = "新建任务";
-            this.btnItemNewTask.Click += new System.EventHandler(this.btnItemNewTask_Click);
-            // 
-            // btnItemBeginTask
-            // 
-            this.btnItemBeginTask.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText;
-            this.btnItemBeginTask.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnItemBeginTask.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(93)))), ((int)(((byte)(198)))));
-            this.btnItemBeginTask.HotFontUnderline = true;
-            this.btnItemBeginTask.HotForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(142)))), ((int)(((byte)(255)))));
-            this.btnItemBeginTask.HotTrackingStyle = DevComponents.DotNetBar.eHotTrackingStyle.None;
-            this.btnItemBeginTask.Name = "btnItemBeginTask";
-            this.btnItemBeginTask.Symbol = "";
-            this.btnItemBeginTask.Text = "开始任务";
-            this.btnItemBeginTask.Click += new System.EventHandler(this.btnItemBeginTask_Click);
-            // 
-            // btnItemStopTask
-            // 
-            this.btnItemStopTask.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText;
-            this.btnItemStopTask.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnItemStopTask.Enabled = false;
-            this.btnItemStopTask.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(93)))), ((int)(((byte)(198)))));
-            this.btnItemStopTask.HotFontUnderline = true;
-            this.btnItemStopTask.HotForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(142)))), ((int)(((byte)(255)))));
-            this.btnItemStopTask.HotTrackingStyle = DevComponents.DotNetBar.eHotTrackingStyle.None;
-            this.btnItemStopTask.Name = "btnItemStopTask";
-            this.btnItemStopTask.Symbol = "";
-            this.btnItemStopTask.Text = "停止任务";
-            this.btnItemStopTask.Click += new System.EventHandler(this.btnItemStopTask_Click);
-            // 
-            // labelItem4
-            // 
-            this.labelItem4.Font = new System.Drawing.Font("宋体", 5.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.labelItem4.Image = ((System.Drawing.Image)(resources.GetObject("labelItem4.Image")));
-            this.labelItem4.Name = "labelItem4";
-            // 
-            // buttonItem3
-            // 
-            this.buttonItem3.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText;
-            this.buttonItem3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonItem3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(93)))), ((int)(((byte)(198)))));
-            this.buttonItem3.HotFontUnderline = true;
-            this.buttonItem3.HotForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(142)))), ((int)(((byte)(255)))));
-            this.buttonItem3.HotTrackingStyle = DevComponents.DotNetBar.eHotTrackingStyle.None;
-            this.buttonItem3.Name = "buttonItem3";
-            this.buttonItem3.Symbol = "";
-            this.buttonItem3.Text = "设置";
-            // 
-            // labelItem6
-            // 
-            this.labelItem6.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.labelItem6.Font = new System.Drawing.Font("宋体", 5.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.labelItem6.Image = ((System.Drawing.Image)(resources.GetObject("labelItem6.Image")));
-            this.labelItem6.Name = "labelItem6";
-            // 
-            // lblItemDBPath
-            // 
-            this.lblItemDBPath.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lblItemDBPath.Name = "lblItemDBPath";
-            this.lblItemDBPath.Text = "dbpath";
-            this.lblItemDBPath.Click += new System.EventHandler(this.lblItemDBPath_Click);
-            // 
-            // explorerBarGroupItem2
-            // 
-            // 
-            // 
-            // 
-            this.explorerBarGroupItem2.BackStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(223)))), ((int)(((byte)(247)))));
-            this.explorerBarGroupItem2.BackStyle.BorderBottom = DevComponents.DotNetBar.eStyleBorderType.Solid;
-            this.explorerBarGroupItem2.BackStyle.BorderBottomWidth = 1;
-            this.explorerBarGroupItem2.BackStyle.BorderColor = System.Drawing.Color.White;
-            this.explorerBarGroupItem2.BackStyle.BorderLeft = DevComponents.DotNetBar.eStyleBorderType.Solid;
-            this.explorerBarGroupItem2.BackStyle.BorderLeftWidth = 1;
-            this.explorerBarGroupItem2.BackStyle.BorderRight = DevComponents.DotNetBar.eStyleBorderType.Solid;
-            this.explorerBarGroupItem2.BackStyle.BorderRightWidth = 1;
-            this.explorerBarGroupItem2.BackStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.explorerBarGroupItem2.Cursor = System.Windows.Forms.Cursors.Default;
-            this.explorerBarGroupItem2.ExpandBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(182)))), ((int)(((byte)(216)))));
-            this.explorerBarGroupItem2.ExpandButtonVisible = false;
-            this.explorerBarGroupItem2.Expanded = true;
-            this.explorerBarGroupItem2.ExpandForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(60)))), ((int)(((byte)(165)))));
-            this.explorerBarGroupItem2.ExpandHotBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(182)))), ((int)(((byte)(216)))));
-            this.explorerBarGroupItem2.ExpandHotForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(142)))), ((int)(((byte)(255)))));
-            this.explorerBarGroupItem2.HeaderExpands = false;
-            this.explorerBarGroupItem2.Image = ((System.Drawing.Image)(resources.GetObject("explorerBarGroupItem2.Image")));
-            this.explorerBarGroupItem2.Name = "explorerBarGroupItem2";
-            this.explorerBarGroupItem2.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.sBtnCamA,
-            this.labelItem1,
-            this.sBtnCamB,
-            this.labelItem2,
-            this.sBtnCamC,
-            this.labelItem3,
-            this.sBtnCamD,
-            this.labelItem7,
-            this.sBtnCamE});
-            this.explorerBarGroupItem2.Text = "设备管理";
-            // 
-            // 
-            // 
-            this.explorerBarGroupItem2.TitleHotStyle.BackColor = System.Drawing.Color.White;
-            this.explorerBarGroupItem2.TitleHotStyle.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(199)))), ((int)(((byte)(211)))), ((int)(((byte)(247)))));
-            this.explorerBarGroupItem2.TitleHotStyle.CornerDiameter = 3;
-            this.explorerBarGroupItem2.TitleHotStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.explorerBarGroupItem2.TitleHotStyle.CornerTypeTopLeft = DevComponents.DotNetBar.eCornerType.Rounded;
-            this.explorerBarGroupItem2.TitleHotStyle.CornerTypeTopRight = DevComponents.DotNetBar.eCornerType.Rounded;
-            this.explorerBarGroupItem2.TitleHotStyle.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(142)))), ((int)(((byte)(255)))));
-            // 
-            // 
-            // 
-            this.explorerBarGroupItem2.TitleStyle.BackColor = System.Drawing.Color.Transparent;
-            this.explorerBarGroupItem2.TitleStyle.BackColor2 = System.Drawing.Color.Transparent;
-            this.explorerBarGroupItem2.TitleStyle.CornerDiameter = 3;
-            this.explorerBarGroupItem2.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.explorerBarGroupItem2.TitleStyle.CornerTypeTopLeft = DevComponents.DotNetBar.eCornerType.Rounded;
-            this.explorerBarGroupItem2.TitleStyle.CornerTypeTopRight = DevComponents.DotNetBar.eCornerType.Rounded;
-            this.explorerBarGroupItem2.TitleStyle.Font = new System.Drawing.Font("微软雅黑", 23F);
-            this.explorerBarGroupItem2.TitleStyle.TextColor = System.Drawing.Color.DimGray;
-            // 
-            // sBtnCamA
-            // 
-            this.sBtnCamA.ButtonHeight = 30;
-            this.sBtnCamA.ButtonWidth = 80;
-            this.sBtnCamA.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.sBtnCamA.Name = "sBtnCamA";
-            this.sBtnCamA.OffText = "关机";
-            this.sBtnCamA.OffTextColor = System.Drawing.Color.DimGray;
-            this.sBtnCamA.OnText = "上电";
-            this.sBtnCamA.OnTextColor = System.Drawing.Color.Yellow;
-            this.sBtnCamA.SwitchWidth = 16;
-            this.sBtnCamA.Text = "相机一";
-            this.sBtnCamA.Tooltip = "当前为关机状态";
-            this.sBtnCamA.ValueChanged += new System.EventHandler(this.sBtnCam_ValueChanged);
-            this.sBtnCamA.Click += new System.EventHandler(this.sBtnCam_Click);
-            // 
-            // labelItem1
-            // 
-            this.labelItem1.Font = new System.Drawing.Font("微软雅黑", 8F);
-            this.labelItem1.Name = "labelItem1";
-            // 
-            // sBtnCamB
-            // 
-            this.sBtnCamB.ButtonHeight = 30;
-            this.sBtnCamB.ButtonWidth = 80;
-            this.sBtnCamB.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.sBtnCamB.Name = "sBtnCamB";
-            this.sBtnCamB.OffText = "关机";
-            this.sBtnCamB.OffTextColor = System.Drawing.Color.DimGray;
-            this.sBtnCamB.OnText = "上电";
-            this.sBtnCamB.OnTextColor = System.Drawing.Color.Yellow;
-            this.sBtnCamB.SwitchWidth = 16;
-            this.sBtnCamB.Text = "相机二";
-            this.sBtnCamB.Tooltip = "当前为关机状态";
-            this.sBtnCamB.ValueChanged += new System.EventHandler(this.sBtnCam_ValueChanged);
-            this.sBtnCamB.Click += new System.EventHandler(this.sBtnCam_Click);
-            // 
-            // labelItem2
-            // 
-            this.labelItem2.Font = new System.Drawing.Font("微软雅黑", 8F);
-            this.labelItem2.Name = "labelItem2";
-            // 
-            // sBtnCamC
-            // 
-            this.sBtnCamC.ButtonHeight = 30;
-            this.sBtnCamC.ButtonWidth = 80;
-            this.sBtnCamC.Name = "sBtnCamC";
-            this.sBtnCamC.OffText = "关机";
-            this.sBtnCamC.OffTextColor = System.Drawing.Color.DimGray;
-            this.sBtnCamC.OnText = "上电";
-            this.sBtnCamC.OnTextColor = System.Drawing.Color.Yellow;
-            this.sBtnCamC.SwitchWidth = 16;
-            this.sBtnCamC.Text = "相机三";
-            this.sBtnCamC.Tooltip = "当前为关机状态";
-            this.sBtnCamC.Click += new System.EventHandler(this.sBtnCam_Click);
-            // 
-            // labelItem3
-            // 
-            this.labelItem3.Font = new System.Drawing.Font("微软雅黑", 8F);
-            this.labelItem3.Name = "labelItem3";
-            // 
-            // sBtnCamD
-            // 
-            this.sBtnCamD.ButtonHeight = 30;
-            this.sBtnCamD.ButtonWidth = 80;
-            this.sBtnCamD.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.sBtnCamD.Name = "sBtnCamD";
-            this.sBtnCamD.OffText = "关机";
-            this.sBtnCamD.OffTextColor = System.Drawing.Color.DimGray;
-            this.sBtnCamD.OnText = "上电";
-            this.sBtnCamD.OnTextColor = System.Drawing.Color.Yellow;
-            this.sBtnCamD.SwitchWidth = 16;
-            this.sBtnCamD.Text = "相机四";
-            this.sBtnCamD.Tooltip = "当前为关机状态";
-            this.sBtnCamD.Click += new System.EventHandler(this.sBtnCam_Click);
-            // 
-            // labelItem7
-            // 
-            this.labelItem7.Font = new System.Drawing.Font("微软雅黑", 8F);
-            this.labelItem7.Name = "labelItem7";
-            // 
-            // sBtnCamE
-            // 
-            this.sBtnCamE.ButtonHeight = 30;
-            this.sBtnCamE.ButtonWidth = 80;
-            this.sBtnCamE.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.sBtnCamE.Name = "sBtnCamE";
-            this.sBtnCamE.OffText = "关机";
-            this.sBtnCamE.OffTextColor = System.Drawing.Color.DimGray;
-            this.sBtnCamE.OnText = "上电";
-            this.sBtnCamE.OnTextColor = System.Drawing.Color.Yellow;
-            this.sBtnCamE.SwitchWidth = 16;
-            this.sBtnCamE.Text = "几何相机";
-            this.sBtnCamE.Tooltip = "当前为关机状态";
-            this.sBtnCamE.ValueChanged += new System.EventHandler(this.sBtnCam_ValueChanged);
-            this.sBtnCamE.Click += new System.EventHandler(this.sBtnCam_Click);
-            // 
-            // exBarGroupItemInfo
-            // 
-            // 
-            // 
-            // 
-            this.exBarGroupItemInfo.BackStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(223)))), ((int)(((byte)(247)))));
-            this.exBarGroupItemInfo.BackStyle.BorderBottom = DevComponents.DotNetBar.eStyleBorderType.Solid;
-            this.exBarGroupItemInfo.BackStyle.BorderBottomWidth = 1;
-            this.exBarGroupItemInfo.BackStyle.BorderColor = System.Drawing.Color.White;
-            this.exBarGroupItemInfo.BackStyle.BorderLeft = DevComponents.DotNetBar.eStyleBorderType.Solid;
-            this.exBarGroupItemInfo.BackStyle.BorderLeftWidth = 1;
-            this.exBarGroupItemInfo.BackStyle.BorderRight = DevComponents.DotNetBar.eStyleBorderType.Solid;
-            this.exBarGroupItemInfo.BackStyle.BorderRightWidth = 1;
-            this.exBarGroupItemInfo.BackStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.exBarGroupItemInfo.Cursor = System.Windows.Forms.Cursors.Default;
-            this.exBarGroupItemInfo.ExpandBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(182)))), ((int)(((byte)(216)))));
-            this.exBarGroupItemInfo.ExpandButtonVisible = false;
-            this.exBarGroupItemInfo.Expanded = true;
-            this.exBarGroupItemInfo.ExpandForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(60)))), ((int)(((byte)(165)))));
-            this.exBarGroupItemInfo.ExpandHotBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(182)))), ((int)(((byte)(216)))));
-            this.exBarGroupItemInfo.ExpandHotForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(142)))), ((int)(((byte)(255)))));
-            this.exBarGroupItemInfo.HeaderExpands = false;
-            this.exBarGroupItemInfo.Image = ((System.Drawing.Image)(resources.GetObject("exBarGroupItemInfo.Image")));
-            this.exBarGroupItemInfo.Name = "exBarGroupItemInfo";
-            this.exBarGroupItemInfo.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.lblItemC1,
-            this.lblItemC2,
-            this.lblItemC3,
-            this.lblItemBatV});
-            this.exBarGroupItemInfo.Text = "设备状态";
-            // 
-            // 
-            // 
-            this.exBarGroupItemInfo.TitleHotStyle.BackColor = System.Drawing.Color.White;
-            this.exBarGroupItemInfo.TitleHotStyle.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(199)))), ((int)(((byte)(211)))), ((int)(((byte)(247)))));
-            this.exBarGroupItemInfo.TitleHotStyle.CornerDiameter = 3;
-            this.exBarGroupItemInfo.TitleHotStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.exBarGroupItemInfo.TitleHotStyle.CornerTypeTopLeft = DevComponents.DotNetBar.eCornerType.Rounded;
-            this.exBarGroupItemInfo.TitleHotStyle.CornerTypeTopRight = DevComponents.DotNetBar.eCornerType.Rounded;
-            this.exBarGroupItemInfo.TitleHotStyle.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(142)))), ((int)(((byte)(255)))));
-            // 
-            // 
-            // 
-            this.exBarGroupItemInfo.TitleStyle.BackColor = System.Drawing.Color.Transparent;
-            this.exBarGroupItemInfo.TitleStyle.BackColor2 = System.Drawing.SystemColors.Control;
-            this.exBarGroupItemInfo.TitleStyle.CornerDiameter = 3;
-            this.exBarGroupItemInfo.TitleStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.exBarGroupItemInfo.TitleStyle.CornerTypeTopLeft = DevComponents.DotNetBar.eCornerType.Rounded;
-            this.exBarGroupItemInfo.TitleStyle.CornerTypeTopRight = DevComponents.DotNetBar.eCornerType.Rounded;
-            this.exBarGroupItemInfo.TitleStyle.Font = new System.Drawing.Font("微软雅黑", 23F);
-            this.exBarGroupItemInfo.TitleStyle.TextColor = System.Drawing.Color.DimGray;
-            // 
-            // lblItemC1
-            // 
-            this.lblItemC1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lblItemC1.ImageIndex = 10;
-            this.lblItemC1.Name = "lblItemC1";
-            this.lblItemC1.Text = "相机一";
-            // 
-            // lblItemC2
-            // 
-            this.lblItemC2.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lblItemC2.ImageIndex = 11;
-            this.lblItemC2.Name = "lblItemC2";
-            this.lblItemC2.Text = "相机二";
-            // 
-            // lblItemC3
-            // 
-            this.lblItemC3.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.lblItemC3.ImageIndex = 11;
-            this.lblItemC3.Name = "lblItemC3";
-            this.lblItemC3.Text = "相机三";
-            // 
-            // lblItemBatV
-            // 
-            this.lblItemBatV.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lblItemBatV.ImageIndex = 9;
-            this.lblItemBatV.Name = "lblItemBatV";
-            this.lblItemBatV.Text = "电压(V)：";
             // 
             // timerSendTaskName
             // 
@@ -2294,13 +1824,13 @@
             // 
             this.exPanelLeft.CanvasColor = System.Drawing.SystemColors.Control;
             this.exPanelLeft.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2000;
-            this.exPanelLeft.Controls.Add(this.panel4);
+            this.exPanelLeft.Controls.Add(this.pictureBox1);
             this.exPanelLeft.Controls.Add(this.label20);
             this.exPanelLeft.Controls.Add(this.panel8);
             this.exPanelLeft.Controls.Add(this.label28);
             this.exPanelLeft.Controls.Add(this.panel9);
             this.exPanelLeft.Controls.Add(this.label33);
-            this.exPanelLeft.Controls.Add(this.panel10);
+            this.exPanelLeft.Controls.Add(this.panelTask);
             this.exPanelLeft.Controls.Add(this.label38);
             this.exPanelLeft.Controls.Add(this.panel11);
             this.exPanelLeft.Controls.Add(this.panel12);
@@ -2318,35 +1848,25 @@
             this.exPanelLeft.Style.GradientAngle = 90;
             this.exPanelLeft.TabIndex = 107;
             // 
-            // panel4
+            // pictureBox1
             // 
-            this.panel4.BackColor = System.Drawing.Color.Transparent;
-            this.panel4.Controls.Add(this.label19);
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel4.Location = new System.Drawing.Point(6, 985);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(261, 151);
-            this.panel4.TabIndex = 20;
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.BackColor = System.Drawing.Color.Transparent;
-            this.label19.Font = new System.Drawing.Font("微软雅黑", 23F);
-            this.label19.ForeColor = System.Drawing.Color.DimGray;
-            this.label19.Location = new System.Drawing.Point(66, 13);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(141, 40);
-            this.label19.TabIndex = 10;
-            this.label19.Text = "系统管理";
-            this.label19.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(6, 893);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 15, 3, 3);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Padding = new System.Windows.Forms.Padding(0, 15, 0, 0);
+            this.pictureBox1.Size = new System.Drawing.Size(261, 118);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 111;
+            this.pictureBox1.TabStop = false;
             // 
             // label20
             // 
             this.label20.BackColor = System.Drawing.Color.Transparent;
             this.label20.Dock = System.Windows.Forms.DockStyle.Top;
             this.label20.Image = ((System.Drawing.Image)(resources.GetObject("label20.Image")));
-            this.label20.Location = new System.Drawing.Point(6, 979);
+            this.label20.Location = new System.Drawing.Point(6, 887);
             this.label20.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(261, 6);
@@ -2355,30 +1875,140 @@
             // panel8
             // 
             this.panel8.BackColor = System.Drawing.Color.Transparent;
-            this.panel8.Controls.Add(this.label23);
-            this.panel8.Controls.Add(this.label22);
+            this.panel8.Controls.Add(this.groupBoxDataInfo);
+            this.panel8.Controls.Add(this.lblItemDBPath);
             this.panel8.Controls.Add(this.label21);
-            this.panel8.Controls.Add(this.label25);
             this.panel8.Controls.Add(this.label26);
             this.panel8.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel8.Location = new System.Drawing.Point(6, 770);
+            this.panel8.Location = new System.Drawing.Point(6, 620);
             this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(261, 209);
+            this.panel8.Size = new System.Drawing.Size(261, 267);
             this.panel8.TabIndex = 24;
             // 
-            // label25
+            // groupBoxDataInfo
             // 
-            this.label25.Font = new System.Drawing.Font("微软雅黑", 16F);
-            this.label25.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.label25.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label25.ImageKey = "button-green.png";
-            this.label25.ImageList = this.imageList1;
-            this.label25.Location = new System.Drawing.Point(14, 83);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(103, 33);
-            this.label25.TabIndex = 9;
-            this.label25.Text = "相机一";
-            this.label25.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.groupBoxDataInfo.Controls.Add(this.progressBarX2);
+            this.groupBoxDataInfo.Controls.Add(this.progressBarX1);
+            this.groupBoxDataInfo.Controls.Add(this.label23);
+            this.groupBoxDataInfo.Controls.Add(this.label19);
+            this.groupBoxDataInfo.Controls.Add(this.lblCpA);
+            this.groupBoxDataInfo.Controls.Add(this.lblCpB);
+            this.groupBoxDataInfo.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.groupBoxDataInfo.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.groupBoxDataInfo.ForeColor = System.Drawing.Color.DimGray;
+            this.groupBoxDataInfo.Location = new System.Drawing.Point(0, 160);
+            this.groupBoxDataInfo.Name = "groupBoxDataInfo";
+            this.groupBoxDataInfo.Size = new System.Drawing.Size(261, 107);
+            this.groupBoxDataInfo.TabIndex = 15;
+            this.groupBoxDataInfo.TabStop = false;
+            this.groupBoxDataInfo.Text = "数据备份信息";
+            // 
+            // progressBarX2
+            // 
+            // 
+            // 
+            // 
+            this.progressBarX2.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.progressBarX2.Location = new System.Drawing.Point(97, 67);
+            this.progressBarX2.Name = "progressBarX2";
+            this.progressBarX2.Size = new System.Drawing.Size(101, 23);
+            this.progressBarX2.TabIndex = 17;
+            this.progressBarX2.Text = "0%";
+            this.progressBarX2.TextVisible = true;
+            // 
+            // progressBarX1
+            // 
+            // 
+            // 
+            // 
+            this.progressBarX1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.progressBarX1.Location = new System.Drawing.Point(97, 26);
+            this.progressBarX1.Name = "progressBarX1";
+            this.progressBarX1.Size = new System.Drawing.Size(101, 23);
+            this.progressBarX1.TabIndex = 17;
+            this.progressBarX1.Text = "0%";
+            this.progressBarX1.TextVisible = true;
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Font = new System.Drawing.Font("微软雅黑", 10F);
+            this.label23.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.label23.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label23.ImageKey = "button-red.png";
+            this.label23.Location = new System.Drawing.Point(13, 68);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(93, 20);
+            this.label23.TabIndex = 15;
+            this.label23.Text = "相机二数据：";
+            this.label23.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Font = new System.Drawing.Font("微软雅黑", 10F);
+            this.label19.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.label19.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label19.ImageKey = "button-red.png";
+            this.label19.Location = new System.Drawing.Point(13, 27);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(82, 20);
+            this.label19.TabIndex = 15;
+            this.label19.Text = "相机一数据:";
+            this.label19.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lblCpA
+            // 
+            this.lblCpA.AutoSize = true;
+            this.lblCpA.Font = new System.Drawing.Font("微软雅黑", 10F);
+            this.lblCpA.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.lblCpA.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblCpA.ImageKey = "button-red.png";
+            this.lblCpA.Location = new System.Drawing.Point(199, 28);
+            this.lblCpA.Name = "lblCpA";
+            this.lblCpA.Size = new System.Drawing.Size(17, 20);
+            this.lblCpA.TabIndex = 15;
+            this.lblCpA.Text = "0";
+            this.lblCpA.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lblCpB
+            // 
+            this.lblCpB.AutoSize = true;
+            this.lblCpB.Font = new System.Drawing.Font("微软雅黑", 10F);
+            this.lblCpB.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.lblCpB.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblCpB.ImageKey = "button-red.png";
+            this.lblCpB.Location = new System.Drawing.Point(200, 68);
+            this.lblCpB.Name = "lblCpB";
+            this.lblCpB.Size = new System.Drawing.Size(17, 20);
+            this.lblCpB.TabIndex = 15;
+            this.lblCpB.Text = "0";
+            this.lblCpB.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lblItemDBPath
+            // 
+            this.lblItemDBPath.AutoSize = true;
+            this.lblItemDBPath.Font = new System.Drawing.Font("微软雅黑", 16F);
+            this.lblItemDBPath.Location = new System.Drawing.Point(18, 107);
+            this.lblItemDBPath.Name = "lblItemDBPath";
+            this.lblItemDBPath.Size = new System.Drawing.Size(91, 30);
+            this.lblItemDBPath.TabIndex = 14;
+            this.lblItemDBPath.TabStop = true;
+            this.lblItemDBPath.Text = "DBPath";
+            this.lblItemDBPath.Click += new System.EventHandler(this.lblItemDBPath_Click);
+            // 
+            // label21
+            // 
+            this.label21.Font = new System.Drawing.Font("微软雅黑", 16F);
+            this.label21.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.label21.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label21.ImageIndex = 13;
+            this.label21.Location = new System.Drawing.Point(18, 74);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(103, 33);
+            this.label21.TabIndex = 11;
+            this.label21.Text = "数据路径";
+            this.label21.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label26
             // 
@@ -2386,22 +2016,21 @@
             this.label26.Dock = System.Windows.Forms.DockStyle.Top;
             this.label26.Font = new System.Drawing.Font("微软雅黑", 23F);
             this.label26.ForeColor = System.Drawing.Color.DimGray;
+            this.label26.Image = ((System.Drawing.Image)(resources.GetObject("label26.Image")));
             this.label26.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label26.ImageIndex = 6;
-            this.label26.ImageList = this.imgLst64;
             this.label26.Location = new System.Drawing.Point(0, 0);
             this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(261, 67);
+            this.label26.Size = new System.Drawing.Size(261, 60);
             this.label26.TabIndex = 10;
-            this.label26.Text = "设备状态";
-            this.label26.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label26.Text = "数据存储";
+            this.label26.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
             // label28
             // 
             this.label28.BackColor = System.Drawing.Color.Transparent;
             this.label28.Dock = System.Windows.Forms.DockStyle.Top;
             this.label28.Image = ((System.Drawing.Image)(resources.GetObject("label28.Image")));
-            this.label28.Location = new System.Drawing.Point(6, 765);
+            this.label28.Location = new System.Drawing.Point(6, 615);
             this.label28.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label28.Name = "label28";
             this.label28.Size = new System.Drawing.Size(261, 5);
@@ -2410,41 +2039,219 @@
             // panel9
             // 
             this.panel9.BackColor = System.Drawing.Color.Transparent;
-            this.panel9.Controls.Add(this.switchButton3);
-            this.panel9.Controls.Add(this.switchButton5);
-            this.panel9.Controls.Add(this.switchButton4);
-            this.panel9.Controls.Add(this.switchButton2);
-            this.panel9.Controls.Add(this.switchButton1);
+            this.panel9.Controls.Add(this.lblBatTip);
+            this.panel9.Controls.Add(this.sBtnCamC);
+            this.panel9.Controls.Add(this.sBtnCamE);
+            this.panel9.Controls.Add(this.sBtnCamD);
+            this.panel9.Controls.Add(this.sBtnCamB);
+            this.panel9.Controls.Add(this.sBtnCamA);
             this.panel9.Controls.Add(this.label37);
-            this.panel9.Controls.Add(this.label29);
+            this.panel9.Controls.Add(this.lblBatV);
+            this.panel9.Controls.Add(this.lblJH);
             this.panel9.Controls.Add(this.label36);
             this.panel9.Controls.Add(this.label35);
             this.panel9.Controls.Add(this.label30);
             this.panel9.Controls.Add(this.label31);
             this.panel9.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel9.Location = new System.Drawing.Point(6, 447);
+            this.panel9.Location = new System.Drawing.Point(6, 360);
             this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(261, 318);
+            this.panel9.Size = new System.Drawing.Size(261, 255);
             this.panel9.TabIndex = 22;
             // 
-            // label29
+            // lblBatTip
             // 
-            this.label29.AutoSize = true;
-            this.label29.Font = new System.Drawing.Font("微软雅黑", 16F);
-            this.label29.ForeColor = System.Drawing.Color.DimGray;
-            this.label29.Location = new System.Drawing.Point(14, 250);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(101, 30);
-            this.label29.TabIndex = 20;
-            this.label29.Text = "几何相机";
-            this.label29.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblBatTip.Font = new System.Drawing.Font("微软雅黑", 16F);
+            this.lblBatTip.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.lblBatTip.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblBatTip.ImageIndex = 4;
+            this.lblBatTip.ImageList = this.imageList1;
+            this.lblBatTip.Location = new System.Drawing.Point(18, 214);
+            this.lblBatTip.Name = "lblBatTip";
+            this.lblBatTip.Size = new System.Drawing.Size(82, 33);
+            this.lblBatTip.TabIndex = 13;
+            this.lblBatTip.Text = "电压";
+            this.lblBatTip.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // sBtnCamC
+            // 
+            // 
+            // 
+            // 
+            this.sBtnCamC.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.sBtnCamC.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.sBtnCamC.Font = new System.Drawing.Font("微软雅黑 Light", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.sBtnCamC.Location = new System.Drawing.Point(128, 168);
+            this.sBtnCamC.Name = "sBtnCamC";
+            this.sBtnCamC.OffText = "关机";
+            this.sBtnCamC.OnBackColor = System.Drawing.Color.ForestGreen;
+            this.sBtnCamC.OnText = "上电";
+            this.sBtnCamC.OnTextColor = System.Drawing.Color.WhiteSmoke;
+            this.sBtnCamC.Size = new System.Drawing.Size(113, 34);
+            this.sBtnCamC.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.sBtnCamC.SwitchWidth = 16;
+            this.sBtnCamC.TabIndex = 23;
+            this.sBtnCamC.Value = true;
+            this.sBtnCamC.ValueObject = "Y";
+            this.sBtnCamC.Click += new System.EventHandler(this.sBtnCam_Click);
+            // 
+            // sBtnCamE
+            // 
+            // 
+            // 
+            // 
+            this.sBtnCamE.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.sBtnCamE.Font = new System.Drawing.Font("微软雅黑", 16F);
+            this.sBtnCamE.Location = new System.Drawing.Point(124, 337);
+            this.sBtnCamE.Name = "sBtnCamE";
+            this.sBtnCamE.OffText = "关机";
+            this.sBtnCamE.OffTextColor = System.Drawing.Color.DimGray;
+            this.sBtnCamE.OnText = "上电";
+            this.sBtnCamE.OnTextColor = System.Drawing.Color.Yellow;
+            this.sBtnCamE.Size = new System.Drawing.Size(117, 34);
+            this.sBtnCamE.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.sBtnCamE.SwitchWidth = 16;
+            this.sBtnCamE.TabIndex = 23;
+            this.sBtnCamE.Value = true;
+            this.sBtnCamE.ValueObject = "Y";
+            this.sBtnCamE.Visible = false;
+            this.sBtnCamE.Click += new System.EventHandler(this.sBtnCam_Click);
+            // 
+            // sBtnCamD
+            // 
+            // 
+            // 
+            // 
+            this.sBtnCamD.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.sBtnCamD.Font = new System.Drawing.Font("微软雅黑", 16F);
+            this.sBtnCamD.Location = new System.Drawing.Point(124, 291);
+            this.sBtnCamD.Name = "sBtnCamD";
+            this.sBtnCamD.OffText = "关机";
+            this.sBtnCamD.OffTextColor = System.Drawing.Color.DimGray;
+            this.sBtnCamD.OnText = "上电";
+            this.sBtnCamD.OnTextColor = System.Drawing.Color.Yellow;
+            this.sBtnCamD.Size = new System.Drawing.Size(117, 34);
+            this.sBtnCamD.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.sBtnCamD.SwitchWidth = 16;
+            this.sBtnCamD.TabIndex = 23;
+            this.sBtnCamD.Value = true;
+            this.sBtnCamD.ValueObject = "Y";
+            this.sBtnCamD.Visible = false;
+            this.sBtnCamD.Click += new System.EventHandler(this.sBtnCam_Click);
+            // 
+            // sBtnCamB
+            // 
+            // 
+            // 
+            // 
+            this.sBtnCamB.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.sBtnCamB.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.sBtnCamB.Font = new System.Drawing.Font("微软雅黑 Light", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.sBtnCamB.Location = new System.Drawing.Point(128, 129);
+            this.sBtnCamB.Name = "sBtnCamB";
+            this.sBtnCamB.OffText = "关机";
+            this.sBtnCamB.OffTextColor = System.Drawing.Color.DimGray;
+            this.sBtnCamB.OnBackColor = System.Drawing.Color.ForestGreen;
+            this.sBtnCamB.OnText = "上电";
+            this.sBtnCamB.OnTextColor = System.Drawing.Color.WhiteSmoke;
+            this.sBtnCamB.Size = new System.Drawing.Size(113, 34);
+            this.sBtnCamB.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.sBtnCamB.SwitchWidth = 16;
+            this.sBtnCamB.TabIndex = 23;
+            this.sBtnCamB.Value = true;
+            this.sBtnCamB.ValueObject = "Y";
+            this.sBtnCamB.Click += new System.EventHandler(this.sBtnCam_Click);
+            // 
+            // sBtnCamA
+            // 
+            // 
+            // 
+            // 
+            this.sBtnCamA.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.sBtnCamA.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.sBtnCamA.Font = new System.Drawing.Font("微软雅黑 Light", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.sBtnCamA.Location = new System.Drawing.Point(128, 86);
+            this.sBtnCamA.Name = "sBtnCamA";
+            this.sBtnCamA.OffText = "关机";
+            this.sBtnCamA.OnBackColor = System.Drawing.Color.ForestGreen;
+            this.sBtnCamA.OnText = "上电";
+            this.sBtnCamA.OnTextColor = System.Drawing.Color.WhiteSmoke;
+            this.sBtnCamA.Size = new System.Drawing.Size(113, 34);
+            this.sBtnCamA.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.sBtnCamA.SwitchWidth = 16;
+            this.sBtnCamA.TabIndex = 23;
+            this.sBtnCamA.Value = true;
+            this.sBtnCamA.ValueObject = "Y";
+            this.sBtnCamA.Click += new System.EventHandler(this.sBtnCam_Click);
+            // 
+            // label37
+            // 
+            this.label37.AutoSize = true;
+            this.label37.Font = new System.Drawing.Font("微软雅黑", 16F);
+            this.label37.ForeColor = System.Drawing.Color.DimGray;
+            this.label37.Location = new System.Drawing.Point(20, 337);
+            this.label37.Name = "label37";
+            this.label37.Size = new System.Drawing.Size(93, 30);
+            this.label37.TabIndex = 15;
+            this.label37.Text = "相 机 四";
+            this.label37.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label37.Visible = false;
+            // 
+            // lblBatV
+            // 
+            this.lblBatV.Font = new System.Drawing.Font("微软雅黑", 16F);
+            this.lblBatV.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblBatV.Location = new System.Drawing.Point(128, 215);
+            this.lblBatV.Name = "lblBatV";
+            this.lblBatV.Size = new System.Drawing.Size(113, 30);
+            this.lblBatV.TabIndex = 20;
+            this.lblBatV.Text = "--V";
+            this.lblBatV.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblJH
+            // 
+            this.lblJH.AutoSize = true;
+            this.lblJH.Font = new System.Drawing.Font("微软雅黑", 16F);
+            this.lblJH.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.lblJH.Location = new System.Drawing.Point(18, 168);
+            this.lblJH.Name = "lblJH";
+            this.lblJH.Size = new System.Drawing.Size(101, 30);
+            this.lblJH.TabIndex = 20;
+            this.lblJH.Text = "几何相机";
+            this.lblJH.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label36
+            // 
+            this.label36.AutoSize = true;
+            this.label36.Font = new System.Drawing.Font("微软雅黑", 16F);
+            this.label36.ForeColor = System.Drawing.Color.DimGray;
+            this.label36.Location = new System.Drawing.Point(20, 294);
+            this.label36.Name = "label36";
+            this.label36.Size = new System.Drawing.Size(93, 30);
+            this.label36.TabIndex = 15;
+            this.label36.Text = "相 机 三";
+            this.label36.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label36.Visible = false;
+            // 
+            // label35
+            // 
+            this.label35.AutoSize = true;
+            this.label35.Font = new System.Drawing.Font("微软雅黑", 16F);
+            this.label35.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.label35.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label35.ImageKey = "button-red.png";
+            this.label35.Location = new System.Drawing.Point(18, 88);
+            this.label35.Name = "label35";
+            this.label35.Size = new System.Drawing.Size(93, 30);
+            this.label35.TabIndex = 15;
+            this.label35.Text = "相 机 一";
+            this.label35.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label30
             // 
             this.label30.AutoSize = true;
             this.label30.Font = new System.Drawing.Font("微软雅黑", 16F);
-            this.label30.ForeColor = System.Drawing.Color.DimGray;
-            this.label30.Location = new System.Drawing.Point(18, 112);
+            this.label30.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.label30.Location = new System.Drawing.Point(18, 128);
             this.label30.Name = "label30";
             this.label30.Size = new System.Drawing.Size(93, 30);
             this.label30.TabIndex = 15;
@@ -2457,40 +2264,93 @@
             this.label31.Dock = System.Windows.Forms.DockStyle.Top;
             this.label31.Font = new System.Drawing.Font("微软雅黑", 23F);
             this.label31.ForeColor = System.Drawing.Color.DimGray;
+            this.label31.Image = ((System.Drawing.Image)(resources.GetObject("label31.Image")));
             this.label31.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label31.ImageIndex = 2;
-            this.label31.ImageList = this.imgLst64;
             this.label31.Location = new System.Drawing.Point(0, 0);
             this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(261, 55);
+            this.label31.Size = new System.Drawing.Size(261, 60);
             this.label31.TabIndex = 10;
             this.label31.Text = "设备管理";
-            this.label31.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label31.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
             // label33
             // 
             this.label33.BackColor = System.Drawing.Color.Transparent;
             this.label33.Dock = System.Windows.Forms.DockStyle.Top;
             this.label33.Image = ((System.Drawing.Image)(resources.GetObject("label33.Image")));
-            this.label33.Location = new System.Drawing.Point(6, 441);
+            this.label33.Location = new System.Drawing.Point(6, 354);
             this.label33.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label33.Name = "label33";
             this.label33.Size = new System.Drawing.Size(261, 6);
             this.label33.TabIndex = 28;
             // 
-            // panel10
+            // panelTask
             // 
-            this.panel10.BackColor = System.Drawing.Color.Transparent;
-            this.panel10.Controls.Add(this.button9);
-            this.panel10.Controls.Add(this.button8);
-            this.panel10.Controls.Add(this.button7);
-            this.panel10.Controls.Add(this.label34);
-            this.panel10.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel10.Location = new System.Drawing.Point(6, 205);
-            this.panel10.Margin = new System.Windows.Forms.Padding(2);
-            this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(261, 236);
-            this.panel10.TabIndex = 27;
+            this.panelTask.BackColor = System.Drawing.Color.Transparent;
+            this.panelTask.Controls.Add(this.btnStopTask);
+            this.panelTask.Controls.Add(this.btnBeginTask);
+            this.panelTask.Controls.Add(this.btnNewTask);
+            this.panelTask.Controls.Add(this.label34);
+            this.panelTask.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelTask.Location = new System.Drawing.Point(6, 138);
+            this.panelTask.Margin = new System.Windows.Forms.Padding(2);
+            this.panelTask.Name = "panelTask";
+            this.panelTask.Size = new System.Drawing.Size(261, 216);
+            this.panelTask.TabIndex = 27;
+            // 
+            // btnStopTask
+            // 
+            this.btnStopTask.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnStopTask.FlatAppearance.BorderSize = 0;
+            this.btnStopTask.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnStopTask.Font = new System.Drawing.Font("微软雅黑", 16F);
+            this.btnStopTask.ForeColor = System.Drawing.Color.DimGray;
+            this.btnStopTask.Image = ((System.Drawing.Image)(resources.GetObject("btnStopTask.Image")));
+            this.btnStopTask.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnStopTask.Location = new System.Drawing.Point(18, 166);
+            this.btnStopTask.Margin = new System.Windows.Forms.Padding(2);
+            this.btnStopTask.Name = "btnStopTask";
+            this.btnStopTask.Size = new System.Drawing.Size(173, 44);
+            this.btnStopTask.TabIndex = 13;
+            this.btnStopTask.Text = "停止任务";
+            this.btnStopTask.UseVisualStyleBackColor = true;
+            this.btnStopTask.Click += new System.EventHandler(this.btnItemStopTask_Click);
+            // 
+            // btnBeginTask
+            // 
+            this.btnBeginTask.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnBeginTask.FlatAppearance.BorderSize = 0;
+            this.btnBeginTask.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBeginTask.Font = new System.Drawing.Font("微软雅黑", 16F);
+            this.btnBeginTask.ForeColor = System.Drawing.Color.DimGray;
+            this.btnBeginTask.Image = ((System.Drawing.Image)(resources.GetObject("btnBeginTask.Image")));
+            this.btnBeginTask.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnBeginTask.Location = new System.Drawing.Point(18, 121);
+            this.btnBeginTask.Margin = new System.Windows.Forms.Padding(2);
+            this.btnBeginTask.Name = "btnBeginTask";
+            this.btnBeginTask.Size = new System.Drawing.Size(173, 44);
+            this.btnBeginTask.TabIndex = 13;
+            this.btnBeginTask.Text = "开始任务";
+            this.btnBeginTask.UseVisualStyleBackColor = true;
+            this.btnBeginTask.Click += new System.EventHandler(this.btnItemBeginTask_Click);
+            // 
+            // btnNewTask
+            // 
+            this.btnNewTask.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnNewTask.FlatAppearance.BorderSize = 0;
+            this.btnNewTask.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNewTask.Font = new System.Drawing.Font("微软雅黑", 16F);
+            this.btnNewTask.ForeColor = System.Drawing.Color.DimGray;
+            this.btnNewTask.Image = ((System.Drawing.Image)(resources.GetObject("btnNewTask.Image")));
+            this.btnNewTask.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnNewTask.Location = new System.Drawing.Point(18, 76);
+            this.btnNewTask.Margin = new System.Windows.Forms.Padding(2);
+            this.btnNewTask.Name = "btnNewTask";
+            this.btnNewTask.Size = new System.Drawing.Size(173, 44);
+            this.btnNewTask.TabIndex = 13;
+            this.btnNewTask.Text = "新建任务";
+            this.btnNewTask.UseVisualStyleBackColor = true;
+            this.btnNewTask.Click += new System.EventHandler(this.btnItemNewTask_Click);
             // 
             // label34
             // 
@@ -2502,17 +2362,17 @@
             this.label34.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.label34.Location = new System.Drawing.Point(0, 0);
             this.label34.Name = "label34";
-            this.label34.Size = new System.Drawing.Size(261, 65);
+            this.label34.Size = new System.Drawing.Size(261, 60);
             this.label34.TabIndex = 3;
             this.label34.Text = "任务管理";
-            this.label34.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label34.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
             // label38
             // 
             this.label38.BackColor = System.Drawing.Color.Transparent;
             this.label38.Dock = System.Windows.Forms.DockStyle.Top;
             this.label38.Image = ((System.Drawing.Image)(resources.GetObject("label38.Image")));
-            this.label38.Location = new System.Drawing.Point(6, 199);
+            this.label38.Location = new System.Drawing.Point(6, 132);
             this.label38.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label38.Name = "label38";
             this.label38.Size = new System.Drawing.Size(261, 6);
@@ -2521,27 +2381,53 @@
             // panel11
             // 
             this.panel11.BackColor = System.Drawing.Color.Transparent;
-            this.panel11.Controls.Add(this.label41);
-            this.panel11.Controls.Add(this.label40);
-            this.panel11.Controls.Add(this.label39);
+            this.panel11.Controls.Add(this.lblTime);
+            this.panel11.Controls.Add(this.lblWeek);
+            this.panel11.Controls.Add(this.lblDate);
             this.panel11.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel11.Location = new System.Drawing.Point(6, 0);
             this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(261, 199);
+            this.panel11.Size = new System.Drawing.Size(261, 132);
             this.panel11.TabIndex = 16;
             // 
-            // label39
+            // lblTime
             // 
-            this.label39.AutoSize = true;
-            this.label39.BackColor = System.Drawing.Color.Transparent;
-            this.label39.Font = new System.Drawing.Font("Times New Roman", 23F, System.Drawing.FontStyle.Bold);
-            this.label39.ForeColor = System.Drawing.Color.Black;
-            this.label39.Location = new System.Drawing.Point(67, 55);
-            this.label39.Name = "label39";
-            this.label39.Size = new System.Drawing.Size(147, 36);
-            this.label39.TabIndex = 3;
-            this.label39.Text = "2020-12-2";
-            this.label39.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblTime.AutoSize = true;
+            this.lblTime.BackColor = System.Drawing.Color.Transparent;
+            this.lblTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 23F);
+            this.lblTime.ForeColor = System.Drawing.Color.Black;
+            this.lblTime.Location = new System.Drawing.Point(5, 14);
+            this.lblTime.Name = "lblTime";
+            this.lblTime.Size = new System.Drawing.Size(135, 35);
+            this.lblTime.TabIndex = 3;
+            this.lblTime.Text = "16:28:12";
+            this.lblTime.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lblWeek
+            // 
+            this.lblWeek.AutoSize = true;
+            this.lblWeek.BackColor = System.Drawing.Color.Transparent;
+            this.lblWeek.Font = new System.Drawing.Font("微软雅黑", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lblWeek.ForeColor = System.Drawing.Color.Black;
+            this.lblWeek.Location = new System.Drawing.Point(151, 92);
+            this.lblWeek.Name = "lblWeek";
+            this.lblWeek.Size = new System.Drawing.Size(62, 31);
+            this.lblWeek.TabIndex = 3;
+            this.lblWeek.Text = "周日";
+            this.lblWeek.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lblDate
+            // 
+            this.lblDate.AutoSize = true;
+            this.lblDate.BackColor = System.Drawing.Color.Transparent;
+            this.lblDate.Font = new System.Drawing.Font("微软雅黑", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lblDate.ForeColor = System.Drawing.Color.Black;
+            this.lblDate.Location = new System.Drawing.Point(37, 92);
+            this.lblDate.Name = "lblDate";
+            this.lblDate.Size = new System.Drawing.Size(118, 31);
+            this.lblDate.TabIndex = 3;
+            this.lblDate.Text = "12月21日";
+            this.lblDate.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // panel12
             // 
@@ -2561,83 +2447,6 @@
             this.panel13.Size = new System.Drawing.Size(6, 1061);
             this.panel13.TabIndex = 25;
             // 
-            // label40
-            // 
-            this.label40.AutoSize = true;
-            this.label40.BackColor = System.Drawing.Color.Transparent;
-            this.label40.Font = new System.Drawing.Font("微软雅黑", 18F);
-            this.label40.ForeColor = System.Drawing.Color.Black;
-            this.label40.Location = new System.Drawing.Point(96, 107);
-            this.label40.Name = "label40";
-            this.label40.Size = new System.Drawing.Size(86, 31);
-            this.label40.TabIndex = 3;
-            this.label40.Text = "星期三";
-            this.label40.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label41
-            // 
-            this.label41.AutoSize = true;
-            this.label41.BackColor = System.Drawing.Color.Transparent;
-            this.label41.Font = new System.Drawing.Font("Times New Roman", 23F, System.Drawing.FontStyle.Bold);
-            this.label41.ForeColor = System.Drawing.Color.Black;
-            this.label41.Location = new System.Drawing.Point(83, 154);
-            this.label41.Name = "label41";
-            this.label41.Size = new System.Drawing.Size(131, 36);
-            this.label41.TabIndex = 3;
-            this.label41.Text = "16:28:12";
-            this.label41.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // button7
-            // 
-            this.button7.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button7.FlatAppearance.BorderSize = 0;
-            this.button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button7.Font = new System.Drawing.Font("微软雅黑", 16F);
-            this.button7.ForeColor = System.Drawing.Color.DimGray;
-            this.button7.Image = ((System.Drawing.Image)(resources.GetObject("button7.Image")));
-            this.button7.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button7.Location = new System.Drawing.Point(41, 67);
-            this.button7.Margin = new System.Windows.Forms.Padding(2);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(173, 44);
-            this.button7.TabIndex = 13;
-            this.button7.Text = "新建任务";
-            this.button7.UseVisualStyleBackColor = true;
-            // 
-            // button8
-            // 
-            this.button8.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button8.FlatAppearance.BorderSize = 0;
-            this.button8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button8.Font = new System.Drawing.Font("微软雅黑", 16F);
-            this.button8.ForeColor = System.Drawing.Color.DimGray;
-            this.button8.Image = ((System.Drawing.Image)(resources.GetObject("button8.Image")));
-            this.button8.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button8.Location = new System.Drawing.Point(41, 116);
-            this.button8.Margin = new System.Windows.Forms.Padding(2);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(173, 44);
-            this.button8.TabIndex = 13;
-            this.button8.Text = "开始任务";
-            this.button8.UseVisualStyleBackColor = true;
-            // 
-            // button9
-            // 
-            this.button9.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button9.FlatAppearance.BorderSize = 0;
-            this.button9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button9.Font = new System.Drawing.Font("微软雅黑", 16F);
-            this.button9.ForeColor = System.Drawing.Color.DimGray;
-            this.button9.Image = ((System.Drawing.Image)(resources.GetObject("button9.Image")));
-            this.button9.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button9.Location = new System.Drawing.Point(41, 165);
-            this.button9.Margin = new System.Windows.Forms.Padding(2);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(173, 44);
-            this.button9.TabIndex = 13;
-            this.button9.Text = "停止任务";
-            this.button9.UseVisualStyleBackColor = true;
-            // 
             // imgLst64
             // 
             this.imgLst64.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imgLst64.ImageStream")));
@@ -2649,211 +2458,65 @@
             this.imgLst64.Images.SetKeyName(4, "settings.png");
             this.imgLst64.Images.SetKeyName(5, "statistics.png");
             this.imgLst64.Images.SetKeyName(6, "startup.png");
-            // 
-            // switchButton1
-            // 
-            // 
-            // 
-            // 
-            this.switchButton1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.switchButton1.Font = new System.Drawing.Font("微软雅黑", 16F);
-            this.switchButton1.Location = new System.Drawing.Point(124, 66);
-            this.switchButton1.Name = "switchButton1";
-            this.switchButton1.OffText = "关机";
-            this.switchButton1.OffTextColor = System.Drawing.Color.DimGray;
-            this.switchButton1.OnText = "上电";
-            this.switchButton1.OnTextColor = System.Drawing.Color.Yellow;
-            this.switchButton1.Size = new System.Drawing.Size(117, 34);
-            this.switchButton1.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.switchButton1.SwitchWidth = 16;
-            this.switchButton1.TabIndex = 23;
-            this.switchButton1.Value = true;
-            this.switchButton1.ValueObject = "Y";
-            // 
-            // label35
-            // 
-            this.label35.AutoSize = true;
-            this.label35.Font = new System.Drawing.Font("微软雅黑", 16F);
-            this.label35.ForeColor = System.Drawing.Color.DimGray;
-            this.label35.Location = new System.Drawing.Point(18, 66);
-            this.label35.Name = "label35";
-            this.label35.Size = new System.Drawing.Size(93, 30);
-            this.label35.TabIndex = 15;
-            this.label35.Text = "相 机 一";
-            this.label35.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // switchButton2
-            // 
-            // 
-            // 
-            // 
-            this.switchButton2.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.switchButton2.Font = new System.Drawing.Font("微软雅黑", 16F);
-            this.switchButton2.Location = new System.Drawing.Point(122, 112);
-            this.switchButton2.Name = "switchButton2";
-            this.switchButton2.OffText = "关机";
-            this.switchButton2.OffTextColor = System.Drawing.Color.DimGray;
-            this.switchButton2.OnText = "上电";
-            this.switchButton2.OnTextColor = System.Drawing.Color.Yellow;
-            this.switchButton2.Size = new System.Drawing.Size(117, 34);
-            this.switchButton2.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.switchButton2.SwitchWidth = 16;
-            this.switchButton2.TabIndex = 23;
-            this.switchButton2.Value = true;
-            this.switchButton2.ValueObject = "Y";
-            // 
-            // switchButton3
-            // 
-            // 
-            // 
-            // 
-            this.switchButton3.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.switchButton3.Font = new System.Drawing.Font("微软雅黑", 16F);
-            this.switchButton3.Location = new System.Drawing.Point(122, 250);
-            this.switchButton3.Name = "switchButton3";
-            this.switchButton3.OffText = "关机";
-            this.switchButton3.OffTextColor = System.Drawing.Color.DimGray;
-            this.switchButton3.OnText = "上电";
-            this.switchButton3.OnTextColor = System.Drawing.Color.Yellow;
-            this.switchButton3.Size = new System.Drawing.Size(117, 34);
-            this.switchButton3.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.switchButton3.SwitchWidth = 16;
-            this.switchButton3.TabIndex = 23;
-            this.switchButton3.Value = true;
-            this.switchButton3.ValueObject = "Y";
-            // 
-            // label36
-            // 
-            this.label36.AutoSize = true;
-            this.label36.Font = new System.Drawing.Font("微软雅黑", 16F);
-            this.label36.ForeColor = System.Drawing.Color.DimGray;
-            this.label36.Location = new System.Drawing.Point(18, 158);
-            this.label36.Name = "label36";
-            this.label36.Size = new System.Drawing.Size(93, 30);
-            this.label36.TabIndex = 15;
-            this.label36.Text = "相 机 三";
-            this.label36.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // switchButton4
-            // 
-            // 
-            // 
-            // 
-            this.switchButton4.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.switchButton4.Font = new System.Drawing.Font("微软雅黑", 16F);
-            this.switchButton4.Location = new System.Drawing.Point(122, 158);
-            this.switchButton4.Name = "switchButton4";
-            this.switchButton4.OffText = "关机";
-            this.switchButton4.OffTextColor = System.Drawing.Color.DimGray;
-            this.switchButton4.OnText = "上电";
-            this.switchButton4.OnTextColor = System.Drawing.Color.Yellow;
-            this.switchButton4.Size = new System.Drawing.Size(117, 34);
-            this.switchButton4.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.switchButton4.SwitchWidth = 16;
-            this.switchButton4.TabIndex = 23;
-            this.switchButton4.Value = true;
-            this.switchButton4.ValueObject = "Y";
-            // 
-            // label37
-            // 
-            this.label37.AutoSize = true;
-            this.label37.Font = new System.Drawing.Font("微软雅黑", 16F);
-            this.label37.ForeColor = System.Drawing.Color.DimGray;
-            this.label37.Location = new System.Drawing.Point(18, 204);
-            this.label37.Name = "label37";
-            this.label37.Size = new System.Drawing.Size(93, 30);
-            this.label37.TabIndex = 15;
-            this.label37.Text = "相 机 四";
-            this.label37.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // switchButton5
-            // 
-            // 
-            // 
-            // 
-            this.switchButton5.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.switchButton5.Font = new System.Drawing.Font("微软雅黑", 16F);
-            this.switchButton5.Location = new System.Drawing.Point(122, 204);
-            this.switchButton5.Name = "switchButton5";
-            this.switchButton5.OffText = "关机";
-            this.switchButton5.OffTextColor = System.Drawing.Color.DimGray;
-            this.switchButton5.OnText = "上电";
-            this.switchButton5.OnTextColor = System.Drawing.Color.Yellow;
-            this.switchButton5.Size = new System.Drawing.Size(117, 34);
-            this.switchButton5.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.switchButton5.SwitchWidth = 16;
-            this.switchButton5.TabIndex = 23;
-            this.switchButton5.Value = true;
-            this.switchButton5.ValueObject = "Y";
-            // 
-            // label21
-            // 
-            this.label21.Font = new System.Drawing.Font("微软雅黑", 16F);
-            this.label21.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.label21.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label21.ImageKey = "button-green.png";
-            this.label21.ImageList = this.imageList1;
-            this.label21.Location = new System.Drawing.Point(18, 132);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(103, 33);
-            this.label21.TabIndex = 11;
-            this.label21.Text = "相机三";
-            this.label21.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // label22
-            // 
-            this.label22.Font = new System.Drawing.Font("微软雅黑", 16F);
-            this.label22.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.label22.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label22.ImageKey = "button-green.png";
-            this.label22.ImageList = this.imageList1;
-            this.label22.Location = new System.Drawing.Point(123, 83);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(103, 33);
-            this.label22.TabIndex = 12;
-            this.label22.Text = "相机二";
-            this.label22.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // label23
-            // 
-            this.label23.Font = new System.Drawing.Font("微软雅黑", 16F);
-            this.label23.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.label23.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label23.ImageIndex = 4;
-            this.label23.ImageList = this.imageList1;
-            this.label23.Location = new System.Drawing.Point(18, 169);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(82, 33);
-            this.label23.TabIndex = 13;
-            this.label23.Text = "电压";
-            this.label23.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.imgLst64.Images.SetKeyName(7, "存储.png");
+            this.imgLst64.Images.SetKeyName(8, "database.png");
+            this.imgLst64.Images.SetKeyName(9, "database-refresh.png");
+            this.imgLst64.Images.SetKeyName(10, "data.png");
+            this.imgLst64.Images.SetKeyName(11, "data_edit.png");
+            this.imgLst64.Images.SetKeyName(12, "datas.png");
+            this.imgLst64.Images.SetKeyName(13, "database2.png");
+            this.imgLst64.Images.SetKeyName(14, "data.png");
+            this.imgLst64.Images.SetKeyName(15, "设备管理.png");
+            this.imgLst64.Images.SetKeyName(16, "add.png");
+            this.imgLst64.Images.SetKeyName(17, "agenda.png");
+            this.imgLst64.Images.SetKeyName(18, "ball_foward.png");
+            this.imgLst64.Images.SetKeyName(19, "ball_next.png");
+            this.imgLst64.Images.SetKeyName(20, "ball_previous.png");
+            this.imgLst64.Images.SetKeyName(21, "ball_rewind.png");
+            this.imgLst64.Images.SetKeyName(22, "ball_stop.png");
+            this.imgLst64.Images.SetKeyName(23, "Cash_machine.png");
+            this.imgLst64.Images.SetKeyName(24, "Chart.png");
+            this.imgLst64.Images.SetKeyName(25, "clock.png");
+            this.imgLst64.Images.SetKeyName(26, "copy.png");
+            this.imgLst64.Images.SetKeyName(27, "Database.png");
+            this.imgLst64.Images.SetKeyName(28, "db_list.png");
+            this.imgLst64.Images.SetKeyName(29, "external dmg.png");
+            this.imgLst64.Images.SetKeyName(30, "external hd.png");
+            this.imgLst64.Images.SetKeyName(31, "external_drive.png");
+            this.imgLst64.Images.SetKeyName(32, "file.png");
+            this.imgLst64.Images.SetKeyName(33, "key.png");
+            this.imgLst64.Images.SetKeyName(34, "notepad.png");
+            this.imgLst64.Images.SetKeyName(35, "people.png");
+            this.imgLst64.Images.SetKeyName(36, "preferences.png");
+            this.imgLst64.Images.SetKeyName(37, "stop.png");
+            this.imgLst64.Images.SetKeyName(38, "tools.png");
+            this.imgLst64.Images.SetKeyName(39, "warning.png");
             // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1478, 1061);
-            this.ControlBox = false;
-            this.Controls.Add(this.tbLayoutPanelRight);
-            this.Controls.Add(this.panel5);
+            this.Controls.Add(this.tbLayoutPanelMiddle);
+            this.Controls.Add(this.panelTitle);
             this.Controls.Add(this.splitter1);
             this.Controls.Add(this.exPanelJHCS);
             this.Controls.Add(this.panelRight);
-            this.Controls.Add(this.explorerBarLeft);
             this.Controls.Add(this.exPanelLeft);
+            this.DoubleBuffered = true;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FrmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "# 接触悬挂单元软件系统";
+            this.Text = "BXGW（便携式弓网检测装置）";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmMain_FormClosing);
-            this.tbLayoutPanelRight.ResumeLayout(false);
+            this.tbLayoutPanelMiddle.ResumeLayout(false);
             this.panelImgA.ResumeLayout(false);
             this.panelImgA.PerformLayout();
             this.panelImgB.ResumeLayout(false);
             this.panelImgB.PerformLayout();
             this.panelRight.ResumeLayout(false);
             this.panelPos.ResumeLayout(false);
-            this.panelPos.PerformLayout();
             this.panel7.ResumeLayout(false);
             this.panel7.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dInputLEDWidth)).EndInit();
@@ -2873,16 +2536,16 @@
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.exPanelJHCS.ResumeLayout(false);
-            this.panel5.ResumeLayout(false);
-            this.panel5.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.explorerBarLeft)).EndInit();
+            this.panelTitle.ResumeLayout(false);
             this.exPanelLeft.ResumeLayout(false);
-            this.panel4.ResumeLayout(false);
-            this.panel4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel8.ResumeLayout(false);
+            this.panel8.PerformLayout();
+            this.groupBoxDataInfo.ResumeLayout(false);
+            this.groupBoxDataInfo.PerformLayout();
             this.panel9.ResumeLayout(false);
             this.panel9.PerformLayout();
-            this.panel10.ResumeLayout(false);
+            this.panelTask.ResumeLayout(false);
             this.panel11.ResumeLayout(false);
             this.panel11.PerformLayout();
             this.ResumeLayout(false);
@@ -2890,7 +2553,7 @@
         }
 
         #endregion
-        private System.Windows.Forms.TableLayoutPanel tbLayoutPanelRight;
+        private System.Windows.Forms.TableLayoutPanel tbLayoutPanelMiddle;
         private System.Windows.Forms.Panel panelImgA;
         private System.Windows.Forms.Label lblTipA;
         private System.Windows.Forms.Panel panelImgB;
@@ -2961,83 +2624,62 @@
         private System.Windows.Forms.Label label5;
         private DevComponents.Editors.IntegerInput iInputCurrZoomValue;
         private DevComponents.Editors.IntegerInput iInputZoomChgValue;
-        private DevComponents.DotNetBar.ButtonX btnClossAllSystem;
         private System.Windows.Forms.Label label15;
         private DevComponents.Editors.IntegerInput dInputLEDWidth;
-        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Panel panelTitle;
         private DevComponents.DotNetBar.LabelX lblTaskInfo;
-        private DevComponents.DotNetBar.ExplorerBar explorerBarLeft;
-        private DevComponents.DotNetBar.ExplorerBarGroupItem explorerBarGroupItem1;
-        private DevComponents.DotNetBar.ButtonItem btnItemNewTask;
-        private DevComponents.DotNetBar.ButtonItem buttonItem3;
-        private DevComponents.DotNetBar.ExplorerBarGroupItem explorerBarGroupItem2;
-        private DevComponents.DotNetBar.SwitchButtonItem sBtnCamA;
-        private DevComponents.DotNetBar.LabelItem labelItem1;
-        private DevComponents.DotNetBar.SwitchButtonItem sBtnCamB;
-        private DevComponents.DotNetBar.LabelItem labelItem2;
-        private DevComponents.DotNetBar.SwitchButtonItem sBtnCamE;
-        private DevComponents.DotNetBar.LabelItem labelItem4;
-        private DevComponents.DotNetBar.LabelItem labelItem3;
-        private DevComponents.DotNetBar.ExplorerBarGroupItem explorerBarGroupItem3;
-        private DevComponents.DotNetBar.LabelItem lblDate;
-        private DevComponents.DotNetBar.LabelItem lblTime;
-        private DevComponents.DotNetBar.ButtonItem btnItemBeginTask;
-        private DevComponents.DotNetBar.ButtonItem btnItemStopTask;
         private DevComponents.DotNetBar.ButtonX btnExit;
         private System.Windows.Forms.Timer timerSendTaskName;
-        private DevComponents.DotNetBar.LabelItem labelItem6;
         private System.Windows.Forms.Timer ShowTime;
-        private DevComponents.DotNetBar.LabelItem labelItem5;
         private System.Windows.Forms.Label lblCameraState;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label18;
-        private DevComponents.DotNetBar.ExplorerBarGroupItem exBarGroupItemInfo;
-        private DevComponents.DotNetBar.LabelItem lblItemC1;
-        private DevComponents.DotNetBar.LabelItem lblItemC2;
-        private DevComponents.DotNetBar.LabelItem lblItemC3;
-        private DevComponents.DotNetBar.LabelItem lblItemBatV;
-        private DevComponents.DotNetBar.LabelItem lblItemDBPath;
-        private DevComponents.DotNetBar.SwitchButtonItem sBtnCamC;
-        private DevComponents.DotNetBar.SwitchButtonItem sBtnCamD;
-        private DevComponents.DotNetBar.LabelItem labelItem7;
         private DevComponents.DotNetBar.PanelEx exPanelLeft;
-        private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Panel panel8;
-        private System.Windows.Forms.Label label25;
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.Label label28;
         private System.Windows.Forms.Panel panel9;
-        private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.Label lblJH;
         private System.Windows.Forms.Label label30;
         private System.Windows.Forms.Label label31;
         private System.Windows.Forms.Label label33;
-        private System.Windows.Forms.Panel panel10;
+        private System.Windows.Forms.Panel panelTask;
         private System.Windows.Forms.Label label34;
         private System.Windows.Forms.Label label38;
         private System.Windows.Forms.Panel panel11;
-        private System.Windows.Forms.Label label39;
-        private System.Windows.Forms.Panel panel12;
+        private System.Windows.Forms.Label lblDate;
         private System.Windows.Forms.Panel panel13;
-        private System.Windows.Forms.Button button9;
-        private System.Windows.Forms.Button button8;
-        private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.Label label41;
-        private System.Windows.Forms.Label label40;
-        private DevComponents.DotNetBar.Controls.SwitchButton switchButton1;
+        private System.Windows.Forms.Button btnStopTask;
+        private System.Windows.Forms.Button btnBeginTask;
+        private System.Windows.Forms.Button btnNewTask;
+        private System.Windows.Forms.Label lblTime;
+        private System.Windows.Forms.Label lblWeek;
+        private DevComponents.DotNetBar.Controls.SwitchButton sBtnCamA;
         private System.Windows.Forms.Label label35;
         private System.Windows.Forms.ImageList imgLst64;
-        private System.Windows.Forms.Label label23;
-        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Label lblBatTip;
         private System.Windows.Forms.Label label21;
-        private DevComponents.DotNetBar.Controls.SwitchButton switchButton3;
-        private DevComponents.DotNetBar.Controls.SwitchButton switchButton5;
-        private DevComponents.DotNetBar.Controls.SwitchButton switchButton4;
-        private DevComponents.DotNetBar.Controls.SwitchButton switchButton2;
+        private DevComponents.DotNetBar.Controls.SwitchButton sBtnCamC;
+        private DevComponents.DotNetBar.Controls.SwitchButton sBtnCamB;
+        private System.Windows.Forms.LinkLabel lblItemDBPath;
+        private DevComponents.DotNetBar.Controls.SwitchButton sBtnCamE;
+        private DevComponents.DotNetBar.Controls.SwitchButton sBtnCamD;
         private System.Windows.Forms.Label label37;
+        private System.Windows.Forms.Label lblBatV;
         private System.Windows.Forms.Label label36;
+        private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Panel panel12;
+        private DevComponents.DotNetBar.ButtonX btnClossAllSystem;
+        private System.Windows.Forms.Label lblCpB;
+        private System.Windows.Forms.Label lblCpA;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.GroupBox groupBoxDataInfo;
+        private DevComponents.DotNetBar.Controls.ProgressBarX progressBarX1;
+        private DevComponents.DotNetBar.Controls.ProgressBarX progressBarX2;
     }
 }
 

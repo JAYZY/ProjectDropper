@@ -272,22 +272,7 @@ namespace ProjectDropper.UI {
            // }
             return true;
         }
-        private string OpenDir(string defaultDir = "") {
-            string sRtn = string.Empty;
-            System.Windows.Forms.FolderBrowserDialog dialog = new System.Windows.Forms.FolderBrowserDialog();
-            dialog.SelectedPath = defaultDir;
-            dialog.Description = "请选择离线数据库所在文件夹";
-            if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK) {
-                if (string.IsNullOrEmpty(dialog.SelectedPath)) {
-                    MessageBox.Show(this, @"文件夹路径不能为空", @"提示");
-                    sRtn = string.Empty;
-                }
-                else {
-                    sRtn = dialog.SelectedPath;
-                }
-            }
-            return sRtn;
-        }
+       
         #endregion
 
         #region 导入基础数据库

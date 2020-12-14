@@ -74,17 +74,19 @@
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label1.Location = new System.Drawing.Point(22, 34);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(107, 12);
+            this.label1.Size = new System.Drawing.Size(111, 17);
             this.label1.TabIndex = 6;
-            this.label1.Text = "请输入指令(008)：";
+            this.label1.Text = "请输入指令(666)：";
             // 
             // ExitWarning
             // 
             this.AcceptButton = this.btnExit;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(400, 96);
             this.ControlBox = false;
             this.Controls.Add(this.tbPwd);

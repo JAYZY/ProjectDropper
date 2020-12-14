@@ -92,6 +92,7 @@
     <Compile Include="core\DataType.cs" />
     <Compile Include="core\Crypto.cs" />
     <Compile Include="core\FigHandlingOverlay.cs" />
+    <Compile Include="core\JcwStruct.cs" />
     <Compile Include="core\JpegCompress.cs" />
     <Compile Include="core\Math.cs" />
     <Compile Include="core\NetworkHelper.cs" />
@@ -122,6 +123,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="DB\DbTB.sql" />
     <Content Include="turbojpeg.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

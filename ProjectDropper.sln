@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComClassLib", "ComClassLib\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ControlCenter", "ControlCenter\ControlCenter.csproj", "{8D8982EC-8D1F-46A5-AFA0-ED2F7C4F5FCB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Project2C", "Project2C\Project2C.csproj", "{72D8CC4E-EBAA-4A4F-8390-C4A480904846}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +43,14 @@ Global
 		{8D8982EC-8D1F-46A5-AFA0-ED2F7C4F5FCB}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8D8982EC-8D1F-46A5-AFA0-ED2F7C4F5FCB}.Release|x64.ActiveCfg = Release|Any CPU
 		{8D8982EC-8D1F-46A5-AFA0-ED2F7C4F5FCB}.Release|x64.Build.0 = Release|Any CPU
+		{72D8CC4E-EBAA-4A4F-8390-C4A480904846}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{72D8CC4E-EBAA-4A4F-8390-C4A480904846}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72D8CC4E-EBAA-4A4F-8390-C4A480904846}.Debug|x64.ActiveCfg = Debug|x64
+		{72D8CC4E-EBAA-4A4F-8390-C4A480904846}.Debug|x64.Build.0 = Debug|x64
+		{72D8CC4E-EBAA-4A4F-8390-C4A480904846}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{72D8CC4E-EBAA-4A4F-8390-C4A480904846}.Release|Any CPU.Build.0 = Release|Any CPU
+		{72D8CC4E-EBAA-4A4F-8390-C4A480904846}.Release|x64.ActiveCfg = Release|x64
+		{72D8CC4E-EBAA-4A4F-8390-C4A480904846}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

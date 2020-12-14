@@ -3,9 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
 using System.Data.SQLite;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace ComClassLib.DB {
     public class SqliteHelper {
@@ -23,7 +21,7 @@ namespace ComClassLib.DB {
                 mapSqlite[strName].CloseDb();
             }
             mapSqlite[strName] = new SqliteHelper(dbPath);
-            
+
             if (!string.IsNullOrEmpty(sPwd)) {
                 mapSqlite[strName].setPwd(sPwd);
             }
@@ -37,11 +35,9 @@ namespace ComClassLib.DB {
                 cnn.Open();
                 cnn.ChangePassword(sPwd);
 
-            }
-            catch (Exception) {
+            } catch (Exception) {
                 MsgBox.Error("用户数据库未找到！请联系管理员");
-            }
-            finally {
+            } finally {
                 cnn.Close();
             }
         }
@@ -74,8 +70,7 @@ namespace ComClassLib.DB {
                         con.SetPassword(this.sPwd);
                     }
                     con.Open();
-                }
-                catch (Exception ex) {
+                } catch (Exception ex) {
                     MsgBox.Error("数据库文件:" + DbFullName + ",打开失败！请检查文件是否被占用！\n" + ex.ToString());
                 }
             }
@@ -89,8 +84,7 @@ namespace ComClassLib.DB {
                 if (cmdTran != null) {
                     cmdTran = null;
                 }
-            }
-            catch { }
+            } catch { }
         }
         public void Dispose() {
             con.Dispose();
@@ -101,8 +95,7 @@ namespace ComClassLib.DB {
             try {
                 cmdTran.CommandText = sql;
                 return cmdTran.ExecuteNonQuery();
-            }
-            catch (Exception ex) {
+            } catch (Exception ex) {
                 Console.WriteLine(ex.ToString());
                 return -1;
             }
@@ -115,8 +108,7 @@ namespace ComClassLib.DB {
                     cmdTran.Parameters.AddRange(parameters);
                 }
                 return cmdTran.ExecuteNonQuery();
-            }
-            catch (Exception ex) {
+            } catch (Exception ex) {
                 Console.WriteLine(ex.ToString());
                 return -1;
             }
@@ -177,11 +169,9 @@ namespace ComClassLib.DB {
                         SQLiteDataReader reader = cmd.ExecuteReader();
                         transaction.Commit();
                         dt.Load(reader);
-                    }
-                    catch (Exception) {
+                    } catch (Exception) {
                         dt = null;
-                    }
-                    finally {
+                    } finally {
                         CloseDb();
                     }
                 }
@@ -218,10 +208,12 @@ namespace ComClassLib.DB {
         /// <returns>DataRow</returns>
         public DataRow ExecuteDataRow(string cmdText, Dictionary<string, string> data) {
             DataSet ds = null;
-            if (data == null)
+            if (data == null) {
                 ds = ExecuteDataset(cmdText);
-            else
+            } else {
                 ds = ExecuteDataset(cmdText, data);
+            }
+
             if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0) {
                 return ds.Tables[0].Rows[0];
             }
@@ -243,8 +235,8 @@ namespace ComClassLib.DB {
                     PrepareCommand(command, cmdText, data);
                     var da = new SQLiteDataAdapter(command);
                     da.Fill(ds);
-                }
-                catch (Exception) {
+                } catch (Exception ex) {
+                    MsgBox.Show(ex.ToString());
                     CloseDb();
                     command.Dispose();
                 }
@@ -259,13 +251,11 @@ namespace ComClassLib.DB {
                 using (var da = new SQLiteDataAdapter(cmdText, con)) {
                     da.Fill(ds);
                 }
-            }
-            catch (Exception) {
+            } catch (Exception ex) {
+                Console.WriteLine(ex.ToString());
                 ds = null;
-            }
-            finally {
+            } finally {
                 CloseDb();
-
             }
             return ds;
         }
@@ -305,11 +295,9 @@ namespace ComClassLib.DB {
                 try {
                     PrepareCommand(command, cmdText, data);
                     reader = command.ExecuteReader();
-                }
-                catch {
+                } catch {
                     command.Dispose();
-                }
-                finally {
+                } finally {
                     CloseDb();
                 }
             }
@@ -392,7 +380,23 @@ namespace ComClassLib.DB {
             CloseDb();
             return obj;
         }
+        public object ExecuteScalar(string cmdText, params SQLiteParameter[] parameters) {
+            OpenDb();
+            object rtn = null;
+            using (DbTransaction transaction = con.BeginTransaction()) {
+                using (SQLiteCommand command = new SQLiteCommand(con)) {
+                    command.CommandText = cmdText;
+                    if (parameters != null) {
+                        command.Parameters.AddRange(parameters);
+                    }
+                    command.Prepare();
+                    rtn = command.ExecuteScalar();
+                }
+                transaction.Commit();
+            }
+            return rtn;
 
+        }
 
         #region Select(查询相关)
 
@@ -406,11 +410,9 @@ namespace ComClassLib.DB {
                         return false;
                     }
                 }
-            }
-            catch (Exception ex) {
+            } catch (Exception ex) {
                 MsgBox.Error(tableName + " 表存在检查失败！\n" + ex.ToString());
-            }
-            finally {
+            } finally {
                 CloseDb();
             }
             return true;
@@ -420,15 +422,15 @@ namespace ComClassLib.DB {
         /// <summary>
         /// 判定表中字段是否存在
         /// </summary>
-        /// <param name="tableName"></param>
-        /// <param name="fieldName"></param>
+        /// <param name="tableName">表名</param>
+        /// <param name="fieldName">字段名</param>
         /// <returns></returns>
-        private bool IsFieldExist(String tableName, String fieldName, SQLiteConnection cn) {
+        public  bool IsFieldExist(String tableName, String fieldName) {
             string tableCreateSql = "";
             try {
-                using (SQLiteCommand command = new SQLiteCommand(cn)) {
-                    if (cn.State != ConnectionState.Open) {
-                        cn.Open();
+                using (SQLiteCommand command = new SQLiteCommand(con)) {
+                    if (con.State != ConnectionState.Open) {
+                        con.Open();
                     }
                     command.CommandText = String.Format("select sql from sqlite_master where type = 'table' and name = '{0}'", tableName);
                     var rtn = command.ExecuteScalar();
@@ -436,8 +438,9 @@ namespace ComClassLib.DB {
                         tableCreateSql = rtn.ToString();
                     }
                 }
+            } catch (Exception ex) {
+                Console.WriteLine(fieldName + " 字段检查失败\n" + ex.ToString());
             }
-            catch (Exception ex) { MsgBox.Show(fieldName + " 字段检查失败\n" + ex.ToString()); }
 
             if (!string.IsNullOrEmpty(tableCreateSql) && tableCreateSql.Contains(fieldName)) {
                 return true;

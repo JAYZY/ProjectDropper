@@ -20,5 +20,13 @@ namespace ComClassLib.core
             TaskEnd
 
         }
+        public enum DbName {
+            LoginDb,    //登录数据库
+            IndexDb,    //索引数据库
+            JHDB,
+            CurrDb,     //当前分库图像数据库
+            TmpDbA,     //临时数据库A
+            TmpDbB      //临时数据库A
+        }
     }
 }

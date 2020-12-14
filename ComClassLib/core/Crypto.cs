@@ -6,7 +6,7 @@ using System.Security.Cryptography;
 using System.IO;
 
 namespace ComClassLib.core {
-    public class Crypto {
+    public class GobalCrypto {
         private static readonly string sKey="Js028xNl";
         /// <summary>
         /// 加密函数--输入字符串加密为密码

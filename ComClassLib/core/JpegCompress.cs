@@ -171,7 +171,9 @@ namespace ComClassLib.core {
             }
             return cfImg;
         }
-       
 
+        public static CFviImage Decompress(byte[] imgBytes, int length) {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -2,6 +2,7 @@
 using ComClassLib.core;
 using ComClassLib.FileOp;
 using DevComponents.DotNetBar;
+using DevComponents.DotNetBar.Controls;
 using ProjectDropper.core;
 using ProjectDropper.Properties;
 using ProjectDropper.UI;
@@ -73,8 +74,11 @@ namespace ProjectDropper {
         }
 
         private void IniCtrl() {
+            // lblTime.Font = new Font("Digital dream fat", 28, System.Drawing.FontStyle.Bold);
+            lblTime.Font = new Font("Digiface", 45, System.Drawing.FontStyle.Bold);
             lblItemDBPath.Text = Settings.Default.DBPath;//数据存储路径
             _tasks = new Task[2];
+
             _hDevs = new IntPtr[2] { IntPtr.Zero, IntPtr.Zero };
             _imageViews = new CtrlView[] { new CtrlView("cView1"), new CtrlView("cView2") };
             _ipAddress = new string[] { Settings.Default.cameraIPA, Settings.Default.cameraIPB };
@@ -128,7 +132,8 @@ namespace ProjectDropper {
             //开始相机状态刷新
             //开启 TCP client
             TCPHelper.ConnectToServer(Settings.Default.TCPSevIP, Settings.Default.TCPSevPort);
-
+            //开启计时器
+            ShowTime.Start();
             // timerCameraStateUpdate.Start();
         }
 
@@ -169,7 +174,11 @@ namespace ProjectDropper {
                         pImageData = (IntPtr)p;
                     }
                 }
-                int iImgLen = VideoM.GetRpcImage(hDec, 0, pImageData);
+                int iImgLen = 0;
+                lock (DBFileOp.lockObj) {
+                    iImgLen = VideoM.GetRpcImage(hDec, 0, pImageData);
+
+                }
                 if (iImgLen > 16) {
                     byte[] bWith = new byte[4];
                     byte[] bHeight = new byte[4];
@@ -297,18 +306,20 @@ namespace ProjectDropper {
 
         }
         #region 显示控制
+        CancellationToken[] token = new CancellationToken[4];
+        ManualResetEvent resetEvent = new ManualResetEvent(true);
 
         //开启四个线程 链接相机
         private void CameraTask(int i) {
             try {
-                CancellationToken token = _tokenSource[i].Token;
+                token[i] = _tokenSource[i].Token;
                 _tasks[i] = new Task(async () =>
                 {
                     while (_isRunVideoServ) {
                         if (_tokenSource[i].IsCancellationRequested) {
                             return;
                         }
-
+                        resetEvent.WaitOne();
                         if (!ConnectCamera(i)) {
                             //若没有连通 休息10秒重试
                             Console.WriteLine($"{i}号相机，没有连通！");
@@ -321,11 +332,12 @@ namespace ProjectDropper {
 
                         LoadImg(_imageViews[i], _hDevs[i], ref iw, ref ih, ref lTime);
                         imgViewRefresh(i);
+
                         // picVideo.Image = VideoM.GetImg(_hDec, ref iw, ref ih, ref lTime);
                         //lblCameraInfo.Text = VideoM.GetCameraParam(_hDevs[i]);                    
                         await Task.Delay(Settings.Default.RateViewTime);
                     }
-                }, token);
+                }, token[i]);
                 _tasks[i].Start();
             } catch (Exception ex) {
                 MsgBox.Show(ex.ToString());
@@ -347,7 +359,6 @@ namespace ProjectDropper {
             if (e.Button == MouseButtons.Left) {
                 ShowOneImg((CtrlView)sender);
             }
-
         }
         bool isShowOne = false;//是否只显示一张图片
 
@@ -364,10 +375,10 @@ namespace ProjectDropper {
             }
             try {
                 if (isShowOne) {
-                    tbLayoutPanelRight.ColumnStyles[iColId].Width = 0.5f * tbLayoutPanelRight.Width;
-                    tbLayoutPanelRight.ColumnStyles[1 - iColId].Width = 0.5f * tbLayoutPanelRight.Width;
-                    tbLayoutPanelRight.RowStyles[iRowId].Height = 0.5f * tbLayoutPanelRight.Height;
-                    tbLayoutPanelRight.RowStyles[1 - iRowId].Height = 0.5f * tbLayoutPanelRight.Height;
+                    tbLayoutPanelMiddle.ColumnStyles[iColId].Width = 0.5f * tbLayoutPanelMiddle.Width;
+                    tbLayoutPanelMiddle.ColumnStyles[1 - iColId].Width = 0.5f * tbLayoutPanelMiddle.Width;
+                    tbLayoutPanelMiddle.RowStyles[iRowId].Height = 0.5f * tbLayoutPanelMiddle.Height;
+                    tbLayoutPanelMiddle.RowStyles[1 - iRowId].Height = 0.5f * tbLayoutPanelMiddle.Height;
                     isShowOne = !isShowOne;
                     exPanelJHCS.Expanded = true;
                 } else {
@@ -375,10 +386,10 @@ namespace ProjectDropper {
                     //tbLayoutPanelRight.ColumnStyles[1 - iColId].Width = 0.02f * tbLayoutPanelRight.Width;
                     //tbLayoutPanelRight.RowStyles[iRowId].Height = 0.98f*tbLayoutPanelRight.Height;
                     //tbLayoutPanelRight.RowStyles[1 - iRowId].Height = 0.02f * tbLayoutPanelRight.Height; ;
-                    tbLayoutPanelRight.ColumnStyles[iColId].Width = tbLayoutPanelRight.Width;
-                    tbLayoutPanelRight.ColumnStyles[1 - iColId].Width = 0;
-                    tbLayoutPanelRight.RowStyles[iRowId].Height = tbLayoutPanelRight.Height;
-                    tbLayoutPanelRight.RowStyles[1 - iRowId].Height = 0;
+                    tbLayoutPanelMiddle.ColumnStyles[iColId].Width = tbLayoutPanelMiddle.Width;
+                    tbLayoutPanelMiddle.ColumnStyles[1 - iColId].Width = 0;
+                    tbLayoutPanelMiddle.RowStyles[iRowId].Height = tbLayoutPanelMiddle.Height;
+                    tbLayoutPanelMiddle.RowStyles[1 - iRowId].Height = 0;
                     isShowOne = !isShowOne;
                     exPanelJHCS.Expanded = false;
                 }
@@ -522,8 +533,22 @@ namespace ProjectDropper {
                 }
 
             }
-
+            int state = 0;
+            if (JcwReturn.JCW_OK == jcwlib.Jcw_GetDevState(m_hjcw, JMID.JMID_GEO_DEV0, ref state)) {
+                if (state == -1) {//未连接 灰色
+                    lblJH.ForeColor = Color.FromArgb(128, 128, 128, 128);
+                    toolTip1.SetToolTip(lblJH, "未连接！");
+                } else if (state == 0) {//连接不正常  红色
+                    lblJH.ForeColor = Color.FromArgb(192, 0, 0);
+                    toolTip1.SetToolTip(lblJH, "连接失败！");
+                } else if (state == 1) {//连接 绿色
+                    lblJH.ForeColor = Color.ForestGreen;
+                    toolTip1.SetToolTip(lblJH, "连接正常！");
+                }
+            }
         }
+
+
         #endregion
 
 
@@ -858,6 +883,7 @@ namespace ProjectDropper {
                 //新建任务修改按钮状态
                 tState = taskState.plan;
                 ChBtnState(tState);
+                lblTaskInfo.ForeColor = Color.DimGray;
             }
 
 
@@ -869,23 +895,23 @@ namespace ProjectDropper {
         private void ChBtnState(taskState taskS) {
             switch (taskS) {
                 case taskState.none:
-                    btnItemNewTask.Enabled = true;
-                    btnItemBeginTask.Enabled = false;
-                    btnItemStopTask.Enabled = false;
+                    btnNewTask.Enabled = true;
+                    btnBeginTask.Enabled = false;
+                    btnStopTask.Enabled = false;
                     break;
                 case taskState.plan://创建任务成功
-                    btnItemBeginTask.Enabled = true;
-                    btnItemStopTask.Enabled = false;
+                    btnBeginTask.Enabled = true;
+                    btnStopTask.Enabled = false;
                     break;
                 case taskState.running:
-                    btnItemNewTask.Enabled = false;
-                    btnItemBeginTask.Enabled = false;
-                    btnItemStopTask.Enabled = true;
+                    btnNewTask.Enabled = false;
+                    btnBeginTask.Enabled = false;
+                    btnStopTask.Enabled = true;
                     break;
                 case taskState.finish:
-                    btnItemNewTask.Enabled = true;
-                    btnItemBeginTask.Enabled = false;
-                    btnItemStopTask.Enabled = false;
+                    btnNewTask.Enabled = true;
+                    btnBeginTask.Enabled = false;
+                    btnStopTask.Enabled = false;
 
                     break;
                 default:
@@ -918,6 +944,7 @@ namespace ProjectDropper {
                 //发送接触网存储指令
                 jcwlib.Jcw_CloseDebugDataFile(m_hjcw);
                 jcwlib.Jcw_CreateDebugDataFile(m_hjcw, Path.Combine(rootPath, dateTimeTaskStr + "_几何.db"));
+
                 //发送相机指令
                 param = CameraParam.StartInspect;
                 sParamValue = dateTimeTaskStr;
@@ -929,13 +956,53 @@ namespace ProjectDropper {
                 //启动数据文件
                 string vPathA = Path.Combine(Settings.Default.cVideoPathA, dateStr, dateTimeTaskStr);
                 string vPathB = Path.Combine(Settings.Default.cVideoPathB, dateStr, dateTimeTaskStr);
-                  dbOp = new DBFileOp(vPathA, vPathB, rootPath);
+                DBFileOp.CallFunc = DbCopyCallFunc;
+                dbOp = new DBFileOp(vPathA, vPathB, rootPath);
+                //写入任务信息【线路信息】
+                dbOp.WriteLineInfo(_currTask);
+
                 dbOp.StartProcessDB();
+                lblTaskInfo.ForeColor = Color.ForestGreen;
 
             } catch (Exception ex) {
                 MsgBox.Show(ex.ToString());
             }
         }
+
+        public void DbCopyCallFunc(string sMsg) {
+            if (groupBoxDataInfo.InvokeRequired) {
+                Action<string> a = DbCopyCallFunc;
+
+                groupBoxDataInfo.Invoke(a, sMsg);
+
+            } else {
+
+                string[] str = sMsg.Split('#');
+                if (str[0] == DBFileOp.Cmd.Over.ToString()) {
+                    panelTask.Enabled = true;
+                    resetEvent.Set();
+                } else if (str[0] == DBFileOp.Cmd.CProgressA.ToString()) {
+                    progressBarX1.Text = str[2] + "%";
+                    progressBarX1.Value = Convert.ToInt32(str[2]);
+                    toolTip1.SetToolTip(progressBarX1, str[1]);
+                } else if (str[0] == DBFileOp.Cmd.CProgressB.ToString()) {
+                    progressBarX2.Text = str[2] + "%";
+                    progressBarX2.Value = Convert.ToInt32(str[2]);
+                    toolTip1.SetToolTip(progressBarX2, str[1]);
+                } else if (str[0] == DBFileOp.Cmd.CPA.ToString()) {
+                    lblCpA.Text = $"{str[1]}/{str[2]}";
+                } else if (str[0] == DBFileOp.Cmd.CPB.ToString()) {
+                    lblCpB.Text = $"{str[1]}/{str[2]}";
+                } else if (str[0] == DBFileOp.Cmd.IndexA.ToString()) {
+                    //lblMatchA.Text = str[1];
+                } else if (str[0] == DBFileOp.Cmd.MatchB.ToString()) {
+                    //  lblMatchB.Text = str[1];
+                } else if (str[0] == DBFileOp.Cmd.NoMath.ToString()) {
+                    //  lblNoMatch.Text = str[1];
+                }
+            }
+        }
+
 
 
         private void btnItemStopTask_Click(object sender, EventArgs e) {
@@ -952,25 +1019,33 @@ namespace ProjectDropper {
                     dateTimeTaskStr = "";
                     tState = taskState.finish;
                     ChBtnState(tState);
-                    dbOp.StopProcessDB();
-                    MonitorTask nextTask = MonitorTask.GetNextPlanTask(_currTask);
-                    if (nextTask != null && DialogResult.Yes == ComClassLib.MsgBox.YesNo($"存在计划任务-{nextTask.TaskName}！\n是否自动开启？")) {
-                        Thread.Sleep(1000);
-                        _currTask = nextTask;
-                        lblTaskInfo.Text = $"{_currTask.LineName} {_currTask.SType} " +
-                            $"{_currTask.StartStation}-{_currTask.EndStation}";
-                        //新建任务修改按钮状态Task
-                        tState = taskState.running;
-                        ChBtnState(tState);
-                        param = CameraParam.StartInspect;
-                        sParamValue = $"{_currTask.LineName}-{_currTask.TaskName}";
-                        SetTaskState();
-                        timerSendTaskName.Start();
+                    dbOp?.StopProcessDB();
+                    lblTaskInfo.ForeColor = Color.FromArgb(191, 0, 0);
+                    //任务
+                    resetEvent.Reset(); //停止任务
 
-                    }
+                    panelTask.Enabled = false;
+                    //
+
+
+                    //MonitorTask nextTask = MonitorTask.GetNextPlanTask(_currTask);
+                    //if (nextTask != null && DialogResult.Yes == ComClassLib.MsgBox.YesNo($"存在计划任务-{nextTask.TaskName}！\n是否自动开启？")) {
+                    //    Thread.Sleep(1000);
+                    //    _currTask = nextTask;
+                    //    lblTaskInfo.Text = $"{_currTask.LineName} {_currTask.SType} " +
+                    //        $"{_currTask.StartStation}-{_currTask.EndStation}";
+                    //    //新建任务修改按钮状态Task
+                    //    tState = taskState.running;
+                    //    ChBtnState(tState);
+                    //    param = CameraParam.StartInspect;
+                    //    sParamValue = $"{_currTask.LineName}-{_currTask.TaskName}";
+                    //    SetTaskState();
+                    //    timerSendTaskName.Start();
+
+                    //}
                 } catch (Exception ex) {
 
-                    MsgBox.Show(ex.ToString());
+                    Console.WriteLine(ex.ToString());
 
                 }
             }
@@ -1016,12 +1091,13 @@ namespace ProjectDropper {
                 ExitWarning exitW = new ExitWarning("确认退出系统？");
                 DialogResult dr = exitW.ShowDialog();
                 if (dr == DialogResult.OK) {
-                    UDPHelper.StopReceive(); //停止UDP
+                    StopUDPListener(); //停止UDP
                     TCPHelper.Close();
                     isClose = true;
-                   
-                    Thread.Sleep(100);
-                    Application.Exit();
+
+                    Thread.Sleep(1000);
+                    //Application.Exit();
+                    Environment.Exit(0);
                 } else {
                     isClose = false;
                     e.Cancel = true;
@@ -1077,10 +1153,18 @@ namespace ProjectDropper {
 
 
         #region UDP监听
+
+        List<UDPHelper> lsUDP = new List<UDPHelper>();
         private void StartUDPListener() {
             UDPHelper.CallFunc = UdpMsgCall;
-            UDPHelper.StopReceive();
-            UDPHelper.StartReceive(Settings.Default.LocalIP, Settings.Default.UDPPort);
+
+            //获取IP地址
+            List<string> ips = NetworkHelper.GetIPs();
+            for (int i = 0; i < ips.Count; i++) {
+
+                lsUDP.Add(new UDPHelper(ips[i], Settings.Default.UDPPort));
+                lsUDP[i].StartReceive();
+            }
         }
 
         public void UdpMsgCall(string sMsg) {
@@ -1088,42 +1172,40 @@ namespace ProjectDropper {
             if (btnExit.InvokeRequired) {
                 Action<string> a = UdpMsgCall;
                 btnExit.Invoke(a, sMsg);
-
             } else {
                 try {
                     if (sMsg.Length < 5) {
                         return;
                     }
-
+                    //MsgBox.Show("测试--UDP接收到的信息为：" + sMsg);
                     UPDInfo udpInfo = JsonHelper.GetModel<UPDInfo>(sMsg);
-                    lblItemC1.ImageIndex = (udpInfo.cam0 == 1) ? 10 : 11;
-                    lblItemC2.ImageIndex = (udpInfo.cam1 == 1) ? 10 : 11;
-                    lblItemC3.ImageIndex = (udpInfo.cam2 == 1) ? 10 : 11;
-                    lblItemBatV.Text = $"电压(V)：{udpInfo.GetCBat().ToString("0.0")} V";
+                    //lblC1.ImageIndex = (udpInfo.cam0 == 1) ? 10 : 11;
+                    // lblItemC2.ImageIndex = (udpInfo.cam1 == 1) ? 10 : 11;
+                    // lblItemC3.ImageIndex = (udpInfo.cam2 == 1) ? 10 : 11;
+                    lblBatV.Text = $"{udpInfo.GetCBat().ToString("0.0")} V";
                     sBtnCamA.Value = (udpInfo.cam0 == 1);
                     sBtnCamB.Value = (udpInfo.cam1 == 1);
-                    sBtnCamE.Value = (udpInfo.cam2 == 1);
+                    sBtnCamC.Value = (udpInfo.cam2 == 1);
                 } catch (Exception) {
-
+                    // MsgBox.Show("UDP信号解析错误!\n" + ex.ToString());
 
                 }
             }
         }
-        #endregion
-        #region TCP 发送
-
-        private void sBtnCam_ValueChanged(object sender, EventArgs e) {
-
-
-
+        private void StopUDPListener() {
+            for (int i = 0; i < lsUDP.Count; i++) {
+                lsUDP[i].StopReceive();
+            }
         }
+
         #endregion
+
 
         private void sBtnCam_Click(object sender, EventArgs e) {
             byte[] closeCode = new byte[] { 00, 00, 00, 00, 00, 06, 01, 05, 00, 00, 00, 00 };
             byte[] openCode = new byte[] { 00, 00, 00, 00, 00, 06, 01, 05, 00, 00, 0xFF, 00 };
 
-            SwitchButtonItem sbtnItem = (SwitchButtonItem)sender;
+            SwitchButton sbtnItem = (SwitchButton)sender;
 
             switch (sbtnItem.Name) {
                 case "sBtnCamA":
@@ -1166,18 +1248,21 @@ namespace ProjectDropper {
                         openCode[9] = 0x04;
                     }
                     break;
-
             }
-           
-        
-            if (sbtnItem.Value  ) {
+
+            if (sbtnItem.Value) {
+                ExitWarning exitWarning = new ExitWarning("确定是否关闭该设备（关闭电源）！");
+                if (exitWarning.ShowDialog() == DialogResult.Cancel) {
+                    sbtnItem.Value = true;
+                    return;
+                }
                 TCPHelper.SendData(closeCode);
                 Console.WriteLine(closeCode.ToString());
-                sbtnItem.Tooltip = "当前为关机状态";
-            } else    {
+                toolTip1.SetToolTip(sbtnItem, "当前为关机状态");
+            } else {
                 TCPHelper.SendData(openCode);
                 Console.WriteLine(openCode.ToString());
-                sbtnItem.Tooltip = "当前为开机状态";
+                toolTip1.SetToolTip(sbtnItem, "当前为开机状态");
 
 
             }
@@ -1189,8 +1274,10 @@ namespace ProjectDropper {
         /// <param name="e"></param>
         private void ShowTime_Tick(object sender, EventArgs e) {
             DateTime dt = DateTime.Now;
-            lblDate.Text = dt.ToString("YYYY-MM-dd");
+            lblDate.Text = dt.ToString("MM月dd日");
+            lblWeek.Text = FileHelper.GetWeekName();
             lblTime.Text = dt.ToString("HH:mm:ss");
         }
+
     }
 }

@@ -121,7 +121,7 @@ namespace ProjectDropper.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("E:\\data")]
+        [global::System.Configuration.DefaultSettingValueAttribute("D:\\data")]
         public string DBPath {
             get {
                 return ((string)(this["DBPath"]));
@@ -205,18 +205,6 @@ namespace ProjectDropper.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("192.168.100.78")]
-        public string LocalIP {
-            get {
-                return ((string)(this["LocalIP"]));
-            }
-            set {
-                this["LocalIP"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("192.168.100.105")]
         public string TCPSevIP {
             get {
@@ -236,6 +224,18 @@ namespace ProjectDropper.Properties {
             }
             set {
                 this["TCPSevPort"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public double BatOffset {
+            get {
+                return ((double)(this["BatOffset"]));
+            }
+            set {
+                this["BatOffset"] = value;
             }
         }
     }

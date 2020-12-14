@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Net;
+using System.Net.NetworkInformation;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading;
@@ -79,7 +80,27 @@ namespace ComClassLib.core {
                 } catch { }
             }
         }
+        //返回所有的IP地址
+        public static List<string> GetIPs() {
+            List<string> ips = new List<string>();
+            NetworkInterface[] NetworkInterfaces = NetworkInterface.GetAllNetworkInterfaces();
+            foreach (NetworkInterface NetworkIntf in NetworkInterfaces) {
+                IPInterfaceProperties IPInterfaceProperties = NetworkIntf.GetIPProperties();
+                UnicastIPAddressInformationCollection UnicastIPAddressInformationCollection = IPInterfaceProperties.UnicastAddresses;
+                foreach (UnicastIPAddressInformation UnicastIPAddressInformation in UnicastIPAddressInformationCollection) {
+                    if (UnicastIPAddressInformation.Address.AddressFamily == AddressFamily.InterNetwork) {
+                        string ip = UnicastIPAddressInformation.Address.ToString();
+                        string firstIp = ip.Substring(0, 3);
+                        if (firstIp == "169" || firstIp == "127") {
+                            continue;
+                        }
 
+                        ips.Add(ip);
+                    }
+                }
+            }
+            return ips;
+        }
         public void Send(byte[] buffer) {
             if (ConnSocket == null || !ConnSocket.Connected) {
                 ConnectSvr();
@@ -93,21 +114,27 @@ namespace ComClassLib.core {
 
     }
     public class UDPHelper {
-        static UdpClient udpcRecv = null;
-        static IPEndPoint ipEnd = null;
-        static bool IsUdpcRecvStart = false; //开关
-        static Thread thrRecv;
+        UdpClient udpcRecv = null;
+        IPEndPoint ipEnd = null;
+        bool IsUdpcRecvStart; //开关
+        Thread thrRecv;
         public static Action<string> CallFunc { get; set; } //回调函数
-        public static void StartReceive(string ip, int udpPort) {
-            if (!IsUdpcRecvStart) { //开始监听
-                ipEnd = new IPEndPoint(IPAddress.Parse(ip), udpPort);
-                udpcRecv = new UdpClient(ipEnd);
-                thrRecv = new Thread(ReceivMsg);
+
+        public UDPHelper(string ip, int udpPort) {
+            ipEnd = new IPEndPoint(IPAddress.Parse(ip), udpPort);
+            Console.WriteLine(ip);
+            udpcRecv = new UdpClient(ipEnd);
+            thrRecv = new Thread(ReceivMsg);
+            IsUdpcRecvStart = false;
+        }
+        public void StartReceive() {
+            if (!IsUdpcRecvStart) { //开始监听            
                 thrRecv.Start();
                 IsUdpcRecvStart = true;
             }
         }
-        public static void StopReceive() {
+
+        public void StopReceive() {
             if (IsUdpcRecvStart) {
                 try {
                     if (thrRecv.IsAlive) {
@@ -118,15 +145,16 @@ namespace ComClassLib.core {
                 } catch { }
             }
         }
-        public static void ReceivMsg() {
+        public void ReceivMsg() {
             while (IsUdpcRecvStart) {
                 try {
                     byte[] bytRecv = udpcRecv.Receive(ref ipEnd);
                     string msg = Encoding.ASCII.GetString(bytRecv, 0, bytRecv.Length);
+
                     CallFunc?.Invoke(msg);
                     //Thread.Sleep(5000);
-                } catch (Exception) {
-
+                } catch (Exception ex) {
+                   // MsgBox.Show("UDP接收数据错误：" + ex.ToString());
                 }
             }
         }
@@ -166,8 +194,9 @@ namespace ComClassLib.core {
                 byte[] newBytes = new byte[1024];
                 networkStream.BeginRead(newBytes, 0, newBytes.Length, new AsyncCallback(AsynReceiveData), newBytes);
                 string smg = Encoding.ASCII.GetString(newBytes);
-                Console.WriteLine(smg);
-            } catch (Exception) {
+                Console.WriteLine("测试--接收到的信息为：" + smg);
+            } catch (Exception ex) {
+               // MsgBox.Show("TCP 接收数据错误" + ex.ToString());
             }
         }
 

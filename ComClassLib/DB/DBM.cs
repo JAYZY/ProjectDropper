@@ -3,13 +3,7 @@ using System;
 using System.IO;
 
 namespace ComClassLib.DB {
-    public enum DbName {
-        LoginDb,    //登录数据库
-        IndexDb,    //索引数据库
-        CurrDb,     //当前分库图像数据库
-        TmpDbA,     //临时数据库A
-        TmpDbB      //临时数据库A
-    }
+ 
     public class DBM {
 
         #region 登录表管理 -- 停用
@@ -29,8 +23,8 @@ namespace ComClassLib.DB {
                     //不存在文件 创建加密数据库
                     SqliteHelper.CreateDbWithPwd(dbDbFullName, dbPwd);
                 }
-                SqliteHelper.GenerateSqlite(DbName.IndexDb.ToString(), dbDbFullName, dbPwd);
-                loginDB = SqliteHelper.GetSqlite(DbName.IndexDb.ToString());
+                SqliteHelper.GenerateSqlite(DataType.DbName.IndexDb.ToString(), dbDbFullName, dbPwd);
+                loginDB = SqliteHelper.GetSqlite(DataType.DbName.IndexDb.ToString());
                 if (loginDB.IsTableExist("login")) {
                     //CreateLoginTB();
                     CreateFaultTB();
@@ -53,7 +47,7 @@ namespace ComClassLib.DB {
                 string sTable = "create table login(uId INTEGER primary key AUTOINCREMENT, uName varchar(50) not null," +
                         "uPwd  varchar(100) not null,loginDatetime  datetime NOT NULL DEFAULT(datetime('now', 'localtime')))";
                 db.ExecuteNonQuery(sTable, null);
-                string pwd = Crypto.DesEncrypt("123");
+                string pwd = GobalCrypto.DesEncrypt("123");
                 string sql = $"insert into login (uName,uPwd) values( 'admin','{pwd}')";
                 db.ExecuteNonQuery(sql, null);
 
@@ -71,7 +65,7 @@ namespace ComClassLib.DB {
                  + "isAI int DEFAULT 1, analyzeDate datetime NOT NULL DEFAULT(datetime('now', 'localtime')), " +
                  "confirmDate datetime, confirmUser varchar(50), confirmResult int DEFAULT -1, memo varchar(100) )";
 
-                SqliteHelper loginDB = SqliteHelper.GetSqlite(DbName.IndexDb.ToString());
+                SqliteHelper loginDB = SqliteHelper.GetSqlite(DataType.DbName.IndexDb.ToString());
                 loginDB.ExecuteNonQuery(strCreateFaultTB, null);
             } catch (Exception ex) {
                 MsgBox.Error("创建缺陷表错误！\n详情信息：\n" + ex.ToString());
@@ -88,7 +82,7 @@ namespace ComClassLib.DB {
                     //不存在文件 创建加密数据库
                     // SqliteHelper.CreateDbWithPwd(dbDbFullName, dbPwd);
                 }
-                indexDB = SqliteHelper.GenerateSqlite(DbName.IndexDb.ToString(), dbDbFullName);
+                indexDB = SqliteHelper.GenerateSqlite(DataType.DbName.IndexDb.ToString(), dbDbFullName);
                 if (!indexDB.IsTableExist("picInfoInd")) {
                     //若库中表不存在，则创建
                     string strImgInofTb = "CREATE TABLE picInfoInd(imgGUID INT64 PRIMARY KEY ,cId INTEGER,shootTime INT64,poleNum TEXT,KMValue TEXT,STN TEXT,SubDBId int);";
@@ -119,11 +113,11 @@ namespace ComClassLib.DB {
         /// </summary>
         public static bool WriteStationInfo(StationInfo station) {
 
-            SqliteHelper indexDB = SqliteHelper.GetSqlite(DbName.IndexDb.ToString());
+            SqliteHelper indexDB = SqliteHelper.GetSqlite(DataType.DbName.IndexDb.ToString());
             string sSql = string.Format("insert into stationInfo (sLineName,sStartStation,sEndStation ,iType,taskDate)values ( '{0}','{1}','{2}',{3},'{4}' )"
                 , station.LineName, station.StartStation, station.EndStation, station.IType, DateTime.Now.ToString("s"));
             try {
-                SqliteHelper.GetSqlite(DbName.IndexDb.ToString()).ExecuteNonQuery(sSql, null);
+                SqliteHelper.GetSqlite(DataType.DbName.IndexDb.ToString()).ExecuteNonQuery(sSql, null);
             } catch (Exception) {
                 MsgBox.Error("写入任务信息失败！");
                 return false;
@@ -135,7 +129,7 @@ namespace ComClassLib.DB {
         //创建点击信息表
         public static void CreateProcesedInfoTB() {
             try {
-                SqliteHelper sqlite = SqliteHelper.GetSqlite(DbName.IndexDb.ToString());
+                SqliteHelper sqlite = SqliteHelper.GetSqlite(DataType.DbName.IndexDb.ToString());
                 if (sqlite != null && !sqlite.IsTableExist("processedInfo")) {
                     string sSql = "create table  processedInfo(pInfoId INTEGER primary key AUTOINCREMENT,imgGUID int64 not null,clickUser varchar(50))";
                     sqlite.ExecuteNonQuery(sSql);
@@ -155,7 +149,7 @@ namespace ComClassLib.DB {
         public static SqliteHelper CreateCurrentDB(string dbDbFullName) {
             SqliteHelper currImgDB = null;
             try {
-                currImgDB = SqliteHelper.GenerateSqlite(DbName.CurrDb.ToString(), dbDbFullName);
+                currImgDB = SqliteHelper.GenerateSqlite(DataType.DbName.CurrDb.ToString(), dbDbFullName);
                 if (!currImgDB.IsTableExist("imgInfo")) {
                     //若图像表不存在 创建 图像表
                     string strCreateImgTb = "CREATE TABLE imgInfo(imgGUID INT64 PRIMARY KEY ,imgContent BLOB,sJson TEXT );";
@@ -179,7 +173,7 @@ namespace ComClassLib.DB {
             try {
 
                 if (IndexDB == null) {
-                    IndexDB = SqliteHelper.GetSqlite(DbName.IndexDb.ToString());
+                    IndexDB = SqliteHelper.GetSqlite(DataType.DbName.IndexDb.ToString());
                 }
 
                 if (!IndexDB.IsTableExist("processedInfo")) {

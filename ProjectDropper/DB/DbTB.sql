@@ -6,8 +6,11 @@ CREATE TABLE stationInfo(
 	sType tinyint,   -- 1 上行 2下行
 	taskDate DATETIME NOT NULL
 );
+
+
+
 -- //创建 线路信息表 pID ，shootTime拍摄时间
---	string strCreateStationTB = "CREATE TABLE stationInfo(sId INTEGER PRIMARY KEY,sName varchar(50),sType tinyint,taskDate DATE );";
+CREATE TABLE stationInfo(sId INTEGER PRIMARY KEY,sLineName varchar(255),[sStartStation] VARCHAR(255),sEndStation VARCHAR(255),sType tinyint,taskDate DATE);
 
 
 CREATE TABLE indexTB(

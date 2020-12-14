@@ -101,11 +101,11 @@ namespace ComClassLib.core {
         /// 从数据库中读取 线路信息
         /// </summary>
         /// <returns></returns>
-        public static StationInfo FromDb() {
-            SqliteHelper db = SqliteHelper.GetSqlite(DbName.IndexDb.ToString());
+        public static StationInfo FromDb(string tbName) {
+            SqliteHelper db = SqliteHelper.GetSqlite(DataType.DbName.IndexDb.ToString());
             if (db == null)
                 return null;
-            string sqlStr = "select * from stationInfo";
+            string sqlStr = $"select * from {tbName}";
             DataRow dr = db.ExecuteDataRow(sqlStr, null);
             if (dr == null) {
                 return null;
@@ -139,6 +139,9 @@ namespace ComClassLib.core {
         //    }
 
         //}
+
+
+      
 
 
     }

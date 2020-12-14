@@ -27,7 +27,7 @@
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="DBPath" Type="System.String" Scope="User">
-      <Value Profile="(Default)">E:\data</Value>
+      <Value Profile="(Default)">D:\data</Value>
     </Setting>
     <Setting Name="currDBIndex" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">0</Value>
@@ -47,14 +47,14 @@
     <Setting Name="UDPPort" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">18887</Value>
     </Setting>
-    <Setting Name="LocalIP" Type="System.String" Scope="User">
-      <Value Profile="(Default)">192.168.100.78</Value>
-    </Setting>
     <Setting Name="TCPSevIP" Type="System.String" Scope="User">
       <Value Profile="(Default)">192.168.100.105</Value>
     </Setting>
     <Setting Name="TCPSevPort" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">502</Value>
+    </Setting>
+    <Setting Name="BatOffset" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">0</Value>
     </Setting>
   </Settings>
 </SettingsFile>
