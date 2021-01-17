@@ -40,8 +40,8 @@ namespace ComClassLib {
             // byte[] byteData = FileOp.FileHelper.getImageByte(filePath);
             //LoadImg(byteData, (uint)byteData.Length, 0);
             try {
-
-                //imgView.Image.Dispose();
+                if(imgView.Image!=null)
+                imgView.Image.Dispose();
                 imgView.Image = new FVIL.Data.CFviImage();
                 FVIL.File.Function.LoadImageFile(filePath, imgView.Image, FVIL.PixelMode.Unpacking);
                 //Fit();

@@ -70,7 +70,7 @@ namespace ProjectDropper {
             InitializeComponent();
             IniCtrl();
             ConnJH();
-            StartUDPListener();
+           StartUDPListener();
         }
 
         private void IniCtrl() {
@@ -97,6 +97,7 @@ namespace ProjectDropper {
 
             _resetEvent = new ManualResetEvent(true);
             //
+            
             comBoxCameraSel.Items.Clear();
             for (int i = 0; i < _imgPanels.Length; i++) {
                 //_token[i] = _tokenSource[i].Token;
@@ -105,7 +106,7 @@ namespace ProjectDropper {
 
                 _imageViews[i].MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(ImgView_MouseDoubleClick);
                 _lblCameraStates[i].ImageIndex = 1;
-                _lblTips[i].Text = _ipAddress[i];
+                _lblTips[i].Text = $"{_ipAddress[i]}:{_iPort}";
                 _lblTips[i].ForeColor = Color.Red;
                 comBoxCameraSel.Items.Add($"吊弦相机_{_ipAddress[i]}");
                 //ConnectCamera(i);//链接相机
@@ -125,7 +126,7 @@ namespace ProjectDropper {
             dInputExposure.GotFocus += new EventHandler(InputCtlParam_GotFocus); //添加失去焦点事件
             iInputGain.GotFocus += new EventHandler(InputCtlParam_GotFocus); //添加失去焦点事件
             dInputLEDWidth.GotFocus += new EventHandler(InputCtlParam_GotFocus); //添加失去焦点事件
-
+            
             //开启相机
             OpenCamera();
             timerConnState.Start();
@@ -150,6 +151,7 @@ namespace ProjectDropper {
                     byte[] info = new byte[1024];
                     int len = VideoM.GetRpcInfo(hDec, 0, ref info[0], info.Length);
                     sRtn = Encoding.ASCII.GetString(info);//Marshal.PtrToStringAnsi(ipStr);
+                    info = null;
                     if (sRtn.Length < 20) {
                         sRtn = string.Empty;
                     }
@@ -212,32 +214,17 @@ namespace ProjectDropper {
             try {
                 lock (obj) {
                     if (_hDevs[i] == IntPtr.Zero) {
-
-                        IntPtr hDec = VideoM.Connection(_ipAddress[i], _iPort);
-                        if (hDec != IntPtr.Zero) {
-                            Thread.Sleep(100);
-                            sInfo = GetCameraParam(hDec);
-                            isConn = !string.IsNullOrEmpty(sInfo.Replace("\0", "").Trim());
-                            if (isConn) {
-                                _hDevs[i] = hDec;
-                            } else {
-                                if (_hDevs[i] != IntPtr.Zero) {
-                                    VideoM.CloseRPC(_hDevs[i]);
-                                }
-                                _hDevs[i] = IntPtr.Zero;
-                            }
-
-                        }
+                        _hDevs[i] = VideoM.Connection(_ipAddress[i], _iPort);                        
                     } else {
                         sInfo = GetCameraParam(_hDevs[i]);
-
-                        isConn = !string.IsNullOrEmpty(sInfo.Replace("\0", "").Trim());
-                        if (!isConn) {
-                            if (_hDevs[i] != IntPtr.Zero) {
-                                VideoM.CloseRPC(_hDevs[i]);
-                            }
-                            _hDevs[i] = IntPtr.Zero;
-                        }
+                        sInfo = sInfo.Replace("\0", "").Trim();
+                        isConn = !string.IsNullOrEmpty(sInfo);
+                        //if (!isConn) {
+                           // if (_hDevs[i] != IntPtr.Zero) {
+                        //        VideoM.CloseRPC(_hDevs[i]);
+                        //    }
+                            //_hDevs[i] = IntPtr.Zero;
+                       // }
                     }
 
                 }
@@ -255,7 +242,9 @@ namespace ProjectDropper {
 
 
             } finally {
-                CameraConnState(i, sInfo, isConn);
+                if (isConn) {
+                    CameraConnState(i, sInfo, isConn);
+                }
                 // if (!isConn && _hDevs[i] != IntPtr.Zero) {
                 //VideoM.CloseRPC(_hDevs[i]);
                 //     _hDevs[i] = IntPtr.Zero;
@@ -320,14 +309,17 @@ namespace ProjectDropper {
                             return;
                         }
                         resetEvent.WaitOne();
+                       
                         if (!ConnectCamera(i)) {
                             //若没有连通 休息10秒重试
                             Console.WriteLine($"{i}号相机，没有连通！");
+                            
                             _imageViews[i].LoadImg("ico/VideoNoFound.png");
                             imgViewRefresh(i);
                             await Task.Delay(Settings.Default.ReconnectTime);
                             continue;
                         }
+                      
                         long lTime = 0; int ih = 0, iw = 0;
 
                         LoadImg(_imageViews[i], _hDevs[i], ref iw, ref ih, ref lTime);
@@ -927,6 +919,9 @@ namespace ProjectDropper {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void btnItemBeginTask_Click(object sender, EventArgs e) {
+            StartTask();
+        }
+        private void StartTask() {
             try {
                 if (_currTask == null) {
                     MsgBox.Warning("当没有任务计划，请先配置任务!", "开启任务失败");
@@ -963,12 +958,14 @@ namespace ProjectDropper {
 
                 dbOp.StartProcessDB();
                 lblTaskInfo.ForeColor = Color.ForestGreen;
+                //将任务信息 记录 -- 防止程序异常退出
+                Settings.Default.RunningTask = JsonHelper.GetJson(_currTask);
+                Settings.Default.Save();
 
             } catch (Exception ex) {
                 MsgBox.Show(ex.ToString());
             }
         }
-
         public void DbCopyCallFunc(string sMsg) {
             if (groupBoxDataInfo.InvokeRequired) {
                 Action<string> a = DbCopyCallFunc;
@@ -1025,8 +1022,9 @@ namespace ProjectDropper {
                     resetEvent.Reset(); //停止任务
 
                     panelTask.Enabled = false;
-                    //
-
+                    //将正在运行的任务清空
+                    Settings.Default.RunningTask = "";
+                    Settings.Default.Save();
 
                     //MonitorTask nextTask = MonitorTask.GetNextPlanTask(_currTask);
                     //if (nextTask != null && DialogResult.Yes == ComClassLib.MsgBox.YesNo($"存在计划任务-{nextTask.TaskName}！\n是否自动开启？")) {
@@ -1134,10 +1132,11 @@ namespace ProjectDropper {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void timerSendTaskName_Tick(object sender, EventArgs e) {
+             
             if (string.IsNullOrEmpty(dateTimeTaskStr)) {
                 return;
             }
-
+             
             param = CameraParam.SetCurTaskName;
             sParamValue = dateTimeTaskStr;
             SetTaskState();
@@ -1279,5 +1278,8 @@ namespace ProjectDropper {
             lblTime.Text = dt.ToString("HH:mm:ss");
         }
 
+        private void timer1_Tick(object sender, EventArgs e) {
+
+        }
     }
 }

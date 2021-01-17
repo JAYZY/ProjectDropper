@@ -121,11 +121,14 @@ namespace ComClassLib.core {
         public static Action<string> CallFunc { get; set; } //回调函数
 
         public UDPHelper(string ip, int udpPort) {
-            ipEnd = new IPEndPoint(IPAddress.Parse(ip), udpPort);
-            Console.WriteLine(ip);
-            udpcRecv = new UdpClient(ipEnd);
-            thrRecv = new Thread(ReceivMsg);
-            IsUdpcRecvStart = false;
+            try {
+                ipEnd = new IPEndPoint(IPAddress.Parse(ip), udpPort);
+                Console.WriteLine(ip);
+                udpcRecv = new UdpClient(ipEnd);
+                thrRecv = new Thread(ReceivMsg);
+                IsUdpcRecvStart = false;
+
+            } catch(Exception ex) { Console.WriteLine(ex.ToString()); }
         }
         public void StartReceive() {
             if (!IsUdpcRecvStart) { //开始监听            

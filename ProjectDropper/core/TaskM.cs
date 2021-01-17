@@ -136,7 +136,7 @@ namespace ProjectDropper.core {
         private CancellationToken _token;
         private ManualResetEvent _resetEvent;
 
-        private string _taskDir, _taskBackDir; //任务存储目录 -- 一个任务一个单独的目录
+        private string _taskDir="", _taskBackDir=""; //任务存储目录 -- 一个任务一个单独的目录
         public string CurDbFileFullName {
             get { return Path.Combine(_taskDir, $"{TaskName}.s{IcurrDbInd}"); }
         }

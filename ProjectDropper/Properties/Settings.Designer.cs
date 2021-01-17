@@ -238,5 +238,17 @@ namespace ProjectDropper.Properties {
                 this["BatOffset"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string RunningTask {
+            get {
+                return ((string)(this["RunningTask"]));
+            }
+            set {
+                this["RunningTask"] = value;
+            }
+        }
     }
 }

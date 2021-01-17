@@ -1154,6 +1154,10 @@
             this.imageList1.Images.SetKeyName(12, "button-green.png");
             this.imageList1.Images.SetKeyName(13, "button-red.png");
             // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
             // exPanelJHCS
             // 
             this.exPanelJHCS.CanvasColor = System.Drawing.SystemColors.Control;

@@ -122,6 +122,7 @@ namespace Project2C.ChildFrm {
                     stationInfo = new StationInfo(dr["sLineName"].ToString(), dr["sStartStation"].ToString(), dr["sEndStation"].ToString(), Convert.ToInt16(dr["iType"]), Convert.ToDateTime(dr["taskDate"]));
                     stationInfo.SId = Convert.ToInt32(dr["sId"]);
                 } catch {
+                     DBIndex.ExecuteDataRow("delete from stationInfo", null);
                     Console.WriteLine("线路信息读取错误！");
                 }
             }
