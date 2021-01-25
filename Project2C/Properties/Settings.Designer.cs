@@ -70,5 +70,17 @@ namespace Project2C.Properties {
                 this["imgSavePath"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\")]
+        public string loadDatabasePath {
+            get {
+                return ((string)(this["loadDatabasePath"]));
+            }
+            set {
+                this["loadDatabasePath"] = value;
+            }
+        }
     }
 }

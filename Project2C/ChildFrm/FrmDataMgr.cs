@@ -122,7 +122,7 @@ namespace Project2C.ChildFrm {
                     stationInfo = new StationInfo(dr["sLineName"].ToString(), dr["sStartStation"].ToString(), dr["sEndStation"].ToString(), Convert.ToInt16(dr["iType"]), Convert.ToDateTime(dr["taskDate"]));
                     stationInfo.SId = Convert.ToInt32(dr["sId"]);
                 } catch {
-                     DBIndex.ExecuteDataRow("delete from stationInfo", null);
+                    DBIndex.ExecuteDataRow("delete from stationInfo", null);
                     Console.WriteLine("线路信息读取错误！");
                 }
             }
@@ -164,7 +164,7 @@ namespace Project2C.ChildFrm {
                     cbBoxUpDown.SelectedIndex = (stationInfo.SType == "上行") ? 0 : 1;
                     tbStartStation.Text = stationInfo.StartStation;
                     tbEndStation.Text = stationInfo.EndStation;
-
+                    cbHasBaseData.Checked = DBIndex.IsFieldExist("BaseData", "id");
 
                     //根据情况填写信息
                     if (String.IsNullOrEmpty(tbStationName.Text.Trim())) {
@@ -192,7 +192,7 @@ namespace Project2C.ChildFrm {
             }
             stationInfo = QueryStationInfo();
             bool isOk = true;
-            if (stationInfo ==null ) {
+            if (stationInfo == null) {
                 //插入数据
                 stationInfo = new StationInfo();
                 stationInfo.LineName = tbStationName.Text;
@@ -202,7 +202,7 @@ namespace Project2C.ChildFrm {
                 stationInfo.IType = cbBoxUpDown.SelectedIndex;
                 isOk = UpdateTaskInfo(true);
 
-            } else if (stationInfo.LineName != tbStationName.Text || stationInfo.TaskDate != dateTimeInput.Value 
+            } else if (stationInfo.LineName != tbStationName.Text || stationInfo.TaskDate != dateTimeInput.Value
                 || stationInfo.SType != cbBoxUpDown.Text || stationInfo.StartStation != tbStartStation.Text.Trim() || stationInfo.EndStation != tbEndStation.Text.Trim()) {
                 if (MsgBox.YesNo("任务信息已经修改，确认修改？") == DialogResult.Yes) {
                     stationInfo.LineName = tbStationName.Text;
@@ -254,7 +254,7 @@ namespace Project2C.ChildFrm {
                 parameters[0].Value = stationInfo.LineName;
                 parameters[1].Value = stationInfo.IType;
                 parameters[2].Value = stationInfo.TaskDate.ToString("s");
-               
+
                 parameters[3].Value = stationInfo.StartStation;
                 parameters[4].Value = stationInfo.EndStation;
                 parameters[5].Value = stationInfo.SId;
@@ -387,6 +387,17 @@ namespace Project2C.ChildFrm {
                 lblProcessB.Text = $"{ num}/{totalNum}";
             }
         }
+        private void UpdateBaseDataProcess(int num, int totalNum) {
+            if (progressBarBaseData.InvokeRequired) {
+                Action<int, int> a = UpdateProcessB;
+                progressBarBaseData.Invoke(a, num, totalNum);
+            } else {
+                int precenpt = (num * 100) / totalNum;
+                progressBarBaseData.Value = precenpt;
+                progressBarBaseData.Text = precenpt.ToString() + "%";
+                lblProcessB.Text = $"{ num}/{totalNum}";
+            }
+        }
         /// <summary>
         /// 线程
         /// </summary>
@@ -436,6 +447,67 @@ namespace Project2C.ChildFrm {
             }
             return mainTimeId;
         }
+        #region 基础线路数据加载
+        private void btnLoadBaseData_Click(object sender, EventArgs e) {
+            if (cbHasBaseData.Checked) {
+                if (MsgBox.YesNo("已经有线路信息，确认重新载入？") == DialogResult.No) {
+                    return;
+                }
+            }
+            if (DBIndex.IsFieldExist("BaseData", "id")) {
+                DBIndex.ExecuteNonQuery("delete from BaseData", null);
+            } else {
+                DataM.CreateBaseData(DBIndex);
+            }
+            if (LoadBaseData()) {
+                MsgBox.Show(@"线路基础数据信息导入成功！");
+                // ToastNotification.Show(superTabControl1, @"线路基础数据信息导入成功！", null, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter);
+            }
+        }
+        private bool LoadBaseData() {
+            bool res = false;
+            string fileFilter = "csv files (*.csv)|*.csv";//过滤选项设置，文本文件，所有文件。
+            string title = "选择导入的线路基础数据文件";
+            FileHelper._InitialDirectory = Settings.Default.loadDatabasePath;
+            string selFileName = FileHelper.OpenFile(title, fileFilter);
+            Settings.Default.loadDatabasePath = Path.GetDirectoryName(selFileName);
+            Settings.Default.Save();
+            if (!string.IsNullOrEmpty(selFileName)) {
+                CsvHelper csv = new CsvHelper(selFileName);
+                DataTable dt = csv.csvDT;
+                string sSQL = "";
+                if (dt != null) {
+                    try {
+                        DBIndex.OpenDb();
+                        //循环遍历添加到主索引库中
+                        DBIndex.BeginTransaction();
+                        int i = 0;
+                        foreach (DataRow dataRow in dt.Rows) {
+                            if (dataRow[0] == null || string.IsNullOrEmpty(dataRow[0].ToString())) {
+                                continue;
+                            }
+                            sSQL = $"insert into BaseData values({dataRow[0]},'{dataRow[1]}','{dataRow[2] ?? string.Empty}','{dataRow[3]}')";
+                            
+                            DBIndex.ExecuteNonQueryByTran(sSQL, null);
+                        }
+                        DBIndex.Commit();
+                        //处理完后记录处理后的文件
+                        UpdateProcessB(i + 1, dt.Rows.Count);
+                        res = true;
+                    } catch (Exception ex) {
+                        MsgBox.Show("载入线路基础数据出错" + ex.ToString());
+                        Console.WriteLine(ex.ToString());
+                        DBIndex.Rollback();
+                    } finally {
+                        DBIndex.CloseDb();
+                    }
+                }
+
+            }
+            return res;
+        }
+
+        #endregion
         private void IndexSecondDB() {
             //索引 相机B文件 ====== 
             for (int i = 0; i < _lstAllDbB.Count; i++) {

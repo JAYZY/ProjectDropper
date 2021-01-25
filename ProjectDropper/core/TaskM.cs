@@ -479,7 +479,7 @@ namespace ProjectDropper.core {
                 //消息回调 -- 定位信息存储
                 //CallInfo?.Invoke($"{taskMsg.Loc}:{_iLocInd}");
             }
-            catch (Exception e) {
+            catch   {
                 //Console.WriteLine("#---定位信息写入失败！\n" + e.ToString());
                 //IndexDb.Rollback();
             }

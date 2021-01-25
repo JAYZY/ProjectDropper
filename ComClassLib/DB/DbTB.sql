@@ -22,3 +22,11 @@ CREATE TABLE indexTB(
   [timestampB] INT64 NOT NULL, 
   [dbIndexB] VARCHAR(255)NOT NULL
   ) ;
+
+ -- 创建基础线路数据表
+  CREATE TABLE BaseData(
+  id INTEGER PRIMARY KEY , 
+  stationRegion  VARCHAR(255), 
+  tunnelName VARCHAR(255), 
+  poleName VARCHAR(255)
+  );

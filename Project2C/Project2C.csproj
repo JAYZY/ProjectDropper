@@ -187,6 +187,7 @@
     <Compile Include="Core\jcwlib_include.cs" />
     <Compile Include="Core\VideoHelper.cs" />
     <Compile Include="DB\Crypto.cs" />
+    <Compile Include="DB\CsvHelper.cs" />
     <Compile Include="DB\DataM.cs" />
     <Compile Include="Dialog\FrmGoFrame.cs">
       <SubType>Form</SubType>
