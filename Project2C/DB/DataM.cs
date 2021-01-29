@@ -37,12 +37,13 @@ namespace Project2C.DB {
         /// </summary>
         public static void CreateBaseData(SqliteHelper db) {
             try {
-                db.OpenDb();
- 
+
+                db.OpenDb(); 
                 db.ExecuteNonQuery("drop table if exists BaseData");
                 string sSQL = "  CREATE TABLE BaseData(id INTEGER PRIMARY KEY," +
-                    "stationRegion  VARCHAR(255),tunnelName VARCHAR(255), poleName VARCHAR(255));";
+                    "stationRegion  VARCHAR(255),tunnelName VARCHAR(255), poleName VARCHAR(255),ImgId INT64);";
                 db.ExecuteNonQuery(sSQL);
+
             } catch (Exception ex) {
                 Console.WriteLine(ex.ToString());
             } finally {

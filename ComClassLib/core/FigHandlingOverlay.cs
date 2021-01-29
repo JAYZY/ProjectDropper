@@ -5,11 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
 using System.Windows.Forms;
-namespace ComClassLib.core {
-
-
-
-
+namespace ComClassLib.core {    
     /// <summary>
     /// GDI恾宍曇廤儌乕僪
     /// </summary>

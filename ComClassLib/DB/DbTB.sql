@@ -28,5 +28,6 @@ CREATE TABLE indexTB(
   id INTEGER PRIMARY KEY , 
   stationRegion  VARCHAR(255), 
   tunnelName VARCHAR(255), 
-  poleName VARCHAR(255)
+  poleName VARCHAR(255),
+  ImgId INT64
   );

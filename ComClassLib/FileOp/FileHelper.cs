@@ -140,6 +140,7 @@ namespace ComClassLib.FileOp {
             }
             return imageBytes;
         }
+
         /// <summary>
         /// 得到图像的二进制byte[] -- 传入图像Image
         /// </summary>
@@ -156,6 +157,8 @@ namespace ComClassLib.FileOp {
             }
 
         }
+
+
         /// <summary>
         /// 文件是否被占用
         /// </summary>
@@ -182,6 +185,7 @@ namespace ComClassLib.FileOp {
         }
 
         public static string _InitialDirectory = "C:\\";
+
         public static string OpenFile(string title, string sFilter = "(*.*)|*.*") {
             string sFileName = "";
             OpenFileDialog fileDialog = new OpenFileDialog();
@@ -195,6 +199,7 @@ namespace ComClassLib.FileOp {
             return sFileName;
 
         }
+        
         /// <summary>
         /// 从系统资源管理器中打开指定文件目录
         /// </summary>
@@ -205,7 +210,6 @@ namespace ComClassLib.FileOp {
             } catch (Exception) {
 
             }
-
         }
 
         /// <summary>

@@ -31,10 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmAnalyse));
             this.exPanelLeft = new DevComponents.DotNetBar.ExpandablePanel();
             this.dgViewDataInfo = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.colId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colCId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColPoleNum = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColStation = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.exPanelCurFault = new DevComponents.DotNetBar.ExpandablePanel();
             this.dgViewCurFault = new DevComponents.DotNetBar.Controls.DataGridViewX();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -101,6 +97,11 @@
             this.lczLine4 = new Steema.TeeChart.Styles.Line();
             this.lczPoints = new Steema.TeeChart.Styles.Points();
             this.splitter1 = new System.Windows.Forms.Splitter();
+            this.colId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColPoleNum = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColStation = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colCId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colTunnel = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.exPanelLeft.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgViewDataInfo)).BeginInit();
             this.exPanelCurFault.SuspendLayout();
@@ -128,13 +129,11 @@
             this.exPanelLeft.Cursor = System.Windows.Forms.Cursors.Hand;
             this.exPanelLeft.DisabledBackColor = System.Drawing.Color.Empty;
             this.exPanelLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.exPanelLeft.Expanded = false;
-            this.exPanelLeft.ExpandedBounds = new System.Drawing.Rectangle(0, 0, 226, 524);
             this.exPanelLeft.Font = new System.Drawing.Font("等线", 10F);
             this.exPanelLeft.HideControlsWhenCollapsed = true;
             this.exPanelLeft.Location = new System.Drawing.Point(0, 0);
             this.exPanelLeft.Name = "exPanelLeft";
-            this.exPanelLeft.Size = new System.Drawing.Size(30, 524);
+            this.exPanelLeft.Size = new System.Drawing.Size(314, 524);
             this.exPanelLeft.Style.Alignment = System.Drawing.StringAlignment.Center;
             this.exPanelLeft.Style.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
             this.exPanelLeft.Style.BackColor2.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
@@ -170,9 +169,10 @@
             this.dgViewDataInfo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgViewDataInfo.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colId,
-            this.colCId,
             this.ColPoleNum,
-            this.ColStation});
+            this.ColStation,
+            this.colCId,
+            this.colTunnel});
             dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle6.Font = new System.Drawing.Font("等线", 10F);
@@ -199,45 +199,10 @@
             this.dgViewDataInfo.RowHeadersVisible = false;
             this.dgViewDataInfo.RowTemplate.Height = 23;
             this.dgViewDataInfo.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgViewDataInfo.Size = new System.Drawing.Size(30, 273);
+            this.dgViewDataInfo.Size = new System.Drawing.Size(314, 273);
             this.dgViewDataInfo.TabIndex = 26;
             this.dgViewDataInfo.RowStateChanged += new System.Windows.Forms.DataGridViewRowStateChangedEventHandler(this.dgViewDataInfo_RowStateChanged);
             this.dgViewDataInfo.DoubleClick += new System.EventHandler(this.dgViewDataInfo_DoubleClick);
-            // 
-            // colId
-            // 
-            this.colId.DataPropertyName = "pId";
-            this.colId.HeaderText = "ID";
-            this.colId.Name = "colId";
-            this.colId.ReadOnly = true;
-            this.colId.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.colId.Width = 45;
-            // 
-            // colCId
-            // 
-            this.colCId.DataPropertyName = "cId";
-            this.colCId.HeaderText = "相机";
-            this.colCId.Name = "colCId";
-            this.colCId.ReadOnly = true;
-            this.colCId.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.colCId.Width = 45;
-            // 
-            // ColPoleNum
-            // 
-            this.ColPoleNum.DataPropertyName = "poleNum";
-            this.ColPoleNum.HeaderText = "支柱号";
-            this.ColPoleNum.Name = "ColPoleNum";
-            this.ColPoleNum.ReadOnly = true;
-            this.ColPoleNum.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ColPoleNum.Width = 66;
-            // 
-            // ColStation
-            // 
-            this.ColStation.DataPropertyName = "sName";
-            this.ColStation.HeaderText = "站区间";
-            this.ColStation.Name = "ColStation";
-            this.ColStation.ReadOnly = true;
-            this.ColStation.Width = 120;
             // 
             // exPanelCurFault
             // 
@@ -250,7 +215,7 @@
             this.exPanelCurFault.HideControlsWhenCollapsed = true;
             this.exPanelCurFault.Location = new System.Drawing.Point(0, 368);
             this.exPanelCurFault.Name = "exPanelCurFault";
-            this.exPanelCurFault.Size = new System.Drawing.Size(30, 156);
+            this.exPanelCurFault.Size = new System.Drawing.Size(314, 156);
             this.exPanelCurFault.Style.Alignment = System.Drawing.StringAlignment.Center;
             this.exPanelCurFault.Style.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
             this.exPanelCurFault.Style.BackColor2.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
@@ -296,7 +261,7 @@
             this.dgViewCurFault.RowHeadersVisible = false;
             this.dgViewCurFault.RowTemplate.Height = 23;
             this.dgViewCurFault.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgViewCurFault.Size = new System.Drawing.Size(30, 130);
+            this.dgViewCurFault.Size = new System.Drawing.Size(314, 130);
             this.dgViewCurFault.TabIndex = 31;
             this.dgViewCurFault.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgViewCurFault_CellContentClick);
             // 
@@ -348,7 +313,7 @@
             this.panelEx4.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelEx4.Location = new System.Drawing.Point(0, 30);
             this.panelEx4.Name = "panelEx4";
-            this.panelEx4.Size = new System.Drawing.Size(30, 65);
+            this.panelEx4.Size = new System.Drawing.Size(314, 65);
             this.panelEx4.Style.Alignment = System.Drawing.StringAlignment.Center;
             this.panelEx4.Style.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
             this.panelEx4.Style.BackColor2.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
@@ -514,7 +479,7 @@
             this.ImageView2.EnableMouseWheel = false;
             this.ImageView2.EnableScrollBar = false;
             this.ImageView2.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            this.ImageView2.Location = new System.Drawing.Point(1185, 244);
+            this.ImageView2.Location = new System.Drawing.Point(901, 244);
             this.ImageView2.Name = "ImageView2";
             this.ImageView2.Size = new System.Drawing.Size(280, 210);
             this.ImageView2.TabIndex = 23;
@@ -534,7 +499,7 @@
             this.ImageView.Location = new System.Drawing.Point(0, 0);
             this.ImageView.Margin = new System.Windows.Forms.Padding(0);
             this.ImageView.Name = "ImageView";
-            this.ImageView.Size = new System.Drawing.Size(1468, 457);
+            this.ImageView.Size = new System.Drawing.Size(1184, 457);
             this.ImageView.TabIndex = 49;
             this.ImageView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ImageView_MouseDown);
             this.ImageView.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ImageView_MouseMove);
@@ -569,7 +534,7 @@
             this.lblTotalFrame});
             this.barPlayControl.Location = new System.Drawing.Point(0, 491);
             this.barPlayControl.Name = "barPlayControl";
-            this.barPlayControl.Size = new System.Drawing.Size(1468, 33);
+            this.barPlayControl.Size = new System.Drawing.Size(1184, 33);
             this.barPlayControl.Stretch = true;
             this.barPlayControl.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.barPlayControl.TabIndex = 57;
@@ -703,9 +668,9 @@
             this.panelMain.Controls.Add(this.barPlayControl);
             this.panelMain.DisabledBackColor = System.Drawing.Color.Empty;
             this.panelMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelMain.Location = new System.Drawing.Point(30, 0);
+            this.panelMain.Location = new System.Drawing.Point(314, 0);
             this.panelMain.Name = "panelMain";
-            this.panelMain.Size = new System.Drawing.Size(1468, 524);
+            this.panelMain.Size = new System.Drawing.Size(1184, 524);
             this.panelMain.Style.Alignment = System.Drawing.StringAlignment.Center;
             this.panelMain.Style.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
             this.panelMain.Style.BackColor2.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
@@ -726,7 +691,7 @@
             this.panelView.Location = new System.Drawing.Point(0, 34);
             this.panelView.Margin = new System.Windows.Forms.Padding(0);
             this.panelView.Name = "panelView";
-            this.panelView.Size = new System.Drawing.Size(1468, 457);
+            this.panelView.Size = new System.Drawing.Size(1184, 457);
             this.panelView.TabIndex = 66;
             // 
             // lblRecShow
@@ -769,7 +734,7 @@
             this.btnSave});
             this.bar2.Location = new System.Drawing.Point(0, 0);
             this.bar2.Name = "bar2";
-            this.bar2.Size = new System.Drawing.Size(1468, 34);
+            this.bar2.Size = new System.Drawing.Size(1184, 34);
             this.bar2.Stretch = true;
             this.bar2.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.bar2.TabIndex = 65;
@@ -858,7 +823,6 @@
             // btnItemPoleNumSet
             // 
             this.btnItemPoleNumSet.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText;
-            this.btnItemPoleNumSet.Enabled = false;
             this.btnItemPoleNumSet.ForeColor = System.Drawing.Color.White;
             this.btnItemPoleNumSet.ItemAlignment = DevComponents.DotNetBar.eItemAlignment.Far;
             this.btnItemPoleNumSet.Name = "btnItemPoleNumSet";
@@ -1541,6 +1505,50 @@
             this.splitter1.TabIndex = 84;
             this.splitter1.TabStop = false;
             // 
+            // colId
+            // 
+            this.colId.DataPropertyName = "Id";
+            this.colId.HeaderText = "ID";
+            this.colId.Name = "colId";
+            this.colId.ReadOnly = true;
+            this.colId.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.colId.Width = 30;
+            // 
+            // ColPoleNum
+            // 
+            this.ColPoleNum.DataPropertyName = "poleName";
+            this.ColPoleNum.HeaderText = "支柱号";
+            this.ColPoleNum.Name = "ColPoleNum";
+            this.ColPoleNum.ReadOnly = true;
+            this.ColPoleNum.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.ColPoleNum.Width = 55;
+            // 
+            // ColStation
+            // 
+            this.ColStation.DataPropertyName = "stationRegion";
+            this.ColStation.HeaderText = "站区间";
+            this.ColStation.Name = "ColStation";
+            this.ColStation.ReadOnly = true;
+            this.ColStation.Width = 90;
+            // 
+            // colCId
+            // 
+            this.colCId.DataPropertyName = "imgId";
+            this.colCId.HeaderText = "图Id";
+            this.colCId.Name = "colCId";
+            this.colCId.ReadOnly = true;
+            this.colCId.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.colCId.Width = 45;
+            // 
+            // colTunnel
+            // 
+            this.colTunnel.DataPropertyName = "tunnelName";
+            this.colTunnel.HeaderText = "隧道";
+            this.colTunnel.Name = "colTunnel";
+            this.colTunnel.ReadOnly = true;
+            this.colTunnel.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.colTunnel.Width = 60;
+            // 
             // FrmAnalyse
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -1626,10 +1634,6 @@
         private DevComponents.DotNetBar.LabelX lblRecShow;
         private DevComponents.DotNetBar.ButtonItem btnItemSlower;
         private DevComponents.DotNetBar.ButtonItem btnItemFaster;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colId;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colCId;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColPoleNum;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColStation;
         private DevComponents.DotNetBar.ExpandablePanel exPanelCurFault;
         private DevComponents.DotNetBar.Controls.DataGridViewX dgViewCurFault;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
@@ -1652,5 +1656,10 @@
         private Steema.TeeChart.Styles.Line lczLine3;
         private Steema.TeeChart.Styles.Line lczLine4;
         private Steema.TeeChart.Styles.Points lczPoints;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColPoleNum;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColStation;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colCId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colTunnel;
     }
 }

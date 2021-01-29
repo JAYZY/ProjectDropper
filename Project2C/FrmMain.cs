@@ -22,8 +22,9 @@ namespace Project2C {
             return _frmParent;
         }
         private FrmMain() {
+           
             InitializeComponent();
-
+           // this.styleManager1.ManagerStyle = eStyle.Office2007Blue;
         }
         #endregion
 
@@ -33,9 +34,9 @@ namespace Project2C {
 
         private void MainFrm_Shown(object sender, EventArgs e) {
             exPanelSide.Expanded = false;
-            FrmLogin frmLogin = new FrmLogin();
-            frmLogin.ShowDialog();
-            if (frmLogin.IsLogin) {
+           // FrmLogin frmLogin = new FrmLogin();
+            //frmLogin.ShowDialog();
+           // if (frmLogin.IsLogin) {
                 Settings.Default.Save();
                 lblItemName.Text = Settings.Default.loginUser + @"你好！";
                 exPanelSide.Expanded = true;
@@ -43,7 +44,7 @@ namespace Project2C {
                 FrmDataMgr frmDataMgr = new FrmDataMgr();
                 ShowMdiChild(frmDataMgr);
 
-            }
+          //  }
 
         }
         private void iniCtrl() {

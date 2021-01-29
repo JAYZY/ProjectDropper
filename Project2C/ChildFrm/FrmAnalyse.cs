@@ -105,8 +105,7 @@ namespace Project2C.ChildFrm {
         private void FrmAnalyse_Shown(object sender, EventArgs e) {
             //ReadData();
             DialogTaskTip.GetInstance().SetTipTxt(@"数据加载中...");
-            //初始化几何参数数据库
-
+            //初始化几何参数数据库            
             ConnJH();
 
             //线程 -- 读取数据
@@ -115,6 +114,7 @@ namespace Project2C.ChildFrm {
 
             DialogTaskTip.GetInstance().ShowDialog();
             //等待加载完毕。
+
 
             btnFrameNo.Text = iCurFrameNum.ToString();
             lblTotalFrame.Text = "/" + iTotalFrameNum + @"帧";
@@ -151,14 +151,14 @@ namespace Project2C.ChildFrm {
                 if (DBIndex == null) {
                     return;
                 }
-                dtIndexData = DBIndex.ExecuteDataTable("select * from indexTB", null);
+                dtIndexData = DBIndex.ExecuteDataTable("select rowid,* from indexTB", null);
 
                 //DataTable dtTmpData = imgSqlite.ExecuteDataTable("select  count(pid) a  from picInfo where cId=1 ", null);
                 //读取总数量  DataTable dtTmpData = imgSqlite.ExecuteDataTable("select seq from sqlite_sequence where name='picInfo' ", null);
                 //读取所有图像数据文件，生成图像数据库
                 GenImgDb("V1");
                 GenImgDb("V2");
-                DataRow dr = dtIndexData.Rows[iCurFrameNum++];
+                DataRow dr = dtIndexData.Rows[iCurFrameNum];
 
                 string imgKeyA = dr["timestampA"].ToString();
                 string imgDBA = dr["dbIndexA"].ToString();
@@ -170,8 +170,8 @@ namespace Project2C.ChildFrm {
                 //设置总帧数
                 iTotalFrameNum = Convert.ToInt32(dtIndexData.Rows.Count);
 
-                //加载杆号数据 -- 木有杆号
-                // LoadPoleNumData();
+                //加载基础数据 - 定位数据 
+                 LoadBaseDataAndPole();
 
                 //加载1秒的数据 // ReadBufferSmallData();
                 ReadImgData();
@@ -193,7 +193,7 @@ namespace Project2C.ChildFrm {
                 return;
             }
             //当前帧 索引数据
-            DataRow dr = dtIndexData.Rows[iCurFrameNum++];
+            DataRow dr = dtIndexData.Rows[iCurFrameNum];
 
             string imgKeyA = dr["timestampA"].ToString();
             string imgDBA = dr["dbIndexA"].ToString();
@@ -335,13 +335,7 @@ namespace Project2C.ChildFrm {
         }
 
 
-        /// <summary>
-        /// 载入杆号数据
-        /// </summary>
-        private void LoadPoleNumData() {
-            //  dtPoleNum = this.imgSqlite.ExecuteDataTable(strSql, null);//  where areaType=5 order by pid limit 0,10000 ", null);
-            // ShowPoleNumInfo();
-        }
+      
 
         /// <summary>
         /// 从数据库中载入已有缺陷标注
@@ -703,7 +697,7 @@ namespace Project2C.ChildFrm {
 
             // progressBarItem.Value = (int)(iCurFrameNum * 1.0 / iTotalFrameNum * 100.0);
             if (_curImgIdA < 0 || _curImgIdA > _curDtData.Rows.Count - 1) {//不在缓存区间则读取下一帧
-                                                                           //增加图片索引值并判断缓存数据是否读完                AddCurImgIdA();
+                                                                         //增加图片索引值并判断缓存数据是否读完                AddCurImgIdA();
                 GoFrameNo(iCurFrameNum);
                 isReload = false;
             } else {
@@ -949,7 +943,7 @@ namespace Project2C.ChildFrm {
 
                 if (frmFault.ModifyPoleNum) {
                     //刷新杆号列表                    
-                    LoadPoleNumData();
+                    LoadBaseDataAndPole();
                 }
             }
         }
@@ -1155,7 +1149,7 @@ namespace Project2C.ChildFrm {
                 StepByOneFrame(false);
             }//2.F2 设置支柱号
               else if (e.KeyCode == Keys.F2) {
-                ModifyPoleNum();
+                ModifyLocalInfo();
             }//3.ctrl+s保存当前图像
               else if (e.Control && e.KeyCode == Keys.S) {
                 SaveCurImg();
@@ -1203,17 +1197,53 @@ namespace Project2C.ChildFrm {
         }
         #endregion
 
+        #region 基础数据+定位信息
         /// <summary>
-        /// 修改支柱号--按钮事件
+        /// 载入杆号数据
+        /// </summary>
+        private void LoadBaseDataAndPole() {
+            dtPoleNum = DBIndex.ExecuteDataTable("select * from basedata", null);//  where areaType=5 order by pid limit 0,10000 ", null);
+            ShowPoleNumInfo();
+        }
+
+
+        /// <summary>
+        /// 修改定位信息--按钮事件
         /// </summary>
         private void btnItemPoleNumSet_Click(object sender, EventArgs e) {
-            ModifyPoleNum();
+            ModifyLocalInfo();
         }
+        int iSelCurrPoleNameId=-1;
+        /// <summary>
+        /// 查找当前定位点
+        /// 算法：
+        /// 1.若点击了左侧定位点则，为左侧定位点。
+        /// 2.否则查找dtPoleName中当前图像Id最近的定位点
+        /// </summary>
+        private Int64 FindCurrPoleNameInd() {
+            if (iSelCurrPoleNameId > -1) {
+               
+                return iSelCurrPoleNameId;
+            }
+            iSelCurrPoleNameId = iCurFrameNum + 1;
+            DataRow[] drs = dtPoleNum.Select($"ImgId={iSelCurrPoleNameId}");
+            Int64 rtnInd = 0;
+            if (drs.Length == 0) {
+                drs = dtPoleNum.Select($"ImgId<{iSelCurrPoleNameId}","id desc");
+            }
+            if (drs.Length > 0) {
+                rtnInd = Convert.ToInt64(drs[0]["Id"]);
+               // ++rtnInd;
+            }
+            iSelCurrPoleNameId = -1;
+            return rtnInd;
+         }
         /// <summary>
         /// 修改支柱号--方法
         /// </summary>
-        private void ModifyPoleNum() {
-            FrmSetPoleNum frmPoleNum = new FrmSetPoleNum();
+        private void ModifyLocalInfo() {
+            Int64 selCurrPoleName = FindCurrPoleNameInd();
+            FrmSetPoleNum frmPoleNum = new FrmSetPoleNum(dtPoleNum,selCurrPoleName);
             if (frmPoleNum.ShowDialog() == DialogResult.Cancel) {
                 return;
             }
@@ -1222,13 +1252,13 @@ namespace Project2C.ChildFrm {
             if (string.IsNullOrEmpty(polenum)) {
                 return;
             }
+            iSelCurrPoleNameId = -1;//重置选择
             //修改数据
-
-            string sPIdA = _drViewA["pid"].ToString();
+            string sPIdA = _drViewA["id"].ToString();
             // string sPIdB = drSecView["pid"].ToString();
 
-            string strUpdate = String.Format("update picInfo set poleNum='{0}' where pid={1}", polenum, sPIdA);
-            SqliteHelper.GetSqlite("imgDb").ExecuteNonQuery(strUpdate, null);
+           // string strUpdate = String.Format("update picInfo set poleNum='{0}' where pid={1}", polenum, sPIdA);
+          //  SqliteHelper.GetSqlite("imgDb").ExecuteNonQuery(strUpdate, null);
 
 
             //if (dtPoleNum.Rows.Count > 0 && ((dtPoleNum.Select("pid=" + sPIdA).Length > 0) || (dtPoleNum.Select("pid=" + sPIdB).Length > 0))) {
@@ -1248,12 +1278,15 @@ namespace Project2C.ChildFrm {
 
             //_curDtDataA.Rows[_curImgIdA]["poleNum"] = polenum;
             //_curDtDataB.Rows[_curImgIdB]["poleNum"] = polenum;
-            LoadPoleNumData();
+            LoadBaseDataAndPole();
             //drPoleNum = dtData.Select("poleNum<>'1' and poleNum<>''");
             //if (drPoleNum.Length > 0)
             //    dtPoleNum = drPoleNum.CopyToDataTable();
             //ShowPoleNumInfo();
         }
+
+        #endregion
+
 
 
 

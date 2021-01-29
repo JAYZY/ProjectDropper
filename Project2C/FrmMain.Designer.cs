@@ -198,10 +198,9 @@
             this.exPanelSide.DisabledBackColor = System.Drawing.Color.Empty;
             this.exPanelSide.Dock = System.Windows.Forms.DockStyle.Left;
             this.exPanelSide.HideControlsWhenCollapsed = true;
-            this.exPanelSide.Location = new System.Drawing.Point(0, 30);
-            this.exPanelSide.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.exPanelSide.Location = new System.Drawing.Point(0, 26);
             this.exPanelSide.Name = "exPanelSide";
-            this.exPanelSide.Size = new System.Drawing.Size(221, 730);
+            this.exPanelSide.Size = new System.Drawing.Size(166, 689);
             this.exPanelSide.Style.Alignment = System.Drawing.StringAlignment.Center;
             this.exPanelSide.Style.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
             this.exPanelSide.Style.BackColor2.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
@@ -210,7 +209,6 @@
             this.exPanelSide.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.ItemText;
             this.exPanelSide.Style.GradientAngle = 90;
             this.exPanelSide.TabIndex = 29;
-            this.exPanelSide.TitleHeight = 32;
             this.exPanelSide.TitleStyle.Alignment = System.Drawing.StringAlignment.Center;
             this.exPanelSide.TitleStyle.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
             this.exPanelSide.TitleStyle.BackColor2.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
@@ -243,10 +241,9 @@
             this.exBarGroupItemAnalyse,
             this.exBarGroupItemReport});
             this.explorerBar2.Images = null;
-            this.explorerBar2.Location = new System.Drawing.Point(0, 32);
-            this.explorerBar2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.explorerBar2.Location = new System.Drawing.Point(0, 26);
             this.explorerBar2.Name = "explorerBar2";
-            this.explorerBar2.Size = new System.Drawing.Size(221, 698);
+            this.explorerBar2.Size = new System.Drawing.Size(166, 663);
             this.explorerBar2.StockStyle = DevComponents.DotNetBar.eExplorerBarStockStyle.SystemColors;
             this.explorerBar2.TabIndex = 2;
             this.explorerBar2.Text = "explorerBar2";
@@ -472,9 +469,8 @@
             this.buttonItem9,
             this.btnItemExit});
             this.bar1.Location = new System.Drawing.Point(0, 0);
-            this.bar1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.bar1.Name = "bar1";
-            this.bar1.Size = new System.Drawing.Size(1521, 30);
+            this.bar1.Size = new System.Drawing.Size(1188, 26);
             this.bar1.Stretch = true;
             this.bar1.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2003;
             this.bar1.TabIndex = 30;
@@ -501,15 +497,15 @@
             // 
             // FrmMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1521, 760);
+            this.ClientSize = new System.Drawing.Size(1188, 715);
             this.Controls.Add(this.exPanelSide);
             this.Controls.Add(this.bar1);
             this.DoubleBuffered = true;
+            this.EnableGlass = false;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.IsMdiContainer = true;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "FrmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "人工分析软件";

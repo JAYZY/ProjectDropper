@@ -134,14 +134,6 @@ namespace Project2C.ChildFrm {
             try {
                 if (!string.IsNullOrEmpty(indexDBFullName)) {
 
-
-                    //  SqliteHelper.GenerateSqlite(DbName.IndexDb.ToString(), indexDBFullName);//索引数据库
-
-                    // SqliteHelper.GenerateSqlite(DbName.JHDb.ToString(), indexDBFullName);//索引数据库
-
-
-                    //获取线路信息
-
                     //检查并创建缺陷表
                     DataM.CreateFaultTb(DBIndex);
                     //设置显示
@@ -164,8 +156,8 @@ namespace Project2C.ChildFrm {
                     cbBoxUpDown.SelectedIndex = (stationInfo.SType == "上行") ? 0 : 1;
                     tbStartStation.Text = stationInfo.StartStation;
                     tbEndStation.Text = stationInfo.EndStation;
-                    cbHasBaseData.Checked = DBIndex.IsFieldExist("BaseData", "id");
-
+                    //刷新线路基础数据
+                    UpdateBaseData();
                     //根据情况填写信息
                     if (String.IsNullOrEmpty(tbStationName.Text.Trim())) {
                         MsgBox.Show("缺少线路信息，请手动输入");
@@ -178,6 +170,10 @@ namespace Project2C.ChildFrm {
                 MessageBox.Show("数据库读取失败！\n");
             }
         }
+        //刷新线路基础数据
+        private void UpdateBaseData() {
+            cbHasBaseData.Checked = DBIndex.IsFieldExist("BaseData", "id");
+        }
 
         private void btnTaskOk_Click(object sender, EventArgs e) {
             if (!isDataSetSuccess) {
@@ -188,6 +184,11 @@ namespace Project2C.ChildFrm {
             if (String.IsNullOrEmpty(tbStationName.Text.Trim())) {
                 MsgBox.Show("缺少线路信息，请手动输入");
                 tbStationName.Focus();
+                return;
+            }
+            if (!cbHasBaseData.Checked) {
+                MsgBox.Show("缺少线路基础数据，请导入");
+                btnLoadBaseData.Focus();
                 return;
             }
             stationInfo = QueryStationInfo();
@@ -387,17 +388,7 @@ namespace Project2C.ChildFrm {
                 lblProcessB.Text = $"{ num}/{totalNum}";
             }
         }
-        private void UpdateBaseDataProcess(int num, int totalNum) {
-            if (progressBarBaseData.InvokeRequired) {
-                Action<int, int> a = UpdateProcessB;
-                progressBarBaseData.Invoke(a, num, totalNum);
-            } else {
-                int precenpt = (num * 100) / totalNum;
-                progressBarBaseData.Value = precenpt;
-                progressBarBaseData.Text = precenpt.ToString() + "%";
-                lblProcessB.Text = $"{ num}/{totalNum}";
-            }
-        }
+
         /// <summary>
         /// 线程
         /// </summary>
@@ -461,7 +452,10 @@ namespace Project2C.ChildFrm {
             }
             if (LoadBaseData()) {
                 MsgBox.Show(@"线路基础数据信息导入成功！");
-                // ToastNotification.Show(superTabControl1, @"线路基础数据信息导入成功！", null, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter);
+                //刷新线路基础数据
+                UpdateBaseData();
+            } else {
+                MsgBox.Warning("线路基础数据信息导入失败！\n请检查文件格式是否正确!","提示");
             }
         }
         private bool LoadBaseData() {
@@ -487,7 +481,7 @@ namespace Project2C.ChildFrm {
                                 continue;
                             }
                             sSQL = $"insert into BaseData values({dataRow[0]},'{dataRow[1]}','{dataRow[2] ?? string.Empty}','{dataRow[3]}')";
-                            
+
                             DBIndex.ExecuteNonQueryByTran(sSQL, null);
                         }
                         DBIndex.Commit();

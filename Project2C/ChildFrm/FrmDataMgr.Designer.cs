@@ -26,12 +26,15 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmDataMgr));
             this.superTabControl1 = new DevComponents.DotNetBar.SuperTabControl();
             this.superTabControlPanel2 = new DevComponents.DotNetBar.SuperTabControlPanel();
+            this.lblDBPath = new System.Windows.Forms.LinkLabel();
             this.btnTaskOk = new DevComponents.DotNetBar.ButtonX();
             this.btnOpenDir = new DevComponents.DotNetBar.ButtonX();
             this.groupPanel1 = new DevComponents.DotNetBar.Controls.GroupPanel();
+            this.cbHasBaseData = new System.Windows.Forms.CheckBox();
             this.cbBoxUpDown = new DevComponents.DotNetBar.Controls.ComboBoxEx();
             this.comboItem1 = new DevComponents.Editors.ComboItem();
             this.comboItem2 = new DevComponents.Editors.ComboItem();
+            this.btnLoadBaseData = new DevComponents.DotNetBar.ButtonX();
             this.labelX5 = new DevComponents.DotNetBar.LabelX();
             this.labelX3 = new DevComponents.DotNetBar.LabelX();
             this.labelX2 = new DevComponents.DotNetBar.LabelX();
@@ -64,10 +67,6 @@
             this.btnProcessDb = new DevComponents.DotNetBar.ButtonX();
             this.btnSelIndexTaskDir = new DevComponents.DotNetBar.ButtonX();
             this.superTabItem1 = new DevComponents.DotNetBar.SuperTabItem();
-            this.lblDBPath = new System.Windows.Forms.LinkLabel();
-            this.cbHasBaseData = new System.Windows.Forms.CheckBox();
-            this.btnLoadBaseData = new DevComponents.DotNetBar.ButtonX();
-            this.progressBarBaseData = new DevComponents.DotNetBar.Controls.ProgressBarX();
             ((System.ComponentModel.ISupportInitialize)(this.superTabControl1)).BeginInit();
             this.superTabControl1.SuspendLayout();
             this.superTabControlPanel2.SuspendLayout();
@@ -102,7 +101,7 @@
             this.superTabControl1.ReorderTabsEnabled = true;
             this.superTabControl1.SelectedTabFont = new System.Drawing.Font("等线", 9F, System.Drawing.FontStyle.Bold);
             this.superTabControl1.SelectedTabIndex = 0;
-            this.superTabControl1.Size = new System.Drawing.Size(724, 289);
+            this.superTabControl1.Size = new System.Drawing.Size(724, 299);
             this.superTabControl1.TabFont = new System.Drawing.Font("等线", 10F);
             this.superTabControl1.TabIndex = 0;
             this.superTabControl1.Tabs.AddRange(new DevComponents.DotNetBar.BaseItem[] {
@@ -122,9 +121,20 @@
             this.superTabControlPanel2.Font = new System.Drawing.Font("等线", 10F);
             this.superTabControlPanel2.Location = new System.Drawing.Point(0, 26);
             this.superTabControlPanel2.Name = "superTabControlPanel2";
-            this.superTabControlPanel2.Size = new System.Drawing.Size(724, 263);
+            this.superTabControlPanel2.Size = new System.Drawing.Size(724, 273);
             this.superTabControlPanel2.TabIndex = 0;
             this.superTabControlPanel2.TabItem = this.superTabItem2;
+            // 
+            // lblDBPath
+            // 
+            this.lblDBPath.AutoSize = true;
+            this.lblDBPath.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lblDBPath.Location = new System.Drawing.Point(174, 23);
+            this.lblDBPath.Name = "lblDBPath";
+            this.lblDBPath.Size = new System.Drawing.Size(70, 19);
+            this.lblDBPath.TabIndex = 21;
+            this.lblDBPath.TabStop = true;
+            this.lblDBPath.Text = "linkLabel1";
             // 
             // btnTaskOk
             // 
@@ -156,7 +166,6 @@
             // 
             this.groupPanel1.CanvasColor = System.Drawing.SystemColors.Control;
             this.groupPanel1.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
-            this.groupPanel1.Controls.Add(this.progressBarBaseData);
             this.groupPanel1.Controls.Add(this.cbHasBaseData);
             this.groupPanel1.Controls.Add(this.cbBoxUpDown);
             this.groupPanel1.Controls.Add(this.btnLoadBaseData);
@@ -205,6 +214,17 @@
             this.groupPanel1.TabIndex = 18;
             this.groupPanel1.Text = "任务信息";
             // 
+            // cbHasBaseData
+            // 
+            this.cbHasBaseData.AutoSize = true;
+            this.cbHasBaseData.Enabled = false;
+            this.cbHasBaseData.Location = new System.Drawing.Point(10, 105);
+            this.cbHasBaseData.Name = "cbHasBaseData";
+            this.cbHasBaseData.Size = new System.Drawing.Size(110, 18);
+            this.cbHasBaseData.TabIndex = 20;
+            this.cbHasBaseData.Text = "基础线路数据";
+            this.cbHasBaseData.UseVisualStyleBackColor = true;
+            // 
             // cbBoxUpDown
             // 
             this.cbBoxUpDown.DisplayMember = "Text";
@@ -229,6 +249,21 @@
             // comboItem2
             // 
             this.comboItem2.Text = "下行";
+            // 
+            // btnLoadBaseData
+            // 
+            this.btnLoadBaseData.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnLoadBaseData.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.btnLoadBaseData.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnLoadBaseData.Image = ((System.Drawing.Image)(resources.GetObject("btnLoadBaseData.Image")));
+            this.btnLoadBaseData.ImageFixedSize = new System.Drawing.Size(32, 32);
+            this.btnLoadBaseData.Location = new System.Drawing.Point(132, 96);
+            this.btnLoadBaseData.Name = "btnLoadBaseData";
+            this.btnLoadBaseData.Size = new System.Drawing.Size(48, 34);
+            this.btnLoadBaseData.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.btnLoadBaseData.TabIndex = 8;
+            this.btnLoadBaseData.Tooltip = "载入线路基础数据库";
+            this.btnLoadBaseData.Click += new System.EventHandler(this.btnLoadBaseData_Click);
             // 
             // labelX5
             // 
@@ -723,58 +758,6 @@
             this.superTabItem1.Name = "superTabItem1";
             this.superTabItem1.Text = "索引离线数据";
             // 
-            // lblDBPath
-            // 
-            this.lblDBPath.AutoSize = true;
-            this.lblDBPath.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lblDBPath.Location = new System.Drawing.Point(174, 23);
-            this.lblDBPath.Name = "lblDBPath";
-            this.lblDBPath.Size = new System.Drawing.Size(70, 19);
-            this.lblDBPath.TabIndex = 21;
-            this.lblDBPath.TabStop = true;
-            this.lblDBPath.Text = "linkLabel1";
-            // 
-            // cbHasBaseData
-            // 
-            this.cbHasBaseData.AutoSize = true;
-            this.cbHasBaseData.Location = new System.Drawing.Point(10, 105);
-            this.cbHasBaseData.Name = "cbHasBaseData";
-            this.cbHasBaseData.Size = new System.Drawing.Size(110, 18);
-            this.cbHasBaseData.TabIndex = 20;
-            this.cbHasBaseData.Text = "基础线路数据";
-            this.cbHasBaseData.UseVisualStyleBackColor = true;
-            // 
-            // btnLoadBaseData
-            // 
-            this.btnLoadBaseData.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnLoadBaseData.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnLoadBaseData.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnLoadBaseData.Image = ((System.Drawing.Image)(resources.GetObject("btnLoadBaseData.Image")));
-            this.btnLoadBaseData.ImageFixedSize = new System.Drawing.Size(32, 32);
-            this.btnLoadBaseData.Location = new System.Drawing.Point(132, 96);
-            this.btnLoadBaseData.Name = "btnLoadBaseData";
-            this.btnLoadBaseData.Size = new System.Drawing.Size(48, 34);
-            this.btnLoadBaseData.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.btnLoadBaseData.TabIndex = 8;
-            this.btnLoadBaseData.Tooltip = "载入线路基础数据库";
-            this.btnLoadBaseData.Click += new System.EventHandler(this.btnLoadBaseData_Click);
-            // 
-            // progressBarBaseData
-            // 
-            // 
-            // 
-            // 
-            this.progressBarBaseData.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.progressBarBaseData.BackgroundStyle.TextAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Center;
-            this.progressBarBaseData.BackgroundStyle.TextColor = System.Drawing.Color.White;
-            this.progressBarBaseData.ForeColor = System.Drawing.Color.White;
-            this.progressBarBaseData.Location = new System.Drawing.Point(186, 100);
-            this.progressBarBaseData.Name = "progressBarBaseData";
-            this.progressBarBaseData.Size = new System.Drawing.Size(169, 23);
-            this.progressBarBaseData.TabIndex = 22;
-            this.progressBarBaseData.Text = "progressBarX1";
-            this.progressBarBaseData.TextVisible = true;
-            // 
             // FrmDataMgr
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -847,6 +830,5 @@
         private System.Windows.Forms.LinkLabel lblDBPath;
         private System.Windows.Forms.CheckBox cbHasBaseData;
         private DevComponents.DotNetBar.ButtonX btnLoadBaseData;
-        private DevComponents.DotNetBar.Controls.ProgressBarX progressBarBaseData;
     }
 }
