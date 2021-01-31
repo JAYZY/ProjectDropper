@@ -41,7 +41,7 @@ namespace Project2C.ChildFrm {
         private int _curImgIdA = 0;
 
         private int iTotalFrameNum;//总帧数
-        private int iCurFrameNum = 0; //当前帧数
+        private int iCurFrameNum = 1; //当前帧数
 
         #region 获取数据库指针
         private SqliteHelper DBIndex {
@@ -204,11 +204,11 @@ namespace Project2C.ChildFrm {
         /// </summary>
 
         private void ReadImgData() {
-            if (DBIndex == null) {
+            if (DBIndex == null|| iCurFrameNum>dtIndexData.Rows.Count) {
                 return;
             }
             //当前帧 索引数据
-            DataRow dr = dtIndexData.Rows[iCurFrameNum];
+            DataRow dr = dtIndexData.Rows[iCurFrameNum-1];
 
             string imgKeyA = dr["timestampA"].ToString();
             string imgDBA = dr["dbIndexA"].ToString();
@@ -1441,11 +1441,39 @@ namespace Project2C.ChildFrm {
             if (dgViewJHData.CurrentRow == null) {
                 return;
             }
-            var selValue = dgViewJHData.CurrentRow.Cells["colImgId"].Value;
+            var selValue = dgViewJHData.CurrentRow.Cells["colTime"].Value;
+            int goFrameNum = 0;
             if (selValue != null) {
-                string selImgId = selValue.ToString();
-                if (!string.IsNullOrEmpty(selImgId)) {
-                    GoFrameNo(Convert.ToInt32(selImgId));
+                DataRow[] drsA= dtIndexData.Select($"timestamp <={selValue}","rowid desc");
+                DataRow drA=null, drB=null;                
+                DataRow[] drsB = dtIndexData.Select($"timestamp >={selValue}");
+                if (drsA.Length > 0) {
+                    drA = drsA[0];
+                }
+                if (drsB.Length > 0) {
+                    drB = drsB[0];
+                }
+                if (drA == null) {
+                    if (drB == null) {
+                        ToastNotification.Show(ImageView, $"该定位点没有对应图像信息！", null, 3000, eToastGlowColor.Red, eToastPosition.BottomCenter);
+                        return;
+                    }
+                    goFrameNum = Convert.ToInt32(drB["rowid"]);
+                } else if (drB == null) {
+                    goFrameNum = Convert.ToInt32(drA["rowid"]);
+                } else {
+                    Int64 jhTime = Convert.ToInt64(selValue);
+                    Int64 TimeA = Convert.ToInt64(drA["timestamp"]);
+                    Int64 TimeB = Convert.ToInt64(drB["timestamp"]);
+                    DataRow dr = (jhTime - TimeA) < (TimeB - jhTime) ? drA : drB;
+                    goFrameNum = Convert.ToInt32(dr["rowid"]);
+                }
+
+               
+                if (goFrameNum>-1) {
+                    GoFrameNo( goFrameNum);
+                    ToastNotification.Show(ImageView, $"跳转定位点{goFrameNum}！", null, 3000, eToastGlowColor.Red, eToastPosition.BottomCenter);
+
                 }
             }
         }

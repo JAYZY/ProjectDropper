@@ -197,7 +197,8 @@
             // 
             this.dgViewJHData.AllowUserToAddRows = false;
             this.dgViewJHData.AllowUserToDeleteRows = false;
-            this.dgViewJHData.AllowUserToOrderColumns = true;
+            this.dgViewJHData.AllowUserToResizeRows = false;
+            this.dgViewJHData.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.dgViewJHData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgViewJHData.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colRowId,
