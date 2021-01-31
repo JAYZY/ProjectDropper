@@ -82,5 +82,53 @@ namespace Project2C.Properties {
                 this["loadDatabasePath"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("400")]
+        public double maxZeg {
+            get {
+                return ((double)(this["maxZeg"]));
+            }
+            set {
+                this["maxZeg"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("-400")]
+        public double minZeg {
+            get {
+                return ((double)(this["minZeg"]));
+            }
+            set {
+                this["minZeg"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("2100")]
+        public double maxHei {
+            get {
+                return ((double)(this["maxHei"]));
+            }
+            set {
+                this["maxHei"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("-2100")]
+        public double minHei {
+            get {
+                return ((double)(this["minHei"]));
+            }
+            set {
+                this["minHei"] = value;
+            }
+        }
     }
 }

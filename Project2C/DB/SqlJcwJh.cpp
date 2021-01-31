@@ -4,6 +4,7 @@
 
 SqliteJcwJh::SqliteJcwJh()
 {
+	
 }
 
 

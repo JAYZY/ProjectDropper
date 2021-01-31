@@ -34,6 +34,10 @@
             this.lblTunnel = new DevComponents.DotNetBar.LabelX();
             this.labelX4 = new DevComponents.DotNetBar.LabelX();
             this.lblImgId = new DevComponents.DotNetBar.LabelX();
+            this.lbltxt = new DevComponents.DotNetBar.LabelX();
+            this.lblId = new DevComponents.DotNetBar.LabelX();
+            this.labelX3 = new DevComponents.DotNetBar.LabelX();
+            this.lblCoverTip = new DevComponents.DotNetBar.LabelX();
             this.SuspendLayout();
             // 
             // btnCancel
@@ -44,7 +48,7 @@
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnCancel.Image = ((System.Drawing.Image)(resources.GetObject("btnCancel.Image")));
-            this.btnCancel.Location = new System.Drawing.Point(289, 132);
+            this.btnCancel.Location = new System.Drawing.Point(312, 140);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(69, 28);
             this.btnCancel.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -60,7 +64,7 @@
             this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnOK.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnOK.Image = ((System.Drawing.Image)(resources.GetObject("btnOK.Image")));
-            this.btnOK.Location = new System.Drawing.Point(215, 132);
+            this.btnOK.Location = new System.Drawing.Point(238, 140);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(69, 28);
             this.btnOK.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -75,7 +79,7 @@
             // 
             this.lblTip.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.lblTip.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.lblTip.Location = new System.Drawing.Point(17, 86);
+            this.lblTip.Location = new System.Drawing.Point(17, 108);
             this.lblTip.Name = "lblTip";
             this.lblTip.Size = new System.Drawing.Size(92, 22);
             this.lblTip.Symbol = "";
@@ -86,16 +90,21 @@
             // 
             // cbPoleName
             // 
+            this.cbPoleName.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.cbPoleName.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cbPoleName.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cbPoleName.DisplayMember = "Text";
             this.cbPoleName.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.cbPoleName.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbPoleName.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbPoleName.FormattingEnabled = true;
             this.cbPoleName.ItemHeight = 16;
-            this.cbPoleName.Location = new System.Drawing.Point(105, 85);
+            this.cbPoleName.Location = new System.Drawing.Point(105, 107);
             this.cbPoleName.Name = "cbPoleName";
             this.cbPoleName.Size = new System.Drawing.Size(249, 22);
             this.cbPoleName.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.cbPoleName.TabIndex = 8;
+            this.cbPoleName.TextChanged += new System.EventHandler(this.cbPoleName_TextChanged);
             // 
             // labelX1
             // 
@@ -104,7 +113,7 @@
             // 
             this.labelX1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX1.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.labelX1.Location = new System.Drawing.Point(17, 30);
+            this.labelX1.Location = new System.Drawing.Point(17, 52);
             this.labelX1.Name = "labelX1";
             this.labelX1.Size = new System.Drawing.Size(92, 22);
             this.labelX1.Symbol = "";
@@ -120,7 +129,7 @@
             // 
             this.labelX2.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX2.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.labelX2.Location = new System.Drawing.Point(17, 58);
+            this.labelX2.Location = new System.Drawing.Point(17, 80);
             this.labelX2.Name = "labelX2";
             this.labelX2.Size = new System.Drawing.Size(92, 22);
             this.labelX2.Symbol = "";
@@ -137,7 +146,7 @@
             // 
             this.lblStationRegion.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.lblStationRegion.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.lblStationRegion.Location = new System.Drawing.Point(105, 58);
+            this.lblStationRegion.Location = new System.Drawing.Point(105, 80);
             this.lblStationRegion.Name = "lblStationRegion";
             this.lblStationRegion.Size = new System.Drawing.Size(48, 22);
             this.lblStationRegion.SymbolColor = System.Drawing.Color.RoyalBlue;
@@ -153,7 +162,7 @@
             // 
             this.lblTunnel.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.lblTunnel.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.lblTunnel.Location = new System.Drawing.Point(105, 30);
+            this.lblTunnel.Location = new System.Drawing.Point(105, 52);
             this.lblTunnel.Name = "lblTunnel";
             this.lblTunnel.Size = new System.Drawing.Size(48, 22);
             this.lblTunnel.SymbolColor = System.Drawing.Color.RoyalBlue;
@@ -168,7 +177,7 @@
             // 
             this.labelX4.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX4.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.labelX4.Location = new System.Drawing.Point(17, 114);
+            this.labelX4.Location = new System.Drawing.Point(217, 24);
             this.labelX4.Name = "labelX4";
             this.labelX4.Size = new System.Drawing.Size(92, 22);
             this.labelX4.Symbol = "";
@@ -185,13 +194,83 @@
             // 
             this.lblImgId.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.lblImgId.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.lblImgId.Location = new System.Drawing.Point(105, 115);
+            this.lblImgId.Location = new System.Drawing.Point(305, 24);
             this.lblImgId.Name = "lblImgId";
             this.lblImgId.Size = new System.Drawing.Size(49, 22);
             this.lblImgId.SymbolColor = System.Drawing.Color.RoyalBlue;
             this.lblImgId.SymbolSize = 10F;
             this.lblImgId.TabIndex = 7;
             this.lblImgId.Text = "图像ID";
+            // 
+            // lbltxt
+            // 
+            // 
+            // 
+            // 
+            this.lbltxt.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.lbltxt.Font = new System.Drawing.Font("微软雅黑", 10F);
+            this.lbltxt.Location = new System.Drawing.Point(17, 24);
+            this.lbltxt.Name = "lbltxt";
+            this.lbltxt.Size = new System.Drawing.Size(92, 22);
+            this.lbltxt.Symbol = "";
+            this.lbltxt.SymbolColor = System.Drawing.Color.RoyalBlue;
+            this.lbltxt.SymbolSize = 10F;
+            this.lbltxt.TabIndex = 7;
+            this.lbltxt.Text = "序    号：";
+            // 
+            // lblId
+            // 
+            this.lblId.AutoSize = true;
+            // 
+            // 
+            // 
+            this.lblId.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.lblId.Font = new System.Drawing.Font("微软雅黑", 10F);
+            this.lblId.Location = new System.Drawing.Point(105, 24);
+            this.lblId.Name = "lblId";
+            this.lblId.Size = new System.Drawing.Size(49, 22);
+            this.lblId.SymbolColor = System.Drawing.Color.RoyalBlue;
+            this.lblId.SymbolSize = 10F;
+            this.lblId.TabIndex = 7;
+            this.lblId.Text = "序号ID";
+            // 
+            // labelX3
+            // 
+            this.labelX3.AutoSize = true;
+            // 
+            // 
+            // 
+            this.labelX3.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.labelX3.Font = new System.Drawing.Font("微软雅黑", 10F);
+            this.labelX3.FontBold = true;
+            this.labelX3.ForeColor = System.Drawing.Color.Gray;
+            this.labelX3.Location = new System.Drawing.Point(181, 24);
+            this.labelX3.Name = "labelX3";
+            this.labelX3.SingleLineColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.labelX3.Size = new System.Drawing.Size(12, 22);
+            this.labelX3.SymbolColor = System.Drawing.Color.RoyalBlue;
+            this.labelX3.SymbolSize = 10F;
+            this.labelX3.TabIndex = 7;
+            this.labelX3.Text = "|";
+            // 
+            // lblCoverTip
+            // 
+            this.lblCoverTip.AutoSize = true;
+            // 
+            // 
+            // 
+            this.lblCoverTip.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.lblCoverTip.Font = new System.Drawing.Font("微软雅黑", 10F);
+            this.lblCoverTip.ForeColor = System.Drawing.Color.Crimson;
+            this.lblCoverTip.Location = new System.Drawing.Point(217, 52);
+            this.lblCoverTip.Name = "lblCoverTip";
+            this.lblCoverTip.Size = new System.Drawing.Size(135, 39);
+            this.lblCoverTip.Symbol = "";
+            this.lblCoverTip.SymbolColor = System.Drawing.Color.Crimson;
+            this.lblCoverTip.SymbolSize = 15F;
+            this.lblCoverTip.TabIndex = 7;
+            this.lblCoverTip.Text = "原图像ID: 1234\r\n请确定后覆盖？";
+            this.lblCoverTip.Visible = false;
             // 
             // FrmSetPoleNum
             // 
@@ -202,10 +281,14 @@
             this.ClientSize = new System.Drawing.Size(403, 184);
             this.Controls.Add(this.cbPoleName);
             this.Controls.Add(this.lblTunnel);
+            this.Controls.Add(this.lblId);
+            this.Controls.Add(this.labelX3);
             this.Controls.Add(this.lblImgId);
             this.Controls.Add(this.lblStationRegion);
             this.Controls.Add(this.labelX2);
             this.Controls.Add(this.labelX1);
+            this.Controls.Add(this.lbltxt);
+            this.Controls.Add(this.lblCoverTip);
             this.Controls.Add(this.labelX4);
             this.Controls.Add(this.lblTip);
             this.Controls.Add(this.btnCancel);
@@ -233,5 +316,9 @@
         private DevComponents.DotNetBar.LabelX lblTunnel;
         private DevComponents.DotNetBar.LabelX labelX4;
         private DevComponents.DotNetBar.LabelX lblImgId;
+        private DevComponents.DotNetBar.LabelX lbltxt;
+        private DevComponents.DotNetBar.LabelX labelX3;
+        private DevComponents.DotNetBar.LabelX lblId;
+        private DevComponents.DotNetBar.LabelX lblCoverTip;
     }
 }

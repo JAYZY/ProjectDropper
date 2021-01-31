@@ -17,5 +17,17 @@
     <Setting Name="loadDatabasePath" Type="System.String" Scope="User">
       <Value Profile="(Default)">C:\</Value>
     </Setting>
+    <Setting Name="maxZeg" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">400</Value>
+    </Setting>
+    <Setting Name="minZeg" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">-400</Value>
+    </Setting>
+    <Setting Name="maxHei" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">2100</Value>
+    </Setting>
+    <Setting Name="minHei" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">-2100</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

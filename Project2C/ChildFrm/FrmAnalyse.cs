@@ -8,6 +8,7 @@ using JCW;
 using Project2C.config;
 using Project2C.Core;
 using Project2C.Dialog;
+using Project2C.Properties;
 using Project2C.UI;
 using System;
 using System.Collections.Generic;
@@ -28,7 +29,7 @@ namespace Project2C.ChildFrm {
 
 
 
-        private DataTable dtIndexData, dtPoleNum, dtFault; //索引数据，支柱号,缺陷
+        private DataTable dtIndexData, dtPoleNum, dtFault, dtJH; //索引数据，支柱号,缺陷,几何数据
 
         private DataTable dtDataA1 = null, dtDataA2 = null;
 
@@ -95,6 +96,11 @@ namespace Project2C.ChildFrm {
                 MessageBox.Show("缺少全局索引数据库，请检查！\n系统将退出");
                 Environment.Exit(0);
             }
+            //表格初始化
+            DataGridViewButtonXColumn bcx = dgViewJHData.Columns["colPosi"] as DataGridViewButtonXColumn;
+            if (bcx != null) {
+                bcx.BeforeCellPaint += JHDataPosi_BeforeCellPaint;
+            }
         }
 
         /// <summary>
@@ -130,13 +136,19 @@ namespace Project2C.ChildFrm {
         }
 
         private void FrmAnalyse_Load(object sender, EventArgs e) {
+            Inictrl();
+
+            //m_FigureHandlingOverlay.DelMouseEventHandler(ImageView);
+        }
+        //控件初始化
+        private void Inictrl() {
+            //图像控件初始化
             FVIL._SetUp.InitVisionLibrary();
             ImageView.Display.Overlays.Add(m_Overlay);
             ImageView.Display.Overlays.Add(m_FigureHandlingOverlay);
             m_FigureHandlingOverlay.AddMouseEventHandler(ImageView);
-            //m_FigureHandlingOverlay.DelMouseEventHandler(ImageView);
-        }
 
+        }
         #endregion
 
         #region 数据绑定
@@ -171,7 +183,10 @@ namespace Project2C.ChildFrm {
                 iTotalFrameNum = Convert.ToInt32(dtIndexData.Rows.Count);
 
                 //加载基础数据 - 定位数据 
-                 LoadBaseDataAndPole();
+                LoadBaseDataAndPole();
+                //加载几何参数数据
+                LoadJHData();
+
 
                 //加载1秒的数据 // ReadBufferSmallData();
                 ReadImgData();
@@ -335,7 +350,7 @@ namespace Project2C.ChildFrm {
         }
 
 
-      
+
 
         /// <summary>
         /// 从数据库中载入已有缺陷标注
@@ -577,19 +592,6 @@ namespace Project2C.ChildFrm {
 
 
 
-        /// <summary>
-        /// 显示支柱号（定位）信息
-        /// </summary>
-        private void ShowPoleNumInfo() {
-            if (dgViewDataInfo.InvokeRequired) {
-                Action a = ShowPoleNumInfo;
-                dgViewDataInfo.Invoke(a);
-
-            } else {
-                dgViewDataInfo.AutoGenerateColumns = false;
-                dgViewDataInfo.DataSource = dtPoleNum;
-            }
-        }
         #endregion
 
         #region 视频播放代码
@@ -684,29 +686,29 @@ namespace Project2C.ChildFrm {
                 if (iCurFrameNum > iTotalFrameNum - 1) {
                     return;
                 }
-                sTip = @"下一帧";
+                sTip = $"下一帧:{iCurFrameNum}";
                 ++iCurFrameNum; ++_curImgIdA;
             } else {
                 if (iCurFrameNum == 1) {
                     return;
                 }
                 --iCurFrameNum; --_curImgIdA;
-                sTip = @"上一帧";
+                sTip = $"上一帧:{iCurFrameNum}";
             }
 
-
+            GoFrameNo(iCurFrameNum);
             // progressBarItem.Value = (int)(iCurFrameNum * 1.0 / iTotalFrameNum * 100.0);
-            if (_curImgIdA < 0 || _curImgIdA > _curDtData.Rows.Count - 1) {//不在缓存区间则读取下一帧
-                                                                         //增加图片索引值并判断缓存数据是否读完                AddCurImgIdA();
-                GoFrameNo(iCurFrameNum);
-                isReload = false;
-            } else {
-                DelAllLayerDel(); //读取缓存数据
-                ReadImgData();
-                progressBarItem.Value = (int)(iCurFrameNum * 1.0 / iTotalFrameNum * 100.0);
-                btnFrameNo.Text = iCurFrameNum.ToString();
+            // if (_curImgIdA < 0 || _curImgIdA > _curDtData.Rows.Count - 1) {//不在缓存区间则读取下一帧
+            //增加图片索引值并判断缓存数据是否读完                AddCurImgIdA();
+            //    GoFrameNo(iCurFrameNum);
+            //     isReload = false;
+            // } else {
+            //      DelAllLayerDel(); //读取缓存数据
+            //      ReadImgData();
+            //      progressBarItem.Value = (int)(iCurFrameNum * 1.0 / iTotalFrameNum * 100.0);
+            //      btnFrameNo.Text = iCurFrameNum.ToString();
 
-            }
+            //}
             ToastNotification.Show(ImageView, sTip, null, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter);
 
         }
@@ -1175,14 +1177,25 @@ namespace Project2C.ChildFrm {
             ImageView2.Refresh();
         }
 
-
+        /// <summary>
+        /// 双击定位数据 定位到 图像帧
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void dgViewDataInfo_DoubleClick(object sender, EventArgs e) {
             if (dgViewDataInfo.CurrentRow == null) {
                 return;
             }
+            var selValue = dgViewDataInfo.CurrentRow.Cells["colImgId"].Value;
+            if (selValue != null) {
+                string selImgId = selValue.ToString();
+                if (!string.IsNullOrEmpty(selImgId)) {
+                    GoFrameNo(Convert.ToInt32(selImgId));
+                }
 
-            DataTable dt = dgViewDataInfo.DataSource as DataTable;
-            DataRow selRow = dt.Rows[dgViewDataInfo.CurrentRow.Index];
+            }
+            // DataView dv = dgViewDataInfo.DataSource as DataView;
+            //DataRow selRow =dgViewDataInfo.CurrentRow;
 
         }
 
@@ -1203,9 +1216,49 @@ namespace Project2C.ChildFrm {
         /// </summary>
         private void LoadBaseDataAndPole() {
             dtPoleNum = DBIndex.ExecuteDataTable("select * from basedata", null);//  where areaType=5 order by pid limit 0,10000 ", null);
+            isChgLocalInfo = false;
             ShowPoleNumInfo();
+            isChgLocalInfo = true;
         }
+        bool isChgLocalInfo;
 
+        ComboBoxEx[] cbLocalInfo = null;
+        /// <summary>
+        /// 下拉框--定位信息过滤
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void cbBoxLocalInfo_SelectedIndexChanged(object sender, EventArgs e) {
+            if (!isChgLocalInfo) {
+                return;
+            }
+
+            var ctrl = (ComboBoxEx)sender;
+            if (cbLocalInfo == null) {
+                cbLocalInfo = new ComboBoxEx[] { cbBoxStation, cbTunnelName, cbPoleName };
+            }
+            isChgLocalInfo = false;
+            foreach (var comboBox in cbLocalInfo) {
+                if (comboBox == ctrl) {
+                    continue;
+                }
+
+                comboBox.SelectedIndex = 0;
+            }
+            isChgLocalInfo = true;
+            if (ctrl.SelectedIndex == 0) { //还原
+                dgViewDataInfo.DataSource = dtPoleNum.DefaultView;
+            } else {
+                try {
+                    DataView dv = new DataView(dtPoleNum);
+                    dv.RowFilter = $"{ctrl.Tag}='{ctrl.Text}'";
+                    dgViewDataInfo.DataSource = dv;
+                } catch { }
+            }
+
+
+
+        }
 
         /// <summary>
         /// 修改定位信息--按钮事件
@@ -1213,78 +1266,106 @@ namespace Project2C.ChildFrm {
         private void btnItemPoleNumSet_Click(object sender, EventArgs e) {
             ModifyLocalInfo();
         }
-        int iSelCurrPoleNameId=-1;
+
+        int iSelCurrPoleNameId = -1;//选择的当前杆号ID
         /// <summary>
         /// 查找当前定位点
         /// 算法：
         /// 1.若点击了左侧定位点则，为左侧定位点。
         /// 2.否则查找dtPoleName中当前图像Id最近的定位点
+        /// 
         /// </summary>
-        private Int64 FindCurrPoleNameInd() {
+        /// <returns>返回ID </returns>
+        private int FindCurrPoleNameInd() {
             if (iSelCurrPoleNameId > -1) {
-               
                 return iSelCurrPoleNameId;
             }
             iSelCurrPoleNameId = iCurFrameNum + 1;
             DataRow[] drs = dtPoleNum.Select($"ImgId={iSelCurrPoleNameId}");
-            Int64 rtnInd = 0;
-            if (drs.Length == 0) {
-                drs = dtPoleNum.Select($"ImgId<{iSelCurrPoleNameId}","id desc");
-            }
+            int rtnInd = -1;
             if (drs.Length > 0) {
-                rtnInd = Convert.ToInt64(drs[0]["Id"]);
-               // ++rtnInd;
+                rtnInd = Convert.ToInt32(drs[0]["Id"]) - 1; //找到已有定位点               
+            } else if (drs.Length == 0) {
+                drs = dtPoleNum.Select($"ImgId<{iSelCurrPoleNameId}", "id desc");
+                if (drs.Length == 0) {
+                    rtnInd = 0;
+                } else {
+                    rtnInd = Convert.ToInt32(drs[0]["Id"]); //找最近的定位点 例如 已有  
+                }
             }
-            iSelCurrPoleNameId = -1;
+
+            //iSelCurrPoleNameId = -1;
             return rtnInd;
-         }
+        }
+
+
         /// <summary>
         /// 修改支柱号--方法
         /// </summary>
         private void ModifyLocalInfo() {
-            Int64 selCurrPoleName = FindCurrPoleNameInd();
-            FrmSetPoleNum frmPoleNum = new FrmSetPoleNum(dtPoleNum,selCurrPoleName);
+            int selCurrPoleName = FindCurrPoleNameInd();
+
+            FrmSetPoleNum frmPoleNum = new FrmSetPoleNum(dtPoleNum, selCurrPoleName, iSelCurrPoleNameId);
             if (frmPoleNum.ShowDialog() == DialogResult.Cancel) {
+                iSelCurrPoleNameId = -1;
                 return;
             }
 
-            string polenum = frmPoleNum.StrPoleNum;
-            if (string.IsNullOrEmpty(polenum)) {
+            int iBaseDataId = frmPoleNum.selBaseDataId;
+            if (iBaseDataId == -1) {
                 return;
             }
-            iSelCurrPoleNameId = -1;//重置选择
-            //修改数据
-            string sPIdA = _drViewA["id"].ToString();
-            // string sPIdB = drSecView["pid"].ToString();
+            string poleName = "";
+            //修改数据（采用冗余方式） --A.写入baseData 表ImgId B.写入indexTB表 poleNum
+            try {
+                string sSQL = $"update BaseData set ImgId={iSelCurrPoleNameId} where Id={iBaseDataId}";
+                DBIndex.ExecuteNonQuery(sSQL);
+                poleName = dtPoleNum.Rows[iBaseDataId]["poleName"].ToString();
+                sSQL = $"update indexTB set poleNum='{poleName}' where rowId={iSelCurrPoleNameId}";
+                DBIndex.ExecuteNonQuery(sSQL);
+            } catch (Exception ex) {
 
-           // string strUpdate = String.Format("update picInfo set poleNum='{0}' where pid={1}", polenum, sPIdA);
-          //  SqliteHelper.GetSqlite("imgDb").ExecuteNonQuery(strUpdate, null);
-
-
-            //if (dtPoleNum.Rows.Count > 0 && ((dtPoleNum.Select("pid=" + sPIdA).Length > 0) || (dtPoleNum.Select("pid=" + sPIdB).Length > 0))) {
-
-            //    strSql = String.Format("update poleIndex set poleNum='{0}',frameNo={1} where pid={2} or pid ={3}",
-            //        polenum, iCurFrameNum, sPIdA, sPIdB);
-            //    gSqllite.ExecuteNonQuery(strSql, null);
-            //}
-            //else {
-            //    strSql = String.Format("insert into  poleIndex (pid,cid,frameNo,poleNum,sname) values({0},{1},{2},'{3}','{4}')",
-            //        sPIdA, drMainView["cid"], iCurFrameNum, polenum, StationInfo.GetInstance().SName);
-            //    gSqllite.ExecuteNonQuery(strSql, null);
-            //    strSql = String.Format("insert into  poleIndex (pid,cid,frameNo,poleNum,sname) values({0},{1},{2},'{3}','{4}')",
-            //        sPIdB, drSecView["cid"], iCurFrameNum, polenum, StationInfo.GetInstance().SName);
-            //    gSqllite.ExecuteNonQuery(strSql, null);
-            //}
-
-            //_curDtDataA.Rows[_curImgIdA]["poleNum"] = polenum;
-            //_curDtDataB.Rows[_curImgIdB]["poleNum"] = polenum;
+                MsgBox.Error("定位数据写入错误！\n\n" + ex.ToString());
+            }
             LoadBaseDataAndPole();
-            //drPoleNum = dtData.Select("poleNum<>'1' and poleNum<>''");
-            //if (drPoleNum.Length > 0)
-            //    dtPoleNum = drPoleNum.CopyToDataTable();
-            //ShowPoleNumInfo();
+
+            iSelCurrPoleNameId = -1;//重置选择
+            ToastNotification.Show(ImageView, $"定位信息:{poleName},设置成功", null, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter);
         }
 
+
+
+        /// <summary>
+        /// 显示支柱号（定位）信息
+        /// </summary>
+        private void ShowPoleNumInfo() {
+            if (dgViewDataInfo.InvokeRequired) {
+                Action a = ShowPoleNumInfo;
+                dgViewDataInfo.Invoke(a);
+
+            } else {
+                dgViewDataInfo.AutoGenerateColumns = false;
+                dgViewDataInfo.DataSource = dtPoleNum;
+                //去重 提取区间信息--考虑效率 
+                cbPoleName.Items.Clear(); cbPoleName.Items.Add("-全部-"); cbPoleName.SelectedIndex = 0;
+                cbBoxStation.Items.Clear(); cbBoxStation.Items.Add("------全部站区------"); cbBoxStation.SelectedIndex = 0;
+                cbTunnelName.Items.Clear(); cbTunnelName.Items.Add("--全部隧道--"); cbTunnelName.SelectedIndex = 0;
+                foreach (DataRow datarow in dtPoleNum.Rows) {
+                    if (datarow["stationRegion"] != null && cbBoxStation.Items.IndexOf(datarow["stationRegion"]) == -1) {
+                        cbBoxStation.Items.Add(datarow["stationRegion"]);
+                    }
+                    if (datarow["tunnelName"] != null && cbTunnelName.Items.IndexOf(datarow["tunnelName"]) == -1) {
+                        if (!string.IsNullOrEmpty(datarow["tunnelName"].ToString())) {
+                            cbTunnelName.Items.Add(datarow["tunnelName"]);
+                        }
+                    }
+                    if (datarow["poleName"] != null && cbPoleName.Items.IndexOf(datarow["poleName"]) == -1) {
+                        cbPoleName.Items.Add(datarow["poleName"]);
+                    }
+
+                }
+            }
+        }
         #endregion
 
 
@@ -1296,8 +1377,109 @@ namespace Project2C.ChildFrm {
 
 
         #region # 几何参数
+        /// <summary>
+        /// 从数据库导入几何数据
+        /// </summary>
+
+        private void LoadJHData() {
+            /**
+             * 参数说明：
+             * (1).posi  定位点  0 无（NULL） 	1 导线	2 吊弦  	3 支柱
+             * (2).jhx1  拉出值
+             * (3).jhy1  导高
+             */
+            try {
+                string strQuery = "select rowid,case posi when 1 then '导线' when 2 then '吊弦' when 3 then '支柱' else '未知'end as posi," +
+                    "jhx1,jhy1,time_stamp,file_time from JCWJH where posi>0";
+                dtJH = DBJH.ExecuteDataTable(strQuery);
+                BindJHDataShow();
+            } catch { }
+        }
+        private void BindJHDataShow() {
+            if (dgViewJHData.InvokeRequired) {
+                Action a = BindJHDataShow;
+                dgViewCurFault.Invoke(a);
+            } else {
+
+                dgViewJHData.DataSource = dtJH.DefaultView;
+
+            }
+        }
+
+        private void dgViewJHData_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e) {
+            if (e.RowIndex != -1) {
+                DataGridViewRow dr = (sender as DataGridViewX).Rows[e.RowIndex];
+                var bcColZeg = dr.Cells["colZeg"];
+                var bcColHei = dr.Cells["colHei"];  
+                if (bcColZeg != null) {
+                    string colValue = bcColZeg.Value.ToString().Trim();
+                    double zeg = string.IsNullOrEmpty(colValue) ? 0 : Convert.ToDouble(colValue);
+                    if (zeg >= Settings.Default.maxZeg || zeg <= Settings.Default.minZeg) {
+                        bcColZeg.Style.ForeColor = Color.Red;//FromName("#ffffff");
+                        bcColZeg.Style.Font = new Font("宋体", 9F, FontStyle.Bold);
+                        dr.DefaultCellStyle.BackColor = Color.Gold;
+                    }
+                }
+                if (bcColHei != null) {
+                    string colValue = bcColHei.Value.ToString().Trim();
+                    double Hei = string.IsNullOrEmpty(colValue) ? 0 : Convert.ToDouble(colValue);
+                    if (Hei >= Settings.Default.maxHei || Hei <= Settings.Default.minHei) {
+                        bcColHei.Style.ForeColor = Color.Red;//FromName("#ffffff");
+                        bcColHei.Style.Font = new Font("宋体", 9F, FontStyle.Bold);
+                        dr.DefaultCellStyle.BackColor = Color.WhiteSmoke;
+                    }
+                }
+
+            }
+        }
+        /// <summary>
+        /// 双击 几何参数定位到图像 帧
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void dgViewJHData_DoubleClick(object sender, EventArgs e) {
+            if (dgViewJHData.CurrentRow == null) {
+                return;
+            }
+            var selValue = dgViewJHData.CurrentRow.Cells["colImgId"].Value;
+            if (selValue != null) {
+                string selImgId = selValue.ToString();
+                if (!string.IsNullOrEmpty(selImgId)) {
+                    GoFrameNo(Convert.ToInt32(selImgId));
+                }
+            }
+        }
+
+        void JHDataPosi_BeforeCellPaint(object sender, BeforeCellPaintEventArgs e) {
+            DataGridViewButtonXColumn bcx = sender as DataGridViewButtonXColumn;
+
+            if (bcx != null) {
+                // 1 导线	2 吊弦  	3 支柱
+
+                if (bcx.Text.Trim().Equals("1")) {
+                    //bcx.Image = imageList1.Images["SecHigh"];
+                    bcx.Text = "<font color=\"red\">导线</font>";
+                } else if (bcx.Text.Trim().Equals("2")) {
+                    //bcx.Image = imageList1.Images["SecHigh"];
+                    bcx.Text = "<font color=\"red\">吊弦</font>";
+                } else if (bcx.Text.Trim().Equals("3")) {
+                    //bcx.Image = imageList1.Images["SecHigh"];
+                    bcx.Text = "<font color=\"red\">支柱</font>";
+                } else {
+                    //bcx.Image = imageList1.Images["SecHigh"];
+                    bcx.Text = "<font color=\"red\">未知</font>";
+                }
+            }
+        }
+
+        /// <summary>
+        /// 根据表格内容绘制颜色
+        /// </summary>
+        private void dgViewJHData_RowPrePaint(object sender, DataGridViewRowPrePaintEventArgs e) {
+            
 
 
+        } 
         IntPtr m_hjcw = IntPtr.Zero;
         public void ConnJH() {
 
@@ -1319,7 +1501,12 @@ namespace Project2C.ChildFrm {
             }
         }
 
+      
+
         Queue<JCWJH> lstJCWJH = new Queue<JCWJH>();
+
+
+
         private object obj1 = new object();
 
 
@@ -1327,8 +1514,6 @@ namespace Project2C.ChildFrm {
         const int timeOffset = 10000000;
         Int64 minImgTime = 0;
         private void LoadJH(Int64 ImgTime) {
-
-
             int iCount = 0;
             Int64 maxImgTime = ImgTime + timeOffset;
             string strQuery = $"select * from JCWJH where file_time>{minImgTime} and file_time<= {maxImgTime}";

@@ -86,6 +86,8 @@ namespace Project2C.ChildFrm {
         private string SelectDBDir() {
 
             string selDir = FileHelper.OpenDir("请选择离线任务数据所在目录", Settings.Default.lastDbDir);
+            if (string.IsNullOrEmpty(selDir))
+                return string.Empty;
             //得到索引库文件
             IndexDbFullName = Path.Combine(selDir, "IndexDb.db");
             string tmpStr = Path.GetFileName(selDir);
@@ -131,6 +133,8 @@ namespace Project2C.ChildFrm {
 
         private void btnOpenDir_Click(object sender, EventArgs e) {
             string indexDBFullName = SelectDBDir();
+            if (string.IsNullOrEmpty(indexDBFullName))
+                return;
             try {
                 if (!string.IsNullOrEmpty(indexDBFullName)) {
 
@@ -480,7 +484,7 @@ namespace Project2C.ChildFrm {
                             if (dataRow[0] == null || string.IsNullOrEmpty(dataRow[0].ToString())) {
                                 continue;
                             }
-                            sSQL = $"insert into BaseData values({dataRow[0]},'{dataRow[1]}','{dataRow[2] ?? string.Empty}','{dataRow[3]}')";
+                            sSQL = $"insert into BaseData values({dataRow[0]},'{dataRow[1]}','{dataRow[2]}','{dataRow[3]}',null)";
 
                             DBIndex.ExecuteNonQueryByTran(sSQL, null);
                         }
