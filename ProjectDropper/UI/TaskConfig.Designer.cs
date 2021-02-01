@@ -263,9 +263,9 @@
             this.btnImportBaseData.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.btnImportBaseData.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnImportBaseData.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnImportBaseData.Location = new System.Drawing.Point(417, 2);
+            this.btnImportBaseData.Location = new System.Drawing.Point(415, 2);
             this.btnImportBaseData.Name = "btnImportBaseData";
-            this.btnImportBaseData.Size = new System.Drawing.Size(155, 32);
+            this.btnImportBaseData.Size = new System.Drawing.Size(156, 32);
             this.btnImportBaseData.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.btnImportBaseData.Symbol = "";
             this.btnImportBaseData.TabIndex = 43;
@@ -487,6 +487,7 @@
             this.Controls.Add(this.cbBoxStartStation);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "TaskConfig";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "创建任务";

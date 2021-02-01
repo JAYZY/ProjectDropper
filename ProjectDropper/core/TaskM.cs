@@ -128,7 +128,7 @@ namespace ProjectDropper.core {
                 }
             }
         }
-
+        
         //-----------------------------------------------
         // private StationInfo _stationInfo;
         #region 属性定义
@@ -179,9 +179,7 @@ namespace ProjectDropper.core {
 
            // ComClassLib.FileOp.FileHelper.CreateDir(_taskDir);
             if (!string.IsNullOrEmpty(taskBackDir)) {
-                _taskBackDir = Path.Combine(taskBackDir, TaskName);
-               
-
+                _taskBackDir = Path.Combine(taskBackDir, TaskName);    
 
                 //创建目录
                 ComClassLib.FileOp.FileHelper.CreateDir(_taskBackDir);

@@ -367,8 +367,6 @@ namespace ProjectDropper.UI {
             /* 新建任务目录与登录数据库，主索引数据库 */
             StationInfo stationInfo = new StationInfo(cbBoxTarskLineName.Text, cbBoxStartStation.Text, cbBoxEndStation.Text, (short)cbBoxUpDown.SelectedIndex, DateTime.Now);
 
-
-
             MonitorTask.AddTask(stationInfo, DBSavePath, BackDbPath);
             //刷新显示任务
             LoadMonitorTask();

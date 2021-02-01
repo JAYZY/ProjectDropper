@@ -35,13 +35,13 @@ namespace ProjectDropper.core {
             Over
         }
         public static Action<string> CallFunc { get; set; } //回调函数
-        private string srcPathA, srcPathB, workPath;//监听2个文件路径
+        private readonly string srcPathA, srcPathB, workPath;//监听2个文件路径
         private string _destDirA = "", _destDirB = "";//拷贝路径 A  B
 
 
-        private CancellationTokenSource _tokenSource;
+        private readonly CancellationTokenSource _tokenSource;
         private CancellationToken _token;
-        private ManualResetEvent _resetEvent;
+        private readonly ManualResetEvent _resetEvent;
         private string DestDirA {
             get {
                 if (string.IsNullOrEmpty(_destDirA)) {
@@ -114,7 +114,7 @@ namespace ProjectDropper.core {
         public void MonitorDir() {
             IsStop = false;
             //开启线程任务 -- 拷贝文件
-            var taskCpA = new Task(() => CopyMainFile()); 
+            var taskCpA = new Task(() => CopyMainFile());
             var taskCpB = new Task(() => CopySecondFile());
             taskCpA.Start();
             taskCpB.Start();
@@ -565,10 +565,17 @@ namespace ProjectDropper.core {
         public void StopProcessDB() {
             IsStop = true;
             bufferSize = 16;
-            CurrSecondDB.CloseDb();
-            CurrMainDB.CloseDb();
-            DBIndex.CloseDb();
+            if (CurrSecondDB != null) {
+                CurrSecondDB.CloseDb();
+            }
 
+            if (CurrMainDB != null) {
+                CurrMainDB.CloseDb();
+            }
+
+            if (DBIndex != null) {
+                DBIndex.CloseDb();
+            }
         }
 
 

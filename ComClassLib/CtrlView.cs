@@ -34,7 +34,7 @@ namespace ComClassLib {
             //}
             //imgView.Display.Magnification = mag;
         }
-
+        public bool IsLoadBgImg { get; set; }
         public void LoadImg(string filePath) {
 
             // byte[] byteData = FileOp.FileHelper.getImageByte(filePath);
