@@ -77,6 +77,8 @@ namespace Project2C.ChildFrm {
 
         public FrmDataMgr() {
             InitializeComponent();
+            lblDBPath.Text = "";
+            
 
         }
 
@@ -199,12 +201,12 @@ namespace Project2C.ChildFrm {
             bool isOk = true;
             if (stationInfo == null) {
                 //插入数据
-                stationInfo = new StationInfo();
-                stationInfo.LineName = tbStationName.Text;
-                stationInfo.StartStation = tbStartStation.Text;
-                stationInfo.EndStation = tbEndStation.Text;
-                stationInfo.TaskDate = dateTimeInput.Value;
-                stationInfo.IType = cbBoxUpDown.SelectedIndex;
+                stationInfo = new StationInfo(tbStationName.Text, tbStartStation.Text,tbEndStation.Text,(short)cbBoxUpDown.SelectedIndex,dateTimeInput.Value);
+                //stationInfo.LineName = tbStationName.Text;
+                //stationInfo.StartStation = tbStartStation.Text;
+                //stationInfo.EndStation = tbEndStation.Text;
+                //stationInfo.TaskDate = dateTimeInput.Value;
+                //stationInfo.IType = cbBoxUpDown.SelectedIndex;
                 isOk = UpdateTaskInfo(true);
 
             } else if (stationInfo.LineName != tbStationName.Text || stationInfo.TaskDate != dateTimeInput.Value
@@ -444,16 +446,15 @@ namespace Project2C.ChildFrm {
         }
         #region 基础线路数据加载
         private void btnLoadBaseData_Click(object sender, EventArgs e) {
+            if (string.IsNullOrEmpty(lblDBPath.Text)) {
+                MsgBox.Warning("请先选择检测数据！","警告");
+                return;
+            }
             if (cbHasBaseData.Checked) {
                 if (MsgBox.YesNo("已经有线路信息，确认重新载入？") == DialogResult.No) {
                     return;
                 }
-            }
-            if (DBIndex.IsFieldExist("BaseData", "id")) {
-                DBIndex.ExecuteNonQuery("delete from BaseData", null);
-            } else {
-                DataM.CreateBaseData(DBIndex);
-            }
+            }           
             if (LoadBaseData()) {
                 MsgBox.Show(@"线路基础数据信息导入成功！");
                 //刷新线路基础数据
@@ -467,10 +468,17 @@ namespace Project2C.ChildFrm {
             string fileFilter = "csv files (*.csv)|*.csv";//过滤选项设置，文本文件，所有文件。
             string title = "选择导入的线路基础数据文件";
             FileHelper._InitialDirectory = Settings.Default.loadDatabasePath;
-            string selFileName = FileHelper.OpenFile(title, fileFilter);
-            Settings.Default.loadDatabasePath = Path.GetDirectoryName(selFileName);
-            Settings.Default.Save();
+            string selFileName = FileHelper.OpenFile(title, fileFilter);     
             if (!string.IsNullOrEmpty(selFileName)) {
+
+                Settings.Default.loadDatabasePath = Path.GetDirectoryName(selFileName);
+                Settings.Default.Save();
+                //判断基础数据表是否存在，存在-清除数据；不存在创建表
+                if (DBIndex.IsFieldExist("BaseData", "id")) {
+                    DBIndex.ExecuteNonQuery("delete from BaseData", null);
+                } else {
+                    DataM.CreateBaseData(DBIndex);
+                }
                 CsvHelper csv = new CsvHelper(selFileName);
                 DataTable dt = csv.csvDT;
                 string sSQL = "";
@@ -506,6 +514,10 @@ namespace Project2C.ChildFrm {
         }
 
         #endregion
+        private void lblDBPath_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) {
+            FileHelper.OpenLocalDir(lblDBPath.Text.Trim());
+        }
+
         private void IndexSecondDB() {
             //索引 相机B文件 ====== 
             for (int i = 0; i < _lstAllDbB.Count; i++) {

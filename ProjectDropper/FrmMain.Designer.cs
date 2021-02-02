@@ -221,7 +221,7 @@
             this.lblCameraStateA.Location = new System.Drawing.Point(2, 1);
             this.lblCameraStateA.Margin = new System.Windows.Forms.Padding(5);
             this.lblCameraStateA.Name = "lblCameraStateA";
-            this.lblCameraStateA.Size = new System.Drawing.Size(34, 24);
+            this.lblCameraStateA.Size = new System.Drawing.Size(34, 31);
             this.lblCameraStateA.TabIndex = 62;
             this.lblCameraStateA.Text = "  ";
             // 
@@ -230,11 +230,14 @@
             this.imgLstCameraState.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imgLstCameraState.ImageStream")));
             this.imgLstCameraState.TransparentColor = System.Drawing.Color.Transparent;
             this.imgLstCameraState.Images.SetKeyName(0, "conn.png");
-            this.imgLstCameraState.Images.SetKeyName(1, "disConn.png");
-            this.imgLstCameraState.Images.SetKeyName(2, "timelist.png");
-            this.imgLstCameraState.Images.SetKeyName(3, "time.png");
-            this.imgLstCameraState.Images.SetKeyName(4, "button-green.png");
-            this.imgLstCameraState.Images.SetKeyName(5, "button-red.png");
+            this.imgLstCameraState.Images.SetKeyName(1, "断开连接.png");
+            this.imgLstCameraState.Images.SetKeyName(2, "88-断开连接 (1).png");
+            this.imgLstCameraState.Images.SetKeyName(3, "disConn.png");
+            this.imgLstCameraState.Images.SetKeyName(4, "timelist.png");
+            this.imgLstCameraState.Images.SetKeyName(5, "time.png");
+            this.imgLstCameraState.Images.SetKeyName(6, "button-green.png");
+            this.imgLstCameraState.Images.SetKeyName(7, "button-red.png");
+            this.imgLstCameraState.Images.SetKeyName(8, "正常.png");
             // 
             // lblTipA
             // 
@@ -243,7 +246,7 @@
             this.lblTipA.Font = new System.Drawing.Font("微软雅黑", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lblTipA.ForeColor = System.Drawing.Color.Red;
             this.lblTipA.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.lblTipA.Location = new System.Drawing.Point(43, 2);
+            this.lblTipA.Location = new System.Drawing.Point(39, 6);
             this.lblTipA.Name = "lblTipA";
             this.lblTipA.Size = new System.Drawing.Size(80, 19);
             this.lblTipA.TabIndex = 62;
@@ -272,7 +275,7 @@
             this.lblCameraStateB.Location = new System.Drawing.Point(2, 1);
             this.lblCameraStateB.Margin = new System.Windows.Forms.Padding(0);
             this.lblCameraStateB.Name = "lblCameraStateB";
-            this.lblCameraStateB.Size = new System.Drawing.Size(34, 24);
+            this.lblCameraStateB.Size = new System.Drawing.Size(34, 32);
             this.lblCameraStateB.TabIndex = 87;
             this.lblCameraStateB.Text = "  ";
             // 
@@ -282,7 +285,7 @@
             this.lblTipB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblTipB.Font = new System.Drawing.Font("微软雅黑", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lblTipB.ForeColor = System.Drawing.Color.Lime;
-            this.lblTipB.Location = new System.Drawing.Point(38, 2);
+            this.lblTipB.Location = new System.Drawing.Point(38, 8);
             this.lblTipB.Name = "lblTipB";
             this.lblTipB.Size = new System.Drawing.Size(79, 19);
             this.lblTipB.TabIndex = 62;
@@ -1153,10 +1156,6 @@
             this.imageList1.Images.SetKeyName(11, "Ellipse 2.png");
             this.imageList1.Images.SetKeyName(12, "button-green.png");
             this.imageList1.Images.SetKeyName(13, "button-red.png");
-            // 
-            // timer1
-            // 
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // exPanelJHCS
             // 

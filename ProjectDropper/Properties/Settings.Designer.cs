@@ -73,7 +73,7 @@ namespace ProjectDropper.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("12345")]
+        [global::System.Configuration.DefaultSettingValueAttribute("13456")]
         public int cameraPort {
             get {
                 return ((int)(this["cameraPort"]));
@@ -248,6 +248,30 @@ namespace ProjectDropper.Properties {
             }
             set {
                 this["RunningTask"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string LastSaveFileA {
+            get {
+                return ((string)(this["LastSaveFileA"]));
+            }
+            set {
+                this["LastSaveFileA"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string LastSaveFileB {
+            get {
+                return ((string)(this["LastSaveFileB"]));
+            }
+            set {
+                this["LastSaveFileB"] = value;
             }
         }
     }

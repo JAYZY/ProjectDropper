@@ -47,7 +47,14 @@ namespace ProjectDropper {
             StartInspect,
             StopInspect,
         }
-
+        enum DevStatus {
+            Unknown,
+            NetError,
+            Connect,
+            SoftError,
+            SoftOk,
+            Success
+        }
         string[] arrParam = {"SetCurTaskName", "Gain", "Exposure", "FocusMinus", "FocusPlus", "LEDWidth", "EnableLED", "FrameRate", "TriggerMode", "MoveUp", "MoveDown", "MoveLeft", "MoveRight", "MoveStop", "MoveTo", "SetPos", "RemovePos", "ShutDown", "Restart"
         ,"ZoomMinus","ZoomPlus","IrisMinus","IrisPlus","StartInspect","StopInspect"};
 
@@ -58,6 +65,7 @@ namespace ProjectDropper {
         private Panel[] _imgPanels;
         private string[] _ipAddress;
         protected Label[] _lblTips;
+        private DevStatus[] _devStatus; //设备状态
         private Label[] _lblCameraStates;
         private int _iPort;//端口统一
         private System.Windows.Forms.Timer[] _videoDisplays;
@@ -73,33 +81,28 @@ namespace ProjectDropper {
             IniCtrl();
             ConnJH();
             StartUDPListener();
-        }
 
+            //异常任务检测
+            ResumeTask();
+
+        }
+        /// <summary>
+        /// 控件初始化
+        /// </summary>
         private void IniCtrl() {
             // lblTime.Font = new Font("Digital dream fat", 28, System.Drawing.FontStyle.Bold);
             lblTime.Font = new Font("Digiface", 45, System.Drawing.FontStyle.Bold);
             lblItemDBPath.Text = Settings.Default.DBPath;//数据存储路径
-            _tasks = new Task[2];
+            _lblCameraStates = new Label[] { lblCameraStateA, lblCameraStateB };
 
+            _tasks = new Task[2];
             _hDevs = new IntPtr[2] { IntPtr.Zero, IntPtr.Zero };
             _imageViews = new CtrlView[] { new CtrlView("cView1"), new CtrlView("cView2") };
             _ipAddress = new string[] { Settings.Default.cameraIPA, Settings.Default.cameraIPB };
-
             _iPort = Settings.Default.cameraPort;
-            //TCP服务器监听
-            _cameraNW = new NetworkHelper(Settings.Default.TCPSevIP, Settings.Default.TCPSevPort);
-
             _imgPanels = new Panel[] { panelImgA, panelImgB };
             _lblTips = new Label[] { lblTipA, lblTipB };
-            // lblTipA.ForeColor = lblTipB.ForeColor = lblTipC.ForeColor = lblTipD.ForeColor = Color.White;
-            _lblCameraStates = new Label[] { lblCameraStateA, lblCameraStateB };
-
-            /// 任务初始化
-            _tokenSource = new CancellationTokenSource[] { new CancellationTokenSource(), new CancellationTokenSource(), new CancellationTokenSource(), new CancellationTokenSource() };
-
-            _resetEvent = new ManualResetEvent(true);
-            //
-
+            _devStatus = new DevStatus[] { DevStatus.Unknown, DevStatus.Unknown };
             comBoxCameraSel.Items.Clear();
             for (int i = 0; i < _imgPanels.Length; i++) {
                 //_token[i] = _tokenSource[i].Token;
@@ -109,14 +112,30 @@ namespace ProjectDropper {
                 _imageViews[i].MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(ImgView_MouseDoubleClick);
                 _lblCameraStates[i].ImageIndex = 1;
                 _lblTips[i].Text = $"{_ipAddress[i]}:{_iPort}";
+
                 _lblTips[i].ForeColor = Color.Red;
                 comBoxCameraSel.Items.Add($"吊弦相机_{_ipAddress[i]}");
                 //ConnectCamera(i);//链接相机
             }
 
+            //TCP服务器监听
+            _cameraNW = new NetworkHelper(Settings.Default.TCPSevIP, Settings.Default.TCPSevPort);
+
+            // lblTipA.ForeColor = lblTipB.ForeColor = lblTipC.ForeColor = lblTipD.ForeColor = Color.White;
+            
+
+            /// 任务初始化
+            _tokenSource = new CancellationTokenSource[] { new CancellationTokenSource(), new CancellationTokenSource(), new CancellationTokenSource(), new CancellationTokenSource() };
+            _resetEvent = new ManualResetEvent(true);
+            //改变按钮状态
+            ChBtnState(taskState.none);
+           
+
             if (comBoxCameraSel.Items.Count > 0) {
                 comBoxCameraSel.SelectedIndex = 0;
             }
+
+            //==相机控制+事件初始化 =============
             dInputFPS.Tag = 0; dInputExposure.Tag = 0; iInputGain.Tag = 0; dInputLEDWidth.Tag = 0;
             dInputFPS.LostFocus += new EventHandler(InputCtlParam_LostFocus); //添加失去焦点事件
             dInputExposure.LostFocus += new EventHandler(InputCtlParam_LostFocus); //添加失去焦点事件
@@ -139,6 +158,7 @@ namespace ProjectDropper {
             ShowTime.Start();
             // timerCameraStateUpdate.Start();
         }
+         
 
         #region 相机操作相关API
 
@@ -218,18 +238,29 @@ namespace ProjectDropper {
                     if (_hDevs[i] == IntPtr.Zero) {
                         if (PingTest(_ipAddress[i])) {
                             _hDevs[i] = VideoM.Connection(_ipAddress[i], _iPort);
+                        } else {
+                            _devStatus[i] = DevStatus.NetError;
+
                         }
                     } else {
                         sInfo = GetCameraParam(_hDevs[i]);
                         sInfo = sInfo.Replace("\0", "").Trim();
                         isConn = !string.IsNullOrEmpty(sInfo);
-                        if (!isConn && PingTest(_ipAddress[i])) {
-                            if (_hDevs[i] != IntPtr.Zero) {
-                                VideoM.CloseRPC(_hDevs[i]);
+                        if (!isConn) {
+                            if (PingTest(_ipAddress[i])) {
+                                if (_hDevs[i] != IntPtr.Zero) {
+                                    VideoM.CloseRPC(_hDevs[i]);
+                                }
+                                _hDevs[i] = IntPtr.Zero;
+                                GC.Collect();
+                                GC.WaitForPendingFinalizers();
+
+                                _devStatus[i] = DevStatus.SoftError;
+                            } else {
+                                _devStatus[i] = DevStatus.NetError;
                             }
-                            _hDevs[i] = IntPtr.Zero;
-                            GC.Collect();
-                            GC.WaitForPendingFinalizers();
+                        } else {
+                            _devStatus[i] = DevStatus.Success;
                         }
                     }
 
@@ -248,11 +279,9 @@ namespace ProjectDropper {
                 GC.WaitForPendingFinalizers();
 
             } finally {
+
                 CameraConnState(i, sInfo, isConn);
-                // if (!isConn && _hDevs[i] != IntPtr.Zero) {
-                //VideoM.CloseRPC(_hDevs[i]);
-                //     _hDevs[i] = IntPtr.Zero;
-                // }
+
             }
             return isConn;
         }
@@ -273,9 +302,7 @@ namespace ProjectDropper {
             return res;
         }
 
-
-
-        //异步刷新
+        //异步刷新-相机状态
         private void CameraConnState(int i, string sjson, bool isConn) {
             try {
 
@@ -287,13 +314,25 @@ namespace ProjectDropper {
                     if (isConn) {
                         // _lblTips[i].ForeColor =  Color.gr ;
                         _lblCameraStates[i].ImageIndex = 0;
+                        _lblTips[i].Text = $"{_ipAddress[i]}:{_iPort} - （正常） ";
                         _lblTips[i].ForeColor = Color.Lime;
                         if (i == comBoxCameraSel.SelectedIndex) {
                             UpdateCameraState(sjson);
                         }
+                        //_lblTips[i].Text = $"{_ipAddress[i]}:{_iPort}";
                     } else {
+                        switch (_devStatus[i]) {
+                            case DevStatus.NetError:
+                                _lblTips[i].Text = $"{_ipAddress[i]}:{_iPort} - （网络故障） ";
+                                _lblTips[i].ForeColor = Color.Red;
+                                break;
+                            case DevStatus.SoftError:
+                                _lblTips[i].Text = $"{_ipAddress[i]}:{_iPort} - （相机软件未开启） ";
+                                _lblTips[i].ForeColor = Color.Yellow;
+                                break;
+                        }
                         _lblCameraStates[i].ImageIndex = 1;
-                        _lblTips[i].ForeColor = Color.Red;
+
                     }
                 }
             } catch (Exception ex) {
@@ -317,6 +356,7 @@ namespace ProjectDropper {
             CameraTask(1);
 
         }
+
         #region 显示控制
         CancellationToken[] token = new CancellationToken[4];
         ManualResetEvent resetEvent = new ManualResetEvent(true);
@@ -345,6 +385,7 @@ namespace ProjectDropper {
                             await Task.Delay(Settings.Default.ReconnectTime);
                             continue;
                         }
+                        _devStatus[i] = DevStatus.Success;
                         _imageViews[i].IsLoadBgImg = false;
                         long lTime = 0; int ih = 0, iw = 0;
 
@@ -379,7 +420,7 @@ namespace ProjectDropper {
             }
         }
         bool isShowOne = false;//是否只显示一张图片
-
+        //只显示一副图片
         private void ShowOneImg(CtrlView imgV) {
             int iRowId = 0, iColId = 0;
             if (imgV.Name == "cView1") {
@@ -421,7 +462,8 @@ namespace ProjectDropper {
 
             }
         }
-
+       
+        //实时采集显示按钮
         private void sBtnDisplay_ValueChanged(object sender, EventArgs e) {
             if (comBoxCameraSel.SelectedIndex > -1) {
                 int selInd = comBoxCameraSel.SelectedIndex;
@@ -435,10 +477,7 @@ namespace ProjectDropper {
             }
 
         }
-
-        private void expandablePanel1_Click(object sender, EventArgs e) {
-
-        }
+ 
 
         /// <summary>
         /// 显示标签闪烁
@@ -875,11 +914,15 @@ namespace ProjectDropper {
 
         #endregion
 
+
+        //相机列表下列--给指定相机发送任务信息
         private void comBoxCameraSel_SelectedIndexChanged(object sender, EventArgs e) {
             timerSendTaskName.Stop();
             Thread.Sleep(1000);
             timerSendTaskName.Start();
         }
+
+
         #region 任务管理
 
 
@@ -899,9 +942,9 @@ namespace ProjectDropper {
                 lblTaskInfo.Text = $"{_currTask.LineName} {_currTask.SType} " +
                     $"{_currTask.StartStation}-{_currTask.EndStation}";
                 //新建任务修改按钮状态
-                tState = taskState.plan;
-                ChBtnState(tState);
-                lblTaskInfo.ForeColor = Color.DimGray;
+
+                ChBtnState(taskState.plan);
+
             }
 
 
@@ -913,25 +956,25 @@ namespace ProjectDropper {
         private void ChBtnState(taskState taskS) {
             switch (taskS) {
                 case taskState.none:
+                case taskState.finish:
                     btnNewTask.Enabled = true;
                     btnBeginTask.Enabled = false;
                     btnStopTask.Enabled = false;
+                    lblTaskInfo.ForeColor = Color.FromArgb(68, 102, 163);
+                    lblTaskInfo.Text = "———— ——  ———— _ ——";
                     break;
                 case taskState.plan://创建任务成功
                     btnBeginTask.Enabled = true;
                     btnStopTask.Enabled = false;
+                    lblTaskInfo.ForeColor = Color.DimGray;
                     break;
                 case taskState.running:
                     btnNewTask.Enabled = false;
                     btnBeginTask.Enabled = false;
                     btnStopTask.Enabled = true;
+                    lblTaskInfo.ForeColor = Color.ForestGreen;
                     break;
-                case taskState.finish:
-                    btnNewTask.Enabled = true;
-                    btnBeginTask.Enabled = false;
-                    btnStopTask.Enabled = false;
 
-                    break;
                 default:
                     break;
             }
@@ -951,13 +994,17 @@ namespace ProjectDropper {
         /// 灾难恢复
         /// </summary>
         private void ResumeTask() {
+         
             if (string.IsNullOrEmpty(Settings.Default.RunningTask)) {
                 return;
             }
-
-            _currTask = JsonHelper.GetModel<MonitorTask>(Settings.Default.RunningTask);
+           
+             _currTask = JsonHelper.GetModel<MonitorTask>(Settings.Default.RunningTask);
+            lblTaskInfo.Text = $"{_currTask.LineName} {_currTask.SType} " +
+                   $"{_currTask.StartStation}-{_currTask.EndStation}";
+            StartTask(true);
         }
-        private void StartTask() {
+        private void StartTask(bool isRecover=false) {
             try {
                 if (_currTask == null) {
                     MsgBox.Warning("当没有任务计划，请先配置任务!", "开启任务失败");
@@ -971,7 +1018,6 @@ namespace ProjectDropper {
                     MsgBox.Error("路径创建错误，任务开始失败，请检查磁盘!\n " + rootPath);
                     return;
                 }
-
                 //发送接触网存储指令
                 jcwlib.Jcw_CloseDebugDataFile(m_hjcw);
                 jcwlib.Jcw_CreateDebugDataFile(m_hjcw, Path.Combine(rootPath, dateTimeTaskStr + "_几何.db"));
@@ -979,27 +1025,32 @@ namespace ProjectDropper {
                 //发送相机--任务开始指令               
                 SendTaskState(CameraParam.StartInspect, dateTimeTaskStr);
                 //定时发送任务信息给相机 
-                timerSendTaskName.Start();               
+                timerSendTaskName.Start();
 
                 //启动数据文件 - 创建索引文件，数据目录等
                 string vPathA = Path.Combine(Settings.Default.cVideoPathA, dateStr, dateTimeTaskStr);
                 string vPathB = Path.Combine(Settings.Default.cVideoPathB, dateStr, dateTimeTaskStr);
                 DBFileOp.CallFunc = DbCopyCallFunc;
-                dbOp = new DBFileOp(vPathA, vPathB, rootPath);
+                dbOp = new DBFileOp(vPathA, vPathB, rootPath,isRecover?1:0);
 
-                //写入任务信息【线路信息】
-                dbOp.WriteLineInfo(_currTask);
-                dbOp.StartProcessDB();
-                lblTaskInfo.ForeColor = Color.ForestGreen;
-
-                //将任务信息 记录 -- 防止程序异常退出
-                Settings.Default.RunningTask = JsonHelper.GetJson(_currTask);
-                Settings.Default.Save();
+                if (!isRecover) {
+                    //写入任务信息【线路信息】
+                    dbOp.WriteLineInfo(_currTask);
+                    dbOp.StartProcessDB();
+                    //将任务信息 记录 -- 防止程序异常退出
+                    Settings.Default.RunningTask = JsonHelper.GetJson(_currTask);
+                    Settings.Default.Save();
+                } else {
+                    dbOp.StartProcessDB();
+                }
                 //改变任务状态
-                tState = taskState.running;
-                ChBtnState(tState);
-                ToastNotification.Show(this, $"任务已开始！", null, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter);
+                ChBtnState(taskState.running);
+                if (isRecover) {
+                    ToastNotification.Show(this, $"任务已恢复！", null, 3000, eToastGlowColor.Red, eToastPosition.BottomCenter);
+                } else {
 
+                    ToastNotification.Show(this, $"任务已开始！", null, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter);
+                }
             } catch (Exception ex) {
                 MsgBox.Show(ex.ToString());
             }
@@ -1021,12 +1072,8 @@ namespace ProjectDropper {
                     SendTaskState(CameraParam.StopInspect, "");
 
                     dateTimeTaskStr = "";
-                    tState = taskState.finish;
-                    ChBtnState(tState);
-                    
+                    ChBtnState(taskState.finish);
 
-                    lblTaskInfo.ForeColor = Color.FromArgb(191, 0, 0);
-                    lblTaskInfo.Text = "———— ——  ———— _ ——";
                     //任务
                     resetEvent.Reset(); //停止任务
                     panelTask.Enabled = false;
@@ -1312,8 +1359,6 @@ namespace ProjectDropper {
             lblTime.Text = dt.ToString("HH:mm:ss");
         }
 
-        private void timer1_Tick(object sender, EventArgs e) {
 
-        }
     }
 }

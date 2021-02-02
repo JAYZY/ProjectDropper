@@ -15,7 +15,7 @@
       <Value Profile="(Default)">192.168.100.55</Value>
     </Setting>
     <Setting Name="cameraPort" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">12345</Value>
+      <Value Profile="(Default)">13456</Value>
     </Setting>
     <Setting Name="RateViewTime" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">800</Value>
@@ -57,6 +57,12 @@
       <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="RunningTask" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="LastSaveFileA" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="LastSaveFileB" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
   </Settings>

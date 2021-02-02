@@ -135,6 +135,7 @@
             this.lblDBPath.TabIndex = 21;
             this.lblDBPath.TabStop = true;
             this.lblDBPath.Text = "linkLabel1";
+            this.lblDBPath.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lblDBPath_LinkClicked);
             // 
             // btnTaskOk
             // 

@@ -164,7 +164,7 @@ namespace ProjectDropper.core {
         }
         #endregion
 
-
+        public MonitorTask() { }
         /// <summary>
         /// 
         /// </summary>

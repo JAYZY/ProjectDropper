@@ -43,6 +43,7 @@ namespace ComClassLib.core {
         //private StationInfo() {
         //}
         //#endregion
+         
         public StationInfo() { }
 
         public StationInfo(string sLineName, string sStartStation, string sEndStation, short iType, DateTime taskDate) {
@@ -110,13 +111,15 @@ namespace ComClassLib.core {
             if (dr == null) {
                 return null;
             }
-            StationInfo station = new StationInfo();
+            //StationInfo station = new StationInfo();
+            // public StationInfo(string sLineName, string sStartStation, string sEndStation, short iType, DateTime taskDate) {
+            StationInfo station = new StationInfo(dr[1].ToString(), dr[2].ToString(), dr[3].ToString(), Convert.ToInt16(dr[4]), Convert.ToDateTime(dr[5]));
             station.sId = Int32.Parse(dr[0].ToString());
-            station.sLineName = dr[1].ToString();
-            station.sStartStation = dr[2].ToString();
-            station.sEndStation = dr[3].ToString();
-            station.iType = Convert.ToInt16(dr[4]);
-            station.taskDate = Convert.ToDateTime(dr[5]);
+            //station.sLineName = dr[1].ToString();
+            //station.sStartStation = dr[2].ToString();
+            //station.sEndStation = dr[3].ToString();
+            //station.iType = Convert.ToInt16(dr[4]);
+            //station.taskDate = Convert.ToDateTime(dr[5]);
             return station;
         }
         //public void SaveToDb() {

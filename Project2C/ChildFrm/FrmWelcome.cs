@@ -13,6 +13,7 @@ namespace Project2C.ChildFrm {
 
         private void timer1_Tick(object sender, EventArgs e) {
             // FrmMain.GetInstance().Show();
+            timer1.Stop();
             this.Hide();
 
 

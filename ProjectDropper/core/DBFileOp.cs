@@ -2,6 +2,7 @@
 using ComClassLib.core;
 using ComClassLib.DB;
 using ComClassLib.FileOp;
+using ProjectDropper.Properties;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -80,9 +81,17 @@ namespace ProjectDropper.core {
             get; set;
         }
         public object _dbObj { get; set; }
-
-        public DBFileOp(string _pathA, string _pathB, string _workPath) {
+        private int TaskState { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="_pathA"></param>
+        /// <param name="_pathB"></param>
+        /// <param name="_workPath"></param>
+        /// <param name="state">状态 0-正常 1-异常退出</param>
+        public DBFileOp(string _pathA, string _pathB, string _workPath, int state = 0) {
             srcPathA = _pathA; srcPathB = _pathB; workPath = _workPath;
+            TaskState = state;
             // destDirA = Path.Combine(workPath, "V1");
             //  destDirB = Path.Combine(workPath, "V2");
             //创建目录
@@ -91,22 +100,17 @@ namespace ProjectDropper.core {
             IsCpyOver = false;
             IsIndDBOver = false;
             lsCopyedFilesA = new List<string>(); lsCopyedFilesB = new List<string>();
-
             qUnprocessedA = new ConcurrentQueue<string>(); qUnprocessedB = new ConcurrentQueue<string>();
-
             lsProcessedFilesA = new ConcurrentBag<string>(); lsProcessedFilesB = new ConcurrentBag<string>();
-
             NoMachImgInfo = new Dictionary<Int64, string>();
-
             IndexDBFullName = Path.Combine(workPath, DbName.IndexDb.ToString() + ".db");
-
-            //判断并创建索引库
-            CreateIndexDB();
-
+            
+                //判断并创建索引库
+                CreateIndexDB();
+            
             DBIndex = SqliteHelper.GetSqlite(DbName.IndexDb.ToString());
 
             currTh = new Thread(MonitorDir);
-
         }
         /// <summary>
         /// 目录监控
@@ -148,18 +152,28 @@ namespace ProjectDropper.core {
                     }
                     string fileName = fileInfo.Name;
                     //2.文件已经拷贝过了
+
                     if (lsCopyedFilesA.Contains(fileName)) { //已经拷贝了的不拷贝
                         continue;
                     }
-                    //3.文件直接拷贝
-                    bool res = Copy(fileInfo.FullName, Path.Combine(DestDirA, fileName), true, Cmd.CProgressA);
-
+                    bool res = false;
+                    if (TaskState == 1) {//A.异常退出;B.文件存在；C.文件不是最后一个拷贝文件 则跳过
+                        if (File.Exists(Path.Combine(DestDirA, fileName)) && !fileName.Equals(Settings.Default.LastSaveFileA)) {
+                            res = true; //跳过
+                        }
+                    }
+                    if (!res) {                        
+                        //3.文件直接拷贝
+                        Settings.Default.LastSaveFileA = fileName; Settings.Default.Save();
+                        res = Copy(fileInfo.FullName, Path.Combine(DestDirA, fileName), true, Cmd.CProgressA);
+                        Settings.Default.LastSaveFileA = ""; Settings.Default.Save();
+                    }
                     // FileInfo filecpy = FileHelper.FileCopy(fileInfo.FullName, Path.Combine(DestDirA, fileName), true);
                     if (res) {
                         lsCopyedFilesA.Add(fileName);
                         if (!fileName.Contains("sm")) {//缩略图不放入待处理队列中
                             qUnprocessedA.Enqueue(fileName);
-                            MsgBox.Show("qUnprocessedA 大小" + qUnprocessedA.Count);
+                            // MsgBox.Show("qUnprocessedA 大小" + qUnprocessedA.Count);
                         }
                         CallFunc?.Invoke($"{Cmd.CPA.ToString()}#{lsCopyedFilesA.Count}#{lsFiles.Count}");
                     }
@@ -206,13 +220,23 @@ namespace ProjectDropper.core {
                     if (lsCopyedFilesB.Contains(fileName)) { //已经拷贝了的不拷贝
                         continue;
                     }
-                    //3.文件直接拷贝
-                    bool res = Copy(fileInfo.FullName, Path.Combine(DestDirB, fileName), true, Cmd.CProgressB);
+                    bool res = false;
+                    if (TaskState == 1) {//A.异常退出;B.文件存在；C.文件不是最后一个拷贝文件 则跳过
+                        if (File.Exists(Path.Combine(DestDirB, fileName)) && !fileName.Equals(Settings.Default.LastSaveFileB)) {
+                            res = true; //跳过
+                        }
+                    }
+                    if (!res) {
+                        Settings.Default.LastSaveFileB = fileName; Settings.Default.Save();
+                        //3.文件直接拷贝
+                        res = Copy(fileInfo.FullName, Path.Combine(DestDirB, fileName), true, Cmd.CProgressB);
+                        Settings.Default.LastSaveFileB = fileName; Settings.Default.Save();
+                    }
                     // FileInfo filecpy = FileHelper.FileCopy(fileInfo.FullName, Path.Combine(DestDirB, fileName), true);
                     if (res) {
                         lsCopyedFilesB.Add(fileName);
                         if (!fileName.Contains("sm")) {//缩略图不放入待处理队列中
-                            MsgBox.Show("qUnprocessedB 大小" + qUnprocessedB.Count);
+                          //  MsgBox.Show("qUnprocessedB 大小" + qUnprocessedB.Count);
                             qUnprocessedB.Enqueue(fileName);
                         }
                         CallFunc?.Invoke($"{Cmd.CPB}#{lsCopyedFilesB.Count}#{lsFiles.Count}");
