@@ -126,7 +126,7 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.SQLite">
-      <HintPath>E:\soft\数据库\sqlite\sqlite-netFx40-binary-bundle-x64-2010-1.0.110.0\System.Data.SQLite.dll</HintPath>
+      <HintPath>..\dll\System.Data.SQLite.dll</HintPath>
     </Reference>
     <Reference Include="System.Data.SQLite.EF6">
       <HintPath>E:\soft\数据库\sqlite\sqlite-netFx40-binary-bundle-x64-2010-1.0.110.0\System.Data.SQLite.EF6.dll</HintPath>
@@ -347,14 +347,14 @@
     <Content Include="config\需要解决的问题.txt" />
     <Content Include="DB\SqlJcwJh.cpp" />
     <Content Include="JCWLib.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="MVMedia.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="PerfCenterCpl.ico" />
     <Content Include="turbojpeg.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Icon_GW.ico" />
   </ItemGroup>

@@ -37,7 +37,9 @@ namespace Project2C.ChildFrm {
             get { return _indexDBFullName; }
             set {
                 _indexDBFullName = value;
-                SetDBIndex();
+                if (!string.IsNullOrEmpty(_indexDBFullName)) {
+                    SetDBIndex();
+                }
             }
         }
 
@@ -77,6 +79,7 @@ namespace Project2C.ChildFrm {
 
         public FrmDataMgr() {
             InitializeComponent();
+            sTabCtrlPanel.Visible = false;
             lblDBPath.Text = "";
             
 
@@ -101,7 +104,7 @@ namespace Project2C.ChildFrm {
                     DataRow dr = DBIndex.ExecuteDataRow("select count(timestamp) from indexTB", null);
                     if (dr == null || Convert.ToInt32(dr[0]) == 0) {
                         MsgBox.Error("索引数据缺失，请对任务数据进行索引!");
-                        superTabControl1.SelectedTabIndex = 1;
+                        sTabCtrlPanel.SelectedTabIndex = 1;
 
 
                     }
@@ -111,7 +114,7 @@ namespace Project2C.ChildFrm {
                     IndexDbFullName = string.Empty;
                 }
             } else {
-                MsgBox.Error("索引库不存在，离线数据库打开失败！");
+                MsgBox.Error("离线数据库打开失败！\n-（目录中不存在离线数据文件或文件损坏，请检查！）");
                 IndexDbFullName = string.Empty;
             }
             return IndexDbFullName;
@@ -139,7 +142,8 @@ namespace Project2C.ChildFrm {
                 return;
             try {
                 if (!string.IsNullOrEmpty(indexDBFullName)) {
-
+                    if (DBIndex == null)
+                        return;
                     //检查并创建缺陷表
                     DataM.CreateFaultTb(DBIndex);
                     //设置显示
@@ -516,6 +520,15 @@ namespace Project2C.ChildFrm {
         #endregion
         private void lblDBPath_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) {
             FileHelper.OpenLocalDir(lblDBPath.Text.Trim());
+        }
+
+       
+
+        private void FrmDataMgr_Shown(object sender, EventArgs e) {
+            int x = (this.Width - sTabCtrlPanel.Width) / 2;
+            int y = (this.Height - sTabCtrlPanel.Height) / 2;
+            sTabCtrlPanel.Location = new System.Drawing.Point(x, y);
+            sTabCtrlPanel.Visible = true;
         }
 
         private void IndexSecondDB() {

@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Project2C {
@@ -14,8 +11,9 @@ namespace Project2C {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-              Application.Run(FrmMain.GetInstance());
-          // Application.Run(new Template.MyReport());
+            Application.Run((new ChildFrm.FrmWelcome()));
+            //Application.Run(FrmMain.GetInstance());
+            //  Application.Run(new Template.MyReport());
         }
     }
 }

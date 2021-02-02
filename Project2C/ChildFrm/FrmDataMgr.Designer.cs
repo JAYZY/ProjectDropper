@@ -24,7 +24,7 @@
         /// </summary>
         private void InitializeComponent() {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmDataMgr));
-            this.superTabControl1 = new DevComponents.DotNetBar.SuperTabControl();
+            this.sTabCtrlPanel = new DevComponents.DotNetBar.SuperTabControl();
             this.superTabControlPanel2 = new DevComponents.DotNetBar.SuperTabControlPanel();
             this.lblDBPath = new System.Windows.Forms.LinkLabel();
             this.btnTaskOk = new DevComponents.DotNetBar.ButtonX();
@@ -67,8 +67,8 @@
             this.btnProcessDb = new DevComponents.DotNetBar.ButtonX();
             this.btnSelIndexTaskDir = new DevComponents.DotNetBar.ButtonX();
             this.superTabItem1 = new DevComponents.DotNetBar.SuperTabItem();
-            ((System.ComponentModel.ISupportInitialize)(this.superTabControl1)).BeginInit();
-            this.superTabControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.sTabCtrlPanel)).BeginInit();
+            this.sTabCtrlPanel.SuspendLayout();
             this.superTabControlPanel2.SuspendLayout();
             this.groupPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dateTimeInput)).BeginInit();
@@ -77,7 +77,7 @@
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // superTabControl1
+            // sTabCtrlPanel
             // 
             // 
             // 
@@ -85,33 +85,33 @@
             // 
             // 
             // 
-            this.superTabControl1.ControlBox.CloseBox.Name = "";
+            this.sTabCtrlPanel.ControlBox.CloseBox.Name = "";
             // 
             // 
             // 
-            this.superTabControl1.ControlBox.MenuBox.Name = "";
-            this.superTabControl1.ControlBox.Name = "";
-            this.superTabControl1.ControlBox.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.superTabControl1.ControlBox.MenuBox,
-            this.superTabControl1.ControlBox.CloseBox});
-            this.superTabControl1.Controls.Add(this.superTabControlPanel2);
-            this.superTabControl1.Controls.Add(this.superTabControlPanel1);
-            this.superTabControl1.Location = new System.Drawing.Point(420, 293);
-            this.superTabControl1.Name = "superTabControl1";
-            this.superTabControl1.ReorderTabsEnabled = true;
-            this.superTabControl1.SelectedTabFont = new System.Drawing.Font("等线", 9F, System.Drawing.FontStyle.Bold);
-            this.superTabControl1.SelectedTabIndex = 0;
-            this.superTabControl1.Size = new System.Drawing.Size(724, 299);
-            this.superTabControl1.TabFont = new System.Drawing.Font("等线", 10F);
-            this.superTabControl1.TabIndex = 0;
-            this.superTabControl1.Tabs.AddRange(new DevComponents.DotNetBar.BaseItem[] {
+            this.sTabCtrlPanel.ControlBox.MenuBox.Name = "";
+            this.sTabCtrlPanel.ControlBox.Name = "";
+            this.sTabCtrlPanel.ControlBox.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
+            this.sTabCtrlPanel.ControlBox.MenuBox,
+            this.sTabCtrlPanel.ControlBox.CloseBox});
+            this.sTabCtrlPanel.Controls.Add(this.superTabControlPanel2);
+            this.sTabCtrlPanel.Controls.Add(this.superTabControlPanel1);
+            this.sTabCtrlPanel.Location = new System.Drawing.Point(420, 293);
+            this.sTabCtrlPanel.Name = "sTabCtrlPanel";
+            this.sTabCtrlPanel.ReorderTabsEnabled = true;
+            this.sTabCtrlPanel.SelectedTabFont = new System.Drawing.Font("等线", 9F, System.Drawing.FontStyle.Bold);
+            this.sTabCtrlPanel.SelectedTabIndex = 0;
+            this.sTabCtrlPanel.Size = new System.Drawing.Size(724, 299);
+            this.sTabCtrlPanel.TabFont = new System.Drawing.Font("等线", 10F);
+            this.sTabCtrlPanel.TabIndex = 0;
+            this.sTabCtrlPanel.Tabs.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.superTabItem2,
             this.superTabItem1});
-            this.superTabControl1.TabStyle = DevComponents.DotNetBar.eSuperTabStyle.Office2010BackstageBlue;
+            this.sTabCtrlPanel.TabStyle = DevComponents.DotNetBar.eSuperTabStyle.Office2010BackstageBlue;
             // 
             // superTabControlPanel2
             // 
-            this.superTabControlPanel2.CanvasColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.superTabControlPanel2.CanvasColor = System.Drawing.Color.DarkGray;
             this.superTabControlPanel2.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.superTabControlPanel2.Controls.Add(this.lblDBPath);
             this.superTabControlPanel2.Controls.Add(this.btnTaskOk);
@@ -766,12 +766,13 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1247, 688);
-            this.Controls.Add(this.superTabControl1);
+            this.Controls.Add(this.sTabCtrlPanel);
             this.DoubleBuffered = true;
             this.Name = "FrmDataMgr";
             this.Text = "数据管理";
-            ((System.ComponentModel.ISupportInitialize)(this.superTabControl1)).EndInit();
-            this.superTabControl1.ResumeLayout(false);
+            this.Shown += new System.EventHandler(this.FrmDataMgr_Shown);
+            ((System.ComponentModel.ISupportInitialize)(this.sTabCtrlPanel)).EndInit();
+            this.sTabCtrlPanel.ResumeLayout(false);
             this.superTabControlPanel2.ResumeLayout(false);
             this.superTabControlPanel2.PerformLayout();
             this.groupPanel1.ResumeLayout(false);
@@ -788,7 +789,7 @@
         }
 
         #endregion
-        private DevComponents.DotNetBar.SuperTabControl superTabControl1;
+        private DevComponents.DotNetBar.SuperTabControl sTabCtrlPanel;
         private DevComponents.DotNetBar.SuperTabControlPanel superTabControlPanel2;
         private DevComponents.DotNetBar.ButtonX btnTaskOk;
         private DevComponents.DotNetBar.LabelX labelX4;

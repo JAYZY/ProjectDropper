@@ -84,7 +84,8 @@ namespace Project2C {
         }
 
         private void FrmMain_Load(object sender, EventArgs e) {
-            (new ChildFrm.FrmWelcome()).ShowDialog();
+          
+          
         }
 
         private void btnItemExit_Click(object sender, EventArgs e) {
