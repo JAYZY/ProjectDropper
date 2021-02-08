@@ -1255,9 +1255,6 @@ namespace Project2C.ChildFrm {
                     dgViewDataInfo.DataSource = dv;
                 } catch { }
             }
-
-
-
         }
 
         /// <summary>

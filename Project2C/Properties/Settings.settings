@@ -29,5 +29,8 @@
     <Setting Name="minHei" Type="System.Double" Scope="User">
       <Value Profile="(Default)">-2100</Value>
     </Setting>
+    <Setting Name="buchangHei" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">60</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

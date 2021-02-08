@@ -42,15 +42,12 @@
             this.panel7 = new System.Windows.Forms.Panel();
             this.label17 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.dInputLEDWidth = new DevComponents.Editors.IntegerInput();
             this.dInputExposure = new DevComponents.Editors.DoubleInput();
             this.label7 = new System.Windows.Forms.Label();
             this.btnSetParamOk = new DevComponents.DotNetBar.ButtonX();
-            this.label10 = new System.Windows.Forms.Label();
-            this.iInputGain = new DevComponents.Editors.IntegerInput();
             this.label13 = new System.Windows.Forms.Label();
             this.panel6 = new System.Windows.Forms.Panel();
             this.btnIrisPlus = new System.Windows.Forms.Button();
@@ -64,20 +61,13 @@
             this.iInputCurrZoomValue = new DevComponents.Editors.IntegerInput();
             this.iInputZoomChgValue = new DevComponents.Editors.IntegerInput();
             this.label12 = new System.Windows.Forms.Label();
-            this.btnFocusPlus = new System.Windows.Forms.Button();
-            this.btnFocusMinus = new System.Windows.Forms.Button();
-            this.label11 = new System.Windows.Forms.Label();
-            this.iInputCurrFocusValue = new DevComponents.Editors.IntegerInput();
-            this.iInputChgFocusValue = new DevComponents.Editors.IntegerInput();
             this.lblSp2 = new System.Windows.Forms.Label();
             this.panelCameraCtrl = new System.Windows.Forms.Panel();
             this.sBtnTriggerMode = new DevComponents.DotNetBar.Controls.SwitchButton();
             this.label9 = new System.Windows.Forms.Label();
             this.btnSetFPSOk = new DevComponents.DotNetBar.ButtonX();
-            this.label3 = new System.Windows.Forms.Label();
             this.dInputFPS = new DevComponents.Editors.DoubleInput();
             this.label2 = new System.Windows.Forms.Label();
-            this.sBtnDisplay = new DevComponents.DotNetBar.Controls.SwitchButton();
             this.label4 = new System.Windows.Forms.Label();
             this.lblSp1 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -152,6 +142,16 @@
             this.panel13 = new System.Windows.Forms.Panel();
             this.imgLst64 = new System.Windows.Forms.ImageList(this.components);
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.label3 = new System.Windows.Forms.Label();
+            this.sBtnDisplay = new DevComponents.DotNetBar.Controls.SwitchButton();
+            this.btnFocusPlus = new System.Windows.Forms.Button();
+            this.btnFocusMinus = new System.Windows.Forms.Button();
+            this.label11 = new System.Windows.Forms.Label();
+            this.iInputCurrFocusValue = new DevComponents.Editors.IntegerInput();
+            this.iInputChgFocusValue = new DevComponents.Editors.IntegerInput();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.iInputGain = new DevComponents.Editors.IntegerInput();
             this.tbLayoutPanelMiddle.SuspendLayout();
             this.panelImgA.SuspendLayout();
             this.panelImgB.SuspendLayout();
@@ -160,14 +160,11 @@
             this.panel7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dInputLEDWidth)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dInputExposure)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.iInputGain)).BeginInit();
             this.panel6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iInputCurrIrisValue)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iInputIrisChgValue)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iInputCurrZoomValue)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iInputZoomChgValue)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.iInputCurrFocusValue)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.iInputChgFocusValue)).BeginInit();
             this.panelCameraCtrl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dInputFPS)).BeginInit();
             this.panel3.SuspendLayout();
@@ -180,6 +177,9 @@
             this.panel9.SuspendLayout();
             this.panelTask.SuspendLayout();
             this.panel11.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.iInputCurrFocusValue)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iInputChgFocusValue)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iInputGain)).BeginInit();
             this.SuspendLayout();
             // 
             // tbLayoutPanelMiddle
@@ -429,18 +429,6 @@
             this.label18.Text = "(60u)";
             this.label18.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.label14.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.label14.Location = new System.Drawing.Point(46, 96);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(46, 17);
-            this.label14.TabIndex = 14;
-            this.label14.Text = "(1~50)";
-            this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
             // label15
             // 
             this.label15.AutoSize = true;
@@ -537,41 +525,6 @@
             this.btnSetParamOk.TabIndex = 12;
             this.btnSetParamOk.Visible = false;
             this.btnSetParamOk.Click += new System.EventHandler(this.btnSetParamOk_Click);
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("微软雅黑", 16F);
-            this.label10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.label10.Location = new System.Drawing.Point(30, 66);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(78, 30);
-            this.label10.TabIndex = 9;
-            this.label10.Text = "增   益";
-            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // iInputGain
-            // 
-            // 
-            // 
-            // 
-            this.iInputGain.BackgroundStyle.BackColor = System.Drawing.Color.White;
-            this.iInputGain.BackgroundStyle.Class = "DateTimeInputBackground";
-            this.iInputGain.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.iInputGain.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2;
-            this.iInputGain.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.iInputGain.ForeColor = System.Drawing.Color.Black;
-            this.iInputGain.Location = new System.Drawing.Point(135, 67);
-            this.iInputGain.MaxValue = 50;
-            this.iInputGain.MinValue = 1;
-            this.iInputGain.Name = "iInputGain";
-            this.iInputGain.ShowUpDown = true;
-            this.iInputGain.Size = new System.Drawing.Size(104, 29);
-            this.iInputGain.TabIndex = 6;
-            this.iInputGain.Tag = "0";
-            this.iInputGain.Value = 15;
-            this.iInputGain.ValueChanged += new System.EventHandler(this.iInputGain_ValueChanged);
-            this.iInputGain.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.InputCtrl_KeyPress);
             // 
             // label13
             // 
@@ -790,90 +743,6 @@
             this.label12.Text = "镜头调节";
             this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // btnFocusPlus
-            // 
-            this.btnFocusPlus.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnFocusPlus.FlatAppearance.BorderSize = 0;
-            this.btnFocusPlus.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnFocusPlus.Image = ((System.Drawing.Image)(resources.GetObject("btnFocusPlus.Image")));
-            this.btnFocusPlus.Location = new System.Drawing.Point(238, 87);
-            this.btnFocusPlus.Margin = new System.Windows.Forms.Padding(2);
-            this.btnFocusPlus.Name = "btnFocusPlus";
-            this.btnFocusPlus.Size = new System.Drawing.Size(32, 32);
-            this.btnFocusPlus.TabIndex = 12;
-            this.btnFocusPlus.UseVisualStyleBackColor = true;
-            this.btnFocusPlus.Click += new System.EventHandler(this.btnFocusPlus_Click);
-            // 
-            // btnFocusMinus
-            // 
-            this.btnFocusMinus.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnFocusMinus.FlatAppearance.BorderSize = 0;
-            this.btnFocusMinus.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnFocusMinus.Image = ((System.Drawing.Image)(resources.GetObject("btnFocusMinus.Image")));
-            this.btnFocusMinus.Location = new System.Drawing.Point(72, 87);
-            this.btnFocusMinus.Margin = new System.Windows.Forms.Padding(2);
-            this.btnFocusMinus.Name = "btnFocusMinus";
-            this.btnFocusMinus.Size = new System.Drawing.Size(32, 32);
-            this.btnFocusMinus.TabIndex = 12;
-            this.btnFocusMinus.UseVisualStyleBackColor = true;
-            this.btnFocusMinus.Click += new System.EventHandler(this.btnFocusMinus_Click);
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("微软雅黑", 16F);
-            this.label11.ForeColor = System.Drawing.Color.DimGray;
-            this.label11.Location = new System.Drawing.Point(18, 88);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(57, 30);
-            this.label11.TabIndex = 10;
-            this.label11.Text = "聚焦";
-            this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // iInputCurrFocusValue
-            // 
-            // 
-            // 
-            // 
-            this.iInputCurrFocusValue.BackgroundStyle.BackColor = System.Drawing.Color.White;
-            this.iInputCurrFocusValue.BackgroundStyle.Class = "DateTimeInputBackground";
-            this.iInputCurrFocusValue.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.iInputCurrFocusValue.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2;
-            this.iInputCurrFocusValue.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.iInputCurrFocusValue.Enabled = false;
-            this.iInputCurrFocusValue.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.iInputCurrFocusValue.ForeColor = System.Drawing.Color.Black;
-            this.iInputCurrFocusValue.Location = new System.Drawing.Point(107, 89);
-            this.iInputCurrFocusValue.MaxValue = 79000;
-            this.iInputCurrFocusValue.MinValue = 1000;
-            this.iInputCurrFocusValue.Name = "iInputCurrFocusValue";
-            this.iInputCurrFocusValue.Size = new System.Drawing.Size(58, 29);
-            this.iInputCurrFocusValue.TabIndex = 6;
-            this.iInputCurrFocusValue.Value = 1000;
-            this.iInputCurrFocusValue.WatermarkText = "当前对焦环数值";
-            // 
-            // iInputChgFocusValue
-            // 
-            // 
-            // 
-            // 
-            this.iInputChgFocusValue.BackgroundStyle.BackColor = System.Drawing.Color.White;
-            this.iInputChgFocusValue.BackgroundStyle.Class = "DateTimeInputBackground";
-            this.iInputChgFocusValue.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.iInputChgFocusValue.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2;
-            this.iInputChgFocusValue.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.iInputChgFocusValue.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.iInputChgFocusValue.ForeColor = System.Drawing.Color.Black;
-            this.iInputChgFocusValue.Location = new System.Drawing.Point(169, 89);
-            this.iInputChgFocusValue.MaxValue = 1000;
-            this.iInputChgFocusValue.MinValue = 10;
-            this.iInputChgFocusValue.Name = "iInputChgFocusValue";
-            this.iInputChgFocusValue.ShowUpDown = true;
-            this.iInputChgFocusValue.Size = new System.Drawing.Size(68, 29);
-            this.iInputChgFocusValue.TabIndex = 6;
-            this.iInputChgFocusValue.Value = 50;
-            this.iInputChgFocusValue.WatermarkText = "调节级数";
-            // 
             // lblSp2
             // 
             this.lblSp2.BackColor = System.Drawing.Color.Transparent;
@@ -961,18 +830,6 @@
             this.btnSetFPSOk.Visible = false;
             this.btnSetFPSOk.Click += new System.EventHandler(this.btnSetFPSOk_Click);
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("微软雅黑", 16F);
-            this.label3.ForeColor = System.Drawing.Color.DimGray;
-            this.label3.Location = new System.Drawing.Point(20, 64);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(145, 30);
-            this.label3.TabIndex = 3;
-            this.label3.Text = "实时采集显示";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
             // dInputFPS
             // 
             // 
@@ -1008,38 +865,6 @@
             this.label2.TabIndex = 3;
             this.label2.Text = "使能触发";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // sBtnDisplay
-            // 
-            this.sBtnDisplay.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            // 
-            // 
-            // 
-            this.sBtnDisplay.BackgroundStyle.CornerDiameter = 20;
-            this.sBtnDisplay.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Diagonal;
-            this.sBtnDisplay.BackgroundStyle.CornerTypeBottomLeft = DevComponents.DotNetBar.eCornerType.Rounded;
-            this.sBtnDisplay.BackgroundStyle.CornerTypeBottomRight = DevComponents.DotNetBar.eCornerType.Rounded;
-            this.sBtnDisplay.BackgroundStyle.CornerTypeTopLeft = DevComponents.DotNetBar.eCornerType.Rounded;
-            this.sBtnDisplay.BackgroundStyle.CornerTypeTopRight = DevComponents.DotNetBar.eCornerType.Rounded;
-            this.sBtnDisplay.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.sBtnDisplay.Enabled = false;
-            this.sBtnDisplay.Location = new System.Drawing.Point(171, 64);
-            this.sBtnDisplay.Name = "sBtnDisplay";
-            this.sBtnDisplay.OffBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(118)))), ((int)(((byte)(135)))));
-            this.sBtnDisplay.OffTextColor = System.Drawing.Color.White;
-            this.sBtnDisplay.OnBackColor = System.Drawing.Color.ForestGreen;
-            this.sBtnDisplay.OnTextColor = System.Drawing.Color.WhiteSmoke;
-            this.sBtnDisplay.ReadOnlyMarkerColor = System.Drawing.Color.Red;
-            this.sBtnDisplay.Size = new System.Drawing.Size(77, 30);
-            this.sBtnDisplay.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.sBtnDisplay.SwitchBackColor = System.Drawing.Color.White;
-            this.sBtnDisplay.SwitchBorderColor = System.Drawing.Color.Black;
-            this.sBtnDisplay.SwitchFont = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.sBtnDisplay.SwitchWidth = 15;
-            this.sBtnDisplay.TabIndex = 8;
-            this.sBtnDisplay.Value = true;
-            this.sBtnDisplay.ValueObject = "Y";
-            this.sBtnDisplay.ValueChanged += new System.EventHandler(this.sBtnDisplay_ValueChanged);
             // 
             // label4
             // 
@@ -1176,16 +1001,13 @@
             this.exPanelJHCS.Size = new System.Drawing.Size(907, 325);
             this.exPanelJHCS.Style.Alignment = System.Drawing.StringAlignment.Center;
             this.exPanelJHCS.Style.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
-            this.exPanelJHCS.Style.BackColor2.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
             this.exPanelJHCS.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
-            this.exPanelJHCS.Style.BorderColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarDockedBorder;
             this.exPanelJHCS.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.ItemText;
             this.exPanelJHCS.Style.GradientAngle = 90;
             this.exPanelJHCS.TabIndex = 79;
             this.exPanelJHCS.TitleHeight = 21;
             this.exPanelJHCS.TitleStyle.Alignment = System.Drawing.StringAlignment.Center;
             this.exPanelJHCS.TitleStyle.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
-            this.exPanelJHCS.TitleStyle.BackColor2.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
             this.exPanelJHCS.TitleStyle.Border = DevComponents.DotNetBar.eBorderType.RaisedInner;
             this.exPanelJHCS.TitleStyle.BorderColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBorder;
             this.exPanelJHCS.TitleStyle.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
@@ -2495,6 +2317,181 @@
             this.imgLst64.Images.SetKeyName(38, "tools.png");
             this.imgLst64.Images.SetKeyName(39, "warning.png");
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("微软雅黑", 16F);
+            this.label3.ForeColor = System.Drawing.Color.DimGray;
+            this.label3.Location = new System.Drawing.Point(20, 64);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(145, 30);
+            this.label3.TabIndex = 3;
+            this.label3.Text = "实时采集显示";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // sBtnDisplay
+            // 
+            this.sBtnDisplay.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            // 
+            // 
+            // 
+            this.sBtnDisplay.BackgroundStyle.CornerDiameter = 20;
+            this.sBtnDisplay.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Diagonal;
+            this.sBtnDisplay.BackgroundStyle.CornerTypeBottomLeft = DevComponents.DotNetBar.eCornerType.Rounded;
+            this.sBtnDisplay.BackgroundStyle.CornerTypeBottomRight = DevComponents.DotNetBar.eCornerType.Rounded;
+            this.sBtnDisplay.BackgroundStyle.CornerTypeTopLeft = DevComponents.DotNetBar.eCornerType.Rounded;
+            this.sBtnDisplay.BackgroundStyle.CornerTypeTopRight = DevComponents.DotNetBar.eCornerType.Rounded;
+            this.sBtnDisplay.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.sBtnDisplay.Enabled = false;
+            this.sBtnDisplay.Location = new System.Drawing.Point(171, 64);
+            this.sBtnDisplay.Name = "sBtnDisplay";
+            this.sBtnDisplay.OffBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(118)))), ((int)(((byte)(135)))));
+            this.sBtnDisplay.OffTextColor = System.Drawing.Color.White;
+            this.sBtnDisplay.OnBackColor = System.Drawing.Color.ForestGreen;
+            this.sBtnDisplay.OnTextColor = System.Drawing.Color.WhiteSmoke;
+            this.sBtnDisplay.ReadOnlyMarkerColor = System.Drawing.Color.Red;
+            this.sBtnDisplay.Size = new System.Drawing.Size(77, 30);
+            this.sBtnDisplay.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.sBtnDisplay.SwitchBackColor = System.Drawing.Color.White;
+            this.sBtnDisplay.SwitchBorderColor = System.Drawing.Color.Black;
+            this.sBtnDisplay.SwitchFont = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.sBtnDisplay.SwitchWidth = 15;
+            this.sBtnDisplay.TabIndex = 8;
+            this.sBtnDisplay.Value = true;
+            this.sBtnDisplay.ValueObject = "Y";
+            this.sBtnDisplay.ValueChanged += new System.EventHandler(this.sBtnDisplay_ValueChanged);
+            // 
+            // btnFocusPlus
+            // 
+            this.btnFocusPlus.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnFocusPlus.FlatAppearance.BorderSize = 0;
+            this.btnFocusPlus.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnFocusPlus.Image = ((System.Drawing.Image)(resources.GetObject("btnFocusPlus.Image")));
+            this.btnFocusPlus.Location = new System.Drawing.Point(238, 87);
+            this.btnFocusPlus.Margin = new System.Windows.Forms.Padding(2);
+            this.btnFocusPlus.Name = "btnFocusPlus";
+            this.btnFocusPlus.Size = new System.Drawing.Size(32, 32);
+            this.btnFocusPlus.TabIndex = 12;
+            this.btnFocusPlus.UseVisualStyleBackColor = true;
+            this.btnFocusPlus.Click += new System.EventHandler(this.btnFocusPlus_Click);
+            // 
+            // btnFocusMinus
+            // 
+            this.btnFocusMinus.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnFocusMinus.FlatAppearance.BorderSize = 0;
+            this.btnFocusMinus.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnFocusMinus.Image = ((System.Drawing.Image)(resources.GetObject("btnFocusMinus.Image")));
+            this.btnFocusMinus.Location = new System.Drawing.Point(72, 87);
+            this.btnFocusMinus.Margin = new System.Windows.Forms.Padding(2);
+            this.btnFocusMinus.Name = "btnFocusMinus";
+            this.btnFocusMinus.Size = new System.Drawing.Size(32, 32);
+            this.btnFocusMinus.TabIndex = 12;
+            this.btnFocusMinus.UseVisualStyleBackColor = true;
+            this.btnFocusMinus.Click += new System.EventHandler(this.btnFocusMinus_Click);
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("微软雅黑", 16F);
+            this.label11.ForeColor = System.Drawing.Color.DimGray;
+            this.label11.Location = new System.Drawing.Point(18, 88);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(57, 30);
+            this.label11.TabIndex = 10;
+            this.label11.Text = "聚焦";
+            this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // iInputCurrFocusValue
+            // 
+            // 
+            // 
+            // 
+            this.iInputCurrFocusValue.BackgroundStyle.BackColor = System.Drawing.Color.White;
+            this.iInputCurrFocusValue.BackgroundStyle.Class = "DateTimeInputBackground";
+            this.iInputCurrFocusValue.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.iInputCurrFocusValue.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2;
+            this.iInputCurrFocusValue.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.iInputCurrFocusValue.Enabled = false;
+            this.iInputCurrFocusValue.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.iInputCurrFocusValue.ForeColor = System.Drawing.Color.Black;
+            this.iInputCurrFocusValue.Location = new System.Drawing.Point(107, 89);
+            this.iInputCurrFocusValue.MaxValue = 79000;
+            this.iInputCurrFocusValue.MinValue = 1000;
+            this.iInputCurrFocusValue.Name = "iInputCurrFocusValue";
+            this.iInputCurrFocusValue.Size = new System.Drawing.Size(58, 29);
+            this.iInputCurrFocusValue.TabIndex = 6;
+            this.iInputCurrFocusValue.Value = 1000;
+            this.iInputCurrFocusValue.WatermarkText = "当前对焦环数值";
+            // 
+            // iInputChgFocusValue
+            // 
+            // 
+            // 
+            // 
+            this.iInputChgFocusValue.BackgroundStyle.BackColor = System.Drawing.Color.White;
+            this.iInputChgFocusValue.BackgroundStyle.Class = "DateTimeInputBackground";
+            this.iInputChgFocusValue.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.iInputChgFocusValue.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2;
+            this.iInputChgFocusValue.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.iInputChgFocusValue.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.iInputChgFocusValue.ForeColor = System.Drawing.Color.Black;
+            this.iInputChgFocusValue.Location = new System.Drawing.Point(169, 89);
+            this.iInputChgFocusValue.MaxValue = 1000;
+            this.iInputChgFocusValue.MinValue = 10;
+            this.iInputChgFocusValue.Name = "iInputChgFocusValue";
+            this.iInputChgFocusValue.ShowUpDown = true;
+            this.iInputChgFocusValue.Size = new System.Drawing.Size(68, 29);
+            this.iInputChgFocusValue.TabIndex = 6;
+            this.iInputChgFocusValue.Value = 50;
+            this.iInputChgFocusValue.WatermarkText = "调节级数";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.label14.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.label14.Location = new System.Drawing.Point(46, 96);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(46, 17);
+            this.label14.TabIndex = 14;
+            this.label14.Text = "(1~50)";
+            this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("微软雅黑", 16F);
+            this.label10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.label10.Location = new System.Drawing.Point(30, 66);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(78, 30);
+            this.label10.TabIndex = 9;
+            this.label10.Text = "增   益";
+            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // iInputGain
+            // 
+            // 
+            // 
+            // 
+            this.iInputGain.BackgroundStyle.BackColor = System.Drawing.Color.White;
+            this.iInputGain.BackgroundStyle.Class = "DateTimeInputBackground";
+            this.iInputGain.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.iInputGain.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2;
+            this.iInputGain.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.iInputGain.ForeColor = System.Drawing.Color.Black;
+            this.iInputGain.Location = new System.Drawing.Point(135, 67);
+            this.iInputGain.MaxValue = 50;
+            this.iInputGain.MinValue = 1;
+            this.iInputGain.Name = "iInputGain";
+            this.iInputGain.ShowUpDown = true;
+            this.iInputGain.Size = new System.Drawing.Size(104, 29);
+            this.iInputGain.TabIndex = 6;
+            this.iInputGain.Tag = "0";
+            this.iInputGain.Value = 15;
+            this.iInputGain.ValueChanged += new System.EventHandler(this.iInputGain_ValueChanged);
+            this.iInputGain.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.InputCtrl_KeyPress);
+            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -2524,15 +2521,12 @@
             this.panel7.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dInputLEDWidth)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dInputExposure)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.iInputGain)).EndInit();
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iInputCurrIrisValue)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iInputIrisChgValue)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iInputCurrZoomValue)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iInputZoomChgValue)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.iInputCurrFocusValue)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.iInputChgFocusValue)).EndInit();
             this.panelCameraCtrl.ResumeLayout(false);
             this.panelCameraCtrl.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dInputFPS)).EndInit();
@@ -2551,6 +2545,9 @@
             this.panelTask.ResumeLayout(false);
             this.panel11.ResumeLayout(false);
             this.panel11.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.iInputCurrFocusValue)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iInputChgFocusValue)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iInputGain)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -2565,30 +2562,21 @@
         private System.Windows.Forms.Panel panel7;
         private DevComponents.DotNetBar.ButtonX btnSetParamOk;
         private DevComponents.Editors.DoubleInput dInputExposure;
-        private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label8;
-        private DevComponents.Editors.IntegerInput iInputGain;
         private System.Windows.Forms.Panel panel6;
-        private System.Windows.Forms.Label label11;
-        private DevComponents.Editors.IntegerInput iInputCurrFocusValue;
-        private DevComponents.Editors.IntegerInput iInputChgFocusValue;
         private System.Windows.Forms.Panel panelPos;
         private System.Windows.Forms.Panel panel3;
         private DevComponents.DotNetBar.ButtonX btnSetFPSOk;
         private DevComponents.Editors.DoubleInput dInputFPS;
-        private DevComponents.DotNetBar.Controls.SwitchButton sBtnDisplay;
         private DevComponents.DotNetBar.Controls.SwitchButton sBtnTriggerMode;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Timer timer1;
         private DevComponents.DotNetBar.ExpandablePanel exPanelJHCS;
         private System.Windows.Forms.Splitter splitter1;
-        private System.Windows.Forms.Button btnFocusPlus;
-        private System.Windows.Forms.Button btnFocusMinus;
         private System.Windows.Forms.ComboBox comBoxCameraSel;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblCameraStateA;
@@ -2636,7 +2624,6 @@
         private System.Windows.Forms.Timer ShowTime;
         private System.Windows.Forms.Label lblCameraState;
         private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label18;
         private DevComponents.DotNetBar.PanelEx exPanelLeft;
         private System.Windows.Forms.Label label20;
@@ -2683,6 +2670,16 @@
         private System.Windows.Forms.GroupBox groupBoxDataInfo;
         private DevComponents.DotNetBar.Controls.ProgressBarX progressBarX1;
         private DevComponents.DotNetBar.Controls.ProgressBarX progressBarX2;
+        private System.Windows.Forms.Label label3;
+        private DevComponents.DotNetBar.Controls.SwitchButton sBtnDisplay;
+        private System.Windows.Forms.Button btnFocusPlus;
+        private System.Windows.Forms.Button btnFocusMinus;
+        private System.Windows.Forms.Label label11;
+        private DevComponents.Editors.IntegerInput iInputCurrFocusValue;
+        private DevComponents.Editors.IntegerInput iInputChgFocusValue;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label10;
+        private DevComponents.Editors.IntegerInput iInputGain;
     }
 }
 

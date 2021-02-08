@@ -4,8 +4,24 @@ using System.Windows.Forms;
 
 namespace ComClassLib {
     public partial class CtrlView : UserControl {
-        
-        public CtrlView(string _name="") {
+        #region 属性
+        private string _sTip;
+        //属性-设置显示标题
+        public string Tip {
+            set {
+                if (!string.IsNullOrEmpty(value)) {
+                    _sTip = value;
+                    lblTip.Text = value;
+                    lblTip.Visible = true;
+                } else {
+                    lblTip.Visible = false;
+                }
+            }
+        }
+        #endregion
+
+
+        public CtrlView(string _name = "",string sMsg="") {
             InitializeComponent();
             imgView.ScrollBarH.Visible = false;
             imgView.ScrollBarV.Visible = false;
@@ -14,14 +30,19 @@ namespace ComClassLib {
             //imgView.Image = new FVIL.Data.CFviImage();
             // FVIL.File.Function.LoadImageFile("ico/VideoNoFound.png", imgView.Image, FVIL.PixelMode.Unpacking);
             //imgView.Refresh();
-            if (!string.IsNullOrEmpty(_name)) this.Name = _name;
+            if (!string.IsNullOrEmpty(_name)) {
+                this.Name = _name;
+            }
+            if (!string.IsNullOrEmpty(sMsg)) {
+                Tip = sMsg;
+            }
         }
         private void IniView() {
             FigHandlingOverlay m_FigHandOverlay = new FigHandlingOverlay();
             imgView.Display.Overlays.Add(m_FigHandOverlay);
             m_FigHandOverlay.AddMouseEventHandler(imgView);
             imgView.MouseWheel += new System.Windows.Forms.MouseEventHandler(ImageView_MouseWheel);
-             //imgView.MouseMove += new System.Windows.Forms.MouseEventHandler(ImgView_MouseMove);
+            //imgView.MouseMove += new System.Windows.Forms.MouseEventHandler(ImgView_MouseMove);
             imgView.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(ImgView_MouseDoubleClick);
             // imgView.MouseDown += new System.Windows.Forms.MouseEventHandler(ImgView_MouseDown);
             // imgView.MouseUp += new System.Windows.Forms.MouseEventHandler(ImgView_MouseUp);
@@ -40,8 +61,10 @@ namespace ComClassLib {
             // byte[] byteData = FileOp.FileHelper.getImageByte(filePath);
             //LoadImg(byteData, (uint)byteData.Length, 0);
             try {
-                if(imgView.Image!=null)
-                imgView.Image.Dispose();
+                if (imgView.Image != null) {
+                    imgView.Image.Dispose();
+                }
+
                 imgView.Image = new FVIL.Data.CFviImage();
                 FVIL.File.Function.LoadImageFile(filePath, imgView.Image, FVIL.PixelMode.Unpacking);
                 //Fit();
@@ -69,7 +92,7 @@ namespace ComClassLib {
             ImgV.Refresh();
 
         }
-       public void Fit() {
+        public void Fit() {
             double mag = imgView.Height * 1.0 / imgView.Display.ImageSize.Height;
             if (mag < 0.01) {
                 return;

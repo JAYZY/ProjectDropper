@@ -130,5 +130,17 @@ namespace Project2C.Properties {
                 this["minHei"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("60")]
+        public int buchangHei {
+            get {
+                return ((int)(this["buchangHei"]));
+            }
+            set {
+                this["buchangHei"] = value;
+            }
+        }
     }
 }

@@ -2,3 +2,17 @@
 --2019.5.20
 1. 两个相机数据的 对齐问题。
 2. 人员所有操作的日志记录。
+
+
+1.吊弦 6-9米    100
+2.支柱 40-50米   1.5秒
+
+double timestamp0 = -10000;
+for(int i = 0; i < count; i++){
+	if(data[i].posi == 3){
+		if(data[i].timestamp - dtimestamp > 100) { //1000 - 0 > 100 1050
+		  output(i,3);
+		}
+		dtimestamp = data[i].timestamp; /1050
+	}
+}
