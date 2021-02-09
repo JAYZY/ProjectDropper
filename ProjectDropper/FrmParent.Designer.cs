@@ -109,21 +109,21 @@
             this.labelPosition = new DevComponents.DotNetBar.LabelItem();
             this.zoomSlider = new DevComponents.DotNetBar.SliderItem();
             this.superTabControl1 = new DevComponents.DotNetBar.SuperTabControl();
+            this.superTabControlPanel2 = new DevComponents.DotNetBar.SuperTabControlPanel();
+            this.superTabItem2 = new DevComponents.DotNetBar.SuperTabItem();
             this.superTabControlPanel1 = new DevComponents.DotNetBar.SuperTabControlPanel();
             this.expandablePanel1 = new DevComponents.DotNetBar.ExpandablePanel();
             this.splitter1 = new System.Windows.Forms.Splitter();
             this.expandablePanel2 = new DevComponents.DotNetBar.ExpandablePanel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.superTabItem1 = new DevComponents.DotNetBar.SuperTabItem();
-            this.superTabControlPanel2 = new DevComponents.DotNetBar.SuperTabControlPanel();
-            this.superTabItem2 = new DevComponents.DotNetBar.SuperTabItem();
             this.bar3 = new DevComponents.DotNetBar.Bar();
-            this.labelItem2 = new DevComponents.DotNetBar.LabelItem();
-            this.labelItem1 = new DevComponents.DotNetBar.LabelItem();
-            this.labelItem3 = new DevComponents.DotNetBar.LabelItem();
             this.buttonItem1 = new DevComponents.DotNetBar.ButtonItem();
             this.buttonItem2 = new DevComponents.DotNetBar.ButtonItem();
+            this.labelItem2 = new DevComponents.DotNetBar.LabelItem();
+            this.labelItem1 = new DevComponents.DotNetBar.LabelItem();
             this.labelItem4 = new DevComponents.DotNetBar.LabelItem();
+            this.labelItem3 = new DevComponents.DotNetBar.LabelItem();
             ((System.ComponentModel.ISupportInitialize)(this.integerInput1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.integerInput2)).BeginInit();
             this.panelEx1.SuspendLayout();
@@ -141,10 +141,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.bar1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.superTabControl1)).BeginInit();
             this.superTabControl1.SuspendLayout();
+            this.superTabControlPanel2.SuspendLayout();
             this.superTabControlPanel1.SuspendLayout();
             this.expandablePanel1.SuspendLayout();
             this.expandablePanel2.SuspendLayout();
-            this.superTabControlPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bar3)).BeginInit();
             this.SuspendLayout();
             // 
@@ -185,22 +185,22 @@
             this.tbLayoutPanelMiddle.Name = "tbLayoutPanelMiddle";
             this.tbLayoutPanelMiddle.RowCount = 1;
             this.tbLayoutPanelMiddle.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tbLayoutPanelMiddle.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 556F));
-            this.tbLayoutPanelMiddle.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 556F));
-            this.tbLayoutPanelMiddle.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 556F));
-            this.tbLayoutPanelMiddle.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 556F));
-            this.tbLayoutPanelMiddle.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 556F));
-            this.tbLayoutPanelMiddle.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 556F));
-            this.tbLayoutPanelMiddle.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 556F));
-            this.tbLayoutPanelMiddle.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 556F));
-            this.tbLayoutPanelMiddle.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 556F));
-            this.tbLayoutPanelMiddle.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 556F));
-            this.tbLayoutPanelMiddle.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 556F));
-            this.tbLayoutPanelMiddle.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 556F));
-            this.tbLayoutPanelMiddle.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 556F));
-            this.tbLayoutPanelMiddle.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 556F));
-            this.tbLayoutPanelMiddle.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 556F));
-            this.tbLayoutPanelMiddle.Size = new System.Drawing.Size(934, 548);
+            this.tbLayoutPanelMiddle.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 548F));
+            this.tbLayoutPanelMiddle.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 548F));
+            this.tbLayoutPanelMiddle.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 548F));
+            this.tbLayoutPanelMiddle.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 548F));
+            this.tbLayoutPanelMiddle.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 548F));
+            this.tbLayoutPanelMiddle.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 548F));
+            this.tbLayoutPanelMiddle.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 548F));
+            this.tbLayoutPanelMiddle.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 548F));
+            this.tbLayoutPanelMiddle.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 548F));
+            this.tbLayoutPanelMiddle.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 548F));
+            this.tbLayoutPanelMiddle.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 548F));
+            this.tbLayoutPanelMiddle.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 548F));
+            this.tbLayoutPanelMiddle.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 548F));
+            this.tbLayoutPanelMiddle.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 548F));
+            this.tbLayoutPanelMiddle.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 548F));
+            this.tbLayoutPanelMiddle.Size = new System.Drawing.Size(934, 542);
             this.tbLayoutPanelMiddle.TabIndex = 72;
             // 
             // dotNetBarManager1
@@ -515,14 +515,14 @@
             this.integerInput1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.integerInput1.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2;
             this.integerInput1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.integerInput1.Font = new System.Drawing.Font("苹方 中等", 11F);
+            this.integerInput1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.integerInput1.ForeColor = System.Drawing.Color.Black;
             this.integerInput1.Location = new System.Drawing.Point(144, 4);
             this.integerInput1.MaxValue = 1000;
             this.integerInput1.MinValue = 10;
             this.integerInput1.Name = "integerInput1";
             this.integerInput1.ShowUpDown = true;
-            this.integerInput1.Size = new System.Drawing.Size(68, 28);
+            this.integerInput1.Size = new System.Drawing.Size(68, 24);
             this.integerInput1.TabIndex = 6;
             this.integerInput1.Value = 50;
             this.integerInput1.WatermarkText = "调节级数";
@@ -537,13 +537,13 @@
             this.integerInput2.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.integerInput2.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2;
             this.integerInput2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.integerInput2.Font = new System.Drawing.Font("苹方 中等", 11F);
+            this.integerInput2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.integerInput2.ForeColor = System.Drawing.Color.Black;
             this.integerInput2.Location = new System.Drawing.Point(83, 4);
             this.integerInput2.MaxValue = 79000;
             this.integerInput2.MinValue = 1000;
             this.integerInput2.Name = "integerInput2";
-            this.integerInput2.Size = new System.Drawing.Size(58, 28);
+            this.integerInput2.Size = new System.Drawing.Size(58, 24);
             this.integerInput2.TabIndex = 6;
             this.integerInput2.Value = 1000;
             this.integerInput2.WatermarkText = "当前对焦环数值";
@@ -551,11 +551,11 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("苹方 中等", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label2.ForeColor = System.Drawing.Color.DimGray;
             this.label2.Location = new System.Drawing.Point(3, 4);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(42, 22);
+            this.label2.Size = new System.Drawing.Size(41, 20);
             this.label2.TabIndex = 10;
             this.label2.Text = "聚焦";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -646,11 +646,11 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("苹方 中等", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label3.ForeColor = System.Drawing.Color.DimGray;
             this.label3.Location = new System.Drawing.Point(3, 7);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(42, 22);
+            this.label3.Size = new System.Drawing.Size(41, 20);
             this.label3.TabIndex = 10;
             this.label3.Text = "光圈";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -665,13 +665,13 @@
             this.integerInput3.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.integerInput3.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2;
             this.integerInput3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.integerInput3.Font = new System.Drawing.Font("苹方 中等", 11F);
+            this.integerInput3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.integerInput3.ForeColor = System.Drawing.Color.Black;
             this.integerInput3.Location = new System.Drawing.Point(83, 4);
             this.integerInput3.MaxValue = 79000;
             this.integerInput3.MinValue = 1000;
             this.integerInput3.Name = "integerInput3";
-            this.integerInput3.Size = new System.Drawing.Size(58, 28);
+            this.integerInput3.Size = new System.Drawing.Size(58, 24);
             this.integerInput3.TabIndex = 6;
             this.integerInput3.Value = 1000;
             this.integerInput3.WatermarkText = "当前对焦环数值";
@@ -686,14 +686,14 @@
             this.integerInput4.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.integerInput4.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2;
             this.integerInput4.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.integerInput4.Font = new System.Drawing.Font("苹方 中等", 11F);
+            this.integerInput4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.integerInput4.ForeColor = System.Drawing.Color.Black;
             this.integerInput4.Location = new System.Drawing.Point(144, 4);
             this.integerInput4.MaxValue = 1000;
             this.integerInput4.MinValue = 10;
             this.integerInput4.Name = "integerInput4";
             this.integerInput4.ShowUpDown = true;
-            this.integerInput4.Size = new System.Drawing.Size(68, 28);
+            this.integerInput4.Size = new System.Drawing.Size(68, 24);
             this.integerInput4.TabIndex = 6;
             this.integerInput4.Value = 50;
             this.integerInput4.WatermarkText = "调节级数";
@@ -749,11 +749,11 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("苹方 中等", 12F);
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.label4.ForeColor = System.Drawing.Color.DimGray;
             this.label4.Location = new System.Drawing.Point(3, 8);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(42, 22);
+            this.label4.Size = new System.Drawing.Size(41, 20);
             this.label4.TabIndex = 10;
             this.label4.Text = "变焦";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -768,13 +768,13 @@
             this.integerInput5.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.integerInput5.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2;
             this.integerInput5.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.integerInput5.Font = new System.Drawing.Font("苹方 中等", 11F);
+            this.integerInput5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.integerInput5.ForeColor = System.Drawing.Color.Black;
             this.integerInput5.Location = new System.Drawing.Point(83, 4);
             this.integerInput5.MaxValue = 79000;
             this.integerInput5.MinValue = 1000;
             this.integerInput5.Name = "integerInput5";
-            this.integerInput5.Size = new System.Drawing.Size(58, 28);
+            this.integerInput5.Size = new System.Drawing.Size(58, 24);
             this.integerInput5.TabIndex = 6;
             this.integerInput5.Value = 1000;
             this.integerInput5.WatermarkText = "当前对焦环数值";
@@ -789,14 +789,14 @@
             this.integerInput6.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.integerInput6.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2;
             this.integerInput6.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.integerInput6.Font = new System.Drawing.Font("苹方 中等", 11F);
+            this.integerInput6.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.integerInput6.ForeColor = System.Drawing.Color.Black;
             this.integerInput6.Location = new System.Drawing.Point(144, 4);
             this.integerInput6.MaxValue = 1000;
             this.integerInput6.MinValue = 10;
             this.integerInput6.Name = "integerInput6";
             this.integerInput6.ShowUpDown = true;
-            this.integerInput6.Size = new System.Drawing.Size(68, 28);
+            this.integerInput6.Size = new System.Drawing.Size(68, 24);
             this.integerInput6.TabIndex = 6;
             this.integerInput6.Value = 50;
             this.integerInput6.WatermarkText = "调节级数";
@@ -817,11 +817,11 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("苹方 常规", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label14.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.label14.Location = new System.Drawing.Point(12, 35);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(43, 16);
+            this.label14.Size = new System.Drawing.Size(38, 13);
             this.label14.TabIndex = 17;
             this.label14.Text = "(1~50)";
             this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -829,11 +829,11 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("苹方 中等", 12F);
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.label10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.label10.Location = new System.Drawing.Point(5, 15);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(57, 22);
+            this.label10.Size = new System.Drawing.Size(53, 20);
             this.label10.TabIndex = 16;
             this.label10.Text = "增   益";
             this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -904,11 +904,11 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("苹方 中等", 12F);
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.label5.ForeColor = System.Drawing.Color.DimGray;
             this.label5.Location = new System.Drawing.Point(215, 18);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(81, 22);
+            this.label5.Size = new System.Drawing.Size(82, 20);
             this.label5.TabIndex = 25;
             this.label5.Text = "FPS(帧率)";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -916,11 +916,11 @@
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("苹方 常规", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label17.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.label17.Location = new System.Drawing.Point(5, 84);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(57, 16);
+            this.label17.Size = new System.Drawing.Size(50, 13);
             this.label17.TabIndex = 22;
             this.label17.Text = "(50~500)";
             this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -928,11 +928,11 @@
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Font = new System.Drawing.Font("苹方 常规", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label18.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.label18.Location = new System.Drawing.Point(237, 80);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(36, 16);
+            this.label18.Size = new System.Drawing.Size(31, 13);
             this.label18.TabIndex = 23;
             this.label18.Text = "(60u)";
             this.label18.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -974,11 +974,11 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("苹方 中等", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.label8.Location = new System.Drawing.Point(218, 60);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(74, 22);
+            this.label8.Size = new System.Drawing.Size(73, 20);
             this.label8.TabIndex = 18;
             this.label8.Text = "曝光时间";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -986,11 +986,11 @@
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("苹方 常规", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label15.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.label15.Location = new System.Drawing.Point(4, 60);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(58, 22);
+            this.label15.Size = new System.Drawing.Size(57, 20);
             this.label15.TabIndex = 24;
             this.label15.Text = "补光灯";
             this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1167,7 +1167,7 @@
             this.superTabControl1.Controls.Add(this.superTabControlPanel1);
             this.superTabControl1.Controls.Add(this.superTabControlPanel2);
             this.superTabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.superTabControl1.Font = new System.Drawing.Font("苹方 常规", 12F);
+            this.superTabControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.superTabControl1.ForeColor = System.Drawing.Color.Black;
             this.superTabControl1.Location = new System.Drawing.Point(0, 33);
             this.superTabControl1.Name = "superTabControl1";
@@ -1181,9 +1181,32 @@
             this.superTabItem1,
             this.superTabItem2,
             this.buttonChangeStyle});
-            this.superTabControl1.TabStyle = DevComponents.DotNetBar.eSuperTabStyle.Office2010BackstageBlue;
+            this.superTabControl1.TabStyle = DevComponents.DotNetBar.eSuperTabStyle.OfficeMobile2014;
             this.superTabControl1.Text = "superTabControl1";
             this.superTabControl1.TextAlignment = DevComponents.DotNetBar.eItemAlignment.Center;
+            // 
+            // superTabControlPanel2
+            // 
+            this.superTabControlPanel2.Controls.Add(this.panelEx3);
+            this.superTabControlPanel2.Controls.Add(this.panel1);
+            this.superTabControlPanel2.Controls.Add(this.panelEx2);
+            this.superTabControlPanel2.Controls.Add(this.panelEx1);
+            this.superTabControlPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.superTabControlPanel2.Location = new System.Drawing.Point(0, 41);
+            this.superTabControlPanel2.Name = "superTabControlPanel2";
+            this.superTabControlPanel2.Size = new System.Drawing.Size(1286, 568);
+            this.superTabControlPanel2.TabIndex = 0;
+            this.superTabControlPanel2.TabItem = this.superTabItem2;
+            // 
+            // superTabItem2
+            // 
+            this.superTabItem2.AttachedControl = this.superTabControlPanel2;
+            this.superTabItem2.GlobalItem = false;
+            this.superTabItem2.ItemAlignment = DevComponents.DotNetBar.eItemAlignment.Center;
+            this.superTabItem2.Name = "superTabItem2";
+            this.superTabItem2.SelectedTabFont = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.superTabItem2.TabFont = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.superTabItem2.Text = "设备配置";
             // 
             // superTabControlPanel1
             // 
@@ -1191,9 +1214,9 @@
             this.superTabControlPanel1.Controls.Add(this.splitter1);
             this.superTabControlPanel1.Controls.Add(this.expandablePanel2);
             this.superTabControlPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.superTabControlPanel1.Location = new System.Drawing.Point(0, 35);
+            this.superTabControlPanel1.Location = new System.Drawing.Point(0, 41);
             this.superTabControlPanel1.Name = "superTabControlPanel1";
-            this.superTabControlPanel1.Size = new System.Drawing.Size(1286, 574);
+            this.superTabControlPanel1.Size = new System.Drawing.Size(1286, 568);
             this.superTabControlPanel1.TabIndex = 1;
             this.superTabControlPanel1.TabItem = this.superTabItem1;
             // 
@@ -1208,7 +1231,7 @@
             this.expandablePanel1.HideControlsWhenCollapsed = true;
             this.expandablePanel1.Location = new System.Drawing.Point(0, 0);
             this.expandablePanel1.Name = "expandablePanel1";
-            this.expandablePanel1.Size = new System.Drawing.Size(934, 574);
+            this.expandablePanel1.Size = new System.Drawing.Size(934, 568);
             this.expandablePanel1.Style.Alignment = System.Drawing.StringAlignment.Center;
             this.expandablePanel1.Style.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
             this.expandablePanel1.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
@@ -1228,7 +1251,7 @@
             this.splitter1.Dock = System.Windows.Forms.DockStyle.Right;
             this.splitter1.Location = new System.Drawing.Point(934, 0);
             this.splitter1.Name = "splitter1";
-            this.splitter1.Size = new System.Drawing.Size(3, 574);
+            this.splitter1.Size = new System.Drawing.Size(3, 568);
             this.splitter1.TabIndex = 81;
             this.splitter1.TabStop = false;
             // 
@@ -1243,7 +1266,7 @@
             this.expandablePanel2.HideControlsWhenCollapsed = true;
             this.expandablePanel2.Location = new System.Drawing.Point(937, 0);
             this.expandablePanel2.Name = "expandablePanel2";
-            this.expandablePanel2.Size = new System.Drawing.Size(349, 574);
+            this.expandablePanel2.Size = new System.Drawing.Size(349, 568);
             this.expandablePanel2.Style.Alignment = System.Drawing.StringAlignment.Center;
             this.expandablePanel2.Style.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
             this.expandablePanel2.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
@@ -1269,54 +1292,33 @@
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 556F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 556F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 556F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 556F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 556F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 556F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 556F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 556F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 556F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 556F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 556F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 556F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 556F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 556F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 556F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(349, 548);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 558F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 558F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 558F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 558F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 558F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 558F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 558F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 558F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 558F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 558F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 558F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 558F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 558F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 558F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 558F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(349, 542);
             this.tableLayoutPanel1.TabIndex = 73;
             // 
             // superTabItem1
             // 
             this.superTabItem1.AttachedControl = this.superTabControlPanel1;
             this.superTabItem1.GlobalItem = false;
+            this.superTabItem1.ItemAlignment = DevComponents.DotNetBar.eItemAlignment.Center;
             this.superTabItem1.Name = "superTabItem1";
-            this.superTabItem1.SelectedTabFont = new System.Drawing.Font("苹方 常规", 12F);
-            this.superTabItem1.TabFont = new System.Drawing.Font("苹方 常规", 12F);
+            this.superTabItem1.SelectedTabFont = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.superTabItem1.TabFont = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.superTabItem1.Text = "实时图像采集";
-            // 
-            // superTabControlPanel2
-            // 
-            this.superTabControlPanel2.Controls.Add(this.panelEx3);
-            this.superTabControlPanel2.Controls.Add(this.panel1);
-            this.superTabControlPanel2.Controls.Add(this.panelEx2);
-            this.superTabControlPanel2.Controls.Add(this.panelEx1);
-            this.superTabControlPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.superTabControlPanel2.Location = new System.Drawing.Point(0, 35);
-            this.superTabControlPanel2.Name = "superTabControlPanel2";
-            this.superTabControlPanel2.Size = new System.Drawing.Size(1286, 572);
-            this.superTabControlPanel2.TabIndex = 0;
-            this.superTabControlPanel2.TabItem = this.superTabItem2;
-            // 
-            // superTabItem2
-            // 
-            this.superTabItem2.AttachedControl = this.superTabControlPanel2;
-            this.superTabItem2.GlobalItem = false;
-            this.superTabItem2.Name = "superTabItem2";
-            this.superTabItem2.SelectedTabFont = new System.Drawing.Font("苹方 常规", 12F);
-            this.superTabItem2.TabFont = new System.Drawing.Font("苹方 常规", 12F);
-            this.superTabItem2.Text = "设备配置";
             // 
             // bar3
             // 
@@ -1348,6 +1350,16 @@
             this.bar3.TabStop = false;
             this.bar3.Text = "barStatus";
             // 
+            // buttonItem1
+            // 
+            this.buttonItem1.Name = "buttonItem1";
+            this.buttonItem1.Text = "起始时间：";
+            // 
+            // buttonItem2
+            // 
+            this.buttonItem2.Name = "buttonItem2";
+            this.buttonItem2.Text = "2021-1-4 11:11:11";
+            // 
             // labelItem2
             // 
             this.labelItem2.Font = new System.Drawing.Font("微软雅黑", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -1361,33 +1373,23 @@
             // 
             // labelItem1
             // 
-            this.labelItem1.Font = new System.Drawing.Font("苹方 中等", 12F);
+            this.labelItem1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.labelItem1.ItemAlignment = DevComponents.DotNetBar.eItemAlignment.Center;
             this.labelItem1.Name = "labelItem1";
             this.labelItem1.Text = "杆号：120";
             // 
+            // labelItem4
+            // 
+            this.labelItem4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.labelItem4.Name = "labelItem4";
+            this.labelItem4.Text = "公里标：1223.12KM";
+            // 
             // labelItem3
             // 
-            this.labelItem3.Font = new System.Drawing.Font("苹方 中等", 12F);
+            this.labelItem3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.labelItem3.Icon = ((System.Drawing.Icon)(resources.GetObject("labelItem3.Icon")));
             this.labelItem3.Name = "labelItem3";
             this.labelItem3.Text = "时间：12:12";
-            // 
-            // buttonItem1
-            // 
-            this.buttonItem1.Name = "buttonItem1";
-            this.buttonItem1.Text = "起始时间：";
-            // 
-            // buttonItem2
-            // 
-            this.buttonItem2.Name = "buttonItem2";
-            this.buttonItem2.Text = "2021-1-4 11:11:11";
-            // 
-            // labelItem4
-            // 
-            this.labelItem4.Font = new System.Drawing.Font("苹方 中等", 12F);
-            this.labelItem4.Name = "labelItem4";
-            this.labelItem4.Text = "公里标：1223.12KM";
             // 
             // FrmParent
             // 
@@ -1406,6 +1408,7 @@
             this.Controls.Add(this.dockSite7);
             this.Controls.Add(this.dockSite8);
             this.DoubleBuffered = true;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FrmParent";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -1432,10 +1435,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.bar1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.superTabControl1)).EndInit();
             this.superTabControl1.ResumeLayout(false);
+            this.superTabControlPanel2.ResumeLayout(false);
             this.superTabControlPanel1.ResumeLayout(false);
             this.expandablePanel1.ResumeLayout(false);
             this.expandablePanel2.ResumeLayout(false);
-            this.superTabControlPanel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.bar3)).EndInit();
             this.ResumeLayout(false);
 

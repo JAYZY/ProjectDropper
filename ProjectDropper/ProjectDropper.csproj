@@ -115,6 +115,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="P4C\FrmP4.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="P4C\FrmP4.Designer.cs">
+      <DependentUpon>FrmP4.cs</DependentUpon>
+    </Compile>
     <Compile Include="core\CameraInfo.cs" />
     <Compile Include="core\DBFileOp.cs" />
     <Compile Include="core\jcwlib_include.cs" />
@@ -148,6 +154,9 @@
     <Compile Include="UI\TaskConfig.Designer.cs">
       <DependentUpon>TaskConfig.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="P4C\FrmP4.resx">
+      <DependentUpon>FrmP4.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmMain.resx">
       <DependentUpon>FrmMain.cs</DependentUpon>
     </EmbeddedResource>
