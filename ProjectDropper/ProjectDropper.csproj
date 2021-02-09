@@ -115,6 +115,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="core\Device.cs" />
     <Compile Include="P4C\FrmP4.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -1,4 +1,6 @@
-﻿using DevComponents.DotNetBar.Metro;
+﻿using ComClassLib;
+using DevComponents.DotNetBar.Metro;
+using ProjectDropper.core;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,12 +10,35 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+//1.115.199
+//
 namespace ProjectDropper.P4C {
     public partial class FrmP4 : MetroAppForm {
         public FrmP4() {
             InitializeComponent();
         }
+        #region 属性
+
+        private int _iImgNumWithRow;//每行显示的图像数
+        private int _iCameraTotalNum; //总的相机数量
+        private int iCameraTotalNum {
+            get { return _iCameraTotalNum; }
+            set {
+                if (value > 0) {
+                    _iCameraTotalNum = value;
+                    //计算每行个数
+                    _iImgNumWithRow = (int)Math.Sqrt(value);
+                }
+            }
+        }
+
+
+        #region 设备相关属性
+        private CtrlView[] _imageViews;//图像控件
+        #endregion
+        #endregion
+
+
         #region 初始化图像显示
         private void LoadImgViewCtrl() {
             //根据总相机数初始化控件
@@ -33,11 +58,7 @@ namespace ProjectDropper.P4C {
                 this.tbLayoutPanelMiddle.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, percent));
                 ++tbLayoutPanelMiddle.ColumnCount;
                 this.tbLayoutPanelMiddle.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, percent));
-            }
-
-
-
-
+            }                       
             for (int i = 0; i < iCameraTotalNum; i++) {
                 _imageViews[i] = new CtrlView($"imgV{i}", $"192.168.100.{i}");
                 int row = i / _iImgNumWithRow;
@@ -45,6 +66,14 @@ namespace ProjectDropper.P4C {
                 _imageViews[i].Dock = System.Windows.Forms.DockStyle.Fill;
                 this.tbLayoutPanelMiddle.Controls.Add(_imageViews[i], col, row);
             }
+        }
+        #endregion
+
+
+        #region # 相机设备配置&管理
+        private  List<Device>devs;//设备列表
+        private void DevLoad() {
+
         }
         #endregion
     }

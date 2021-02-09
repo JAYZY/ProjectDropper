@@ -106,9 +106,7 @@ namespace ComClassLib.FileOp {
                 this.retain = retain;
             }
 
-            protected override IList<JsonProperty> CreateProperties(Type type,
-
-            MemberSerialization memberSerialization) {
+            protected override IList<JsonProperty> CreateProperties(Type type,MemberSerialization memberSerialization) {
                 IList<JsonProperty> list =
                 base.CreateProperties(type, memberSerialization);
                 //只保留清单有列出的属性
